@@ -1,0 +1,59 @@
+/* Глобальные токены: шрифты (Unbounded — заголовки, Onest — текст), цвета, размеры. Подключается первым. */
+@font-face {
+  font-family: 'Onest';
+  src: url('/fonts/onest-cyrillic-wght-normal.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Onest';
+  src: url('/fonts/onest-latin-wght-normal.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122, U+2212;
+}
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/unbounded-cyrillic-600-normal.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+  unicode-range: U+0400-045F, U+2116;
+}
+@font-face {
+  font-family: 'Unbounded';
+  src: url('/fonts/unbounded-latin-600-normal.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F;
+}
+
+/* Токены: холодная бумага, графит и «воздушный» синий */
+:root {
+  --paper: #f5f7f9;
+  --surface: #ffffff;
+  --ice: #e9f0f7;
+  --ice-deep: #dce6f1;
+  --ink: #0e1a26;
+  --ink-soft: #56636f;
+  --ink-faint: #8a96a1;
+  --line: #d9e0e7;
+  --line-strong: #b8c3cd;
+  --accent: #1f5bd8;
+  --accent-deep: #1646a8;
+  --warm: #d9822b;
+  --stub-bg: #fff3bf;
+  --stub-ink: #6b5200;
+  --radius: 6px;
+  --wrap: 1240px;
+  --gutter: 32px;
+  --header-height: 76px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (max-width: 720px) {
+  :root {
+    --gutter: 20px;
+    --header-height: 64px;
+  }
+}

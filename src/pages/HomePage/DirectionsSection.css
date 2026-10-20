@@ -1,0 +1,90 @@
+/* Блок «Два направления» на главной: карточки вентиляции и пылеудаления */
+.directions {
+  padding: 104px 0;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+.direction-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.direction {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--paper);
+}
+.direction-media {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+.direction-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.direction-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 36px 36px 40px;
+  flex: 1;
+}
+.direction-body h3 {
+  font-size: clamp(26px, 2.6vw, 34px);
+}
+.direction-body h3 a {
+  text-decoration: none;
+}
+.direction-body > p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+.direction-index {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.direction-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 12px;
+  padding: 0;
+  list-style: none;
+}
+.direction-links a {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 14px;
+  text-decoration: none;
+}
+.direction-links a:hover {
+  border-color: var(--accent);
+}
+.direction-body .button {
+  margin-top: auto;
+}
+
+@media (max-width: 720px) {
+  .directions {
+    padding: 64px 0;
+  }
+  .direction-grid {
+    grid-template-columns: 1fr;
+  }
+  .direction-body {
+    padding: 24px 20px 28px;
+  }
+}

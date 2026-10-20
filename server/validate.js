@@ -1,11 +1,11 @@
 // Проверка заявки с сайта. Возвращает { ok, data } или { ok: false, error }.
-const LIMITS = { nameMin: 2, nameMax: 80, phoneDigitsMin: 10, phoneDigitsMax: 15, comment: 1000, product: 120 };
+export const LIMITS = { nameMin: 2, nameMax: 80, phoneDigitsMin: 10, phoneDigitsMax: 15, comment: 1000, product: 120 };
 
 function cleanString(value) {
   return typeof value === 'string' ? value.trim() : '';
 }
 
-function validateRequest(body) {
+export function validateRequest(body) {
   if (!body || typeof body !== 'object') return { ok: false, error: 'Пустая заявка' };
 
   const name = cleanString(body.name);
@@ -25,5 +25,3 @@ function validateRequest(body) {
 
   return { ok: true, data: { name, phone, comment, product } };
 }
-
-module.exports = { validateRequest, LIMITS };

@@ -1,0 +1,12 @@
+/* Заглушки в тексте: видно сразу, что нужно заменить */
+.stub {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: var(--stub-bg);
+  color: var(--stub-ink);
+  font-size: 0.86em;
+  font-weight: 500;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}

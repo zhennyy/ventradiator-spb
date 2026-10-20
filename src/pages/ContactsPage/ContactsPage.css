@@ -1,0 +1,43 @@
+/* Контакты: карточки офисов */
+.contacts {
+  padding: 104px 0;
+}
+.office-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.office {
+  padding: 40px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.office h2 {
+  margin-bottom: 24px;
+  font-size: clamp(20px, 2vw, 26px);
+}
+.office-phones {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+.office-phone {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 720px) {
+  .contacts {
+    padding: 64px 0;
+  }
+  .office-grid {
+    grid-template-columns: 1fr;
+  }
+  .office {
+    padding: 24px 20px 28px;
+  }
+}

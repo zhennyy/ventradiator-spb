@@ -1,0 +1,62 @@
+/* Таблица моделей и артикулов */
+.models {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 88px 0;
+}
+.models-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  margin-bottom: 32px;
+}
+.models-head p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.models-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+.models-table th,
+.models-table td {
+  padding: 16px 20px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.models-table thead th {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: var(--paper);
+  white-space: nowrap;
+}
+.models-table tbody th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.models-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.models-table tbody tr:hover {
+  background: var(--paper);
+}
+
+@media (max-width: 720px) {
+  .models {
+    padding: 64px 0;
+  }
+}

@@ -1,0 +1,27 @@
+/* Документы: политика и согласие */
+.legal {
+  padding: 48px 0 104px;
+}
+.legal-wrap {
+  max-width: 880px;
+}
+.template-banner {
+  margin-bottom: 40px;
+  padding: 18px 22px;
+  border: 1px solid #e8c547;
+  border-radius: var(--radius);
+  background: #fff6cc;
+  color: #4d3d00;
+  font-size: 15px;
+}
+.legal-body section {
+  padding: 28px 0 8px;
+  border-top: 1px solid var(--line);
+}
+.legal-body h2 {
+  margin-bottom: 14px;
+  font-size: 20px;
+}
+.legal h1 {
+  font-size: clamp(28px, 3.4vw, 44px);
+}

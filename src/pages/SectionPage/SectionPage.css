@@ -1,0 +1,53 @@
+/* Страница направления: преимущества и сетка категорий */
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 56px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+.benefits li {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 22px 20px 0 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.benefits li + li {
+  padding-left: 20px;
+  border-left: 1px solid var(--line);
+}
+.benefit-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+}
+.catalog {
+  padding: 64px 0 104px;
+}
+
+@media (max-width: 1080px) {
+  .benefits {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 24px;
+  }
+  .benefits li:nth-child(4) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+@media (max-width: 720px) {
+  .catalog {
+    padding: 64px 0;
+  }
+  .benefits {
+    grid-template-columns: 1fr;
+  }
+  .benefits li,
+  .benefits li + li {
+    padding: 14px 0 0;
+    border-left: 0;
+  }
+}
