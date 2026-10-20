@@ -35,7 +35,7 @@ export function setupRequestForm(form) {
       form.reset();
       showStatus('Спасибо! Перезвоним в течение 15 минут в рабочее время.', 'ok');
     } catch {
-      showStatus('Не получилось отправить. Позвоните нам: +7 (383) 000-00-00', 'error');
+      showStatus('Не получилось отправить. Позвоните нам: +7 (812) 000-00-00', 'error');
     } finally {
       submitButton.disabled = false;
     }
