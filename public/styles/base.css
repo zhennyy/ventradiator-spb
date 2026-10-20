@@ -1,4 +1,4 @@
-/* Шрифты, цвета, кнопки, шапка и подвал — общие для всей страницы */
+/* Шрифты, токены цвета и базовая типографика — общие для всех страниц */
 @font-face {
   font-family: 'Onest';
   src: url('../fonts/onest-cyrillic-wght-normal.woff2') format('woff2');
@@ -28,25 +28,38 @@
   unicode-range: U+0000-00FF, U+2000-206F;
 }
 
+/* Токены: холодная бумага, графит и «воздушный» синий */
 :root {
-  --paper: #f4f1ea;
-  --paper-deep: #ebe6db;
-  --card: #fbfaf6;
-  --ink: #16202b;
-  --ink-soft: #55606b;
-  --line: #d9d3c6;
-  --warm: #e2552b;
-  --cool: #2a76d6;
-  --radius: 18px;
-  --wrap: 1120px;
+  --paper: #f5f7f9;
+  --surface: #ffffff;
+  --ice: #e9f0f7;
+  --ice-deep: #dce6f1;
+  --ink: #0e1a26;
+  --ink-soft: #56636f;
+  --ink-faint: #8a96a1;
+  --line: #d9e0e7;
+  --line-strong: #b8c3cd;
+  --accent: #1f5bd8;
+  --accent-deep: #1646a8;
+  --warm: #d9822b;
+  --stub-bg: #fff3bf;
+  --stub-ink: #6b5200;
+  --radius: 6px;
+  --wrap: 1240px;
+  --gutter: 32px;
+  --header-height: 76px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: calc(var(--header-height) + 16px);
+  -webkit-text-size-adjust: 100%;
 }
 body {
   margin: 0;
@@ -56,167 +69,128 @@ body {
     400 17px/1.6 'Onest',
     system-ui,
     sans-serif;
+  font-feature-settings: 'tnum' 0;
   -webkit-font-smoothing: antialiased;
-}
-/* Тонкая «чертёжная» сетка на фоне */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.35;
-  mask-image: linear-gradient(to bottom, #000 0, transparent 900px);
+  overflow-x: clip;
 }
 h1,
 h2,
 h3 {
   font-family: 'Unbounded', 'Onest', sans-serif;
   font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.12;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
   margin: 0;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+h1 {
+  font-size: clamp(32px, 4.6vw, 62px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+h2 {
+  font-size: clamp(24px, 2.8vw, 38px);
+}
+h3 {
+  font-size: clamp(18px, 1.6vw, 22px);
+  letter-spacing: -0.015em;
+}
+p {
+  margin: 0 0 1em;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 a {
   color: inherit;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+a:hover {
+  color: var(--accent);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+main:focus {
+  outline: none;
 }
 .wrap {
   max-width: var(--wrap);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--gutter);
 }
-.accent-cool {
-  color: var(--cool);
+.accent {
+  color: var(--accent);
 }
-
-.button {
-  display: inline-flex;
+.eyebrow {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 52px;
-  padding: 0 26px;
-  border-radius: 999px;
-  border: 1.5px solid var(--ink);
-  font: inherit;
+  gap: 12px;
+  margin: 0 0 18px;
+  font-size: 12px;
   font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    background 0.15s ease;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
-.button:hover {
-  transform: translateY(-2px);
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1.5px;
+  background: currentColor;
+  flex: none;
 }
-.button-primary {
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
   background: var(--ink);
-  color: var(--paper);
+  color: var(--surface);
+  border-radius: var(--radius);
 }
-.button-primary:hover {
-  background: var(--warm);
-  border-color: var(--warm);
+.skip-link:focus {
+  top: 12px;
+  color: var(--surface);
 }
-.button-ghost {
-  background: transparent;
-  color: var(--ink);
-}
-
-/* Шапка */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-}
-.header-row {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  height: 68px;
-}
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-.logo-mark {
-  display: flex;
-  gap: 3px;
-}
-.logo-mark i {
-  width: 10px;
-  height: 22px;
-  border-radius: 4px;
-  background: var(--cool);
-}
-.logo-mark i + i {
-  background: var(--warm);
-}
-.logo-text {
-  font-family: 'Unbounded', sans-serif;
-  font-weight: 600;
-  font-size: 17px;
-}
-.header-nav {
-  display: flex;
-  gap: 22px;
-  margin-left: auto;
-  font-size: 15px;
-}
-.header-nav a {
-  text-decoration: none;
-  color: var(--ink-soft);
-}
-.header-nav a:hover {
-  color: var(--ink);
-}
-.header-phone {
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
+/* Заглушки в тексте: видно сразу, что нужно заменить */
+.stub {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: var(--stub-bg);
+  color: var(--stub-ink);
+  font-size: 0.86em;
+  font-weight: 500;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-/* Подвал */
-.site-footer {
-  background: var(--ink);
-  color: #c9cfd6;
-  padding: 48px 0;
-  font-size: 15px;
-}
-.site-footer .logo-text {
-  color: #fff;
-  margin: 0 0 6px;
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 28px;
-}
-.site-footer a {
-  color: #fff;
-}
-
-@media (max-width: 860px) {
-  .header-nav {
-    display: none;
+@media (max-width: 720px) {
+  :root {
+    --gutter: 20px;
+    --header-height: 64px;
   }
-  .header-phone {
-    margin-left: auto;
-  }
-  .footer-grid {
-    grid-template-columns: 1fr;
+  body {
+    font-size: 16px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .button {
-    transition: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

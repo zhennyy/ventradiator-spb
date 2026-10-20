@@ -1,43 +1,76 @@
-// Заявка на замер: проверяем поля и согласие, отправляем на сервер (/api/request), сервер пересылает её владельцу.
-const PHONE_PATTERN = /^[+\d][\d\s()-]{9,}$/;
-
-export function setupRequestForm(form) {
-  if (!form) return;
-  const status = form.querySelector('[data-form-status]');
-  const submitButton = form.querySelector('button[type="submit"]');
-
-  const showStatus = (text, state) => {
-    status.textContent = text;
-    status.dataset.state = state;
+// Отправка заявки на /api/request JSON-запросом. Поля проверяются здесь и ещё раз на сервере,
+// результат показывается в строке статуса (aria-live), чтобы его услышали и скринридеры.
+(function setupRequestForms() {
+  const MESSAGES = {
+    sending: 'Отправляем…',
+    success: 'Спасибо! Заявка отправлена — мы перезвоним в рабочее время.',
+    consent: 'Отметьте согласие на обработку персональных данных.',
+    invalid: 'Проверьте имя и телефон.',
+    tooMany: 'Слишком много заявок подряд. Попробуйте через несколько минут или позвоните нам.',
+    failed: 'Не удалось отправить заявку. Позвоните нам, пожалуйста.',
   };
 
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const fields = form.elements;
-    if (!fields.name.value.trim()) return showStatus('Как к вам обращаться?', 'error');
-    if (!PHONE_PATTERN.test(fields.phone.value.trim())) return showStatus('Проверьте номер телефона', 'error');
-    if (!fields.consent.checked) return showStatus('Отметьте согласие на обработку данных', 'error');
+  function countDigits(value) {
+    return (value.match(/\d/g) || []).length;
+  }
 
-    submitButton.disabled = true;
-    showStatus('Отправляем…', 'pending');
+  function validate(form) {
+    const name = form.elements.name.value.trim();
+    const phoneDigits = countDigits(form.elements.phone.value);
+    form.elements.name.setAttribute('aria-invalid', String(name.length < 2));
+    form.elements.phone.setAttribute('aria-invalid', String(phoneDigits < 10 || phoneDigits > 15));
+    if (name.length < 2) return { message: MESSAGES.invalid, field: form.elements.name };
+    if (phoneDigits < 10 || phoneDigits > 15) return { message: MESSAGES.invalid, field: form.elements.phone };
+    if (!form.elements.consent.checked) return { message: MESSAGES.consent, field: form.elements.consent };
+    return null;
+  }
+
+  async function submitForm(form, status) {
+    const problem = validate(form);
+    if (problem) {
+      status.textContent = problem.message;
+      status.dataset.state = 'error';
+      problem.field.focus();
+      return;
+    }
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = true;
+    status.textContent = MESSAGES.sending;
+    status.dataset.state = 'pending';
+    const payload = {
+      name: form.elements.name.value.trim(),
+      phone: form.elements.phone.value.trim(),
+      comment: form.elements.comment.value.trim(),
+      product: form.elements.product ? form.elements.product.value : '',
+      consent: form.elements.consent.checked,
+    };
     try {
-      const response = await fetch('/api/request', {
+      const response = await fetch(form.action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: fields.name.value.trim(),
-          phone: fields.phone.value.trim(),
-          comment: fields.comment.value.trim(),
-          consent: true,
-        }),
+        body: JSON.stringify(payload),
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      form.reset();
-      showStatus('Спасибо! Перезвоним в течение 15 минут в рабочее время.', 'ok');
-    } catch {
-      showStatus('Не получилось отправить. Позвоните нам: +7 (812) 000-00-00', 'error');
+      if (response.ok) {
+        form.reset();
+        status.textContent = MESSAGES.success;
+        status.dataset.state = 'success';
+      } else {
+        status.textContent = response.status === 429 ? MESSAGES.tooMany : MESSAGES.failed;
+        status.dataset.state = 'error';
+      }
+    } catch (error) {
+      status.textContent = MESSAGES.failed;
+      status.dataset.state = 'error';
     } finally {
-      submitButton.disabled = false;
+      button.disabled = false;
     }
+  }
+
+  document.querySelectorAll('[data-request-form]').forEach((form) => {
+    const status = form.querySelector('[data-form-status]');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      submitForm(form, status);
+    });
   });
-}
+})();

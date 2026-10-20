@@ -1,0 +1,89 @@
+/* Хлебные крошки и подвал */
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin: 0;
+  padding: 28px 0 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.breadcrumbs li + li::before {
+  content: '/';
+  margin-right: 10px;
+  color: var(--line-strong);
+}
+.breadcrumbs a {
+  text-decoration: none;
+}
+.breadcrumbs [aria-current] {
+  color: var(--ink);
+}
+
+/* Подвал */
+.site-footer {
+  margin-top: 0;
+  padding: 72px 0 32px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand p {
+  max-width: 300px;
+  margin-top: 20px;
+}
+.footer-title {
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.footer-title a {
+  text-decoration: none;
+}
+.site-footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+.site-footer a {
+  text-decoration: none;
+}
+.footer-legal {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.footer-legal p {
+  margin: 0 0 6px;
+}
+.footer-legal a {
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .footer-grid {
+    gap: 32px 20px;
+  }
+  .footer-brand,
+  .footer-grid > .footer-col:last-child {
+    grid-column: 1 / -1;
+  }
+}

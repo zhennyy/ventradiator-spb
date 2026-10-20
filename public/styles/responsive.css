@@ -1,0 +1,136 @@
+/* Адаптив: планшет (≤1080), телефон (≤720) */
+@media (max-width: 1080px) {
+  .hero-grid,
+  .product-grid,
+  .request-grid,
+  .about-grid,
+  .page-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero-drawing {
+    max-width: 560px;
+  }
+  .gallery {
+    position: static;
+  }
+  .category-grid,
+  .object-grid,
+  .category-grid-compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .reason-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .reason:not(:nth-child(3n + 1)) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .reason:nth-child(even) {
+    padding-left: 32px;
+    border-left: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .benefits {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 24px;
+  }
+  .benefits li:nth-child(4) {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 40px;
+  }
+  .hero-lead,
+  .section-lead {
+    font-size: 17px;
+  }
+  .facts {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 40px;
+  }
+  .facts li,
+  .facts li + li {
+    padding: 20px 16px 22px 0;
+    border-left: 0;
+  }
+  .facts li:nth-child(even) {
+    padding-left: 16px;
+    border-left: 1px solid var(--line);
+  }
+  .facts li:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+  .directions,
+  .reasons,
+  .objects-strip,
+  .catalog,
+  .models,
+  .siblings,
+  .objects-page,
+  .about,
+  .contacts,
+  .request {
+    padding: 64px 0;
+  }
+  .page-hero {
+    padding: 32px 0 40px;
+  }
+  .direction-grid,
+  .office-grid,
+  .category-grid,
+  .category-grid-compact,
+  .reason-grid {
+    grid-template-columns: 1fr;
+  }
+  .reason,
+  .reason:nth-child(even) {
+    padding: 24px 0 28px;
+    border-left: 0;
+  }
+  .reason-index {
+    margin-bottom: 12px;
+  }
+  .object-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .object-card figcaption {
+    padding: 12px 12px 16px;
+  }
+  .object-name {
+    font-size: 14px;
+  }
+  .direction-body,
+  .office,
+  .request-form {
+    padding: 24px 20px 28px;
+  }
+  .strip-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .benefits {
+    grid-template-columns: 1fr;
+  }
+  .benefits li,
+  .benefits li + li {
+    padding: 14px 0 0;
+    border-left: 0;
+  }
+  .specs > div,
+  .specs-wide > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .hero-actions .button,
+  .product-actions .button {
+    flex: 1 1 100%;
+  }
+  .about-grid {
+    margin-bottom: 64px;
+  }
+  .product-info h1 {
+    font-size: clamp(24px, 7.2vw, 32px);
+  }
+}

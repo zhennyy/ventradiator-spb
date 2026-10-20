@@ -1,0 +1,186 @@
+/* Форма заявки, контакты, «О компании» и страницы документов */
+.request {
+  padding: 104px 0;
+  background:
+    linear-gradient(90deg, rgba(31, 91, 216, 0.06) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(rgba(31, 91, 216, 0.06) 1px, transparent 1px) 0 0 / 40px 40px,
+    var(--ice);
+  border-top: 1px solid var(--line);
+}
+.request-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 64px;
+  align-items: start;
+}
+.request-intro p:not(.eyebrow) {
+  max-width: 440px;
+  margin-top: 20px;
+  color: var(--ink-soft);
+}
+.request-phone a {
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.request-form {
+  display: grid;
+  gap: 18px;
+  padding: 40px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 30px 60px -40px rgba(14, 26, 38, 0.35);
+}
+.form-product {
+  margin: 0;
+  padding: 12px 16px;
+  border-left: 2px solid var(--accent);
+  background: var(--ice);
+  font-size: 15px;
+}
+.field {
+  display: grid;
+  gap: 8px;
+}
+.field label {
+  font-size: 14px;
+  font-weight: 500;
+}
+.optional {
+  margin-left: 6px;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font: inherit;
+  color: var(--ink);
+  transition: border-color 0.2s var(--ease);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  border-color: var(--accent);
+}
+.field [aria-invalid='true'] {
+  border-color: #c2412d;
+}
+.consent {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.consent input {
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  accent-color: var(--accent);
+}
+.form-status {
+  min-height: 1.5em;
+  margin: 0;
+  font-size: 15px;
+}
+.form-status[data-state='success'] {
+  color: #1b7a43;
+}
+.form-status[data-state='error'] {
+  color: #b23a26;
+}
+
+/* Контакты и «О компании» */
+.office-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.office {
+  padding: 40px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.office h2 {
+  margin-bottom: 24px;
+  font-size: clamp(20px, 2vw, 26px);
+}
+.office-phones {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+.office-phone {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 64px;
+  margin-bottom: 96px;
+}
+.prose {
+  font-size: 18px;
+  max-width: 68ch;
+}
+.legal-card {
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.legal-card .eyebrow:not(:first-child) {
+  margin-top: 28px;
+}
+.legal-name {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+/* Документы */
+.legal {
+  padding: 48px 0 104px;
+}
+.legal-wrap {
+  max-width: 880px;
+}
+.template-banner {
+  margin-bottom: 40px;
+  padding: 18px 22px;
+  border: 1px solid #e8c547;
+  border-radius: var(--radius);
+  background: #fff6cc;
+  color: #4d3d00;
+  font-size: 15px;
+}
+.legal-body section {
+  padding: 28px 0 8px;
+  border-top: 1px solid var(--line);
+}
+.legal-body h2 {
+  margin-bottom: 14px;
+  font-size: 20px;
+}
+.legal h1 {
+  font-size: clamp(28px, 3.4vw, 44px);
+}

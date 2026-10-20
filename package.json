@@ -1,0 +1,30 @@
+{
+  "name": "blizzard-spb-catalog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Сайт-каталог представительства Blizzard Lufttechnik в Санкт-Петербурге",
+  "main": "server/index.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/build.js && node --env-file-if-exists=.env server/index.js",
+    "start": "node --env-file-if-exists=.env server/index.js",
+    "test": "node --test --test-force-exit \"test/*.test.js\"",
+    "screenshots": "node tools/screenshots.js --out /tmp/blizzard-shots",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "dependencies": {
+    "express": "^4.22.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "globals": "^17.13.0",
+    "playwright": "1.56.1",
+    "prettier": "^3.9.10"
+  }
+}
