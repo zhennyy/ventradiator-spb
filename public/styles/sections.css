@@ -1,0 +1,440 @@
+/* Разделы страницы: первый экран, услуги, калькулятор, работы, этапы, заявка */
+.section {
+  padding: 96px 0;
+}
+.section-tinted {
+  background: var(--paper-deep);
+}
+.section-title {
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 16px;
+}
+.section-lead {
+  color: var(--ink-soft);
+  max-width: 460px;
+}
+
+/* Первый экран */
+.hero {
+  padding: 72px 0 96px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.eyebrow {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.hero h1 {
+  font-size: clamp(36px, 5.6vw, 64px);
+}
+.lead {
+  font-size: 19px;
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin: 22px 0 30px;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero-facts {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  padding: 0;
+  margin: 40px 0 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+.hero-facts b {
+  display: block;
+  color: var(--ink);
+  font-family: 'Unbounded', sans-serif;
+  font-size: 24px;
+}
+
+/* Круговой «термостат» на первом экране */
+.hero-gauge {
+  position: relative;
+  margin: 0;
+  max-width: 400px;
+  justify-self: center;
+  width: 100%;
+}
+.hero-gauge svg {
+  width: 100%;
+  display: block;
+}
+.gauge-track,
+.gauge-value {
+  fill: none;
+  stroke-width: 18;
+}
+.gauge-track {
+  stroke: var(--line);
+}
+.gauge-value {
+  stroke-linecap: round;
+  stroke-dasharray: 804;
+  stroke-dashoffset: 804;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  animation: gauge-fill 1.8s 0.3s cubic-bezier(0.3, 0.8, 0.3, 1) forwards;
+}
+.gauge-ticks line {
+  stroke: var(--ink-soft);
+  stroke-width: 2;
+}
+@keyframes gauge-fill {
+  to {
+    stroke-dashoffset: 200;
+  }
+}
+.gauge-readout {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.gauge-label {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+.gauge-temp {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 600;
+  font-size: clamp(56px, 8vw, 84px);
+  line-height: 1;
+  color: var(--warm);
+}
+.gauge-temp small {
+  font-size: 0.4em;
+  vertical-align: top;
+}
+.gauge-outside {
+  margin-top: 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cool) 12%, transparent);
+  color: var(--cool);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Услуги */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+.service-card {
+  position: relative;
+  padding: 28px 24px;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 4px;
+  background: var(--tone);
+}
+.service-card[data-tone='cool'] {
+  --tone: var(--cool);
+}
+.service-card[data-tone='warm'] {
+  --tone: var(--warm);
+}
+.service-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--tone) 12%, transparent);
+  color: var(--tone);
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+.service-card h3 {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+.service-card p {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin: 0;
+}
+.service-card .price {
+  margin-top: 16px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* Калькулятор */
+.calculator-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 48px;
+  align-items: start;
+}
+.calculator {
+  display: grid;
+  gap: 22px;
+  padding: 28px;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+.calc-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.calc-tabs label {
+  cursor: pointer;
+}
+.calc-tabs input {
+  position: absolute;
+  opacity: 0;
+}
+.calc-tabs label {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 15px;
+}
+.calc-tabs label:has(input:checked) {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.calc-tabs label:has(input:focus-visible) {
+  outline: 2px solid var(--cool);
+  outline-offset: 2px;
+}
+.calc-field {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 16px;
+  align-items: center;
+}
+.calc-field input {
+  grid-column: 1 / -1;
+  accent-color: var(--warm);
+}
+.calc-field output {
+  grid-row: 1;
+  grid-column: 2;
+  font-weight: 700;
+}
+.calc-result {
+  display: grid;
+  padding: 20px;
+  border-radius: 14px;
+  background: var(--paper);
+}
+.calc-result span,
+.calc-result small {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.calc-result strong {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+/* Работы */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+.work-card {
+  margin: 0;
+}
+.work-photo {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in srgb, var(--line) 60%, transparent) 14px 15px),
+    var(--card);
+  border: 1px dashed var(--line);
+  display: grid;
+  place-items: center;
+}
+.work-photo::after {
+  content: attr(data-placeholder);
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.work-card figcaption {
+  display: grid;
+  margin-top: 12px;
+}
+.work-card figcaption span {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+.placeholder-note {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-top: 18px;
+}
+
+/* Этапы */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+.steps li {
+  counter-increment: step;
+  display: grid;
+  gap: 8px;
+  padding-top: 18px;
+  border-top: 2px solid var(--ink);
+}
+.steps li::before {
+  content: '0' counter(step);
+  font-family: 'Unbounded', sans-serif;
+  color: var(--warm);
+  font-size: 14px;
+}
+.steps span {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+/* Заявка */
+.request-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 48px;
+}
+.request-form {
+  display: grid;
+  gap: 16px;
+  padding: 28px;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+.request-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.request-form input:not([type='checkbox']),
+.request-form textarea {
+  font: inherit;
+  font-weight: 400;
+  padding: 13px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+}
+.request-form input:focus,
+.request-form textarea:focus {
+  outline: 2px solid var(--cool);
+  outline-offset: 1px;
+}
+.optional {
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+.request-form .consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.consent input {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  accent-color: var(--warm);
+  flex: none;
+}
+.form-status {
+  margin: 0;
+  min-height: 1.6em;
+  font-size: 15px;
+}
+.form-status[data-state='error'] {
+  color: var(--warm);
+}
+.form-status[data-state='ok'] {
+  color: #1f8a4c;
+}
+
+@media (max-width: 960px) {
+  .hero-grid,
+  .calculator-grid,
+  .request-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-gauge {
+    max-width: 300px;
+  }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .section {
+    padding: 64px 0;
+  }
+  .services-grid,
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-facts {
+    gap: 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gauge-value {
+    animation: none;
+    stroke-dashoffset: 200;
+  }
+  .service-card {
+    transition: none;
+  }
+}

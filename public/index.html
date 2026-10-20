@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Вентиляция и отопление в Новосибирске — монтаж под ключ | [НАЗВАНИЕ]</title>
+    <meta
+      name="description"
+      content="Монтаж вентиляции, кондиционеров, радиаторов и отопления в Новосибирске. Бесплатный замер, смета за 1 день, гарантия на работы."
+    />
+    <meta name="theme-color" content="#F4F1EA" />
+    <link rel="preload" href="fonts/onest-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/sections.css" />
+    <script type="module" src="scripts/main.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-row">
+        <a class="logo" href="#top" aria-label="На главную">
+          <span class="logo-mark" aria-hidden="true"><i></i><i></i></span>
+          <span class="logo-text">[НАЗВАНИЕ]</span>
+        </a>
+        <nav class="header-nav" aria-label="Разделы">
+          <a href="#services">Услуги</a>
+          <a href="#calculator">Расчёт</a>
+          <a href="#works">Работы</a>
+          <a href="#process">Как работаем</a>
+          <a href="#contacts">Контакты</a>
+        </nav>
+        <a class="header-phone" href="tel:+73830000000">+7 (383) 000-00-00</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Первый экран -->
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Новосибирск и область</p>
+            <h1>
+              Тепло зимой,<br />
+              <span class="accent-cool">свежий воздух</span> круглый год
+            </h1>
+            <p class="lead">
+              Проектируем и монтируем вентиляцию, кондиционеры и отопление в квартирах, домах и офисах. Замер бесплатно,
+              смета — за один день.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#request">Вызвать замерщика</a>
+              <a class="button button-ghost" href="#calculator">Рассчитать стоимость</a>
+            </div>
+            <ul class="hero-facts">
+              <li><b>[10]</b> лет на рынке</li>
+              <li><b>[500+]</b> объектов</li>
+              <li><b>[3 года]</b> гарантии</li>
+            </ul>
+          </div>
+
+          <figure class="hero-gauge" aria-label="Схема: зима −35 °C снаружи, +22 °C дома">
+            <svg viewBox="0 0 320 320" role="img" aria-hidden="true">
+              <defs>
+                <linearGradient id="gauge-arc" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0" stop-color="var(--cool)" />
+                  <stop offset="1" stop-color="var(--warm)" />
+                </linearGradient>
+              </defs>
+              <circle cx="160" cy="160" r="128" class="gauge-track" />
+              <circle cx="160" cy="160" r="128" class="gauge-value" stroke="url(#gauge-arc)" />
+              <g class="gauge-ticks">
+                <line x1="160" y1="20" x2="160" y2="34" />
+                <line x1="300" y1="160" x2="286" y2="160" />
+                <line x1="160" y1="300" x2="160" y2="286" />
+                <line x1="20" y1="160" x2="34" y2="160" />
+              </g>
+            </svg>
+            <div class="gauge-readout">
+              <span class="gauge-label">дома</span>
+              <span class="gauge-temp">+22<small>°C</small></span>
+              <span class="gauge-outside">за окном −35 °C</span>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Услуги -->
+      <section class="section" id="services">
+        <div class="wrap">
+          <h2 class="section-title">Что делаем</h2>
+          <div class="services-grid">
+            <article class="service-card" data-tone="cool">
+              <span class="service-icon" aria-hidden="true">≋</span>
+              <h3>Вентиляция</h3>
+              <p>Приточная и вытяжная, с рекуперацией тепла. Проект, монтаж, пусконаладка.</p>
+              <p class="price">от [00 000] ₽</p>
+            </article>
+            <article class="service-card" data-tone="cool">
+              <span class="service-icon" aria-hidden="true">❄</span>
+              <h3>Кондиционеры</h3>
+              <p>Сплит-системы и мультисплит. Подбор мощности под комнату, аккуратная трасса.</p>
+              <p class="price">от [00 000] ₽</p>
+            </article>
+            <article class="service-card" data-tone="warm">
+              <span class="service-icon" aria-hidden="true">▥</span>
+              <h3>Радиаторы</h3>
+              <p>Замена старых батарей на стальные и биметаллические. Без лишней пыли и с вывозом мусора.</p>
+              <p class="price">от [0 000] ₽ / шт.</p>
+            </article>
+            <article class="service-card" data-tone="warm">
+              <span class="service-icon" aria-hidden="true">♨</span>
+              <h3>Отопление и котельные</h3>
+              <p>Системы отопления для частных домов: котлы, тёплые полы, разводка.</p>
+              <p class="price">от [000 000] ₽</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Калькулятор -->
+      <section class="section section-tinted" id="calculator">
+        <div class="wrap calculator-grid">
+          <div>
+            <h2 class="section-title">Примерный расчёт</h2>
+            <p class="section-lead">
+              Это ориентир, чтобы понимать порядок цен. Точную смету составим после бесплатного замера.
+            </p>
+          </div>
+          <form class="calculator" data-calculator>
+            <fieldset class="calc-tabs" role="radiogroup" aria-label="Что считаем">
+              <label><input type="radio" name="kind" value="radiators" checked /> Радиаторы</label>
+              <label><input type="radio" name="kind" value="ventilation" /> Вентиляция</label>
+              <label><input type="radio" name="kind" value="conditioner" /> Кондиционер</label>
+            </fieldset>
+            <label class="calc-field">
+              <span data-amount-label>Количество радиаторов</span>
+              <input type="range" name="amount" min="1" max="20" value="5" data-amount />
+              <output data-amount-value>5</output>
+            </label>
+            <div class="calc-result" aria-live="polite">
+              <span>Примерно</span>
+              <strong data-result>—</strong>
+              <small data-result-note></small>
+            </div>
+            <a class="button button-primary" href="#request">Получить точную смету</a>
+          </form>
+        </div>
+      </section>
+
+      <!-- Работы -->
+      <section class="section" id="works">
+        <div class="wrap">
+          <h2 class="section-title">Наши работы</h2>
+          <div class="works-grid">
+            <figure class="work-card">
+              <div class="work-photo" data-placeholder="Фото объекта"></div>
+              <figcaption><b>Квартира, Академгородок</b><span>Приточная вентиляция с рекуперацией</span></figcaption>
+            </figure>
+            <figure class="work-card">
+              <div class="work-photo" data-placeholder="Фото объекта"></div>
+              <figcaption><b>Частный дом, Бердск</b><span>Котёл и тёплые полы, 160 м²</span></figcaption>
+            </figure>
+            <figure class="work-card">
+              <div class="work-photo" data-placeholder="Фото объекта"></div>
+              <figcaption><b>Офис, Центральный район</b><span>Мультисплит на 6 помещений</span></figcaption>
+            </figure>
+          </div>
+          <p class="placeholder-note">Примеры-заглушки: заменим на реальные фото и объекты клиента.</p>
+        </div>
+      </section>
+
+      <!-- Как работаем -->
+      <section class="section section-tinted" id="process">
+        <div class="wrap">
+          <h2 class="section-title">Как работаем</h2>
+          <ol class="steps">
+            <li><b>Заявка</b><span>Оставляете заявку или звоните — перезвоним за 15 минут в рабочее время.</span></li>
+            <li><b>Замер</b><span>Инженер приезжает бесплатно, смотрит объект и обсуждает задачу.</span></li>
+            <li><b>Смета</b><span>Присылаем подробную смету за один день. Цена в договоре не меняется.</span></li>
+            <li><b>Монтаж</b><span>Работаем аккуратно, укрываем мебель, убираем за собой.</span></li>
+            <li><b>Гарантия</b><span>Даём гарантию на работы и приезжаем на обслуживание.</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Заявка -->
+      <section class="section request" id="request">
+        <div class="wrap request-grid">
+          <div>
+            <h2 class="section-title">Вызвать замерщика</h2>
+            <p class="section-lead">Оставьте телефон — перезвоним, ответим на вопросы и договоримся о времени замера.</p>
+          </div>
+          <form class="request-form" data-request-form novalidate>
+            <label>Имя<input name="name" autocomplete="name" maxlength="80" required /></label>
+            <label
+              >Телефон<input name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" required
+            /></label>
+            <label
+              ><span>Что нужно сделать <span class="optional">(необязательно)</span></span
+              ><textarea name="comment" rows="3" maxlength="1000"></textarea
+            ></label>
+            <label class="consent">
+              <input type="checkbox" name="consent" required />
+              <span
+                >Я даю <a href="consent.html" target="_blank">согласие на обработку персональных данных</a> и
+                принимаю <a href="privacy.html" target="_blank">политику обработки персональных данных</a></span
+              >
+            </label>
+            <button class="button button-primary" type="submit">Отправить заявку</button>
+            <p class="form-status" role="status" data-form-status></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contacts">
+      <div class="wrap footer-grid">
+        <div>
+          <p class="logo-text">[НАЗВАНИЕ]</p>
+          <p>[ИП / ООО «…»], ИНН [0000000000], ОГРН [000000000000000]</p>
+        </div>
+        <div>
+          <a href="tel:+73830000000">+7 (383) 000-00-00</a><br />
+          <a href="mailto:[email]">[email]</a><br />
+          Новосибирск, [адрес офиса]
+        </div>
+        <div>
+          <a href="privacy.html">Политика обработки персональных данных</a><br />
+          <a href="consent.html">Согласие на обработку данных</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
