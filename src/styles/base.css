@@ -1,0 +1,127 @@
+/* Базовая типографика и общие текстовые классы (.eyebrow, .section-lead, .prose, .table-note) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font:
+    400 17px/1.6 'Onest',
+    system-ui,
+    sans-serif;
+  font-feature-settings: 'tnum' 0;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+h1,
+h2,
+h3 {
+  font-family: 'Unbounded', 'Onest', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin: 0;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+h1 {
+  font-size: clamp(32px, 4.6vw, 62px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+h2 {
+  font-size: clamp(24px, 2.8vw, 38px);
+}
+h3 {
+  font-size: clamp(18px, 1.6vw, 22px);
+  letter-spacing: -0.015em;
+}
+p {
+  margin: 0 0 1em;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+a:hover {
+  color: var(--accent);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+main:focus {
+  outline: none;
+}
+.accent {
+  color: var(--accent);
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1.5px;
+  background: currentColor;
+  flex: none;
+}
+.section-lead {
+  margin-top: 20px;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.prose {
+  font-size: 18px;
+  max-width: 68ch;
+}
+.table-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 720px) {
+  body {
+    font-size: 16px;
+  }
+  .section-lead {
+    font-size: 17px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

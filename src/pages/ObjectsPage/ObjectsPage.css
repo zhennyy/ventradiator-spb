@@ -1,0 +1,17 @@
+/* Страница объектов */
+.objects-page {
+  padding: 104px 0;
+}
+.group-title {
+  margin: 0 0 24px;
+  font-size: clamp(20px, 2vw, 26px);
+}
+.object-grid + .group-title {
+  margin-top: 64px;
+}
+
+@media (max-width: 720px) {
+  .objects-page {
+    padding: 64px 0;
+  }
+}

@@ -1,13 +1,16 @@
 // Express-приложение: POST /api/request (заявка → Telegram) и раздача собранного сайта из dist/.
-const path = require('node:path');
-const express = require('express');
-const { validateRequest } = require('./validate');
-const { createRateLimiter } = require('./rate-limit');
-const { sendToTelegram } = require('./telegram');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import express from 'express';
+import { createRateLimiter } from './rate-limit.js';
+import { sendToTelegram } from './telegram.js';
+import { validateRequest } from './validate.js';
 
-function createApp({
+const DEFAULT_DIST = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist');
+
+export function createApp({
   env = process.env,
-  distDir = path.join(__dirname, '..', 'dist'),
+  distDir = DEFAULT_DIST,
   fetchImpl = fetch,
   logger = console,
   rateLimit = {},
@@ -45,11 +48,11 @@ function createApp({
   });
   app.use('/api', (req, res) => res.status(404).json({ ok: false, error: 'Не найдено' }));
 
+  // Скрипты и стили сборки — с хешем в имени, их можно кешировать надолго; страницы — на час.
+  app.use('/assets', express.static(path.join(distDir, 'assets'), { immutable: true, maxAge: '1y' }));
   app.use(express.static(distDir, { extensions: ['html'], maxAge: '1h' }));
   app.use((req, res) => res.status(404).sendFile(path.join(distDir, '404.html')));
 
   app.locals.stopRateLimiter = limiter.stop;
   return app;
 }
-
-module.exports = { createApp };

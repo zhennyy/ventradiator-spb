@@ -1,13 +1,13 @@
 // Отправка заявки в Telegram-чат через Bot API (sendMessage).
 // fetchImpl подменяется в тестах, чтобы не ходить в сеть.
-function formatMessage({ name, phone, comment, product }) {
+export function formatMessage({ name, phone, comment, product }) {
   const lines = ['Новая заявка с сайта Blizzard СПб', `Имя: ${name}`, `Телефон: ${phone}`];
   if (product) lines.push(`Товар: ${product}`);
   if (comment) lines.push(`Комментарий: ${comment}`);
   return lines.join('\n');
 }
 
-async function sendToTelegram({ token, chatId, request, fetchImpl = fetch }) {
+export async function sendToTelegram({ token, chatId, request, fetchImpl = fetch }) {
   const response = await fetchImpl(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -20,5 +20,3 @@ async function sendToTelegram({ token, chatId, request, fetchImpl = fetch }) {
   }
   return true;
 }
-
-module.exports = { sendToTelegram, formatMessage };

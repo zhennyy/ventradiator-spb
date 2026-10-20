@@ -1,0 +1,32 @@
+/* Характеристики: строки «название — значение» с тонкими линиями */
+.specs {
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+.specs > div {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.8fr) 1.2fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.specs dt {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.specs dd {
+  margin: 0;
+  font-weight: 500;
+}
+.specs-wide > div {
+  grid-template-columns: minmax(200px, 0.5fr) 1.5fr;
+}
+
+@media (max-width: 720px) {
+  .specs > div,
+  .specs-wide > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}

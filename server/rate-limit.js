@@ -1,6 +1,6 @@
 // Простое ограничение частоты заявок: не больше `limit` за `windowMs` с одного IP.
 // Хранится в памяти процесса — для одного сервера этого достаточно.
-function createRateLimiter({ limit = 5, windowMs = 10 * 60 * 1000, now = () => Date.now() } = {}) {
+export function createRateLimiter({ limit = 5, windowMs = 10 * 60 * 1000, now = () => Date.now() } = {}) {
   const hits = new Map();
 
   function cleanup() {
@@ -30,5 +30,3 @@ function createRateLimiter({ limit = 5, windowMs = 10 * 60 * 1000, now = () => D
 
   return { middleware, stop: () => clearInterval(timer) };
 }
-
-module.exports = { createRateLimiter };

@@ -1,0 +1,39 @@
+/* «О компании»: текст и карточка производителя */
+.about {
+  padding: 104px 0;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 64px;
+  margin-bottom: 96px;
+}
+.legal-card {
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.legal-card .eyebrow:not(:first-child) {
+  margin-top: 28px;
+}
+.legal-name {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 1080px) {
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .about {
+    padding: 64px 0;
+  }
+  .about-grid {
+    margin-bottom: 64px;
+  }
+}

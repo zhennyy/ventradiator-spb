@@ -1,0 +1,34 @@
+/* Схема рекуперации в первом экране главной */
+.hero-drawing {
+  margin: 0;
+}
+.hero-drawing svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: 'Onest', sans-serif;
+  letter-spacing: 0.08em;
+}
+.flow {
+  stroke-dasharray: 10 12;
+  animation: airflow 2.4s linear infinite;
+}
+.flow-warm {
+  animation-duration: 2.8s;
+}
+@keyframes airflow {
+  to {
+    stroke-dashoffset: -44;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow {
+    animation: none;
+  }
+}
+
+@media (max-width: 1080px) {
+  .hero-drawing {
+    max-width: 560px;
+  }
+}

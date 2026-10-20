@@ -1,6 +1,6 @@
 // Запуск сервера: node server/index.js (или npm start). Порт — из PORT, по умолчанию 3000.
 // BOT_TOKEN и CHAT_ID берутся из окружения; без них сайт работает, а заявки получают ответ 503.
-const { createApp } = require('./app');
+import { createApp } from './app.js';
 
 const port = Number(process.env.PORT) || 3000;
 const app = createApp();

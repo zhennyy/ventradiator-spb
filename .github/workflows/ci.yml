@@ -21,7 +21,7 @@ jobs:
         run: npm run format:check
       - name: Линтер (ESLint)
         run: npm run lint
-      - name: Сборка сайта
-        run: npm run build
-      - name: Тесты
+      - name: Тесты (Vitest)
         run: npm test
+      - name: Сборка и пререндер
+        run: npm run build
