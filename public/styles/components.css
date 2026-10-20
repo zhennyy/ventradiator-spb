@@ -1,0 +1,225 @@
+/* Кнопки, заголовки секций, карточки категорий и объектов, характеристики */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 26px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background 0.2s var(--ease),
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+.button-primary {
+  background: var(--ink);
+  color: var(--surface);
+}
+.button-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--surface);
+}
+.button-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+.button-ghost:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.button-small {
+  min-height: 42px;
+  padding: 0 18px;
+  font-size: 14px;
+}
+.button-wide {
+  width: 100%;
+}
+.button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.section-head {
+  max-width: 760px;
+  margin-bottom: 48px;
+}
+.section-lead {
+  margin-top: 20px;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.strip-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.strip-head .section-head {
+  margin-bottom: 0;
+}
+
+/* Шапка внутренних страниц */
+.page-hero {
+  padding: 56px 0 64px;
+  border-bottom: 1px solid var(--line);
+}
+.page-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 64px;
+  align-items: end;
+}
+.page-hero-text {
+  font-size: 18px;
+  color: var(--ink-soft);
+}
+.page-hero-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Карточки категорий */
+.category-grid,
+.object-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 1px;
+  list-style: none;
+}
+.category-grid-compact {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.category-card,
+.object-card {
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.category-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: var(--ink);
+}
+.card-media {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--ice);
+}
+.card-media img,
+.object-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.category-link:hover img {
+  transform: scale(1.03);
+}
+.card-body {
+  display: grid;
+  gap: 10px;
+  padding: 24px 24px 28px;
+  flex: 1;
+  align-content: start;
+}
+.card-index {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+.card-title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+.card-text {
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.card-more {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.category-link:hover .card-title {
+  color: var(--accent);
+}
+
+/* Объекты */
+.object-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.object-card figure {
+  margin: 0;
+}
+.object-card img {
+  aspect-ratio: 4 / 3;
+}
+.object-card figcaption {
+  display: grid;
+  gap: 4px;
+  padding: 18px 20px 22px;
+}
+.object-city {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.object-name {
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* Характеристики: строки «название — значение» с тонкими линиями */
+.specs {
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+.specs > div {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.8fr) 1.2fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.specs dt {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.specs dd {
+  margin: 0;
+  font-weight: 500;
+}
+.specs-wide > div {
+  grid-template-columns: minmax(200px, 0.5fr) 1.5fr;
+}
+.table-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}

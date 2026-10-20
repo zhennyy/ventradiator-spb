@@ -1,0 +1,90 @@
+{
+  "siteUrl": "https://example.ru",
+  "siteName": "Blizzard Lufttechnik — Санкт-Петербург",
+  "brand": "BLIZZARD",
+  "brandSuffix": "lufttechnik",
+  "legal": {
+    "company": "Blizzard Lufttechnik GmbH",
+    "city": "Гамбург",
+    "register": "HRB 153792",
+    "representative": "[РЕКВИЗИТЫ ПРЕДСТАВИТЕЛЬСТВА]"
+  },
+  "email": "info@blizzard-lt.ru",
+  "offices": [
+    {
+      "id": "spb",
+      "title": "Офис в Санкт-Петербурге",
+      "region": "Санкт-Петербург и Ленинградская область",
+      "address": "[ЗАГЛУШКА: адрес офиса]",
+      "phones": ["+7 (812) 777-18-25"]
+    },
+    {
+      "id": "moscow",
+      "title": "Офис для России, СНГ и Прибалтики",
+      "region": "Россия, СНГ, Прибалтика",
+      "address": "Московская обл., Красногорский р-н, 69-й км МКАД, Бизнес-парк «Гринвуд», стр. 1",
+      "phones": ["+7 (495) 22-11-911", "+7 (963) 62-11-911"]
+    }
+  ],
+  "facts": [
+    ["Германия", "Производство продукции"],
+    ["56", "Объектов с системами Blizzard в СНГ"],
+    ["2", "Направления: вентиляция и пылеудаление"],
+    ["СПб", "Офис представительства в Санкт-Петербурге"]
+  ],
+  "reasons": [
+    [
+      "Сделано в Германии",
+      "Продукция Blizzard производится в Германии. Производственные площадки также есть в Швейцарии, Нидерландах и Бельгии."
+    ],
+    ["Тишина", "Установку L2 производитель называет самой тихой в Европе."],
+    ["Два контура", "Двухконтурная конструкция L2 — по словам Blizzard, мировая новинка."],
+    ["Потолок на месте", "Компактные воздуховоды R2 не занижают потолок, они антибактериальные и антипылевые."],
+    ["Воздух без пыли", "Центральный пылесос убирает без запаха пыли и аллергенов в комнатах."],
+    ["Филиалы и партнёры", "Blizzard работает в разных странах через собственные филиалы и авторизованных партнёров."]
+  ],
+  "objectsTotal": 56,
+  "objects": [
+    {
+      "slug": "bdt",
+      "name": "Большой драматический театр им. Товстоногова",
+      "city": "Санкт-Петербург",
+      "image": "object-bdt.jpg"
+    },
+    {
+      "slug": "navy-archive",
+      "name": "Библиотека архива ВМФ",
+      "city": "Санкт-Петербург",
+      "image": "object-navy-archive.jpg"
+    },
+    { "slug": "zaryadye", "name": "Концертный зал «Зарядье»", "city": "Москва", "image": "object-zaryadye.jpg" },
+    {
+      "slug": "history-museum",
+      "name": "Государственный исторический музей",
+      "city": "Москва",
+      "image": "object-history-museum.jpg"
+    },
+    {
+      "slug": "patriarch-palace",
+      "name": "Патриарший дворец Московского Кремля",
+      "city": "Москва",
+      "image": "object-patriarch-palace.jpg"
+    },
+    { "slug": "lavra", "name": "Троице-Сергиева Лавра", "city": "Сергиев Посад", "image": "object-lavra.jpg" },
+    {
+      "slug": "samara-opera",
+      "name": "Самарский театр оперы и балета",
+      "city": "Самара",
+      "image": "object-samara-opera.jpg"
+    },
+    {
+      "slug": "moscow-mosque",
+      "name": "Московская соборная мечеть",
+      "city": "Москва",
+      "image": "object-moscow-mosque.jpg"
+    },
+    { "slug": "mir-castle", "name": "Мирский замок", "city": "Мир, Беларусь", "image": "object-mir-castle.jpg" },
+    { "slug": "rus-sanatorium", "name": "Санаторий «Русь»", "city": "Сочи", "image": "object-rus-sanatorium.jpg" },
+    { "slug": "marriott-minsk", "name": "Marriott Минск", "city": "Минск", "image": "object-marriott-minsk.jpg" }
+  ]
+}
