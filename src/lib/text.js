@@ -27,7 +27,3 @@ export function withoutStubs(value) {
 export function phoneHref(phone) {
   return 'tel:' + phone.replace(/[^\d+]/g, '');
 }
-
-export function pad(number) {
-  return String(number).padStart(2, '0');
-}

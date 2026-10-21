@@ -1,16 +1,20 @@
 // Схема в первом экране: двухконтурная установка с рекуперацией — приток и вытяжка
 // проходят через теплообменник. Линии потоков анимируются (отключается при prefers-reduced-motion).
+// Номера потоков — без нулей, в кружках-выносках, как на чертеже.
 // На телефоне подписи у линий не поместятся читаемым шрифтом: там у линий остаются только номера,
 // а расшифровка выводится легендой под схемой (.hero-legend, видна только на телефоне).
 import './HeatRecoveryDiagram.css';
 
 // [x, y, номер, подпись, поток: cool — наружный/приточный, warm — из комнат/на улицу, якорь текста]
 const FLOW_LABELS = [
-  [20, 146, '01', 'НАРУЖНЫЙ ВОЗДУХ', 'cool', 'start'],
-  [540, 266, '02', 'В КОМНАТЫ', 'cool', 'end'],
-  [540, 146, '03', 'ИЗ КОМНАТ', 'warm', 'end'],
-  [20, 266, '04', 'НА УЛИЦУ', 'warm', 'start'],
+  [20, 146, 1, 'Наружный воздух', 'cool', 'start'],
+  [540, 266, 2, 'В комнаты', 'cool', 'end'],
+  [540, 146, 3, 'Из комнат', 'warm', 'end'],
+  [20, 266, 4, 'На улицу', 'warm', 'start'],
 ];
+// Номер в кружке — «выноска», как на инженерном чертеже: кружок у начала линии, подпись — рядом
+const CALLOUT_RADIUS = 10;
+const LABEL_GAP = 8;
 const JOINTS = [
   [180, 160],
   [380, 160],
@@ -52,12 +56,26 @@ export default function HeatRecoveryDiagram() {
           ))}
         </g>
         <g className="drawing-labels" fill="var(--ink-soft)">
-          {FLOW_LABELS.map(([left, top, number, label, , anchor]) => (
-            <text key={number} x={left} y={top} textAnchor={anchor}>
-              <tspan className="label-number">{number}</tspan>
-              <tspan className="label-name">{` ${label}`}</tspan>
-            </text>
-          ))}
+          {FLOW_LABELS.map(([left, top, number, label, , anchor]) => {
+            const direction = anchor === 'start' ? 1 : -1;
+            const centerX = left + direction * CALLOUT_RADIUS;
+            return (
+              <g key={number} className="callout">
+                <circle cx={centerX} cy={top - 4} r={CALLOUT_RADIUS} />
+                <text className="label-number" x={centerX} y={top} textAnchor="middle">
+                  {number}
+                </text>
+                <text
+                  className="label-name"
+                  x={centerX + direction * (CALLOUT_RADIUS + LABEL_GAP)}
+                  y={top}
+                  textAnchor={anchor}
+                >
+                  {label}
+                </text>
+              </g>
+            );
+          })}
           <text className="label-caption" x="280" y="96" textAnchor="middle">
             BLIZZARD L2 · ДВА КОНТУРА
           </text>
@@ -72,7 +90,7 @@ export default function HeatRecoveryDiagram() {
       <ul className="hero-legend">
         {FLOW_LABELS.map(([, , number, label, flow]) => (
           <li key={number} className={`legend-${flow}`}>
-            <b>{number}</b> {label.toLowerCase()}
+            <b className="legend-number">{number}</b> {label}
           </li>
         ))}
       </ul>

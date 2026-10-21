@@ -27,12 +27,7 @@
 .button:active {
   transform: translateY(1px) scale(0.985);
 }
-/* Светлая кнопка — для тёмного подвала */
-.button-light {
-  background: var(--paper);
-  color: var(--ink);
-  border-color: var(--paper);
-}
+
 .button-primary {
   background: var(--ink);
   color: var(--surface);
@@ -72,11 +67,6 @@
   .button-ghost:hover {
     background: var(--ink);
     border-color: var(--ink);
-    color: var(--paper);
-  }
-  .button-light:hover {
-    background: var(--accent);
-    border-color: var(--accent);
     color: var(--paper);
   }
 }

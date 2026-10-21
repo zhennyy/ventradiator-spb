@@ -14,6 +14,15 @@
 }
 .label-number {
   font-weight: 500;
+  fill: var(--ink);
+}
+.callout circle {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+.label-caption {
+  letter-spacing: 0.08em;
 }
 .flow {
   stroke-dasharray: 10 12;
@@ -46,6 +55,9 @@
   .label-name {
     display: none;
   }
+  .callout circle {
+    r: 15px;
+  }
   .label-caption {
     font-size: 17px;
   }
@@ -76,7 +88,17 @@
   .hero-legend .legend-warm::before {
     border-top-color: var(--warm);
   }
-  .hero-legend b {
+  .hero-legend .legend-number {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
     color: var(--ink);
   }
 }

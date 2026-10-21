@@ -4,7 +4,7 @@ import './Logo.css';
 
 export default function Logo() {
   return (
-    <a className="logo" href="/" aria-label={`${site.brand} ${site.brandSuffix} — на главную`}>
+    <a className="logo" href="/" aria-label={`${site.brand} — на главную`}>
       <svg className="logo-mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
         <rect x="0.75" y="0.75" width="30.5" height="30.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
         <path
@@ -17,7 +17,7 @@ export default function Logo() {
       </svg>
       <span className="logo-text">
         <b>{site.brand}</b>
-        <span>{`${site.brandSuffix} · Санкт-Петербург`}</span>
+        <span>Санкт-Петербург</span>
       </span>
     </a>
   );

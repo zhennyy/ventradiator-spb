@@ -1,4 +1,4 @@
-// Подвал — тёмная «задняя обложка» каталога: сверху призыв и контакты представительства,
+// Подвал — светлая «задняя обложка» каталога по центру: сверху призыв и контакты представительства,
 // ниже карта сайта в четыре колонки (два раздела каталога, компания, документы), внизу — реквизиты.
 import { catalog, categoryPath, sectionPath, site } from '../../lib/content';
 import { phoneHref } from '../../lib/text';
@@ -55,7 +55,7 @@ function SectionColumn({ section }) {
 export default function Footer({ hasForm = false }) {
   const office = site.offices[0];
   const phone = office.phones[0];
-  const brandName = `${site.brand} ${site.brandSuffix}`;
+  const brandName = site.brand;
   return (
     <footer className="site-footer">
       <div className="wrap">
@@ -75,9 +75,7 @@ export default function Footer({ hasForm = false }) {
             <p className="footer-address">
               <StubText>{office.address}</StubText>
             </p>
-            <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'} variant="light">
-              Запросить цену
-            </ButtonLink>
+            <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'}>Запросить цену</ButtonLink>
           </div>
         </div>
         <nav className="footer-nav" aria-label="Карта сайта">

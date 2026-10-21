@@ -15,7 +15,7 @@ describe('SectionPage', () => {
       expect(links.map((link) => link.getAttribute('href'))).toEqual(
         section.categories.map((category) => `/${section.slug}/${category.slug}.html`),
       );
-      expect(within(links[0]).getByText('01')).toBeInTheDocument();
+      expect(within(links[0]).getByText('Поз. 1')).toBeInTheDocument();
     },
   );
 

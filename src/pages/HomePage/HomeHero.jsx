@@ -8,7 +8,7 @@ export default function HomeHero() {
     <section className="hero">
       <div className="wrap hero-grid">
         <div className="hero-copy">
-          <p className="eyebrow">Blizzard Lufttechnik — представительство в Санкт-Петербурге</p>
+          <p className="eyebrow">Blizzard — представительство в Санкт-Петербурге</p>
           <h1>{'Тихая немецкая вентиляция и\u00a0чистый воздух в\u00a0доме'}</h1>
           <p className="hero-lead">
             Приточно-вытяжные установки с рекуперацией тепла и центральные пылесосы Blizzard для квартир и домов в
