@@ -1,9 +1,13 @@
-// Пункт меню с выпадающим списком категорий раздела.
+// Пункт меню с мега-меню раздела: на ноутбуке — панель во всю ширину под шапкой
+// (описание раздела слева, категории с миниатюрами сеткой справа), на планшете и телефоне — простой список.
 // Мышь: список раскрывается при наведении (CSS). Клавиатура: Enter/пробел на стрелке — открыть,
 // ↓/↑ — по ссылкам списка, Esc — закрыть и вернуть фокус на кнопку; уход фокуса из пункта — закрыть.
 import { useRef } from 'react';
 import { flushSync } from 'react-dom';
 import { categoryPath, sectionPath } from '../../lib/content';
+import { resolveImage } from '../../lib/images';
+import CatalogImage from '../CatalogImage/CatalogImage';
+import './MegaMenu.css';
 
 function isKeyboardFocused(element) {
   try {
@@ -82,22 +86,36 @@ export default function NavDropdown({ section, currentPath, isOpen, onOpenChange
         </svg>
       </button>
       <div className="dropdown" id={menuId}>
-        <p className="dropdown-title">{section.title}</p>
-        <ul>
-          {section.categories.map((category) => {
-            const categoryHref = categoryPath(section, category);
-            return (
-              <li key={category.slug}>
-                <a href={categoryHref} aria-current={categoryHref === currentPath ? 'page' : undefined}>
-                  {category.title}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-        <a className="dropdown-all" href={href}>
-          Весь раздел →
-        </a>
+        <div className="wrap dropdown-inner">
+          <div className="dropdown-intro">
+            <p className="dropdown-title">{`Раздел каталога · ${section.categories.length} категорий`}</p>
+            <p className="dropdown-heading">{section.title}</p>
+            <p className="dropdown-summary">{section.summary}</p>
+          </div>
+          <ul className="dropdown-grid">
+            {section.categories.map((category) => {
+              const categoryHref = categoryPath(section, category);
+              return (
+                <li key={category.slug}>
+                  <a href={categoryHref} aria-current={categoryHref === currentPath ? 'page' : undefined}>
+                    <span className="dropdown-thumb" aria-hidden="true">
+                      <CatalogImage image={resolveImage(category.image, category.title)} alt="" />
+                    </span>
+                    <span className="dropdown-text">
+                      <span className="dropdown-name">{category.title}</span>
+                      <span className="dropdown-note" aria-hidden="true">
+                        {category.summary}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          <a className="dropdown-all" href={href}>
+            {`Весь раздел «${section.title}»`} <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </li>
   );

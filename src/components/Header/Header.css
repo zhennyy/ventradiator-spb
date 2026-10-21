@@ -70,71 +70,6 @@
 .is-open > .nav-toggle svg {
   transform: rotate(180deg);
 }
-.dropdown {
-  position: absolute;
-  top: calc(100% + 14px);
-  left: -12px;
-  min-width: 300px;
-  padding: 18px 8px 10px;
-  background: var(--surface);
-  border: 1px solid var(--line-strong);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-6px);
-  transition:
-    opacity 0.18s var(--ease),
-    transform 0.18s var(--ease),
-    visibility 0.18s;
-}
-.dropdown::before {
-  content: '';
-  position: absolute;
-  inset: -16px 0 auto;
-  height: 16px;
-}
-.has-dropdown.is-open .dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  /* При открытии список сразу становится видимым (плавно меняется только прозрачность) —
-     иначе фокус с клавиатуры не может перейти на ссылку в первые доли секунды. */
-  transition:
-    opacity 0.18s var(--ease),
-    transform 0.18s var(--ease),
-    visibility 0s;
-}
-.dropdown-title {
-  margin: 0 12px 8px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0;
-  font-family: var(--font-mono);
-  color: var(--ink-faint);
-}
-.dropdown ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.dropdown a {
-  display: block;
-  padding: 8px 12px;
-  border-radius: 0;
-  font-size: 15px;
-  text-decoration: none;
-}
-.dropdown a:focus-visible,
-.dropdown a[aria-current='page'] {
-  background: var(--ice);
-  color: var(--ink);
-}
-.dropdown .dropdown-all {
-  margin-top: 6px;
-  border-top: 1px solid var(--line);
-  border-radius: 0;
-  color: var(--accent);
-  font-weight: 500;
-}
 .nav-actions {
   display: flex;
   align-items: center;
@@ -167,10 +102,6 @@
       opacity 0.18s var(--ease),
       transform 0.18s var(--ease),
       visibility 0s;
-  }
-  .dropdown a:hover {
-    background: var(--ice);
-    color: var(--ink);
   }
 }
 /* Узкий ноутбук: подпись логотипа прячется, пункты меню и кнопка чуть компактнее —
