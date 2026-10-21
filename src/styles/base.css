@@ -58,6 +58,16 @@ a {
   color: inherit;
   text-underline-offset: 0.2em;
   text-decoration-thickness: 1px;
+  -webkit-tap-highlight-color: transparent;
+  /* Плавная реакция на наведение у всех ссылок: цвет, фон, подчёркивание */
+  transition:
+    color 0.25s var(--ease),
+    background-color 0.25s var(--ease),
+    border-color 0.25s var(--ease),
+    text-decoration-color 0.25s var(--ease);
+}
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 @media (hover: hover) {
   a:hover {

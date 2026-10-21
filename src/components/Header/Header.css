@@ -39,13 +39,16 @@
   font-weight: 500;
   text-decoration: none;
   color: var(--ink-soft);
+  /* Подчёркивание «вырастает» слева направо при наведении; у текущего раздела — во всю ширину */
+  background: linear-gradient(currentColor, currentColor) no-repeat left clamp(6px, 0.7vw, 10px) bottom 6px / 0 1px;
+  transition:
+    color 0.25s var(--ease),
+    background-size 0.3s var(--ease);
 }
 .nav-link[aria-current='page'],
 .nav-link.is-current {
   color: var(--ink);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.45em;
+  background-size: calc(100% - 2 * clamp(6px, 0.7vw, 10px)) 1px;
 }
 .nav-toggle {
   display: grid;
@@ -90,6 +93,10 @@
 
 /* Мышь: список раскрывается при наведении. На сенсорных экранах — только по кнопке. */
 @media (hover: hover) {
+  .nav-link:hover {
+    color: var(--ink);
+    background-size: calc(100% - 2 * clamp(6px, 0.7vw, 10px)) 1px;
+  }
   .nav-toggle:hover {
     background: var(--ice);
     color: var(--ink);
