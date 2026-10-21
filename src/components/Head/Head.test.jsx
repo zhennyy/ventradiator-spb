@@ -15,7 +15,7 @@ describe('Head', () => {
     expect(html).toContain('<link rel="canonical" href="https://test.example/ventilation/l2.html"/>');
     expect(html).toContain('<meta property="og:url" content="https://test.example/ventilation/l2.html"/>');
     expect(html).toMatch(/<meta name="description" content="Бытовая приточно-вытяжная/);
-    expect(html).not.toContain('og:image');
+    expect(html).toContain('<meta property="og:image" content="https://test.example/images/vent-l2.jpg"/>');
     expect(html).not.toContain('robots');
   });
 

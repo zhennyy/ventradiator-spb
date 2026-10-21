@@ -43,7 +43,12 @@ describe('CategoryPage', () => {
     expect(screen.getByRole('img', { name: 'Воздуховоды R2' })).toHaveAttribute('loading', 'eager');
     expect(screen.getByRole('img', { name: 'Круглые воздуховоды R2 Ø75 и Ø90' })).toHaveAttribute(
       'src',
-      '/images/placeholders/vent-r2-round.svg',
+      '/images/vent-r2-round.jpg',
+    );
+    // Фото плоских воздуховодов пока нет — вместо него заглушка
+    expect(screen.getByRole('img', { name: /Плоские воздуховоды R2/ })).toHaveAttribute(
+      'src',
+      '/images/placeholders/vent-r2-flat.svg',
     );
     const siblings = screen.getByRole('heading', { name: 'Ещё в разделе «Вентиляция»' }).closest('section');
     const cards = within(siblings).getAllByRole('listitem');
