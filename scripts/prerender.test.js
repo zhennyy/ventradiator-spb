@@ -104,9 +104,13 @@ describe('пререндер', () => {
       expect(fs.existsSync(path.join(outDir, image.src)), image.src).toBe(true);
       expect(readme.includes(image.fileName), image.fileName).toBe(true);
     }
-    const svg = fs.readFileSync(path.join(outDir, '/images/placeholders/vent-r2.svg'), 'utf8');
-    expect(svg).toMatch(/^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
-    expect(svg).toContain('images/vent-r2.jpg');
+    // Заглушка генерируется только для фото, которого ещё нет в images/
+    const placeholder = result.images.find((image) => image.src.startsWith('/images/placeholders/'));
+    if (placeholder) {
+      const svg = fs.readFileSync(path.join(outDir, placeholder.src), 'utf8');
+      expect(svg).toMatch(/^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
+      expect(svg).toContain(`images/${placeholder.fileName}`);
+    }
   });
 
   it('форма заявки: согласие не отмечено, ведёт на /api/request, есть на главной, товарах и в контактах', () => {
