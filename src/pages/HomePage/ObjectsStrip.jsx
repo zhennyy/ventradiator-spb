@@ -1,8 +1,9 @@
-// Полоса объектов на главной: первые четыре объекта и ссылка на все.
+// Полоса объектов на главной: первые четыре объекта, у которых уже есть изображение, и ссылка на все.
 import ButtonLink from '../../components/Button/Button';
 import ObjectCard from '../../components/ObjectCard/ObjectCard';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { site } from '../../lib/content';
+import { hasPhoto } from '../../lib/images';
 
 export default function ObjectsStrip() {
   return (
@@ -19,9 +20,12 @@ export default function ObjectsStrip() {
           </ButtonLink>
         </div>
         <ul className="object-grid">
-          {site.objects.slice(0, 4).map((object) => (
-            <ObjectCard key={object.slug} object={object} />
-          ))}
+          {site.objects
+            .filter((object) => hasPhoto(object.image))
+            .slice(0, 4)
+            .map((object) => (
+              <ObjectCard key={object.slug} object={object} />
+            ))}
         </ul>
       </div>
     </section>

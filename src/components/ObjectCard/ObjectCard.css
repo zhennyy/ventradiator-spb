@@ -17,6 +17,17 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+.object-plate {
+  display: grid;
+  place-items: end start;
+  aspect-ratio: 4 / 3;
+  padding: 16px 20px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
 .object-card figure {
   margin: 0;
 }
@@ -47,6 +58,17 @@
 @media (max-width: 600px) {
   .object-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .object-plate {
+    display: grid;
+    place-items: end start;
+    aspect-ratio: 4 / 3;
+    padding: 16px 20px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-faint);
   }
   .object-card figure {
     display: grid;
