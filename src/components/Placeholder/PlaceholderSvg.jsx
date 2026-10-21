@@ -37,23 +37,23 @@ export default function PlaceholderSvg({ title, fileName, kind = 'product' }) {
     >
       <defs>
         <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M40 0H0V40" fill="none" stroke="#d5dee7" strokeWidth="1" />
+          <path d="M40 0H0V40" fill="none" stroke="#ddd8cd" strokeWidth="1" />
         </pattern>
         <linearGradient id="fade" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#f3f6f9" />
-          <stop offset="1" stopColor="#e3ebf3" />
+          <stop offset="0" stopColor="#faf9f5" />
+          <stop offset="1" stopColor="#ece9e1" />
         </linearGradient>
       </defs>
       <rect width={WIDTH} height={HEIGHT} fill="url(#fade)" />
       <rect width={WIDTH} height={HEIGHT} fill="url(#grid)" opacity="0.7" />
-      <g fill="none" stroke="#1f5bd8" strokeWidth="2" opacity="0.28">
+      <g fill="none" stroke="#23578a" strokeWidth="2" opacity="0.28">
         <circle cx="930" cy="450" r="190" />
         <circle cx="930" cy="450" r="130" />
         <circle cx="930" cy="450" r="70" />
         <path d="M700 450H1160M930 220V680" />
       </g>
-      <g fontFamily="Onest, 'Segoe UI', Arial, sans-serif" fill="#0e1a26">
-        <text x="96" y="140" fontSize="26" letterSpacing="4" fill="#1f5bd8">
+      <g fontFamily="'Golos Text', 'Segoe UI', Arial, sans-serif" fill="#17191b">
+        <text x="96" y="140" fontSize="26" letterSpacing="4" fill="#23578a">
           {`${label} · ЗАГЛУШКА`}
         </text>
         <text fontSize="58" fontWeight="600">
@@ -63,11 +63,11 @@ export default function PlaceholderSvg({ title, fileName, kind = 'product' }) {
             </tspan>
           ))}
         </text>
-        <text x="96" y="790" fontSize="24" fill="#5b6772">
+        <text x="96" y="790" fontSize="24" fill="#55595d">
           {`images/${fileName}`}
         </text>
       </g>
-      <path d="M96 170H360" stroke="#1f5bd8" strokeWidth="3" />
+      <path d="M96 170H360" stroke="#23578a" strokeWidth="3" />
     </svg>
   );
 }

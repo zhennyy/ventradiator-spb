@@ -27,9 +27,9 @@
 }
 .object-city {
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0;
+  font-family: var(--font-mono);
   color: var(--accent);
 }
 .object-name {
