@@ -128,15 +128,71 @@
   .has-dropdown.is-open .dropdown {
     display: block;
   }
-  .dropdown-title {
+  .dropdown::before,
+  .dropdown::after,
+  .dropdown-intro,
+  .dropdown-note {
     display: none;
   }
-  .dropdown a {
+  .dropdown-inner {
+    display: block;
+    max-width: none;
+    padding: 0;
+  }
+  /* Подменю в бургере — компактные строки с миниатюрой: 1 колонка на телефоне, 2 на планшете */
+  .dropdown-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .dropdown-grid a {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+    height: 100%;
+    min-height: 56px;
+    padding: 6px 12px 6px 6px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .dropdown-grid a[aria-current='page'] {
+    border-color: var(--ink);
+  }
+  .dropdown-thumb {
+    display: block;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--photo);
+  }
+  .dropdown-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .dropdown-thumb img.is-placeholder {
+    object-fit: cover;
+  }
+  .dropdown-name {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .dropdown .dropdown-all {
     display: flex;
     align-items: center;
-    min-height: 44px;
-    padding: 4px 12px;
+    gap: 8px;
+    min-height: 48px;
+    margin: 4px 0 0;
+    color: var(--accent);
     font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
   }
   .nav-actions {
     flex-direction: column;
@@ -156,12 +212,10 @@
   }
 }
 
-/* Планшет: пункты подменю в две колонки — меню помещается на экран без прокрутки */
+/* Планшет: строки подменю в две колонки */
 @media (min-width: 601px) and (max-width: 1024px) {
-  .has-dropdown.is-open .dropdown ul {
-    display: grid;
+  .dropdown-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 16px;
   }
   .nav-actions {
     flex-direction: row;
