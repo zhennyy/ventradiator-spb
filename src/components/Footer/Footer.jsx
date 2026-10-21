@@ -1,7 +1,8 @@
-// Подвал: разделы каталога, контакты, юридическая информация и ссылки на документы.
-import { Fragment } from 'react';
+// Подвал — тёмная «задняя обложка» каталога: сверху призыв и контакты представительства,
+// ниже карта сайта в четыре колонки (два раздела каталога, компания, документы), внизу — реквизиты.
 import { catalog, categoryPath, sectionPath, site } from '../../lib/content';
 import { phoneHref } from '../../lib/text';
+import ButtonLink from '../Button/Button';
 import Logo from '../Logo/Logo';
 import StubText from '../StubText/StubText';
 import './Footer.css';
@@ -9,9 +10,34 @@ import './Footer.css';
 // Год сборки (задаётся в vite.config.js) — одинаковый в готовом HTML и после гидратации.
 const YEAR = typeof __BUILD_YEAR__ === 'undefined' ? new Date().getFullYear() : __BUILD_YEAR__;
 
+const COMPANY_LINKS = [
+  ['/objects.html', 'Объекты'],
+  ['/about.html', 'О компании'],
+  ['/contacts.html', 'Контакты'],
+];
+const DOCUMENT_LINKS = [
+  ['/privacy.html', 'Политика обработки персональных данных'],
+  ['/consent.html', 'Согласие на обработку данных'],
+];
+
+function LinkColumn({ title, links, className = '' }) {
+  return (
+    <div className={`footer-col ${className}`.trim()}>
+      <p className="footer-title">{title}</p>
+      <ul>
+        {links.map(([href, label]) => (
+          <li key={href}>
+            <a href={href}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function SectionColumn({ section }) {
   return (
-    <div className="footer-col">
+    <div className="footer-col footer-col-catalog">
       <p className="footer-title">
         <a href={sectionPath(section)}>{section.title}</a>
       </p>
@@ -26,59 +52,47 @@ function SectionColumn({ section }) {
   );
 }
 
-export default function Footer() {
+export default function Footer({ hasForm = false }) {
   const office = site.offices[0];
+  const phone = office.phones[0];
   const brandName = `${site.brand} ${site.brandSuffix}`;
   return (
     <footer className="site-footer">
-      <div className="wrap footer-grid">
-        <div className="footer-brand">
-          <Logo />
-          <p>Тихая вентиляция с рекуперацией тепла и центральные пылесосы. Сделано в Германии.</p>
-        </div>
-        {catalog.sections.map((section) => (
-          <SectionColumn key={section.slug} section={section} />
-        ))}
-        <div className="footer-col">
-          <p className="footer-title">Контакты</p>
-          <p>
-            {office.phones.map((phone, index) => (
-              <Fragment key={phone}>
-                {index > 0 && <br />}
-                <a href={phoneHref(phone)}>{phone}</a>
-              </Fragment>
-            ))}
-            <br />
-            <a href={`mailto:${site.email}`}>{site.email}</a>
-          </p>
-          <p>
-            <StubText>{office.address}</StubText>
-          </p>
-          <ul>
-            <li>
-              <a href="/objects.html">Объекты</a>
-            </li>
-            <li>
-              <a href="/about.html">О компании</a>
-            </li>
-            <li>
-              <a href="/contacts.html">Все контакты</a>
-            </li>
-          </ul>
-        </div>
-      </div>
       <div className="wrap">
+        <div className="footer-top">
+          <div className="footer-pitch">
+            <Logo />
+            <p className="footer-slogan">Подберём тихую вентиляцию и центральный пылесос для вашего дома</p>
+          </div>
+          <div className="footer-contacts">
+            <p className="footer-title">{office.title}</p>
+            <a className="footer-phone" href={phoneHref(phone)}>
+              {phone}
+            </a>
+            <a className="footer-email" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
+            <p className="footer-address">
+              <StubText>{office.address}</StubText>
+            </p>
+            <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'} variant="light">
+              Запросить цену
+            </ButtonLink>
+          </div>
+        </div>
+        <nav className="footer-nav" aria-label="Карта сайта">
+          {catalog.sections.map((section) => (
+            <SectionColumn key={section.slug} section={section} />
+          ))}
+          <LinkColumn title="Компания" links={COMPANY_LINKS} />
+          <LinkColumn title="Документы" links={DOCUMENT_LINKS} />
+        </nav>
         <div className="footer-legal">
           <p>
             {`© ${YEAR} Представительство ${brandName} в Санкт-Петербурге. `}
             <StubText>{site.legal.representative}</StubText>
           </p>
           <p>{`Производитель: ${site.legal.company}, ${site.legal.city}, ${site.legal.register}`}</p>
-          <p>
-            <a href="/privacy.html">Политика обработки персональных данных</a>
-            {' · '}
-            <a href="/consent.html">Согласие на обработку данных</a>
-          </p>
         </div>
       </div>
     </footer>

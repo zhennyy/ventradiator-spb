@@ -15,7 +15,7 @@ export default function Layout({ page, children }) {
         <Breadcrumbs crumbs={page.breadcrumbs} />
         {children}
       </main>
-      <Footer />
+      <Footer hasForm={Boolean(page.hasForm)} />
     </>
   );
 }
