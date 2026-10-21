@@ -20,7 +20,7 @@ export function organizationJsonLd(siteUrl) {
     url: normalizeSiteUrl(siteUrl),
     email: site.email,
     telephone: site.offices[0].phones[0],
-    areaServed: ['Санкт-Петербург', 'Ленинградская область'],
+    areaServed: ['Санкт-Петербург', 'Ленинградская область', 'Россия'],
   };
 }
 
