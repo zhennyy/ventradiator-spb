@@ -1,5 +1,5 @@
 // Подвал — светлая «задняя обложка» каталога по центру: сверху призыв и контакты представительства,
-// ниже карта сайта в четыре колонки (два раздела каталога, компания, документы), внизу — реквизиты.
+// ниже карта сайта строками: раздел и его категории в одну строку, затем страницы компании и документы.
 import { catalog, categoryPath, sectionPath, site } from '../../lib/content';
 import { phoneHref } from '../../lib/text';
 import ButtonLink from '../Button/Button';
@@ -14,16 +14,13 @@ const COMPANY_LINKS = [
   ['/objects.html', 'Объекты'],
   ['/about.html', 'О компании'],
   ['/contacts.html', 'Контакты'],
-];
-const DOCUMENT_LINKS = [
   ['/privacy.html', 'Политика обработки персональных данных'],
   ['/consent.html', 'Согласие на обработку данных'],
 ];
 
-function LinkColumn({ title, links, className = '' }) {
+function LinkRow({ links }) {
   return (
-    <div className={`footer-col ${className}`.trim()}>
-      <p className="footer-title">{title}</p>
+    <div className="footer-col footer-col-company">
       <ul>
         {links.map(([href, label]) => (
           <li key={href}>
@@ -35,7 +32,7 @@ function LinkColumn({ title, links, className = '' }) {
   );
 }
 
-function SectionColumn({ section }) {
+function SectionRow({ section }) {
   return (
     <div className="footer-col footer-col-catalog">
       <p className="footer-title">
@@ -80,10 +77,9 @@ export default function Footer({ hasForm = false }) {
         </div>
         <nav className="footer-nav" aria-label="Карта сайта">
           {catalog.sections.map((section) => (
-            <SectionColumn key={section.slug} section={section} />
+            <SectionRow key={section.slug} section={section} />
           ))}
-          <LinkColumn title="Компания" links={COMPANY_LINKS} />
-          <LinkColumn title="Документы" links={DOCUMENT_LINKS} />
+          <LinkRow links={COMPANY_LINKS} />
         </nav>
         <div className="footer-legal">
           <p>
