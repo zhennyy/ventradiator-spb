@@ -34,6 +34,7 @@
 }
 .nav-link {
   padding: 10px clamp(6px, 0.7vw, 10px);
+  white-space: nowrap;
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
@@ -172,9 +173,17 @@
     color: var(--ink);
   }
 }
-/* Узкий ноутбук: подпись логотипа прячется, чтобы полное меню поместилось в строку */
+/* Узкий ноутбук: подпись логотипа прячется, пункты меню и кнопка чуть компактнее —
+   чтобы всё меню стояло в одну строку и ничего не переносилось */
 @media (min-width: 1025px) and (max-width: 1279px) {
   .site-header .logo-text span {
     display: none;
+  }
+  .nav-link,
+  .header-phone {
+    font-size: 14px;
+  }
+  .nav-actions .button {
+    padding: 0 14px;
   }
 }
