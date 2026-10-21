@@ -2,7 +2,7 @@
 .benefits {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  margin: 56px 0 0;
+  margin: clamp(36px, 2vw + 28px, 56px) 0 0;
   padding: 0;
   list-style: none;
   border-top: 1px solid var(--line);
@@ -25,10 +25,10 @@
   color: var(--ink);
 }
 .catalog {
-  padding: 64px 0 104px;
+  padding: var(--section-space-small) 0 var(--section-space);
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1024px) {
   .benefits {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     row-gap: 24px;
@@ -38,10 +38,7 @@
     border-left: 0;
   }
 }
-@media (max-width: 720px) {
-  .catalog {
-    padding: 64px 0;
-  }
+@media (max-width: 600px) {
   .benefits {
     grid-template-columns: 1fr;
   }

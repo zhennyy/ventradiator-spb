@@ -14,7 +14,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font:
-    400 17px/1.6 'Onest',
+    400 clamp(16px, 0.25vw + 15px, 17px) / 1.6 'Onest',
     system-ui,
     sans-serif;
   font-feature-settings: 'tnum' 0;
@@ -31,21 +31,24 @@ h3 {
   margin: 0;
   overflow-wrap: break-word;
   hyphens: auto;
+  /* Длинные русские заголовки делятся на строки ровно, без одного слова на последней строке */
+  text-wrap: balance;
 }
 h1 {
-  font-size: clamp(32px, 4.6vw, 62px);
+  font-size: clamp(30px, 3.4vw + 18px, 62px);
   line-height: 1.04;
   letter-spacing: -0.035em;
 }
 h2 {
-  font-size: clamp(24px, 2.8vw, 38px);
+  font-size: clamp(24px, 1.6vw + 18px, 38px);
 }
 h3 {
-  font-size: clamp(18px, 1.6vw, 22px);
+  font-size: clamp(18px, 0.5vw + 16px, 22px);
   letter-spacing: -0.015em;
 }
 p {
   margin: 0 0 1em;
+  text-wrap: pretty;
 }
 img {
   display: block;
@@ -57,8 +60,10 @@ a {
   text-underline-offset: 0.2em;
   text-decoration-thickness: 1px;
 }
-a:hover {
-  color: var(--accent);
+@media (hover: hover) {
+  a:hover {
+    color: var(--accent);
+  }
 }
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -91,12 +96,12 @@ main:focus {
 }
 .section-lead {
   margin-top: 20px;
-  font-size: 19px;
+  font-size: clamp(17px, 0.3vw + 15.5px, 19px);
   line-height: 1.55;
   color: var(--ink-soft);
 }
 .prose {
-  font-size: 18px;
+  font-size: clamp(16px, 0.3vw + 15px, 18px);
   max-width: 68ch;
 }
 .table-note {
@@ -105,14 +110,6 @@ main:focus {
   color: var(--ink-soft);
 }
 
-@media (max-width: 720px) {
-  body {
-    font-size: 16px;
-  }
-  .section-lead {
-    font-size: 17px;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

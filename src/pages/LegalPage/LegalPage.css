@@ -1,6 +1,6 @@
 /* Документы: политика и согласие */
 .legal {
-  padding: 48px 0 104px;
+  padding: clamp(32px, 1.5vw + 26px, 48px) 0 var(--section-space);
 }
 .legal-wrap {
   max-width: 880px;
@@ -23,5 +23,5 @@
   font-size: 20px;
 }
 .legal h1 {
-  font-size: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(26px, 1.6vw + 20px, 44px);
 }

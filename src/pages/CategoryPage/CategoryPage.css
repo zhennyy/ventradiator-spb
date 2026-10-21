@@ -1,11 +1,13 @@
-/* Страница категории: фото, описание, кнопки и «Ещё в разделе» */
+/* Страница категории: фото, описание, кнопки и «Ещё в разделе».
+   Ноутбук: фото и текст рядом (фото «прилипает» при прокрутке). Планшет: главное фото и два
+   дополнительных одной строкой над текстом. Телефон: всё в колонку. */
 .product {
-  padding: 40px 0 96px;
+  padding: clamp(24px, 1.5vw + 18px, 40px) 0 var(--section-space);
 }
 .product-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 64px;
+  gap: clamp(32px, 4vw, 64px);
   align-items: start;
 }
 .gallery {
@@ -14,40 +16,47 @@
   position: sticky;
   top: calc(var(--header-height) + 24px);
 }
+/* Фото товаров — целиком на белом фоне, в одной пропорции 4:3 */
 .gallery img {
   width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  background: var(--surface);
+}
+.gallery img.is-placeholder {
+  object-fit: cover;
   background: var(--ice);
 }
 .gallery-extra {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 .product-info h1 {
-  font-size: clamp(30px, 3.6vw, 50px);
+  font-size: clamp(28px, 1.8vw + 22px, 50px);
 }
 .product-text {
-  margin: 28px 0 32px;
-  font-size: 18px;
+  margin: clamp(20px, 1vw + 16px, 28px) 0 clamp(24px, 1vw + 20px, 32px);
+  font-size: clamp(16px, 0.3vw + 15px, 18px);
   color: var(--ink-soft);
 }
 .product-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 36px;
+  margin-top: clamp(28px, 1vw + 24px, 36px);
 }
 
 .siblings {
-  padding: 96px 0;
+  padding: var(--section-space) 0;
 }
 .siblings h2 {
-  font-size: clamp(22px, 2.2vw, 30px);
+  font-size: clamp(22px, 0.8vw + 18px, 30px);
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1024px) {
   .product-grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -55,14 +64,26 @@
     position: static;
   }
 }
-@media (max-width: 720px) {
-  .siblings {
-    padding: 64px 0;
+@media (min-width: 601px) and (max-width: 1024px) {
+  .gallery:has(.gallery-extra) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   }
+  .gallery:has(.gallery-extra) .gallery-main {
+    height: 100%;
+  }
+  .gallery-extra {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .gallery-main:only-child {
+    max-width: 720px;
+  }
+  .product-text,
+  .product-info .specs {
+    max-width: 720px;
+  }
+}
+@media (max-width: 600px) {
   .product-actions .button {
     flex: 1 1 100%;
-  }
-  .product-info h1 {
-    font-size: clamp(24px, 7.2vw, 32px);
   }
 }

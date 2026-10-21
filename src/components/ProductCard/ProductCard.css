@@ -21,25 +21,27 @@
   text-decoration: none;
   color: var(--ink);
 }
+/* Фото товаров сняты на белом фоне с запасом полей: показываем целиком (contain), без обрезки.
+   SVG-заглушка заполняет рамку целиком. */
 .card-media {
   display: block;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: var(--ice);
+  background: var(--surface);
 }
 .card-media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.6s var(--ease);
 }
-.category-link:hover img {
-  transform: scale(1.03);
+.card-media img.is-placeholder {
+  object-fit: cover;
 }
 .card-body {
   display: grid;
   gap: 10px;
-  padding: 24px 24px 28px;
+  padding: clamp(20px, 1vw + 14px, 24px) clamp(20px, 1vw + 14px, 24px) clamp(24px, 1vw + 18px, 28px);
   flex: 1;
   align-content: start;
 }
@@ -53,8 +55,9 @@
 .card-title {
   font-family: 'Unbounded', sans-serif;
   font-weight: 600;
-  font-size: 19px;
+  font-size: clamp(18px, 0.3vw + 16px, 19px);
   line-height: 1.2;
+  text-wrap: balance;
   letter-spacing: -0.015em;
 }
 .card-text {
@@ -67,17 +70,23 @@
   font-weight: 600;
   color: var(--accent);
 }
-.category-link:hover .card-title {
-  color: var(--accent);
+@media (hover: hover) {
+  .category-link:hover img {
+    transform: scale(1.03);
+  }
+  .category-link:hover .card-title {
+    color: var(--accent);
+  }
 }
 
-@media (max-width: 1080px) {
+/* Карточки: 3 (или 4 в компактной сетке) на ноутбуке → 2 на планшете → 1 на телефоне */
+@media (max-width: 1024px) {
   .category-grid,
   .category-grid-compact {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 600px) {
   .category-grid,
   .category-grid-compact {
     grid-template-columns: 1fr;

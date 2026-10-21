@@ -11,22 +11,19 @@
   background: var(--surface);
   box-shadow: 0 0 0 1px var(--line);
 }
+/* Фото объектов — сцены, их можно кадрировать (cover) */
 .object-card img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
-  transition: transform 0.6s var(--ease);
 }
 .object-card figure {
   margin: 0;
 }
-.object-card img {
-  aspect-ratio: 4 / 3;
-}
 .object-card figcaption {
   display: grid;
   gap: 4px;
-  padding: 18px 20px 22px;
+  padding: clamp(14px, 0.6vw + 12px, 18px) clamp(16px, 0.6vw + 14px, 20px) clamp(18px, 0.6vw + 16px, 22px);
 }
 .object-city {
   font-size: 12px;
@@ -40,19 +37,26 @@
   line-height: 1.35;
 }
 
-@media (max-width: 1080px) {
+/* Объекты: 4 на ноутбуке → 2 на планшете → 1 на телефоне.
+   На телефоне карточка горизонтальная (фото слева), чтобы список объектов не был бесконечным */
+@media (max-width: 1024px) {
   .object-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-@media (max-width: 720px) {
+@media (max-width: 600px) {
   .object-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .object-card figure {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: center;
   }
   .object-card figcaption {
-    padding: 12px 12px 16px;
+    padding: 12px 14px;
   }
   .object-name {
-    font-size: 14px;
+    font-size: 15px;
   }
 }

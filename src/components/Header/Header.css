@@ -1,8 +1,9 @@
-/* Шапка и меню с выпадающими списками разделов (десктоп) */
+/* Шапка и меню с выпадающими списками разделов (ноутбук и шире, от 1025px) */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
+  padding-top: env(safe-area-inset-top);
   background: color-mix(in srgb, var(--paper) 90%, transparent);
   backdrop-filter: saturate(1.4) blur(12px);
   border-bottom: 1px solid var(--line);
@@ -10,13 +11,13 @@
 .header-row {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: clamp(20px, 2.4vw, 32px);
   height: var(--header-height);
 }
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: clamp(16px, 2vw, 28px);
   flex: 1;
 }
 .nav-list {
@@ -33,7 +34,7 @@
   align-items: center;
 }
 .nav-link {
-  padding: 10px 10px;
+  padding: 10px clamp(6px, 0.7vw, 10px);
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
@@ -60,7 +61,6 @@
 .nav-toggle svg {
   transition: transform 0.2s var(--ease);
 }
-.nav-toggle:hover,
 .is-open > .nav-toggle {
   background: var(--ice);
   color: var(--ink);
@@ -92,7 +92,6 @@
   inset: -16px 0 auto;
   height: 16px;
 }
-.has-dropdown:hover .dropdown,
 .has-dropdown.is-open .dropdown {
   opacity: 1;
   visibility: visible;
@@ -124,7 +123,6 @@
   font-size: 15px;
   text-decoration: none;
 }
-.dropdown a:hover,
 .dropdown a:focus-visible,
 .dropdown a[aria-current='page'] {
   background: var(--ice);
@@ -140,7 +138,7 @@
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: clamp(14px, 1.6vw, 20px);
   margin-left: auto;
 }
 .header-phone {
@@ -150,6 +148,34 @@
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
-.menu-button {
+.menu-button,
+.header-call {
   display: none;
+}
+
+/* Мышь: список раскрывается при наведении. На сенсорных экранах — только по кнопке. */
+@media (hover: hover) {
+  .nav-toggle:hover {
+    background: var(--ice);
+    color: var(--ink);
+  }
+  .has-dropdown:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.18s var(--ease),
+      transform 0.18s var(--ease),
+      visibility 0s;
+  }
+  .dropdown a:hover {
+    background: var(--ice);
+    color: var(--ink);
+  }
+}
+/* Узкий ноутбук: подпись логотипа прячется, чтобы полное меню поместилось в строку */
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .site-header .logo-text span {
+    display: none;
+  }
 }

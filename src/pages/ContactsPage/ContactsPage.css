@@ -1,21 +1,21 @@
 /* Контакты: карточки офисов */
 .contacts {
-  padding: 104px 0;
+  padding: var(--section-space) 0;
 }
 .office-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw + 8px, 32px);
 }
 .office {
-  padding: 40px;
+  padding: var(--card-padding);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
 .office h2 {
   margin-bottom: 24px;
-  font-size: clamp(20px, 2vw, 26px);
+  font-size: clamp(20px, 0.6vw + 17px, 26px);
 }
 .office-phones {
   display: grid;
@@ -24,20 +24,21 @@
 }
 .office-phone {
   font-family: 'Unbounded', sans-serif;
-  font-size: clamp(20px, 2.2vw, 28px);
+  font-size: clamp(20px, 0.8vw + 16px, 28px);
   font-weight: 600;
   text-decoration: none;
   letter-spacing: -0.01em;
 }
 
-@media (max-width: 720px) {
-  .contacts {
-    padding: 64px 0;
+/* Планшет: в узкой карточке офиса подпись строки — над значением */
+@media (max-width: 1024px) {
+  .office .specs > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
   }
+}
+@media (max-width: 600px) {
   .office-grid {
-    grid-template-columns: 1fr;
-  }
-  .office {
-    padding: 24px 20px 28px;
+    grid-template-columns: minmax(0, 1fr);
   }
 }

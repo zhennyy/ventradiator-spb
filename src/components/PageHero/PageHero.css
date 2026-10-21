@@ -1,29 +1,25 @@
 /* Шапка внутренних страниц */
 .page-hero {
-  padding: 56px 0 64px;
+  padding: clamp(28px, 2.5vw + 20px, 56px) 0 clamp(36px, 2.5vw + 28px, 64px);
   border-bottom: 1px solid var(--line);
 }
 .page-hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px 64px;
+  gap: clamp(20px, 2vw + 12px, 40px) 64px;
   align-items: end;
 }
 .page-hero-text {
-  font-size: 18px;
+  max-width: 68ch;
+  font-size: clamp(16px, 0.3vw + 15px, 18px);
   color: var(--ink-soft);
 }
 .page-hero-text p:last-child {
   margin-bottom: 0;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1024px) {
   .page-hero-grid {
     grid-template-columns: minmax(0, 1fr);
-  }
-}
-@media (max-width: 720px) {
-  .page-hero {
-    padding: 32px 0 40px;
   }
 }
