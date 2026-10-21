@@ -28,6 +28,15 @@
   unicode-range: U+0000-00FF, U+2000-206F;
 }
 
+/* Контрольные точки — одна система для всех компонентов. В @media нельзя подставить var(),
+   поэтому значения повторяются в CSS компонентов ровно в таком виде:
+     телефон   ≤ 600px        @media (max-width: 600px)
+     планшет   601–1024px     @media (max-width: 1024px)       — планшет и телефон
+                              @media (min-width: 601px) and (max-width: 1024px) — только планшет
+     ноутбук   1025–1439px    @media (min-width: 1025px)       — полное меню в шапке
+     широкий   ≥ 1440px       @media (min-width: 1440px)
+   Между точками размеры меняются плавно: заголовки, поля и отступы секций заданы через clamp(). */
+
 /* Токены: холодная бумага, графит и «воздушный» синий */
 :root {
   --paper: #f5f7f9;
@@ -46,14 +55,24 @@
   --stub-ink: #6b5200;
   --radius: 6px;
   --wrap: 1240px;
-  --gutter: 32px;
+  /* Поля по бокам: 16px на телефоне → 40px на широком экране */
+  --gutter: clamp(16px, 2.4vw + 6px, 40px);
+  /* Вертикальные отступы секций: большой (основные блоки) и средний (внутри страниц) */
+  --section-space: clamp(56px, 4vw + 40px, 112px);
+  --section-space-small: clamp(40px, 3vw + 28px, 88px);
+  /* Внутренние отступы карточек и формы */
+  --card-padding: clamp(20px, 2vw + 12px, 40px);
   --header-height: 76px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
   :root {
-    --gutter: 20px;
     --header-height: 64px;
+  }
+}
+@media (min-width: 1440px) {
+  :root {
+    --wrap: 1320px;
   }
 }

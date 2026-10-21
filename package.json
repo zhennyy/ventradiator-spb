@@ -14,6 +14,7 @@
     "serve": "npm run build && npm start",
     "test": "vitest run",
     "smoke": "node tools/smoke.js --out /tmp/blizzard-shots",
+    "screens": "node tools/screens.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check ."

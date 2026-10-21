@@ -1,21 +1,23 @@
-/* Сетка страницы: контейнер .wrap и строка «заголовок секции + кнопка» (.strip-head) */
+/* Сетка страницы: контейнер .wrap и строка «заголовок секции + кнопка» (.strip-head).
+   Поля .wrap не меньше «чёлки» и скруглений экрана (safe-area) в горизонтальной ориентации. */
 .wrap {
-  max-width: var(--wrap);
+  max-width: calc(var(--wrap) + 2 * var(--gutter));
   margin: 0 auto;
-  padding: 0 var(--gutter);
+  padding-right: max(var(--gutter), env(safe-area-inset-right));
+  padding-left: max(var(--gutter), env(safe-area-inset-left));
 }
 .strip-head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 40px;
+  margin-bottom: clamp(28px, 2vw + 20px, 48px);
 }
 .strip-head .section-head {
   margin-bottom: 0;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 600px) {
   .strip-head {
     flex-direction: column;
     align-items: flex-start;

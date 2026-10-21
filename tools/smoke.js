@@ -1,4 +1,4 @@
-// Проверка собранного сайта в браузере (Playwright + Chromium): все страницы на 1366 и 390 px —
+// Проверка собранного сайта в браузере (Playwright + Chromium): все страницы на 1366, 834 и 390 px —
 // 0 ошибок и предупреждений в консоли (в том числе о гидратации), нет горизонтальной прокрутки, нет битых
 // внутренних ссылок и картинок; после гидратации работают меню и форма. Плюс скриншоты ключевых страниц.
 //
@@ -9,19 +9,20 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
-import { createApp } from '../server/app.js';
 import {
   checkDesktopMenu,
+  checkHeaderCall,
   checkForm,
   checkMobileMenu,
   checkPage,
   closeMobileMenu,
   waitForHydration,
 } from './smoke-checks.js';
+import { startServer } from './smoke-server.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
-const WIDTHS = [1366, 390];
+const WIDTHS = [1366, 834, 390];
 const SHOTS = [
   ['home', '/'],
   ['ventilation', '/ventilation.html'],
@@ -47,27 +48,6 @@ function listPages(dir) {
   return pages.sort();
 }
 
-// Сервер как в продакшене, но Telegram подменён: заявки складываются в telegramCalls.
-async function startServer(telegramCalls) {
-  const fetchImpl = async (url, options) => {
-    telegramCalls.push(JSON.parse(options.body).text);
-    return { ok: true, status: 200 };
-  };
-  const app = createApp({
-    env: { BOT_TOKEN: 'smoke', CHAT_ID: 'smoke' },
-    fetchImpl,
-    logger: { info() {}, error() {} },
-    rateLimit: { limit: 1000 },
-  });
-  const server = await new Promise((resolve) => {
-    const instance = app.listen(0, () => resolve(instance));
-  });
-  return {
-    base: `http://127.0.0.1:${server.address().port}`,
-    stop: () => (app.locals.stopRateLimiter(), server.close()),
-  };
-}
-
 async function openPage(browser, width, height) {
   return browser.newPage({ viewport: { width, height: height || (width > 500 ? 860 : 844) } });
 }
@@ -77,6 +57,7 @@ async function checkInteractions(browser, base, outDir, problems, telegramCalls)
   await desktop.goto(base + '/ventilation/l2.html', { waitUntil: 'networkidle' });
   await waitForHydration(desktop);
   await checkDesktopMenu(desktop, problems);
+  await checkHeaderCall(desktop, problems, 1366);
   await desktop.focus('.nav-toggle');
   await desktop.keyboard.press('Enter');
   await desktop.waitForTimeout(400);
@@ -86,14 +67,18 @@ async function checkInteractions(browser, base, outDir, problems, telegramCalls)
   await checkForm(desktop, problems, telegramCalls);
   await desktop.close();
 
-  const mobile = await openPage(browser, 390);
-  await mobile.goto(base + '/', { waitUntil: 'networkidle' });
-  await waitForHydration(mobile);
-  await checkMobileMenu(mobile, problems);
-  await mobile.waitForTimeout(400);
-  await mobile.screenshot({ path: path.join(outDir, 'menu-mobile-390.png') });
-  await closeMobileMenu(mobile, problems);
-  await mobile.close();
+  // Планшет и телефон: меню свёрнуто в кнопку, рядом — кнопка звонка
+  for (const width of [834, 390]) {
+    const mobile = await openPage(browser, width);
+    await mobile.goto(base + '/', { waitUntil: 'networkidle' });
+    await waitForHydration(mobile);
+    await checkHeaderCall(mobile, problems, width);
+    await checkMobileMenu(mobile, problems);
+    await mobile.waitForTimeout(400);
+    await mobile.screenshot({ path: path.join(outDir, `menu-mobile-${width}.png`) });
+    await closeMobileMenu(mobile, problems);
+    await mobile.close();
+  }
 }
 
 async function main() {

@@ -1,10 +1,33 @@
-/* Мобильное меню (до 1080px): панель на весь экран, подменю раскрываются по кнопке */
-@media (max-width: 1080px) {
-  .menu-button {
+/* Планшет и телефон (до 1024px): логотип, кнопка звонка и «Меню». Меню — панель на весь экран
+   под шапкой, подменю раскрываются по кнопке, все пункты не ниже 44px. */
+@media (max-width: 1024px) {
+  .header-row {
+    gap: 12px;
+  }
+  .header-call {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     margin-left: auto;
+    min-height: 44px;
+    padding: 0 6px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+  }
+  .header-call-icon {
+    flex: none;
+    color: var(--accent);
+  }
+  .menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 44px;
     min-height: 44px;
     padding: 0 14px;
     border: 1px solid var(--line-strong);
@@ -34,14 +57,16 @@
   }
   .site-nav {
     position: fixed;
-    inset: var(--header-height) 0 0;
+    inset: calc(var(--header-height) + env(safe-area-inset-top)) 0 0;
     display: none;
     flex-direction: column;
     align-items: stretch;
-    gap: 24px;
-    padding: 20px var(--gutter) 40px;
+    gap: 28px;
+    padding: 8px max(var(--gutter), env(safe-area-inset-right)) calc(32px + env(safe-area-inset-bottom))
+      max(var(--gutter), env(safe-area-inset-left));
     background: var(--paper);
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
   .menu-open .site-nav {
     display: flex;
@@ -65,9 +90,12 @@
   }
   .nav-link {
     flex: 1;
-    padding: 16px 0;
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    padding: 8px 0;
     font-family: 'Unbounded', sans-serif;
-    font-size: 18px;
+    font-size: clamp(18px, 1vw + 15px, 22px);
     color: var(--ink);
   }
   .nav-link[aria-current='page'],
@@ -76,16 +104,17 @@
     color: var(--accent);
   }
   .nav-toggle {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
+    margin: 0 -8px 0 0;
   }
   .dropdown {
     position: static;
     display: none;
     width: 100%;
     min-width: 0;
-    margin: 0 0 14px;
-    padding: 6px 0;
+    margin: 0 0 12px;
+    padding: 0;
     border: 0;
     box-shadow: none;
     background: transparent;
@@ -102,12 +131,68 @@
   .dropdown-title {
     display: none;
   }
+  .dropdown a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 4px 12px;
+    font-size: 16px;
+  }
   .nav-actions {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
     margin: 0;
   }
   .header-phone {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
     font-size: 20px;
+  }
+  .nav-actions .button {
+    min-height: 52px;
+    font-size: 15px;
+  }
+}
+
+/* Планшет: пункты подменю в две колонки — меню помещается на экран без прокрутки */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .has-dropdown.is-open .dropdown ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+  }
+  .nav-actions {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Телефон: вместо номера — круглая кнопка звонка, у «Меню» видна только иконка */
+@media (max-width: 600px) {
+  .header-call {
+    justify-content: center;
+    width: 44px;
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    background: var(--surface);
+  }
+  .header-call-number {
+    display: none;
+  }
+  .menu-button {
+    padding: 0;
+    width: 44px;
+  }
+  .menu-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 }

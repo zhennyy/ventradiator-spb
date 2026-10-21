@@ -1,5 +1,6 @@
 // Шапка: логотип, меню с выпадающими списками разделов, телефон, «Запросить цену» и мобильное меню.
-// Мобильное меню (до 1080px) открывается кнопкой «Меню», закрывается по Esc, по ссылке и при переходе на десктоп.
+// На планшете и телефоне (до 1024px) меню сворачивается в кнопку «Меню», а рядом остаётся кнопка звонка:
+// на планшете — с номером, на телефоне — круглая иконка. Меню закрывается по Esc, по ссылке и при переходе на ноутбук.
 import { useEffect, useRef, useState } from 'react';
 import { catalog, site } from '../../lib/content';
 import { phoneHref } from '../../lib/text';
@@ -14,6 +15,20 @@ const SIMPLE_LINKS = [
   ['/about.html', 'О компании'],
   ['/contacts.html', 'Контакты'],
 ];
+
+function PhoneIcon() {
+  return (
+    <svg className="header-call-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+      <path
+        d="M6.6 3.5h2.8l1.4 4.2-2 1.4a12 12 0 0 0 6.1 6.1l1.4-2 4.2 1.4v2.8a2 2 0 0 1-2.1 2A16.5 16.5 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function Header({ currentPath, hasForm }) {
   const [openSection, setOpenSection] = useState(null);
@@ -39,7 +54,7 @@ export default function Header({ currentPath, hasForm }) {
       setMenuOpen(false);
       menuButtonRef.current.focus();
     };
-    const desktop = window.matchMedia('(min-width: 1081px)');
+    const desktop = window.matchMedia('(min-width: 1025px)');
     const closeOnDesktop = (query) => query.matches && setMenuOpen(false);
     document.addEventListener('keydown', closeOnEscape);
     desktop.addEventListener('change', closeOnDesktop);
@@ -57,6 +72,10 @@ export default function Header({ currentPath, hasForm }) {
     <header className="site-header">
       <div className="wrap header-row">
         <Logo />
+        <a className="header-call" href={phoneHref(phone)} aria-label={`Позвонить: ${phone}`}>
+          <PhoneIcon />
+          <span className="header-call-number">{phone}</span>
+        </a>
         <button
           ref={menuButtonRef}
           className="menu-button"

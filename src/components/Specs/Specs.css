@@ -23,7 +23,7 @@
   grid-template-columns: minmax(200px, 0.5fr) 1.5fr;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 600px) {
   .specs > div,
   .specs-wide > div {
     grid-template-columns: 1fr;

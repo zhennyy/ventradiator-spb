@@ -1,4 +1,5 @@
-/* Схема рекуперации в первом экране главной */
+/* Схема рекуперации в первом экране главной. Пропорции сохраняются на любой ширине (viewBox),
+   размер задаёт сетка первого экрана (HomePage.css). */
 .hero-drawing {
   margin: 0;
 }
@@ -6,8 +7,13 @@
   display: block;
   width: 100%;
   height: auto;
+  overflow: visible;
   font-family: 'Onest', sans-serif;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+.label-number {
+  font-weight: 600;
 }
 .flow {
   stroke-dasharray: 10 12;
@@ -27,8 +33,50 @@
   }
 }
 
-@media (max-width: 1080px) {
-  .hero-drawing {
-    max-width: 560px;
+.hero-legend {
+  display: none;
+}
+
+/* Телефон: схема ужата в 1,7–2 раза — у линий только крупные номера, подписи — легендой */
+@media (max-width: 600px) {
+  .hero-drawing svg {
+    font-size: 20px;
+    letter-spacing: 0.04em;
+  }
+  .label-name {
+    display: none;
+  }
+  .label-caption {
+    font-size: 17px;
+  }
+  .hero-legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 16px;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 13px;
+    line-height: 1.35;
+    color: var(--ink-soft);
+  }
+  .hero-legend li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .hero-legend li::before {
+    content: '';
+    flex: none;
+    width: 14px;
+    height: 0;
+    border-top: 3px dashed var(--accent);
+    transform: translateY(-3px);
+  }
+  .hero-legend .legend-warm::before {
+    border-top-color: var(--warm);
+  }
+  .hero-legend b {
+    color: var(--ink);
   }
 }

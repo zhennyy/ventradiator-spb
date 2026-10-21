@@ -23,9 +23,3 @@
   color: var(--ink-soft);
   letter-spacing: 0.02em;
 }
-
-@media (max-width: 420px) {
-  .logo-text span {
-    display: none;
-  }
-}

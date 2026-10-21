@@ -24,22 +24,15 @@
   background: var(--ink);
   color: var(--surface);
 }
-.button-primary:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--surface);
-}
+
 .button-ghost {
   background: transparent;
   color: var(--ink);
   border-color: var(--line-strong);
 }
-.button-ghost:hover {
-  border-color: var(--ink);
-  color: var(--ink);
-}
+
 .button-small {
-  min-height: 42px;
+  min-height: 44px;
   padding: 0 18px;
   font-size: 14px;
 }
@@ -57,7 +50,18 @@
   gap: 12px;
 }
 
-@media (max-width: 720px) {
+@media (hover: hover) {
+  .button-primary:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--surface);
+  }
+  .button-ghost:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+}
+@media (max-width: 600px) {
   .hero-actions .button {
     flex: 1 1 100%;
   }

@@ -95,7 +95,30 @@ export async function checkDesktopMenu(page, problems) {
   await page.keyboard.press('Escape');
 }
 
-// Телефон: кнопка «Меню», подменю раздела, Esc.
+// Шапка: на ноутбуке — полное меню без кнопок «Меню» и звонка; до 1024px — кнопка «Меню» и звонок
+// (на планшете с номером, на телефоне — иконка), все не меньше 44px.
+export async function checkHeaderCall(page, problems, width) {
+  const isCollapsed = width <= 1024;
+  const state = await page.evaluate(() => {
+    const box = (selector) => document.querySelector(selector).getBoundingClientRect();
+    const visible = (selector) => box(selector).width > 0;
+    return {
+      call: visible('.header-call'),
+      menu: visible('.menu-button'),
+      number: visible('.header-call-number'),
+      nav: visible('.site-nav'),
+      callHeight: box('.header-call').height,
+      menuHeight: box('.menu-button').height,
+    };
+  });
+  const label = `шапка ${width}px`;
+  if (state.call !== isCollapsed || state.menu !== isCollapsed || state.nav === isCollapsed)
+    problems.push(`${label}: ${isCollapsed ? 'нужны кнопки «Меню» и звонка' : 'нужно полное меню'}`);
+  if (isCollapsed && state.number !== width > 600) problems.push(`${label}: номер у кнопки звонка`);
+  if (isCollapsed && Math.min(state.callHeight, state.menuHeight) < 44) problems.push(`${label}: кнопки ниже 44px`);
+}
+
+// Планшет и телефон: кнопка «Меню», подменю раздела, Esc.
 export async function checkMobileMenu(page, problems) {
   await page.click('.menu-button');
   await expectState(problems, 'кнопка «Меню» открывает меню', () => page.locator('#site-nav').isVisible());
