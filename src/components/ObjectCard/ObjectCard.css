@@ -2,14 +2,16 @@
 .object-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
+  /* Карточки отдельно друг от друга, с воздухом между ними */
+  gap: clamp(12px, 1.2vw + 6px, 24px);
   margin: 0;
-  padding: 1px;
+  padding: 0;
   list-style: none;
 }
 .object-card {
   background: var(--surface);
-  box-shadow: 0 0 0 1px var(--line);
+  border: 1px solid var(--line);
+  transition: border-color 0.25s var(--ease);
 }
 /* Фото объектов — сцены, их можно кадрировать (cover) */
 .object-card img {
