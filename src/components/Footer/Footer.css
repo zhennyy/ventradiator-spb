@@ -1,23 +1,22 @@
-/* Подвал — тёмная «задняя обложка» каталога. Цвета подвала — локальные переменные поверх общих токенов. */
+/* Подвал — светлая «задняя обложка» каталога: бумага, чёрная линейка сверху.
+   Цвета подвала — локальные переменные поверх общих токенов. */
 .site-footer {
-  --footer-text: #b4b1a9;
-  --footer-faint: #82807a;
-  --footer-line: rgb(242 240 234 / 0.14);
-  --footer-link-hover: #9cc0e4;
+  --footer-text: var(--ink-soft);
+  --footer-faint: var(--ink-faint);
+  --footer-line: var(--line);
+  --footer-link-hover: var(--accent);
   padding: clamp(56px, 3vw + 40px, 96px) 0 calc(28px + env(safe-area-inset-bottom));
-  background: var(--ink);
+  background: var(--paper);
+  border-top: 1px solid var(--line-strong);
   color: var(--footer-text);
   font-size: 15px;
-}
-.site-footer :focus-visible {
-  outline-color: var(--paper);
 }
 .site-footer a {
   text-decoration: none;
 }
 .footer-phone,
 .footer-email {
-  color: var(--paper);
+  color: var(--ink);
 }
 
 /* Подвал выровнен по центру: логотип, фраза, контакты и кнопка — одной осью */
@@ -34,9 +33,6 @@
   display: grid;
   justify-items: center;
 }
-.site-footer .logo {
-  color: var(--paper);
-}
 .site-footer .logo-text {
   text-align: left;
 }
@@ -46,7 +42,7 @@
 .footer-slogan {
   max-width: 22ch;
   margin: clamp(24px, 2vw + 12px, 40px) 0 0;
-  color: var(--paper);
+  color: var(--ink);
   font-size: clamp(30px, 2.6vw + 16px, 56px);
   font-weight: 500;
   letter-spacing: -0.045em;

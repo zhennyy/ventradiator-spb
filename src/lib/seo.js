@@ -16,7 +16,7 @@ export function organizationJsonLd(siteUrl) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: `${site.brand} ${site.brandSuffix} — Санкт-Петербург`,
+    name: `${site.brand} — Санкт-Петербург`,
     url: normalizeSiteUrl(siteUrl),
     email: site.email,
     telephone: site.offices[0].phones[0],

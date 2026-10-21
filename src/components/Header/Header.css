@@ -101,14 +101,15 @@
     background: var(--ice);
     color: var(--ink);
   }
+  /* Наведение мышью открывает меню с паузой 0,1 с — если курсор просто проезжает мимо, меню не мелькает */
   .has-dropdown:hover .dropdown {
     opacity: 1;
     visibility: visible;
     transform: none;
     transition:
-      opacity 0.18s var(--ease),
-      transform 0.18s var(--ease),
-      visibility 0s;
+      opacity 0.4s var(--menu-ease, ease) 0.1s,
+      transform 0.5s var(--menu-ease, ease) 0.1s,
+      visibility 0s linear 0.1s;
   }
 }
 /* Узкий ноутбук: подпись логотипа прячется, пункты меню и кнопка чуть компактнее —

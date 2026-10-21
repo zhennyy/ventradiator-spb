@@ -12,14 +12,14 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="О компании"
-        title="BLIZZARD lufttechnik"
+        title="BLIZZARD"
         paragraphs={['Немецкий производитель систем вентиляции с рекуперацией тепла и центральных пылесосов.']}
       />
       <section className="about">
         <div className="wrap about-grid">
           <div className="prose">
             <p>
-              {`Продукция ${site.brand} ${site.brandSuffix} производится в Германии. `}
+              {`Продукция ${site.brand} производится в Германии. `}
               Производственные площадки также есть в Швейцарии, Нидерландах и Бельгии.
             </p>
             <p>
