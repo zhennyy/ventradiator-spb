@@ -1,5 +1,28 @@
-/* Заголовок секции */
+/* Заголовок секции: сверху чёрная линейка во всю ширину, под ней рубрика и заголовок —
+   как начало раздела в печатном каталоге. Вводный абзац на широком экране уходит в правую колонку. */
 .section-head {
-  max-width: 760px;
-  margin-bottom: 48px;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  column-gap: clamp(24px, 4vw, 64px);
+  align-items: end;
+  margin-bottom: clamp(32px, 2vw + 24px, 56px);
+  padding-top: 14px;
+  border-top: 1px solid var(--line-strong);
+}
+.section-head .eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: clamp(16px, 1vw + 10px, 28px);
+}
+.section-head .section-lead {
+  margin: 0;
+  max-width: 46ch;
+}
+
+@media (max-width: 1024px) {
+  .section-head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .section-head .section-lead {
+    margin-top: 18px;
+  }
 }

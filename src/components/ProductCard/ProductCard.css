@@ -27,7 +27,8 @@
   display: block;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: var(--surface);
+  background: var(--photo);
+  border-bottom: 1px solid var(--line);
 }
 .card-media img {
   width: 100%;
@@ -46,14 +47,14 @@
   align-content: start;
 }
 .card-index {
+  font-family: var(--font-mono);
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
   color: var(--ink-faint);
   font-variant-numeric: tabular-nums;
 }
 .card-title {
-  font-family: 'Unbounded', sans-serif;
+  font-family: var(--font-text);
   font-weight: 600;
   font-size: clamp(18px, 0.3vw + 16px, 19px);
   line-height: 1.2;

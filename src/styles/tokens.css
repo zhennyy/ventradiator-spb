@@ -1,31 +1,48 @@
-/* Глобальные токены: шрифты (Unbounded — заголовки, Onest — текст), цвета, размеры. Подключается первым. */
+/* Глобальные токены. Подключается первым.
+   Идея дизайна — печатный немецкий технический каталог: тёплая бумага, чёрные тонкие линейки,
+   прямые углы, один шрифт для текста и заголовков (Golos Text) и моноширинный (Plex Mono) —
+   для артикулов, цифр и подписей, как в спецификации. Без градиентов, теней и «таблеток». */
 @font-face {
-  font-family: 'Onest';
-  src: url('/fonts/onest-cyrillic-wght-normal.woff2') format('woff2');
-  font-weight: 100 900;
+  font-family: 'Golos Text';
+  src: url('/fonts/golos-text-cyrillic-wght-normal.woff2') format('woff2');
+  font-weight: 400 900;
   font-display: swap;
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 @font-face {
-  font-family: 'Onest';
-  src: url('/fonts/onest-latin-wght-normal.woff2') format('woff2');
-  font-weight: 100 900;
+  font-family: 'Golos Text';
+  src: url('/fonts/golos-text-latin-wght-normal.woff2') format('woff2');
+  font-weight: 400 900;
   font-display: swap;
-  unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122, U+2212;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20AC, U+2122, U+2190-21FF, U+2212;
 }
 @font-face {
-  font-family: 'Unbounded';
-  src: url('/fonts/unbounded-cyrillic-600-normal.woff2') format('woff2');
-  font-weight: 600;
+  font-family: 'Plex Mono';
+  src: url('/fonts/ibm-plex-mono-cyrillic-400-normal.woff2') format('woff2');
+  font-weight: 400;
   font-display: swap;
   unicode-range: U+0400-045F, U+2116;
 }
 @font-face {
-  font-family: 'Unbounded';
-  src: url('/fonts/unbounded-latin-600-normal.woff2') format('woff2');
-  font-weight: 600;
+  font-family: 'Plex Mono';
+  src: url('/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
   font-display: swap;
-  unicode-range: U+0000-00FF, U+2000-206F;
+  unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF;
+}
+@font-face {
+  font-family: 'Plex Mono';
+  src: url('/fonts/ibm-plex-mono-cyrillic-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+  unicode-range: U+0400-045F, U+2116;
+}
+@font-face {
+  font-family: 'Plex Mono';
+  src: url('/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF;
 }
 
 /* Контрольные точки — одна система для всех компонентов. В @media нельзя подставить var(),
@@ -37,23 +54,28 @@
      широкий   ≥ 1440px       @media (min-width: 1440px)
    Между точками размеры меняются плавно: заголовки, поля и отступы секций заданы через clamp(). */
 
-/* Токены: холодная бумага, графит и «воздушный» синий */
+/* Цвета: бумага, графит, синий «воздух» и оранжевый «тепло» (как на схеме рекуперации) */
 :root {
-  --paper: #f5f7f9;
-  --surface: #ffffff;
-  --ice: #e9f0f7;
-  --ice-deep: #dce6f1;
-  --ink: #0e1a26;
-  --ink-soft: #56636f;
-  --ink-faint: #8a96a1;
-  --line: #d9e0e7;
-  --line-strong: #b8c3cd;
-  --accent: #1f5bd8;
-  --accent-deep: #1646a8;
-  --warm: #d9822b;
-  --stub-bg: #fff3bf;
-  --stub-ink: #6b5200;
-  --radius: 6px;
+  --font-text: 'Golos Text', system-ui, sans-serif;
+  --font-mono: 'Plex Mono', ui-monospace, monospace;
+  --paper: #f2f0ea;
+  --surface: #faf9f5;
+  /* Фон под фото товаров: они сняты на чисто белом, поэтому и рамка белая */
+  --photo: #ffffff;
+  --ice: #e6e9e8;
+  --ice-deep: #d9dcda;
+  --ink: #17191b;
+  --ink-soft: #55595d;
+  --ink-faint: #85898c;
+  --line: #d6d2c8;
+  --line-strong: #17191b;
+  --accent: #23578a;
+  --accent-deep: #1a426a;
+  --warm: #c8541f;
+  --stub-bg: #fff1b8;
+  --stub-ink: #5e4700;
+  --radius: 0;
+  --radius-field: 2px;
   --wrap: 1240px;
   /* Поля по бокам: 16px на телефоне → 40px на широком экране */
   --gutter: clamp(16px, 2.4vw + 6px, 40px);

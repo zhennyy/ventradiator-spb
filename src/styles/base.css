@@ -1,4 +1,4 @@
-/* Базовая типографика и общие текстовые классы (.eyebrow, .section-lead, .prose, .table-note) */
+/* Базовая типографика и общие текстовые классы (.eyebrow, .mono, .section-lead, .prose, .table-note) */
 *,
 *::before,
 *::after {
@@ -13,10 +13,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font:
-    400 clamp(16px, 0.25vw + 15px, 17px) / 1.6 'Onest',
-    system-ui,
-    sans-serif;
+  font: 400 clamp(16px, 0.25vw + 15px, 17px) / 1.6 var(--font-text);
   font-feature-settings: 'tnum' 0;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
@@ -24,10 +21,10 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'Unbounded', 'Onest', sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
+  font-family: var(--font-text);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
   margin: 0;
   overflow-wrap: break-word;
   hyphens: auto;
@@ -35,16 +32,18 @@ h3 {
   text-wrap: balance;
 }
 h1 {
-  font-size: clamp(30px, 3.4vw + 18px, 62px);
-  line-height: 1.04;
-  letter-spacing: -0.035em;
+  font-size: clamp(34px, 4vw + 18px, 76px);
+  line-height: 1;
+  letter-spacing: -0.045em;
 }
 h2 {
-  font-size: clamp(24px, 1.6vw + 18px, 38px);
+  font-size: clamp(28px, 2.2vw + 18px, 48px);
+  letter-spacing: -0.04em;
 }
 h3 {
   font-size: clamp(18px, 0.5vw + 16px, 22px);
-  letter-spacing: -0.015em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 p {
   margin: 0 0 1em;
@@ -68,31 +67,22 @@ a {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 3px;
 }
 main:focus {
   outline: none;
 }
-.accent {
-  color: var(--accent);
-}
+/* Подпись над заголовком — как рубрика в печатном каталоге: моноширинный шрифт, без заглавных и декора */
 .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 0 0 18px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
+  margin: 0 0 14px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0;
+  color: var(--ink-soft);
 }
-.eyebrow::before {
-  content: '';
-  width: 28px;
-  height: 1.5px;
-  background: currentColor;
-  flex: none;
+/* Моноширинные цифры и артикулы */
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0;
 }
 .section-lead {
   margin-top: 20px;

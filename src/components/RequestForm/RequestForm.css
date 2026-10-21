@@ -1,10 +1,7 @@
-/* Форма заявки */
+/* Форма заявки: без клетки и теней — бланк в чёрной рамке на светлой подложке */
 .request {
   padding: var(--section-space) 0;
-  background:
-    linear-gradient(90deg, rgba(31, 91, 216, 0.06) 1px, transparent 1px) 0 0 / 40px 40px,
-    linear-gradient(rgba(31, 91, 216, 0.06) 1px, transparent 1px) 0 0 / 40px 40px,
-    var(--ice);
+  background: var(--surface);
   border-top: 1px solid var(--line);
 }
 .request-grid {
@@ -28,10 +25,8 @@
   display: grid;
   gap: 18px;
   padding: var(--card-padding);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: 0 30px 60px -40px rgba(14, 26, 38, 0.35);
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
 }
 .form-product {
   margin: 0;
@@ -59,7 +54,7 @@
   min-height: 52px;
   padding: 14px 16px;
   border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
+  border-radius: var(--radius-field);
   background: var(--surface);
   font: inherit;
   /* 16px и больше — iOS не увеличивает страницу при фокусе на поле */

@@ -22,8 +22,7 @@
   aspect-ratio: 4 / 3;
   object-fit: contain;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
+  background: var(--photo);
 }
 .gallery img.is-placeholder {
   object-fit: cover;
