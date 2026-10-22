@@ -2,7 +2,7 @@
 import StubText from '../StubText/StubText';
 import './Specs.css';
 
-export default function Specs({ rows, wide = false }) {
+export default function Specs({ rows = [], wide = false }) {
   if (!rows.length) return null;
   return (
     <dl className={wide ? 'specs specs-wide' : 'specs'}>

@@ -5,7 +5,7 @@ import { catalog } from '../../lib/content';
 import SectionPage from './SectionPage';
 
 describe('SectionPage', () => {
-  it.each(catalog.sections.map((section) => [section.title, section]))(
+  it.each(catalog.sections.filter((section) => section.categories.length).map((section) => [section.title, section]))(
     '%s: карточка на каждую категорию со ссылкой и номером',
     (title, section) => {
       render(<SectionPage section={section} />);

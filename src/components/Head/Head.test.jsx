@@ -9,12 +9,12 @@ const findPage = (path) => pages.find((page) => page.path === path);
 
 describe('Head', () => {
   it('title, description, canonical и Open Graph страницы категории', () => {
-    const page = findPage('/ventilation/l2.html');
+    const page = findPage('/ventilation/units.html');
     const html = renderToStaticMarkup(<Head meta={getHeadMeta(page, { siteUrl: 'https://test.example/' })} />);
-    expect(html).toContain('<title>Blizzard L2 — вентиляция в Санкт-Петербурге</title>');
-    expect(html).toContain('<link rel="canonical" href="https://test.example/ventilation/l2.html"/>');
-    expect(html).toContain('<meta property="og:url" content="https://test.example/ventilation/l2.html"/>');
-    expect(html).toMatch(/<meta name="description" content="Бытовая приточно-вытяжная/);
+    expect(html).toContain('<title>Вентиляционные установки Blizzard — вентиляция в Санкт-Петербурге</title>');
+    expect(html).toContain('<link rel="canonical" href="https://test.example/ventilation/units.html"/>');
+    expect(html).toContain('<meta property="og:url" content="https://test.example/ventilation/units.html"/>');
+    expect(html).toMatch(/<meta name="description" content="Приточно-вытяжные установки с рекуперацией тепла/);
     expect(html).toContain('<meta property="og:image" content="https://test.example/images/vent-l2.jpg"/>');
     expect(html).not.toContain('robots');
   });

@@ -95,10 +95,10 @@ export async function checkDesktopMenu(page, problems) {
   await page.keyboard.press('Escape');
 }
 
-// Шапка: на ноутбуке — полное меню без кнопок «Меню» и звонка; до 1024px — кнопка «Меню» и звонок
+// Шапка: на ноутбуке — полное меню без кнопок «Меню» и звонка; до 1279px — кнопка «Меню» и звонок
 // (на планшете с номером, на телефоне — иконка), все не меньше 44px.
 export async function checkHeaderCall(page, problems, width) {
-  const isCollapsed = width <= 1024;
+  const isCollapsed = width <= 1279;
   const state = await page.evaluate(() => {
     const box = (selector) => document.querySelector(selector).getBoundingClientRect();
     const visible = (selector) => box(selector).width > 0;

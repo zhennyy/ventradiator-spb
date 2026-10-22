@@ -6,7 +6,7 @@ import Header from './Header';
 
 function renderHeader(props = {}) {
   const user = userEvent.setup();
-  render(<Header currentPath="/ventilation/l2.html" hasForm {...props} />);
+  render(<Header currentPath="/ventilation/units.html" hasForm {...props} />);
   const toggle = screen.getByRole('button', { name: 'Подменю: Вентиляция' });
   const item = toggle.closest('li');
   return { user, toggle, item };
@@ -16,7 +16,10 @@ describe('Header: выпадающие списки', () => {
   it('отмечает текущий раздел и текущую категорию', () => {
     const { item } = renderHeader();
     expect(within(item).getByRole('link', { name: 'Вентиляция' })).toHaveClass('is-current');
-    expect(within(item).getByRole('link', { name: 'Blizzard L2' })).toHaveAttribute('aria-current', 'page');
+    expect(within(item).getByRole('link', { name: 'Вентиляционные установки Blizzard' })).toHaveAttribute(
+      'aria-current',
+      'page',
+    );
   });
 
   it('открывается и закрывается кнопкой, открытым бывает только один список', async () => {
@@ -98,7 +101,7 @@ describe('Header: кнопка звонка', () => {
 
 describe('Header: «Запросить цену»', () => {
   it('ведёт к форме на этой странице, а если формы нет — к форме на странице контактов', () => {
-    const { unmount } = render(<Header currentPath="/ventilation/l2.html" hasForm />);
+    const { unmount } = render(<Header currentPath="/ventilation/units.html" hasForm />);
     expect(screen.getByRole('link', { name: 'Запросить цену' })).toHaveAttribute('href', '#request');
     unmount();
     render(<Header currentPath="/about.html" hasForm={false} />);

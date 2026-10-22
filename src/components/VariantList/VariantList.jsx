@@ -1,0 +1,58 @@
+// Модели или бренды внутри категории: например, L2, L3 и L5 в «Вентиляционных установках Blizzard»
+// или Kohr и Velar в «Трубчатых радиаторах». У каждой карточки — фото, логотип бренда (если есть),
+// короткое описание и пара ключевых характеристик.
+import { resolveImage } from '../../lib/images';
+import CatalogImage from '../CatalogImage/CatalogImage';
+import Specs from '../Specs/Specs';
+import StubText from '../StubText/StubText';
+import './VariantList.css';
+
+function VariantCard({ variant }) {
+  return (
+    <li className="variant">
+      <div className="variant-media">
+        <CatalogImage image={resolveImage(variant.image, variant.title)} alt={variant.title} />
+      </div>
+      <div className="variant-body">
+        <div className="variant-head">
+          {variant.logo && (
+            <img
+              className="variant-logo"
+              src={resolveImage(variant.logo, variant.title).src}
+              alt={`Логотип ${variant.title}`}
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+          <h3>{variant.title}</h3>
+        </div>
+        {variant.text.map((paragraph) => (
+          <p key={paragraph}>
+            <StubText>{paragraph}</StubText>
+          </p>
+        ))}
+        <Specs rows={variant.specs || []} />
+      </div>
+    </li>
+  );
+}
+
+export default function VariantList({ category }) {
+  if (!category.variants?.length) return null;
+  const hasBrands = category.variants.some((variant) => variant.logo);
+  return (
+    <section className="variants" aria-labelledby="variants-title">
+      <div className="wrap">
+        <div className="section-head">
+          <p className="eyebrow">{hasBrands ? 'Бренды' : 'Серии'}</p>
+          <h2 id="variants-title">{hasBrands ? 'Производители' : 'Модели в линейке'}</h2>
+        </div>
+        <ul className="variant-list">
+          {category.variants.map((variant) => (
+            <VariantCard key={variant.title} variant={variant} />
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

@@ -1,5 +1,6 @@
-// Шапка: логотип, меню с выпадающими списками разделов, телефон, «Запросить цену» и мобильное меню.
-// На планшете и телефоне (до 1024px) меню сворачивается в кнопку «Меню», а рядом остаётся кнопка звонка:
+// Шапка. От 1280px: тонкая верхняя строка (регион, «Объекты», «О компании», «Контакты», телефон) и основная —
+// логотип, шесть разделов каталога с мега-меню, «Запросить цену». Ниже — логотип, звонок и кнопка «Меню».
+// До 1279px (телефон, планшет, узкий ноутбук) меню сворачивается в кнопку «Меню», а рядом остаётся кнопка звонка:
 // на планшете — с номером, на телефоне — круглая иконка. Меню закрывается по Esc, по ссылке и при переходе на ноутбук.
 import { useEffect, useRef, useState } from 'react';
 import { catalog, site } from '../../lib/content';
@@ -10,7 +11,7 @@ import NavDropdown from './NavDropdown';
 import './Header.css';
 import './MobileMenu.css';
 
-const SIMPLE_LINKS = [
+export const SIMPLE_LINKS = [
   ['/objects.html', 'Объекты'],
   ['/about.html', 'О компании'],
   ['/contacts.html', 'Контакты'],
@@ -54,7 +55,7 @@ export default function Header({ currentPath, hasForm }) {
       setMenuOpen(false);
       menuButtonRef.current.focus();
     };
-    const desktop = window.matchMedia('(min-width: 1025px)');
+    const desktop = window.matchMedia('(min-width: 1280px)');
     const closeOnDesktop = (query) => query.matches && setMenuOpen(false);
     document.addEventListener('keydown', closeOnEscape);
     desktop.addEventListener('change', closeOnDesktop);
@@ -102,7 +103,7 @@ export default function Header({ currentPath, hasForm }) {
               />
             ))}
             {SIMPLE_LINKS.map(([href, label]) => (
-              <li className="nav-item" key={href}>
+              <li className="nav-item nav-item-secondary" key={href}>
                 <a className="nav-link" href={href} aria-current={href === currentPath ? 'page' : undefined}>
                   {label}
                 </a>

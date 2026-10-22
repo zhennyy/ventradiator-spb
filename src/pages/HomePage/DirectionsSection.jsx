@@ -1,4 +1,4 @@
-// «Два направления» на главной: вентиляция и пылеудаление — по карточке на раздел каталога.
+// «Что мы предлагаем» на главной: по карточке на каждый раздел каталога.
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { catalog } from '../../lib/content';
 import DirectionCard from './DirectionCard';
@@ -10,9 +10,9 @@ export default function DirectionsSection() {
       <div className="wrap">
         <SectionTitle
           eyebrow="Каталог"
-          title="Два направления"
+          title="Что мы предлагаем"
           id="directions-title"
-          lead="Свежий воздух без потерь тепла и уборка без пыли в воздухе. Системы для квартир и частных домов."
+          lead="Вентиляция, пылеудаление, радиаторы и конвекторы для квартир и частных домов — и инженерные системы с услугами под ключ."
         />
         <div className="direction-grid">
           {catalog.sections.map((section, index) => (

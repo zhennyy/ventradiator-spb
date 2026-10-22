@@ -54,7 +54,7 @@ async function openPage(browser, width, height) {
 
 async function checkInteractions(browser, base, outDir, problems, telegramCalls) {
   const desktop = await openPage(browser, 1366, 700);
-  await desktop.goto(base + '/ventilation/l2.html', { waitUntil: 'networkidle' });
+  await desktop.goto(base + '/ventilation/units.html', { waitUntil: 'networkidle' });
   await waitForHydration(desktop);
   await checkDesktopMenu(desktop, problems);
   await checkHeaderCall(desktop, problems, 1366);

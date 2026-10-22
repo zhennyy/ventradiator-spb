@@ -1,4 +1,4 @@
-// Пререндер: каждая страница → готовый HTML в dist/ (те же адреса, что раньше: /ventilation/l2.html и т. д.),
+// Пререндер: каждая страница → готовый HTML в dist/ (те же адреса, что раньше: /ventilation/units.html и т. д.),
 // плюс SVG-заглушки картинок, настоящие фото из images/, sitemap.xml и robots.txt.
 //   npm run build                       — клиент (vite build) → серверный рендер → этот скрипт
 //   SITE_URL=https://… npm run build    — адрес сайта для canonical, Open Graph и sitemap.xml
