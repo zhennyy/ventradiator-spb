@@ -15,10 +15,10 @@ export default function HomeHero() {
             Санкт-Петербурге, Ленинградской области и по всей России.
           </p>
           <div className="hero-actions">
-            <ButtonLink href="#request">Запросить цену</ButtonLink>
             <ButtonLink href="#directions" variant="ghost">
               Смотреть каталог
             </ButtonLink>
+            <ButtonLink href="#request">Запросить цену</ButtonLink>
           </div>
         </div>
         <HeatRecoveryDiagram />
