@@ -35,6 +35,10 @@ export function listImages() {
     for (const category of section.categories) {
       add(category.image, category.title);
       for (const item of category.gallery || []) add(item.image, item.title);
+      for (const variant of category.variants || []) {
+        add(variant.image, variant.title);
+        if (variant.logo) add(variant.logo, `Логотип ${variant.title}`);
+      }
     }
   }
   for (const object of site.objects) add(object.image, object.name, 'object');

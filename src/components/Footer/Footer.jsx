@@ -38,13 +38,15 @@ function SectionRow({ section }) {
       <p className="footer-title">
         <a href={sectionPath(section)}>{section.title}</a>
       </p>
-      <ul>
-        {section.categories.map((category) => (
-          <li key={category.slug}>
-            <a href={categoryPath(section, category)}>{category.title}</a>
-          </li>
-        ))}
-      </ul>
+      {section.categories.length > 0 && (
+        <ul>
+          {section.categories.map((category) => (
+            <li key={category.slug}>
+              <a href={categoryPath(section, category)}>{category.title}</a>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
@@ -58,7 +60,7 @@ export default function Footer({ hasForm = false }) {
         <div className="footer-top">
           <div className="footer-pitch">
             <Logo />
-            <p className="footer-slogan">Подберём тихую вентиляцию и встроенную систему пылеудаления для вашего дома</p>
+            <p className="footer-slogan">Подберём вентиляцию, отопление и пылеудаление для вашего дома</p>
           </div>
           <div className="footer-contacts">
             <p className="footer-title">{office.title}</p>

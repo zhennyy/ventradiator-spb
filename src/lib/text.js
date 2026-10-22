@@ -27,3 +27,15 @@ export function withoutStubs(value) {
 export function phoneHref(phone) {
   return 'tel:' + phone.replace(/[^\d+]/g, '');
 }
+
+// «1 категория», «3 категории», «9 категорий» — русское склонение после числа
+export function countCategories(count) {
+  const lastTwo = count % 100;
+  const last = count % 10;
+  let word = 'категорий';
+  if (lastTwo < 11 || lastTwo > 14) {
+    if (last === 1) word = 'категория';
+    else if (last >= 2 && last <= 4) word = 'категории';
+  }
+  return `${count} ${word}`;
+}

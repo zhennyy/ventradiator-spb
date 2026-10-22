@@ -52,7 +52,9 @@ describe('пререндер', () => {
       expect(title, page.path).not.toBeNull();
       expect(decode(title[1]), page.path).toBe(page.title);
     }
-    expect(readPage('/ventilation/l2.html')).toContain('<title>Blizzard L2 — вентиляция в Санкт-Петербурге</title>');
+    expect(readPage('/ventilation/units.html')).toContain(
+      '<title>Вентиляционные установки Blizzard — вентиляция в Санкт-Петербурге</title>',
+    );
   });
 
   it('у каждой страницы есть description, canonical, Open Graph, один h1 и готовое содержимое в #root', () => {
@@ -128,7 +130,7 @@ describe('пререндер', () => {
     const indexable = result.pages.filter((publicPath) => publicPath !== '/404.html');
     expect((sitemap.match(/<loc>/g) || []).length).toBe(indexable.length);
     expect(sitemap).toContain('<loc>https://test.example/</loc>');
-    expect(sitemap).toContain('<loc>https://test.example/ventilation/l2.html</loc>');
+    expect(sitemap).toContain('<loc>https://test.example/ventilation/units.html</loc>');
     expect(sitemap).not.toMatch(/404/);
     expect(readPage('robots.txt')).toMatch(/Sitemap: https:\/\/test\.example\/sitemap\.xml/);
   });

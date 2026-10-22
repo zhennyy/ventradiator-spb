@@ -1,0 +1,57 @@
+/* Модели / бренды категории: карточки в ряд (до трёх на ноутбуке), на телефоне — друг под другом */
+.variants {
+  padding: var(--section-space-small) 0;
+  border-top: 1px solid var(--line);
+}
+.variant-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(12px, 1.2vw + 6px, 24px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.variant {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.variant-media {
+  aspect-ratio: 4 / 3;
+  background: var(--photo);
+  border-bottom: 1px solid var(--line);
+}
+.variant-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.variant-media img.is-placeholder {
+  object-fit: cover;
+}
+.variant-body {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: var(--card-padding);
+}
+.variant-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 40px;
+}
+.variant-logo {
+  width: auto;
+  max-width: 120px;
+  height: 32px;
+  object-fit: contain;
+}
+.variant-head h3 {
+  font-size: clamp(20px, 0.6vw + 17px, 26px);
+}
+.variant-body p {
+  margin: 0;
+  color: var(--ink-soft);
+}

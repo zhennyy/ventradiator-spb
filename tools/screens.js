@@ -35,7 +35,7 @@ const PAGES = [
   ['about', '/about.html'],
   ['contacts', '/contacts.html'],
 ];
-const MENU_MAX_WIDTH = 1024;
+const MENU_MAX_WIDTH = 1279;
 
 function readList(name) {
   const index = process.argv.indexOf(name);

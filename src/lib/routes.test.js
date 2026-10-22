@@ -21,8 +21,8 @@ describe('routes', () => {
   it('страница находится по адресу с .html и без, главная — и по /', () => {
     expect(pageUrls(pages[0])).toEqual(['/', '/index.html', '/index']);
     expect(findPage('/').kind).toBe('home');
-    expect(findPage('/ventilation/l2').categorySlug).toBe('l2');
-    expect(findPage('/ventilation/l2.html?utm=1#request').categorySlug).toBe('l2');
+    expect(findPage('/ventilation/units').categorySlug).toBe('units');
+    expect(findPage('/ventilation/units.html?utm=1#request').categorySlug).toBe('units');
     expect(findPage('/about').kind).toBe('about');
   });
 

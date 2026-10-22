@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { flushSync } from 'react-dom';
 import { categoryPath, sectionPath } from '../../lib/content';
 import { resolveImage } from '../../lib/images';
+import { countCategories } from '../../lib/text';
 import CatalogImage from '../CatalogImage/CatalogImage';
 import './MegaMenu.css';
 
@@ -17,7 +18,24 @@ function isKeyboardFocused(element) {
   }
 }
 
-export default function NavDropdown({ section, currentPath, isOpen, onOpenChange }) {
+export default function NavDropdown(props) {
+  // Раздел без категорий (например, «Услуги») — обычная ссылка без выпадающей панели
+  if (!props.section.categories.length) return <SectionLink {...props} />;
+  return <SectionDropdown {...props} />;
+}
+
+function SectionLink({ section, currentPath }) {
+  const href = sectionPath(section);
+  return (
+    <li className="nav-item">
+      <a className="nav-link" href={href} aria-current={currentPath === href ? 'page' : undefined}>
+        {section.navTitle}
+      </a>
+    </li>
+  );
+}
+
+function SectionDropdown({ section, currentPath, isOpen, onOpenChange }) {
   const itemRef = useRef(null);
   const toggleRef = useRef(null);
   const menuId = `menu-${section.slug}`;
@@ -88,7 +106,7 @@ export default function NavDropdown({ section, currentPath, isOpen, onOpenChange
       <div className="dropdown" id={menuId}>
         <div className="wrap dropdown-inner">
           <div className="dropdown-intro">
-            <p className="dropdown-title">{`Раздел каталога · ${section.categories.length} категорий`}</p>
+            <p className="dropdown-title">{`Раздел каталога · ${countCategories(section.categories.length)}`}</p>
             <p className="dropdown-heading">{section.title}</p>
             <p className="dropdown-summary">{section.summary}</p>
           </div>

@@ -34,7 +34,7 @@ describe('resolveImage', () => {
   });
 
   it('Open Graph: настоящее фото товара, иначе обложка', () => {
-    const l2 = pages.find((page) => page.path === '/ventilation/l2.html');
+    const l2 = pages.find((page) => page.path === '/ventilation/units.html');
     const r2 = pages.find((page) => page.path === '/ventilation/r2.html');
     expect(getHeadMeta(l2, { siteUrl: 'https://test.example' }).ogImage).toBe(
       'https://test.example/images/vent-l2.jpg',

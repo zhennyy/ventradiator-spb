@@ -1,11 +1,11 @@
-/* Блок «Два направления» на главной. Без рамок и подложек: фото, под ним текст и
+/* Блок «Что мы предлагаем» на главной. Без рамок и подложек: фото, под ним текст и
    оглавление категорий — строки с тонкой линейкой и стрелкой, как содержание каталога. */
 .directions {
   padding: var(--section-space) 0;
 }
 .direction-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(32px, 3vw + 12px, 64px);
 }
 .direction {
@@ -33,7 +33,7 @@
   flex: 1;
 }
 .direction-body h3 {
-  font-size: clamp(28px, 1.4vw + 20px, 40px);
+  font-size: clamp(26px, 1vw + 20px, 34px);
   font-weight: 500;
   letter-spacing: -0.04em;
 }
@@ -88,6 +88,12 @@
   margin-top: auto;
 }
 
+/* Шесть разделов: 3 в ряд на ноутбуке, 2 на планшете, 1 на телефоне */
+@media (max-width: 1024px) {
+  .direction-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 @media (max-width: 600px) {
   .direction-grid {
     grid-template-columns: minmax(0, 1fr);

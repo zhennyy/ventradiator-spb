@@ -26,7 +26,11 @@
 
 | Файл | Что на фото |
 | --- | --- |
-| `vent-l2.jpg` | Приточно-вытяжная установка Blizzard L2 |
+| `vent-l2.jpg` | Вентиляционные установки Blizzard — главное фото категории (L2) |
+| `vent-l2-unit.jpg` | Blizzard L2 DP (из каталога Blizzard 2025) |
+| `vent-l3.jpg` | Blizzard L3 ES (из каталога Blizzard 2025) |
+| `vent-l5-450.jpg` | Blizzard L5 450 (из каталога Blizzard 2025) |
+| `vent-l5-360.jpg` | Blizzard L5 360, плоская (из каталога Blizzard 2025) |
 | `vent-r2.jpg` | Система воздуховодов R2 (общий вид) |
 | `vent-r2-round.jpg` | Круглые воздуховоды R2 Ø75 и Ø90 в бухтах |
 | `vent-r2-flat.jpg` | Плоские воздуховоды R2 50×100 и 60×130 |
@@ -53,6 +57,47 @@
 | `dust-dustpans.jpg` | Пневмосовки (4 цвета) |
 | `dust-accessories.jpg` | Насадки, турбощётки, сепаратор для камина |
 | `dust-consumables.jpg` | Мешки и фильтры |
+
+## Радиаторы
+
+Фото и логотипы — с официальных сайтов брендов (kohr.ru, velarwh.ru, rifar.ru, royal-thermo.ru, gekon.pro).
+Логотипы Kohr и Vitron перекрашены из белого в тёмный, чтобы читались на светлом фоне.
+
+| Файл | Что на фото |
+| --- | --- |
+| `rad-kohr.jpg` | Трубчатый радиатор Kohr |
+| `rad-velar-2col.jpg` | Трубчатый радиатор Velar, 2-колончатый |
+| `rad-velar-3col.jpg` | Трубчатый радиатор Velar, 3-колончатый (и фото раздела) |
+| `rad-velar-4col.jpg` | Трубчатый радиатор Velar, 4-колончатый |
+| `rad-rifar-base.jpg` | Биметаллические радиаторы Rifar Base |
+| `rad-royal-bimetal.jpg` | Биметаллические радиаторы Royal Thermo INFINITY |
+| `rad-royal-panel.jpg` | Панельные радиаторы Royal Thermo COMPACT |
+| `rad-gekon-panel.jpg` | Панельный радиатор Gekon |
+| `logo-kohr.png` | Логотип Kohr |
+| `logo-velar.png` | Логотип Velar |
+| `logo-rifar.png` | Логотип Rifar |
+| `logo-royal-thermo.png` | Логотип Royal Thermo |
+| `logo-gekon.png` | Логотип Gekon |
+
+## Конвекторы
+
+Фото — с vitron.ru и velarwh.ru.
+
+| Файл | Что на фото |
+| --- | --- |
+| `conv-vitron-floor.jpg` | Внутрипольный конвектор Vitron ВК (и фото раздела) |
+| `conv-vitron-standing.jpg` | Напольный конвектор Vitron ВКН |
+| `conv-vitron-wall.jpg` | Настенный конвектор Vitron ВКС |
+| `conv-velar-natural.jpg` | Внутрипольный конвектор Velar с естественной конвекцией |
+| `conv-velar-fan.jpg` | Внутрипольный конвектор Velar с вентилятором |
+| `logo-vitron.png` | Логотип Vitron |
+
+## Инженерные системы и услуги
+
+| Файл | Что на фото |
+| --- | --- |
+| `direction-engineering.jpg` | Фото раздела «Инженерные системы» — пока заглушка |
+| `direction-services.jpg` | Фото раздела «Услуги» — пока заглушка |
 
 ## Объекты
 

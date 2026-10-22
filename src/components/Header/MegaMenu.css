@@ -1,15 +1,19 @@
 /* Мега-меню раздела: панель во всю ширину сразу под шапкой. Слева — название и описание раздела
    и кнопка «Весь раздел», справа — категории сеткой 3 колонки: миниатюра на белом, название,
    одна строка описания. Страница под панелью слегка затемняется, плитки появляются лесенкой. */
-/* Только ноутбук и шире (от 1025px). На планшете и телефоне подменю — простой список в мобильном меню (MobileMenu.css). */
-@media (min-width: 1025px) {
+/* Только ноутбук от 1280px и шире. На планшете и телефоне подменю — простой список в мобильном меню (MobileMenu.css). */
+@media (min-width: 1280px) {
   .site-header {
     /* Плавное «выплывание» меню: быстрый старт и долгое мягкое торможение */
     --menu-ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
+  .site-header .nav-item {
+    position: static;
+  }
   .dropdown {
-    position: fixed;
-    top: calc(var(--header-height) + env(safe-area-inset-top) + 1px);
+    /* Привязка к липкой шапке (.site-header), а не к пункту меню: панель во всю ширину сразу под шапкой */
+    position: absolute;
+    top: calc(100% + 1px);
     right: 0;
     left: 0;
     padding: clamp(24px, 2vw + 12px, 40px) 0 clamp(28px, 2vw + 16px, 44px);
@@ -183,7 +187,7 @@
   }
 }
 
-@media (min-width: 1025px) and (hover: hover) {
+@media (min-width: 1280px) and (hover: hover) {
   .dropdown-grid a:hover {
     background: var(--surface);
   }

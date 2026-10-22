@@ -30,7 +30,7 @@
 }
 
 /* Узкий ноутбук: название в две строки («Вентиляция и / пылеудаление»), чтобы меню поместилось рядом */
-@media (min-width: 1025px) and (max-width: 1279px) {
+@media (min-width: 1280px) and (max-width: 1439px) {
   .logo-text b {
     max-width: 8.5em;
     font-size: 14px;

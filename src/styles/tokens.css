@@ -50,7 +50,8 @@
      телефон   ≤ 600px        @media (max-width: 600px)
      планшет   601–1024px     @media (max-width: 1024px)       — планшет и телефон
                               @media (min-width: 601px) and (max-width: 1024px) — только планшет
-     ноутбук   1025–1439px    @media (min-width: 1025px)       — полное меню в шапке
+     ноутбук   1025–1439px    @media (min-width: 1025px)
+     шапка: полное меню с 1280px (@media (min-width: 1280px)), до 1279px — кнопка «Меню»
      широкий   ≥ 1440px       @media (min-width: 1440px)
    Между точками размеры меняются плавно: заголовки, поля и отступы секций заданы через clamp(). */
 
@@ -88,7 +89,7 @@
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1279px) {
   :root {
     --header-height: 64px;
   }
