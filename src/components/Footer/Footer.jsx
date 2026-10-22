@@ -18,6 +18,11 @@ const COMPANY_LINKS = [
   ['/consent.html', 'Согласие на обработку данных'],
 ];
 
+// Разделы без категорий (инженерные системы, услуги) — обычные ссылки в нижней строке, без пустого заголовка.
+const PLAIN_SECTION_LINKS = catalog.sections
+  .filter((section) => section.categories.length === 0)
+  .map((section) => [sectionPath(section), section.title]);
+
 function LinkRow({ links }) {
   return (
     <div className="footer-col footer-col-company">
@@ -38,15 +43,13 @@ function SectionRow({ section }) {
       <p className="footer-title">
         <a href={sectionPath(section)}>{section.title}</a>
       </p>
-      {section.categories.length > 0 && (
-        <ul>
-          {section.categories.map((category) => (
-            <li key={category.slug}>
-              <a href={categoryPath(section, category)}>{category.title}</a>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul>
+        {section.categories.map((category) => (
+          <li key={category.slug}>
+            <a href={categoryPath(section, category)}>{category.title}</a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -77,10 +80,12 @@ export default function Footer({ hasForm = false }) {
           </div>
         </div>
         <nav className="footer-nav" aria-label="Карта сайта">
-          {catalog.sections.map((section) => (
-            <SectionRow key={section.slug} section={section} />
-          ))}
-          <LinkRow links={COMPANY_LINKS} />
+          {catalog.sections
+            .filter((section) => section.categories.length > 0)
+            .map((section) => (
+              <SectionRow key={section.slug} section={section} />
+            ))}
+          <LinkRow links={[...PLAIN_SECTION_LINKS, ...COMPANY_LINKS]} />
         </nav>
         <div className="footer-legal">
           <p>
