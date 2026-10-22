@@ -1,5 +1,5 @@
-// Подвал — светлая «задняя обложка» каталога по центру: сверху призыв и контакты представительства,
-// ниже карта сайта строками: раздел и его категории в одну строку, затем страницы компании и документы.
+// Подвал — «задняя обложка» каталога. Сверху: слева призыв и кнопка, справа контакты крупно.
+// Ниже: карта сайта колонками (разделы с категориями + «Компания»), внизу строка © и документы.
 import { catalog, categoryPath, sectionPath, site } from '../../lib/content';
 import { hasContent, phoneHref } from '../../lib/text';
 import ButtonLink from '../Button/Button';
@@ -13,6 +13,8 @@ const COMPANY_LINKS = [
   ['/objects.html', 'Объекты'],
   ['/about.html', 'О компании'],
   ['/contacts.html', 'Контакты'],
+];
+const DOCUMENT_LINKS = [
   ['/privacy.html', 'Политика обработки персональных данных'],
   ['/consent.html', 'Согласие на обработку данных'],
 ];
@@ -25,6 +27,7 @@ const PLAIN_SECTION_LINKS = catalog.sections
 function LinkRow({ links }) {
   return (
     <div className="footer-col footer-col-company">
+      <p className="footer-title">Компания</p>
       <ul>
         {links.map(([href, label]) => (
           <li key={href}>
@@ -62,6 +65,8 @@ export default function Footer({ hasForm = false }) {
         <div className="footer-top">
           <div className="footer-pitch">
             <p className="footer-slogan">Подберём вентиляцию, отопление и пылеудаление для вашего дома</p>
+            <p className="footer-lead">Пришлите план — рассчитаем систему и составим спецификацию с артикулами.</p>
+            <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'}>Запросить цену</ButtonLink>
           </div>
           <div className="footer-contacts">
             <p className="footer-title">{office.title}</p>
@@ -76,7 +81,6 @@ export default function Footer({ hasForm = false }) {
                 <StubText>{office.address}</StubText>
               </p>
             )}
-            <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'}>Запросить цену</ButtonLink>
           </div>
         </div>
         <nav className="footer-nav" aria-label="Карта сайта">
@@ -92,6 +96,13 @@ export default function Footer({ hasForm = false }) {
             {`© ${YEAR} ${site.brand}, Санкт-Петербург. `}
             {hasContent(site.legal.representative) && <StubText>{site.legal.representative}</StubText>}
           </p>
+          <ul className="footer-docs">
+            {DOCUMENT_LINKS.map(([href, label]) => (
+              <li key={href}>
+                <a href={href}>{label}</a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

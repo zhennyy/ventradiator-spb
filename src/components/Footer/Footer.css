@@ -1,11 +1,12 @@
-/* Подвал — светлая «задняя обложка» каталога: бумага, чёрная линейка сверху.
+/* Подвал — «задняя обложка» каталога: бумага, чёрная линейка сверху.
+   Ноутбук: призыв слева, контакты справа; карта сайта колонками; внизу © и документы.
    Цвета подвала — локальные переменные поверх общих токенов. */
 .site-footer {
   --footer-text: var(--ink-soft);
   --footer-faint: var(--ink-faint);
   --footer-line: var(--line);
   --footer-link-hover: var(--accent);
-  padding: clamp(56px, 3vw + 40px, 96px) 0 calc(28px + env(safe-area-inset-bottom));
+  padding: clamp(56px, 3vw + 40px, 96px) 0 calc(24px + env(safe-area-inset-bottom));
   background: var(--paper);
   border-top: 1px solid var(--line-strong);
   color: var(--footer-text);
@@ -13,102 +14,108 @@
 }
 .site-footer a {
   text-decoration: none;
-}
-.footer-phone,
-.footer-email {
-  color: var(--ink);
+  transition: color 0.2s var(--ease);
 }
 
-/* Подвал выровнен по центру: логотип, фраза, контакты и кнопка — одной осью */
-.site-footer {
-  text-align: center;
-}
+/* Верх: призыв + кнопка слева, контакты справа */
 .footer-top {
   display: grid;
-  justify-items: center;
-  gap: clamp(28px, 2vw + 16px, 44px);
-  padding-bottom: clamp(40px, 2vw + 28px, 64px);
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 40px clamp(40px, 6vw, 120px);
+  align-items: end;
+  padding-bottom: clamp(48px, 3vw + 28px, 80px);
 }
 .footer-pitch {
   display: grid;
-  justify-items: center;
+  justify-items: start;
+  gap: 20px;
 }
 .footer-slogan {
-  max-width: 22ch;
+  max-width: 21ch;
   margin: 0;
   color: var(--ink);
-  font-size: clamp(24px, 1.4vw + 16px, 38px);
+  font-size: clamp(28px, 2vw + 16px, 48px);
   font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 1.02;
   text-wrap: balance;
 }
+.footer-lead {
+  max-width: 44ch;
+  margin: 0 0 8px;
+  color: var(--ink-soft);
+}
 .footer-contacts {
   display: grid;
-  justify-items: center;
-  gap: 6px;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-strong);
 }
 .footer-phone {
-  font-size: clamp(22px, 0.6vw + 18px, 28px);
+  color: var(--ink);
+  font-size: clamp(26px, 1.2vw + 18px, 36px);
   font-weight: 500;
   letter-spacing: -0.03em;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
 .footer-email {
+  color: var(--ink);
   font-size: 17px;
 }
 .footer-address {
-  margin: 4px 0 18px;
+  margin: 4px 0 0;
 }
 
-/* Карта сайта: каждый раздел — подпись и категории одной строкой с воздухом между пунктами, по центру */
+/* Карта сайта: пять колонок — четыре раздела каталога и «Компания» */
 .footer-nav {
   display: grid;
-  gap: clamp(24px, 1vw + 18px, 32px);
-  padding: clamp(28px, 1vw + 22px, 40px) 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 32px clamp(20px, 2vw, 40px);
+  padding: clamp(28px, 1vw + 22px, 40px) 0 clamp(36px, 2vw + 24px, 56px);
   border-top: 1px solid var(--footer-line);
 }
 .footer-title {
-  margin: 0 0 10px;
+  margin: 0 0 14px;
   font-family: var(--font-mono);
   font-size: 12px;
+  letter-spacing: 0.04em;
   color: var(--footer-faint);
 }
-.footer-title a {
-  color: var(--footer-faint);
+.footer-col-catalog .footer-title a,
+.footer-col-company .footer-title {
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.footer-col-catalog .footer-title,
+.footer-col-company .footer-title {
+  margin-bottom: 12px;
 }
 .site-footer ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2px clamp(20px, 1.4vw + 8px, 32px);
-  max-width: 920px;
-  margin: 0 auto;
+  display: grid;
+  gap: 2px;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
-.site-footer li {
-  display: flex;
-  align-items: center;
-}
 .site-footer li a {
+  display: inline-block;
   padding: 4px 0;
   color: var(--footer-text);
-  line-height: 1.4;
-  white-space: nowrap;
-}
-.footer-col-company {
-  padding-top: clamp(20px, 1vw + 14px, 28px);
-  border-top: 1px solid var(--footer-line);
+  font-size: 14px;
+  line-height: 1.35;
 }
 
-/* Низ: реквизиты */
+/* Низ: © и реквизиты слева, документы справа */
 .footer-legal {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px 32px;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 32px;
   padding-top: 20px;
   border-top: 1px solid var(--footer-line);
   font-family: var(--font-mono);
@@ -117,6 +124,16 @@
 }
 .footer-legal p {
   margin: 0;
+}
+.footer-legal .footer-docs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+}
+.footer-legal .footer-docs a {
+  padding: 0;
+  font-size: 12px;
+  color: var(--footer-faint);
 }
 
 @media (hover: hover) {
@@ -128,42 +145,32 @@
   }
 }
 
-/* Телефон: без длинных списков категорий — только разделы аккуратной сеткой 2 колонки,
-   ниже страницы компании и документы. Категории есть на страницах разделов и в меню. */
+/* Планшет: верх в одну колонку, карта сайта — три колонки */
+@media (max-width: 1024px) {
+  .footer-top {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+  .footer-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Телефон: без длинных списков категорий — разделы и страницы списком в две колонки */
 @media (max-width: 600px) {
   .footer-nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 16px;
-    padding: 20px 0 24px;
-    text-align: left;
+    padding: 12px 0 24px;
   }
-  .footer-col-catalog ul {
+  .footer-col-catalog ul,
+  .footer-col-company .footer-title {
     display: none;
   }
   .footer-col-catalog .footer-title {
     margin: 0;
-    font-family: var(--font-text);
-    font-size: 15px;
   }
-  .footer-col-catalog .footer-title a {
-    border-bottom: 1px solid var(--footer-line);
-    color: var(--ink);
-  }
-  /* Остальные ссылки — тем же списком в две колонки, без отдельного «облака» */
-  .footer-col-company {
-    grid-column: 1 / -1;
-    padding-top: 0;
-    border-top: 0;
-  }
-  .footer-col-company ul {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0 16px;
-    max-width: none;
-  }
-  .footer-col-company li {
-    align-items: stretch;
-  }
+  .footer-col-catalog .footer-title a,
   .footer-col-company li a {
     display: flex;
     align-items: center;
@@ -171,33 +178,24 @@
     min-height: 44px;
     padding: 6px 0;
     border-bottom: 1px solid var(--footer-line);
+    font-family: var(--font-text);
     font-size: 15px;
+    font-weight: 500;
     line-height: 1.25;
     color: var(--ink);
-    white-space: normal;
   }
-  /* Документы — мелко и на всю ширину, в конце списка */
-  .footer-col-company li:nth-last-child(-n + 2) {
+  .footer-col-company {
     grid-column: 1 / -1;
   }
-  .footer-col-company li:nth-last-child(-n + 2) a {
-    min-height: 0;
-    padding: 10px 0 0;
-    border-bottom: 0;
-    font-size: 13px;
-    color: var(--ink-soft);
-  }
-  .footer-col-company li:nth-last-child(2) a {
-    padding-top: 18px;
-  }
-  .footer-col-catalog .footer-title a {
-    display: flex;
-    align-items: center;
-    min-height: 44px;
-    padding: 6px 0;
+  .footer-col-company ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
   }
   .footer-legal {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+  }
+  .footer-legal .footer-docs {
+    flex-direction: column;
   }
 }

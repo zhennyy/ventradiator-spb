@@ -62,7 +62,13 @@ export default function Header({ currentPath, hasForm }) {
       clearTimeout(hoverTimer.current);
       return;
     }
-    const slug = event.target.closest('.has-dropdown')?.dataset.section || null;
+    const item = event.target.closest('.nav-item');
+    // Промежутки между пунктами и кнопка «Запросить цену» — ничего не меняем (иначе меню мигает по пути)
+    if (!item) {
+      clearTimeout(hoverTimer.current);
+      return;
+    }
+    const slug = item.dataset.section || null;
     if (slug === openSection) {
       clearTimeout(hoverTimer.current);
       return;
@@ -73,14 +79,14 @@ export default function Header({ currentPath, hasForm }) {
       clearTimeout(switchTimer.current);
       setSwitching(true);
       setOpenSection(slug);
-      switchTimer.current = setTimeout(() => setSwitching(false), 450);
+      switchTimer.current = setTimeout(() => setSwitching(false), 700);
       return;
     }
-    scheduleHover(slug, slug ? 140 : 220);
+    scheduleHover(slug, slug ? 120 : 300);
   }
   function handleNavPointerLeave(event) {
     if (!isDesktopMouse(event) || !openSection) return;
-    scheduleHover(null, 260);
+    scheduleHover(null, 350);
   }
 
   // Клик мимо выпадающих списков закрывает их.
@@ -153,8 +159,18 @@ export default function Header({ currentPath, hasForm }) {
   return (
     <header className={headerClass}>
       <div className="wrap header-row">
-        {/* Планшет и телефон: слева — ссылка на главную с подписью о представительстве (на ноутбуке она в верхней строке) */}
+        {/* Слева — ссылка на главную: на ноутбуке домик и «Главная», на планшете и телефоне — подпись о представительстве */}
         <a className="header-home" href="/" aria-label="На главную">
+          <svg className="header-home-icon" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+            <path
+              d="M3 9.5 10 3.5l7 6M5 8v8.5h3.5v-5h3v5H15V8"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span className="header-home-desk">Главная</span>
           <span className="header-home-long">Представительство в Санкт-Петербурге · по всей России</span>
           <span className="header-home-short">Представительство в СПб</span>
         </a>
