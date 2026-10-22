@@ -42,7 +42,7 @@ export function listImages() {
     }
   }
   for (const object of site.objects) add(object.image, object.name, 'object');
-  if (site.heroProduct) add(site.heroProduct.image, site.heroProduct.name);
+  if (site.heroImage) add(site.heroImage.image, site.heroImage.alt);
   return [...images.values()];
 }
 

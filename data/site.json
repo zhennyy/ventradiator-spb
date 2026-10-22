@@ -111,52 +111,8 @@
       "image": "object-marriott-minsk.jpg"
     }
   ],
-  "heroProduct": {
-    "image": "hero-l2.jpg",
-    "name": "Blizzard L2",
-    "caption": "Приточно-вытяжная установка с рекуперацией тепла",
-    "href": "/ventilation/units.html",
-    "callouts": [
-      {
-        "x": 32.7,
-        "y": 20.7,
-        "labelY": 9,
-        "side": "left",
-        "title": "Ø160 мм",
-        "text": "патрубки"
-      },
-      {
-        "x": 66.4,
-        "y": 13.8,
-        "labelY": 5,
-        "side": "right",
-        "title": "CO₂ и влажность",
-        "text": "датчики управления"
-      },
-      {
-        "x": 55.5,
-        "y": 50,
-        "labelY": 42,
-        "side": "right",
-        "title": "до 88,8 %",
-        "text": "возврат тепла"
-      },
-      {
-        "x": 27.7,
-        "y": 59.6,
-        "labelY": 52,
-        "side": "left",
-        "title": "Два контура",
-        "text": "«день» и «ночь»"
-      },
-      {
-        "x": 56.8,
-        "y": 75.5,
-        "labelY": 84,
-        "side": "right",
-        "title": "Passivhaus · A+",
-        "text": "сертификат"
-      }
-    ]
+  "heroImage": {
+    "image": "direction-ventilation.jpg",
+    "alt": "Светлая гостиная: приточная решётка на потолке, лёгкая штора колышется от свежего воздуха"
   }
 }
