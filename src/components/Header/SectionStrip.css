@@ -17,13 +17,8 @@
     overflow-x: auto;
     scrollbar-width: none;
     scroll-snap-type: x proximity;
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      #000 var(--gutter),
-      #000 calc(100% - var(--gutter)),
-      transparent
-    );
+    /* Затухание только справа — намёк, что строку можно листать; первый пункт не обрезается */
+    mask-image: linear-gradient(to right, #000 calc(100% - var(--gutter) * 2), transparent);
   }
   .section-strip-list::-webkit-scrollbar {
     display: none;

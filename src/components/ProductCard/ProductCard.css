@@ -26,7 +26,7 @@
 /* Фото заполняет рамку целиком (cover) — без белых полей по бокам, как в журнале. */
 .card-media {
   display: block;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   background: var(--photo);
   border-bottom: 1px solid var(--line);
@@ -40,16 +40,32 @@
 .card-body {
   display: grid;
   gap: 10px;
-  padding: clamp(20px, 1vw + 14px, 24px) clamp(20px, 1vw + 14px, 24px) clamp(24px, 1vw + 18px, 28px);
+  padding: clamp(18px, 1vw + 12px, 22px) clamp(20px, 1vw + 14px, 24px) 18px;
   flex: 1;
   align-content: start;
 }
-.card-index {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0;
-  color: var(--ink-faint);
-  font-variant-numeric: tabular-nums;
+.card-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+  min-height: 22px;
+}
+.card-logos img {
+  width: auto;
+  max-width: 92px;
+  height: 18px;
+  object-fit: contain;
+  object-position: left center;
+  filter: grayscale(1);
+  opacity: 0.8;
+  transition:
+    filter 0.3s var(--ease),
+    opacity 0.3s var(--ease);
+}
+.card-meta {
+  font: 400 12px/1.4 var(--font-mono);
+  color: var(--ink-soft);
 }
 .card-title {
   font-family: var(--font-text);
@@ -63,11 +79,28 @@
   font-size: 15px;
   color: var(--ink-soft);
 }
-.card-more {
-  margin-top: 6px;
+/* Нижняя строка карточки: «Смотреть» и стрелка в квадрате, при наведении стрелка уезжает вправо */
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 clamp(20px, 1vw + 14px, 24px);
+  padding: 14px 0 16px;
+  border-top: 1px solid var(--line);
   font-size: 14px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--ink);
+}
+.card-arrow {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line-strong);
+  transition:
+    background 0.3s var(--ease),
+    color 0.3s var(--ease),
+    transform 0.3s var(--ease);
 }
 @media (hover: hover) {
   .category-card:hover {
@@ -78,6 +111,15 @@
   }
   .category-link:hover .card-title {
     color: var(--accent);
+  }
+  .category-link:hover .card-logos img {
+    filter: none;
+    opacity: 1;
+  }
+  .category-link:hover .card-arrow {
+    background: var(--ink);
+    color: var(--surface);
+    transform: translateX(4px);
   }
 }
 

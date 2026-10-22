@@ -42,6 +42,7 @@ export function listImages() {
     }
   }
   for (const object of site.objects) add(object.image, object.name, 'object');
+  if (site.heroProduct) add(site.heroProduct.image, site.heroProduct.name);
   return [...images.values()];
 }
 

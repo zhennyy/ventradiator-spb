@@ -6,7 +6,7 @@ import SectionPage from './SectionPage';
 
 describe('SectionPage', () => {
   it.each(catalog.sections.filter((section) => section.categories.length).map((section) => [section.title, section]))(
-    '%s: карточка на каждую категорию со ссылкой и номером',
+    '%s: карточка на каждую категорию со ссылкой и быстрые ссылки в шапке',
     (title, section) => {
       render(<SectionPage section={section} />);
       expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(title);
@@ -15,7 +15,9 @@ describe('SectionPage', () => {
       expect(links.map((link) => link.getAttribute('href'))).toEqual(
         section.categories.map((category) => `/${section.slug}/${category.slug}.html`),
       );
-      expect(within(links[0]).getByText('Поз. 1')).toBeInTheDocument();
+      expect(within(links[0]).getByText('Смотреть')).toBeInTheDocument();
+      const quick = screen.getByRole('navigation', { name: `Категории раздела «${section.title}»` });
+      expect(within(quick).getAllByRole('link')).toHaveLength(section.categories.length);
     },
   );
 

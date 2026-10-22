@@ -25,10 +25,63 @@
   color: var(--ink);
 }
 .catalog {
-  padding: var(--section-space-small) 0 var(--section-space);
+  padding: clamp(28px, 2vw + 16px, 48px) 0 var(--section-space);
+}
+/* Быстрые ссылки на категории в шапке раздела */
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: clamp(20px, 1.5vw + 12px, 32px);
+}
+.quick-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  transition:
+    background 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+.quick-links a span {
+  transition: transform 0.25s var(--ease);
+}
+@media (hover: hover) {
+  .quick-links a:hover {
+    background: var(--ink);
+    color: var(--surface);
+  }
+  .quick-links a:hover span {
+    transform: translateX(3px);
+  }
+}
+/* «Как работает рекуперация» на странице вентиляции */
+.how-it-works {
+  padding: 0 0 var(--section-space);
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: center;
+}
+.how-text {
+  max-width: 46ch;
+  margin-top: 16px;
+  color: var(--ink-soft);
 }
 
 @media (max-width: 1024px) {
+  .how-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .benefits {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     row-gap: 24px;

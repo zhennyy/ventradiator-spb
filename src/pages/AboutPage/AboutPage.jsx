@@ -1,4 +1,4 @@
-// «О компании»: представительство в Петербурге, производство в Германии и принципы систем.
+// «О компании»: представительство в Петербурге, производители и бренды и принципы систем.
 import PageHero from '../../components/PageHero/PageHero';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import Specs from '../../components/Specs/Specs';
@@ -20,8 +20,8 @@ export default function AboutPage() {
         <div className="wrap about-grid">
           <div className="prose">
             <p>
-              Продукция производится в Германии. Производственные площадки также есть в Швейцарии, Нидерландах и
-              Бельгии.
+              Вентиляция и пылеудаление — немецкого производства. Радиаторы и конвекторы — от известных брендов с
+              собственными заводами: Kohr, Velar, Royal Thermo, Rifar, Gekon, Vitron. Мы — официальные дилеры Vitron.
             </p>
             <p>
               Производитель работает в разных странах через собственные филиалы и авторизованных партнёров. В

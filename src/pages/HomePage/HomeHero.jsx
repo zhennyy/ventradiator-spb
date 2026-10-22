@@ -1,14 +1,14 @@
-// Первый экран главной: обещание бренда, кнопки, схема рекуперации и строка фактов.
+// Первый экран главной: обещание, кнопки, установка L2 крупным планом с выносками и строка фактов.
 import ButtonLink from '../../components/Button/Button';
-import HeatRecoveryDiagram from '../../components/HeatRecoveryDiagram/HeatRecoveryDiagram';
 import { site } from '../../lib/content';
+import HeroProduct from './HeroProduct';
 
 export default function HomeHero() {
   return (
     <section className="hero">
       <div className="wrap hero-grid">
         <div className="hero-copy">
-          <p className="eyebrow">Представительство в Санкт-Петербурге · сделано в Германии</p>
+          <p className="eyebrow">Представительство в Санкт-Петербурге · работаем по всей России</p>
           <h1>{'Тихая немецкая вентиляция и\u00a0чистый воздух в\u00a0доме'}</h1>
           <p className="hero-lead">
             Вентиляция с рекуперацией тепла, центральные пылесосы, радиаторы и конвекторы для квартир и домов в
@@ -21,7 +21,7 @@ export default function HomeHero() {
             <ButtonLink href="#request">Запросить цену</ButtonLink>
           </div>
         </div>
-        <HeatRecoveryDiagram />
+        <HeroProduct />
       </div>
       <div className="wrap">
         <ul className="facts">

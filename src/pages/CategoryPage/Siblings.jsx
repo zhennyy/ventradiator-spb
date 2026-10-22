@@ -16,7 +16,7 @@ export default function Siblings({ section, category }) {
         </div>
         <ul className="category-grid category-grid-compact">
           {others.map((item) => (
-            <ProductCard key={item.slug} section={section} category={item} index={section.categories.indexOf(item)} />
+            <ProductCard key={item.slug} section={section} category={item} />
           ))}
         </ul>
       </div>
