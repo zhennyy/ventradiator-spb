@@ -15,8 +15,8 @@ export default function DirectionsSection() {
           lead="Вентиляция, пылеудаление, радиаторы и конвекторы для квартир и частных домов — и инженерные системы с услугами под ключ."
         />
         <div className="direction-grid">
-          {catalog.sections.map((section, index) => (
-            <DirectionCard key={section.slug} section={section} index={index} />
+          {catalog.sections.map((section) => (
+            <DirectionCard key={section.slug} section={section} />
           ))}
         </div>
       </div>
