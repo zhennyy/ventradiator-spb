@@ -1,6 +1,6 @@
 /* Страница категории: фото, описание, кнопки и «Ещё в разделе».
-   Ноутбук: фото и текст рядом (фото «прилипает» при прокрутке). Планшет: главное фото и два
-   дополнительных одной строкой над текстом. Телефон: всё в колонку. */
+   Ноутбук и планшет от 768px: фото и текст рядом (на ноутбуке фото «прилипает» при прокрутке).
+   Узкий планшет и телефон: фото на всю ширину, текст под ним. */
 .product {
   padding: clamp(24px, 1.5vw + 18px, 40px) 0 var(--section-space-small);
 }
@@ -29,10 +29,40 @@
   object-fit: cover;
   background: var(--ice);
 }
-.gallery-extra {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+.gallery-main {
+  animation: gallery-in 0.45s var(--ease) both;
+}
+@keyframes gallery-in {
+  from {
+    opacity: 0.4;
+  }
+}
+/* Миниатюры под большим фото: выбранная — в тёмной рамке */
+.gallery-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.gallery-thumb {
+  width: 88px;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: var(--photo);
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease);
+}
+.gallery .gallery-thumb img {
+  display: block;
+  border: 0;
+}
+.gallery-thumb[aria-pressed='true'] {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+@media (hover: hover) {
+  .gallery-thumb:hover {
+    border-color: var(--ink);
+  }
 }
 .product-info h1 {
   font-size: clamp(28px, 1.4vw + 20px, 44px);
@@ -58,25 +88,19 @@
 
 @media (max-width: 1024px) {
   .product-grid {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px;
   }
   .gallery {
     position: static;
   }
 }
-@media (min-width: 601px) and (max-width: 1024px) {
-  .gallery:has(.gallery-extra) {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  }
-  .gallery:has(.gallery-extra) .gallery-main {
-    height: 100%;
-  }
-  .gallery-extra {
+@media (max-width: 767px) {
+  .product-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .gallery-main:only-child {
-    max-width: 720px;
-  }
+}
+@media (min-width: 601px) and (max-width: 767px) {
   .product-text,
   .product-info .specs {
     max-width: 720px;
