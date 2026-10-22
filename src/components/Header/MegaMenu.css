@@ -17,27 +17,28 @@
     border-bottom: 1px solid var(--line-strong);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-6px);
-    /* Закрытие — с короткой паузой (курсор может на миг выскользнуть) и мягким угасанием */
+    /* Панель раскрывается сверху вниз, как шторка (низ «обрезки» уходит на 100vh ниже — чтобы
+       затемнение страницы под панелью тоже было видно). Закрытие — мягко сворачивается обратно. */
+    clip-path: inset(0 0 100% 0);
     transition:
-      opacity 0.35s ease 0.12s,
-      transform 0.45s var(--menu-ease) 0.12s,
-      visibility 0s linear 0.57s;
+      clip-path 0.5s var(--menu-ease) 0.08s,
+      opacity 0.4s ease 0.12s,
+      visibility 0s linear 0.6s;
   }
   /* Содержимое панели «выплывает» чуть позже самой панели — открытие получается мягким, без рывка */
   .dropdown-inner {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-14px);
     transition:
-      opacity 0.3s ease,
-      transform 0.4s var(--menu-ease);
+      opacity 0.25s ease,
+      transform 0.35s var(--menu-ease);
   }
   .has-dropdown.is-open .dropdown-inner {
     opacity: 1;
     transform: none;
     transition:
-      opacity 0.6s ease 0.1s,
-      transform 0.8s var(--menu-ease) 0.1s;
+      opacity 0.7s ease 0.18s,
+      transform 0.9s var(--menu-ease) 0.18s;
   }
   /* «Мостик» над панелью: курсор не теряет меню по пути от пункта вниз */
   .dropdown::before {
@@ -56,16 +57,21 @@
     height: 100vh;
     background: rgb(23 25 27 / 0.16);
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .has-dropdown.is-open .dropdown::after {
+    opacity: 1;
   }
   /* Открытие кнопкой или с клавиатуры — сразу, без паузы. Панель сразу становится видимой
      (плавно меняются только прозрачность и сдвиг) — иначе фокус не попадёт на ссылку в первые доли секунды. */
   .has-dropdown.is-open .dropdown {
     opacity: 1;
     visibility: visible;
-    transform: none;
+    clip-path: inset(0 0 -100vh 0);
     transition:
-      opacity 0.5s ease,
-      transform 0.7s var(--menu-ease),
+      clip-path 0.75s var(--menu-ease),
+      opacity 0.35s ease,
       visibility 0s;
   }
   .dropdown-inner {

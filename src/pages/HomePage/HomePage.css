@@ -20,6 +20,9 @@
   height: 100%;
   object-fit: cover;
   object-position: 60% 50%;
+  /* Низ фото растворяется в прозрачность — под ним тот же фон страницы, поэтому шва не видно */
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, rgb(0 0 0 / 0.6) 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 62%, rgb(0 0 0 / 0.6) 80%, transparent 100%);
 }
 .hero-copy-wrap {
   width: 100%;
@@ -27,16 +30,6 @@
 }
 .hero-copy-wrap {
   display: flex;
-}
-/* Низ фото мягко растворяется в бумаге — без резкого обрыва перед строкой фактов */
-.hero-stage::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 0;
-  z-index: -1;
-  height: clamp(80px, 12vw, 160px);
-  background: linear-gradient(to bottom, rgb(242 240 234 / 0), var(--paper));
-  pointer-events: none;
 }
 /* Текст ближе к центру; фото вокруг видно целиком */
 .hero-copy {
@@ -132,8 +125,9 @@
   .hero-copy-wrap {
     padding-block: 24px 0;
   }
-  .hero-stage::after {
-    display: none;
+  .hero-photo {
+    -webkit-mask-image: none;
+    mask-image: none;
   }
   .hero-copy {
     margin: 0;
@@ -146,4 +140,14 @@
 /* Мелкая подпись над заголовком поверх фото — темнее, чтобы не терялась на окне */
 .hero .eyebrow {
   color: var(--ink);
+}
+
+/* Сразу за первым экраном — блок «Что мы предлагаем»: его линейка начинается там, где растворяется фото */
+.hero + .directions {
+  padding-top: clamp(8px, 1vw, 16px);
+}
+@media (max-width: 600px) {
+  .hero + .directions {
+    padding-top: var(--section-space-small);
+  }
 }
