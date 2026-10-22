@@ -1,20 +1,32 @@
 /* Шапка внутренних страниц */
 .page-hero {
-  padding: clamp(28px, 2.5vw + 20px, 56px) 0 clamp(36px, 2.5vw + 28px, 64px);
+  padding: clamp(20px, 1.5vw + 14px, 36px) 0 clamp(28px, 2vw + 20px, 48px);
   border-bottom: 1px solid var(--line);
 }
 .page-hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(20px, 2vw + 12px, 40px) 64px;
-  align-items: end;
+  gap: clamp(16px, 1.5vw + 10px, 28px) clamp(32px, 4vw, 64px);
+  /* Заголовок и текст начинаются на одном уровне */
+  align-items: start;
+}
+/* Заголовок внутренних страниц — спокойнее, чем на главной */
+.page-hero h1 {
+  margin: 0;
+  font-size: clamp(32px, 2.2vw + 20px, 56px);
+  line-height: 1.02;
+}
+.page-hero .eyebrow {
+  margin-bottom: 12px;
 }
 .page-hero-grid > * {
   min-width: 0;
 }
 .page-hero-text {
-  max-width: 68ch;
-  font-size: clamp(16px, 0.3vw + 15px, 18px);
+  max-width: 62ch;
+  padding-top: 4px;
+  font-size: clamp(15px, 0.2vw + 14px, 17px);
+  line-height: 1.6;
   color: var(--ink-soft);
 }
 .page-hero-text p:last-child {
