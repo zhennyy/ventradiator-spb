@@ -3,7 +3,7 @@ import PageHero from '../../components/PageHero/PageHero';
 import RequestForm from '../../components/RequestForm/RequestForm';
 import Specs from '../../components/Specs/Specs';
 import { site } from '../../lib/content';
-import { phoneHref } from '../../lib/text';
+import { hasContent, phoneHref } from '../../lib/text';
 import './ContactsPage.css';
 
 function Office({ office }) {
@@ -20,7 +20,7 @@ function Office({ office }) {
       </div>
       <Specs
         rows={[
-          ['Адрес', office.address],
+          ...(hasContent(office.address) ? [['Адрес', office.address]] : []),
           [
             'Почта',
             <a key="email" href={`mailto:${site.email}`}>

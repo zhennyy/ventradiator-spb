@@ -4,6 +4,7 @@ import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import Specs from '../../components/Specs/Specs';
 import StubText from '../../components/StubText/StubText';
 import { site } from '../../lib/content';
+import { hasContent } from '../../lib/text';
 import './AboutPage.css';
 
 export default function AboutPage() {
@@ -34,12 +35,14 @@ export default function AboutPage() {
               <a href="/objects.html">объектов с этими системами</a>.
             </p>
           </div>
-          <aside className="legal-card" aria-label="Реквизиты представительства">
-            <p className="eyebrow">Представительство в СПб</p>
-            <p>
-              <StubText>{legal.representative}</StubText>
-            </p>
-          </aside>
+          {hasContent(legal.representative) && (
+            <aside className="legal-card" aria-label="Реквизиты представительства">
+              <p className="eyebrow">Представительство в СПб</p>
+              <p>
+                <StubText>{legal.representative}</StubText>
+              </p>
+            </aside>
+          )}
         </div>
         <div className="wrap">
           <SectionTitle eyebrow="Принципы" title="Почему эти системы" />

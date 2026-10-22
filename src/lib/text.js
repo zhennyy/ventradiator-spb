@@ -1,6 +1,20 @@
 // Мелкие помощники для текста: заглушки [ЗАГЛУШКА…] / [РЕКВИЗИТЫ…], ссылки tel: и номера карточек.
 const STUB_PATTERN = /\[(?:ЗАГЛУШКА|РЕКВИЗИТЫ)[^\]]*\]/g;
 
+// Заглушки видны жёлтым в разработке (npm run dev) и в тестах; в готовой сборке (npm run build)
+// поля, где вместо данных только заглушка, просто не выводятся — на сайте не будет пустых «[ЗАГЛУШКА]».
+export const SHOW_STUBS = !import.meta.env?.PROD;
+
+// Вся строка — одна заглушка (например, адрес офиса, который ещё не прислали)
+export function isStub(value) {
+  return /^\[(?:ЗАГЛУШКА|РЕКВИЗИТЫ)[^\]]*\]$/.test(String(value ?? '').trim());
+}
+
+// Показывать ли поле: есть данные или мы в разработке, где заглушку нужно видеть
+export function hasContent(value) {
+  return Boolean(value) && (SHOW_STUBS || !isStub(value));
+}
+
 // Делит строку на куски: обычный текст и заглушки, чтобы заглушки подсветить жёлтым.
 export function splitStubs(value) {
   const source = String(value ?? '');
@@ -13,10 +27,6 @@ export function splitStubs(value) {
   }
   if (position < source.length) parts.push({ text: source.slice(position), isStub: false });
   return parts;
-}
-
-export function isStub(value) {
-  return /^\[(ЗАГЛУШКА|РЕКВИЗИТЫ)[^\]]*\]$/.test(String(value).trim());
 }
 
 // Текст без заглушек — для meta description.

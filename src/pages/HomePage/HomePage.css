@@ -11,12 +11,15 @@
   align-items: center;
 }
 .hero h1 {
-  max-width: 13ch;
+  max-width: 14ch;
+  /* Спокойнее, чем раньше (было до 76px): заголовок не давит на схему */
+  font-size: clamp(32px, 2.2vw + 18px, 54px);
+  line-height: 1.02;
 }
 .hero-lead {
-  max-width: 540px;
-  margin: clamp(20px, 1.5vw + 14px, 28px) 0 clamp(28px, 1.5vw + 22px, 36px);
-  font-size: clamp(17px, 0.3vw + 15.5px, 19px);
+  max-width: 520px;
+  margin: clamp(18px, 1vw + 12px, 24px) 0 clamp(24px, 1vw + 18px, 32px);
+  font-size: clamp(16px, 0.2vw + 15px, 18px);
   line-height: 1.55;
   color: var(--ink-soft);
 }

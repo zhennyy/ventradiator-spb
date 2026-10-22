@@ -1,7 +1,7 @@
 // Подвал — светлая «задняя обложка» каталога по центру: сверху призыв и контакты представительства,
 // ниже карта сайта строками: раздел и его категории в одну строку, затем страницы компании и документы.
 import { catalog, categoryPath, sectionPath, site } from '../../lib/content';
-import { phoneHref } from '../../lib/text';
+import { hasContent, phoneHref } from '../../lib/text';
 import ButtonLink from '../Button/Button';
 import Logo from '../Logo/Logo';
 import StubText from '../StubText/StubText';
@@ -73,9 +73,11 @@ export default function Footer({ hasForm = false }) {
             <a className="footer-email" href={`mailto:${site.email}`}>
               {site.email}
             </a>
-            <p className="footer-address">
-              <StubText>{office.address}</StubText>
-            </p>
+            {hasContent(office.address) && (
+              <p className="footer-address">
+                <StubText>{office.address}</StubText>
+              </p>
+            )}
             <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'}>Запросить цену</ButtonLink>
           </div>
         </div>
@@ -90,7 +92,7 @@ export default function Footer({ hasForm = false }) {
         <div className="footer-legal">
           <p>
             {`© ${YEAR} ${site.brand}, Санкт-Петербург. `}
-            <StubText>{site.legal.representative}</StubText>
+            {hasContent(site.legal.representative) && <StubText>{site.legal.representative}</StubText>}
           </p>
         </div>
       </div>

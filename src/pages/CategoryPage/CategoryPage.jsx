@@ -28,7 +28,6 @@ export default function CategoryPage({ section, category }) {
             </div>
             <Specs rows={category.specs} />
             <div className="product-actions">
-              <ButtonLink href="#request">Запросить цену</ButtonLink>
               {category.variants?.length > 0 && (
                 <ButtonLink href="#variants-title" variant="ghost">
                   {category.variants.some((variant) => variant.logo) ? 'Производители' : 'Модели в линейке'}
@@ -39,6 +38,8 @@ export default function CategoryPage({ section, category }) {
                   Модели и артикулы
                 </ButtonLink>
               )}
+              {/* Сначала посмотреть, что внутри, затем — главная тёмная кнопка */}
+              <ButtonLink href="#request">Запросить цену</ButtonLink>
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@
 /* Заголовок внутренних страниц — спокойнее, чем на главной */
 .page-hero h1 {
   margin: 0;
-  font-size: clamp(32px, 2.2vw + 20px, 56px);
+  font-size: clamp(30px, 1.8vw + 18px, 48px);
   line-height: 1.02;
 }
 .page-hero .eyebrow {
