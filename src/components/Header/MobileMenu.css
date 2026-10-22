@@ -5,6 +5,19 @@
   .header-row {
     gap: 12px;
   }
+  .header-home {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    min-height: 44px;
+    font: 500 13px/1.3 var(--font-mono);
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .header-home-short {
+    display: none;
+  }
   .header-call {
     display: inline-flex;
     align-items: center;
@@ -303,6 +316,12 @@
 
 /* Телефон: вместо номера — круглая кнопка звонка, у «Меню» видна только иконка */
 @media (max-width: 600px) {
+  .header-home-long {
+    display: none;
+  }
+  .header-home-short {
+    display: inline;
+  }
   .header-call {
     justify-content: center;
     width: 44px;
