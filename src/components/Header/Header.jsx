@@ -66,12 +66,46 @@ export default function Header({ currentPath, hasForm }) {
     };
   }, [isMenuOpen]);
 
+  // Шапка уезжает вверх, когда листаешь вниз, и возвращается при прокрутке вверх —
+  // так она не съедает пол-экрана над содержимым. С открытым меню остаётся на месте.
+  const [isHidden, setHidden] = useState(false);
+  const [isScrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const currentY = window.scrollY;
+      const delta = currentY - lastY;
+      setScrolled(currentY > 8);
+      if (currentY < 160) setHidden(false);
+      else if (delta > 6) setHidden(true);
+      else if (delta < -6) setHidden(false);
+      if (Math.abs(delta) > 6 || currentY < 160) lastY = currentY;
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+  const headerClass = [
+    'site-header',
+    isHidden && !isMenuOpen && !openSection ? 'is-hidden' : '',
+    isScrolled ? 'is-scrolled' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   function handleNavClick(event) {
     if (event.target.closest('a')) setMenuOpen(false);
   }
 
   return (
-    <header className="site-header">
+    <header className={headerClass}>
       <div className="wrap header-row">
         <Logo />
         <a className="header-call" href={phoneHref(phone)} aria-label={`Позвонить: ${phone}`}>
