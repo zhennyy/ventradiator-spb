@@ -112,17 +112,25 @@
     transform: scale(1.03);
   }
 }
-/* Телефон: фото сверху, невысокое */
-@media (max-width: 600px) {
+/* Планшет и телефон: фото сверху на белом поле, товар виден целиком (без обрезки), текст под ним */
+@media (max-width: 1024px) {
   .variant {
     grid-template-columns: minmax(0, 1fr);
   }
   .variant-media {
+    height: clamp(180px, 30vw, 260px);
+    min-height: 0;
     border-right: 0;
     border-bottom: 1px solid var(--line);
-    min-height: 0;
-    aspect-ratio: 16 / 9;
   }
+  .variant-media img {
+    inset: 12px;
+    width: calc(100% - 24px);
+    height: calc(100% - 24px);
+    object-fit: contain;
+  }
+}
+@media (max-width: 600px) {
   .variant-body .specs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 16px;

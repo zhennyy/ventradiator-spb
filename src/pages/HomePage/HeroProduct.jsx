@@ -65,7 +65,7 @@ export default function HeroProduct() {
       <ol className="hero-facts-list">
         {product.callouts.map((callout) => (
           <li key={callout.title}>
-            <b>{callout.title}</b> {callout.text}
+            <b>{callout.title}</b> <span>{callout.text}</span>
           </li>
         ))}
       </ol>
