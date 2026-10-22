@@ -102,7 +102,7 @@
 @media (max-width: 600px) {
   :root {
     /* Разделы под шапкой на телефоне — сеткой 3 × 2 (SectionStrip.css) */
-    --strip-height: 73px;
+    --strip-height: 77px;
   }
 }
 @media (min-width: 1440px) {

@@ -84,46 +84,38 @@
   }
 }
 
-/* Телефон: строка не листается и не «едет» — шесть разделов сеткой 3 × 2, все видны сразу */
+/* Телефон: строка не листается и не «едет» — шесть разделов аккуратными плашками 3 × 2,
+   текущий раздел — тёмная плашка */
 @media (max-width: 600px) {
   .section-strip-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0;
+    gap: 4px;
     height: auto;
-    padding: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
     overflow: visible;
     mask-image: none;
-  }
-  .section-strip li {
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .section-strip li:nth-child(3n) {
-    border-right: 0;
-  }
-  .section-strip li:nth-last-child(-n + 3) {
-    border-bottom: 0;
   }
   .section-strip a,
   .section-strip li:first-child a,
   .section-strip li:last-child a {
     justify-content: center;
-    height: 36px;
+    height: 30px;
     padding: 0 4px;
-    font-size: 12.5px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    font-size: 12px;
+    line-height: 1.1;
     text-align: center;
     white-space: normal;
-    line-height: 1.15;
   }
-  .section-strip a::after,
-  .section-strip li:first-child a::after,
-  .section-strip li:last-child a::after {
-    left: 0;
-    right: 0;
-    bottom: 0;
+  .section-strip a::after {
+    display: none;
   }
   .section-strip a.is-current {
-    background: var(--surface);
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--surface);
   }
 }
