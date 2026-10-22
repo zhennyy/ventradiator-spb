@@ -6,6 +6,16 @@
   padding-top: env(safe-area-inset-top);
   background: var(--paper);
   border-bottom: 1px solid var(--line-strong);
+  transition:
+    transform 0.45s var(--menu-ease),
+    box-shadow 0.3s var(--ease);
+}
+/* Листаем вниз — шапка уезжает, вверх — возвращается с лёгкой тенью */
+.site-header.is-hidden {
+  transform: translateY(-100%);
+}
+.site-header.is-scrolled {
+  box-shadow: 0 10px 30px -18px rgb(23 25 27 / 0.35);
 }
 .header-row {
   display: flex;
