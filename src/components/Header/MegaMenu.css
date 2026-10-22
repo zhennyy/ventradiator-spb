@@ -17,12 +17,27 @@
     border-bottom: 1px solid var(--line-strong);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-12px);
+    transform: translateY(-6px);
     /* Закрытие — с короткой паузой (курсор может на миг выскользнуть) и мягким угасанием */
     transition:
-      opacity 0.3s var(--menu-ease) 0.12s,
-      transform 0.3s var(--menu-ease) 0.12s,
-      visibility 0s linear 0.42s;
+      opacity 0.35s ease 0.12s,
+      transform 0.45s var(--menu-ease) 0.12s,
+      visibility 0s linear 0.57s;
+  }
+  /* Содержимое панели «выплывает» чуть позже самой панели — открытие получается мягким, без рывка */
+  .dropdown-inner {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.4s var(--menu-ease);
+  }
+  .has-dropdown.is-open .dropdown-inner {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.6s ease 0.1s,
+      transform 0.8s var(--menu-ease) 0.1s;
   }
   /* «Мостик» над панелью: курсор не теряет меню по пути от пункта вниз */
   .dropdown::before {
@@ -49,8 +64,8 @@
     visibility: visible;
     transform: none;
     transition:
-      opacity 0.4s var(--menu-ease),
-      transform 0.5s var(--menu-ease),
+      opacity 0.5s ease,
+      transform 0.7s var(--menu-ease),
       visibility 0s;
   }
   .dropdown-inner {

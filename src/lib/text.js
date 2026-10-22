@@ -39,6 +39,18 @@ export function phoneHref(phone) {
 }
 
 // «1 категория», «3 категории», «9 категорий» — русское склонение после числа
+// Русское склонение после числа: plural(5, ['артикул', 'артикула', 'артикулов']) → «5 артикулов»
+export function plural(count, [one, few, many]) {
+  const lastTwo = count % 100;
+  const last = count % 10;
+  let word = many;
+  if (lastTwo < 11 || lastTwo > 14) {
+    if (last === 1) word = one;
+    else if (last >= 2 && last <= 4) word = few;
+  }
+  return `${count} ${word}`;
+}
+
 export function countCategories(count) {
   const lastTwo = count % 100;
   const last = count % 10;

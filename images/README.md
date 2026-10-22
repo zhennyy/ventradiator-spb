@@ -30,6 +30,7 @@
 | --- | --- |
 | `vent-l2.jpg` | Вентиляционные установки Blizzard — главное фото категории (L2) |
 | `vent-l2-unit.jpg` | Blizzard L2 DP (из каталога Blizzard 2025) |
+| `hero-l2.jpg` | Первый экран главной: Blizzard L2 крупно (кадр из `vent-l2-unit.jpg`) |
 | `vent-l3.jpg` | Blizzard L3 ES (из каталога Blizzard 2025) |
 | `vent-l5-450.jpg` | Blizzard L5 450 (из каталога Blizzard 2025) |
 | `vent-l5-360.jpg` | Blizzard L5 360, плоская (из каталога Blizzard 2025) |
