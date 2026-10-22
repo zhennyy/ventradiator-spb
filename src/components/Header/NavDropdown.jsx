@@ -1,6 +1,6 @@
 // Пункт меню с мега-меню раздела: на ноутбуке — панель во всю ширину под шапкой
 // (описание раздела слева, категории с миниатюрами сеткой справа), на планшете и телефоне — простой список.
-// Мышь: список раскрывается при наведении (CSS). Клавиатура: Enter/пробел на стрелке — открыть,
+// Мышь: панель раскрывается при наведении (паузы и переключение — в Header.jsx). Клавиатура: Enter/пробел на стрелке — открыть,
 // ↓/↑ — по ссылкам списка, Esc — закрыть и вернуть фокус на кнопку; уход фокуса из пункта — закрыть.
 import { useRef } from 'react';
 import { flushSync } from 'react-dom';
@@ -80,6 +80,7 @@ function SectionDropdown({ section, currentPath, isOpen, onOpenChange }) {
     <li
       ref={itemRef}
       className={isOpen ? 'nav-item has-dropdown is-open' : 'nav-item has-dropdown'}
+      data-section={section.slug}
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}
     >

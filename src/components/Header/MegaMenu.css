@@ -178,19 +178,19 @@
     white-space: nowrap;
   }
   /* Плитки появляются мягкой лесенкой */
-  .has-dropdown:is(.is-open, :hover) .dropdown-grid li {
+  .has-dropdown.is-open .dropdown-grid li {
     animation: dropdown-tile 0.55s var(--menu-ease) 0.08s both;
   }
-  .has-dropdown:is(.is-open, :hover) .dropdown-grid li:nth-child(3n + 2) {
+  .has-dropdown.is-open .dropdown-grid li:nth-child(3n + 2) {
     animation-delay: 0.04s;
   }
-  .has-dropdown:is(.is-open, :hover) .dropdown-grid li:nth-child(3n) {
+  .has-dropdown.is-open .dropdown-grid li:nth-child(3n) {
     animation-delay: 0.08s;
   }
-  .has-dropdown:is(.is-open, :hover) .dropdown-grid li:nth-child(n + 4) {
+  .has-dropdown.is-open .dropdown-grid li:nth-child(n + 4) {
     animation-delay: 0.1s;
   }
-  .has-dropdown:is(.is-open, :hover) .dropdown-grid li:nth-child(n + 7) {
+  .has-dropdown.is-open .dropdown-grid li:nth-child(n + 7) {
     animation-delay: 0.16s;
   }
 }
@@ -215,5 +215,21 @@
   from {
     opacity: 0;
     transform: translateY(10px);
+  }
+}
+
+/* Переключение между разделами мышью: панель и затемнение не мигают, мягко меняется только содержимое */
+@media (min-width: 1280px) {
+  .menu-switching .dropdown,
+  .menu-switching .dropdown::after {
+    transition: none;
+  }
+  .menu-switching .has-dropdown.is-open .dropdown-inner {
+    transition:
+      opacity 0.35s ease,
+      transform 0.45s var(--menu-ease);
+  }
+  .menu-switching .dropdown-grid li {
+    animation: none;
   }
 }

@@ -1,5 +1,5 @@
 // Первый экран главной: светлый интерьер на всю ширину, поверх слева — обещание и кнопки,
-// под фото — строка фактов. Фото неподвижно, текст на полупрозрачной карточке.
+// Фото неподвижно, текст поверх на мягкой светлой подложке.
 import ButtonLink from '../../components/Button/Button';
 import { site } from '../../lib/content';
 import { resolveImage } from '../../lib/images';
@@ -33,16 +33,6 @@ export default function HomeHero() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="wrap">
-        <ul className="facts">
-          {site.facts.map(([value, label]) => (
-            <li key={label}>
-              <span className="fact-value">{value}</span>
-              <span className="fact-label">{label}</span>
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );

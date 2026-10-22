@@ -40,8 +40,9 @@
 }
 /* Текст ближе к центру; фото вокруг видно целиком */
 .hero-copy {
-  max-width: 620px;
-  margin-left: clamp(0px, 6vw - 40px, 72px);
+  max-width: 640px;
+  /* Ближе к центру: на широком экране текст отступает от края заметнее */
+  margin-left: clamp(0px, 12vw - 60px, 200px);
   position: relative;
 }
 /* Без рамки: за текстом — мягкое светлое «облако» без краёв, чтобы текст читался, а фото было видно */
@@ -61,6 +62,8 @@
 }
 /* Заголовок без переносов по слогам */
 .hero h1 {
+  /* В «em», чтобы строки ломались одинаково на любой ширине: «Тихая немецкая / вентиляция…» */
+  max-width: 9.5em;
   hyphens: manual;
 }
 .hero h1 {
@@ -76,61 +79,11 @@
   line-height: 1.55;
   color: var(--ink-soft);
 }
-.facts {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: clamp(8px, 1vw, 16px) 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--line-strong);
-  border-bottom: 1px solid var(--line-strong);
-}
-.facts li {
-  display: grid;
-  gap: 6px;
-  align-content: start;
-  padding: 28px 24px 32px 0;
-}
-.facts li + li {
-  padding-left: 24px;
-  border-left: 1px solid var(--line);
-}
-.fact-value {
-  font-weight: 500;
-  font-size: clamp(26px, 1.6vw + 18px, 40px);
-  letter-spacing: -0.04em;
-  line-height: 1.1;
-}
-.fact-label {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  line-height: 1.45;
-  color: var(--ink-soft);
-  text-wrap: pretty;
-}
 
-/* Планшет: текст на всю ширину, фото установки — под ним по центру, факты — 2 × 2 */
+/* Планшет */
 @media (max-width: 1024px) {
-  .hero h1 {
-    max-width: 15ch;
-  }
   .hero-lead {
     max-width: 600px;
-  }
-  .facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .facts li,
-  .facts li + li {
-    padding: 24px 20px 26px 0;
-    border-left: 0;
-  }
-  .facts li:nth-child(even) {
-    padding-left: 20px;
-    border-left: 1px solid var(--line);
-  }
-  .facts li:nth-child(n + 3) {
-    border-top: 1px solid var(--line);
   }
 }
 @media (min-width: 601px) and (max-width: 1024px) {
@@ -142,19 +95,11 @@
   .hero h1 {
     max-width: none;
   }
-  .facts li,
-  .facts li + li {
-    padding: 20px 14px 22px 0;
-  }
-  .facts li:nth-child(even) {
-    padding-left: 14px;
-  }
 }
 
 /* Первый экран при загрузке: строки текста и кнопки проявляются лесенкой,
    фото стоит неподвижно — без рывков при загрузке. Только CSS — работает и до гидратации. */
-.hero-copy > *,
-.hero .facts > li {
+.hero-copy > * {
   animation: hero-rise 0.9s var(--menu-ease) both;
 }
 .hero-copy > :nth-child(2) {
@@ -165,18 +110,6 @@
 }
 .hero-copy > :nth-child(4) {
   animation-delay: 240ms;
-}
-.hero .facts > li:nth-child(1) {
-  animation-delay: 320ms;
-}
-.hero .facts > li:nth-child(2) {
-  animation-delay: 380ms;
-}
-.hero .facts > li:nth-child(3) {
-  animation-delay: 440ms;
-}
-.hero .facts > li:nth-child(4) {
-  animation-delay: 500ms;
 }
 /* Только мягкое проявление, без сдвигов — ничего не «прыгает» при загрузке */
 @keyframes hero-rise {

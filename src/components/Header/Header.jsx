@@ -37,6 +37,52 @@ export default function Header({ currentPath, hasForm }) {
   const menuButtonRef = useRef(null);
   const phone = site.offices[0].phones[0];
 
+  // Мышь на ноутбуке: мега-меню открывается после короткой паузы (если курсор просто проезжает — не мелькает),
+  // между разделами переключается сразу, без закрытия и повторного «выплывания», закрывается с задержкой.
+  const hoverTimer = useRef(0);
+  const switchTimer = useRef(0);
+  const [isSwitching, setSwitching] = useState(false);
+  useEffect(
+    () => () => {
+      clearTimeout(hoverTimer.current);
+      clearTimeout(switchTimer.current);
+    },
+    [],
+  );
+  const isDesktopMouse = (event) =>
+    event.pointerType === 'mouse' && window.matchMedia('(min-width: 1280px) and (hover: hover)').matches;
+  function scheduleHover(slug, delay) {
+    clearTimeout(hoverTimer.current);
+    hoverTimer.current = setTimeout(() => setOpenSection(slug), delay);
+  }
+  function handleNavPointerOver(event) {
+    if (!isDesktopMouse(event)) return;
+    // Курсор внутри открытой панели — ничего не меняем, только отменяем закрытие
+    if (event.target.closest('.dropdown')) {
+      clearTimeout(hoverTimer.current);
+      return;
+    }
+    const slug = event.target.closest('.has-dropdown')?.dataset.section || null;
+    if (slug === openSection) {
+      clearTimeout(hoverTimer.current);
+      return;
+    }
+    if (slug && openSection) {
+      // Переключение между разделами: панель остаётся на месте, меняется только содержимое
+      clearTimeout(hoverTimer.current);
+      clearTimeout(switchTimer.current);
+      setSwitching(true);
+      setOpenSection(slug);
+      switchTimer.current = setTimeout(() => setSwitching(false), 450);
+      return;
+    }
+    scheduleHover(slug, slug ? 140 : 220);
+  }
+  function handleNavPointerLeave(event) {
+    if (!isDesktopMouse(event) || !openSection) return;
+    scheduleHover(null, 260);
+  }
+
   // Клик мимо выпадающих списков закрывает их.
   useEffect(() => {
     const closeOnOutsideClick = (event) => {
@@ -95,6 +141,7 @@ export default function Header({ currentPath, hasForm }) {
     'site-header',
     isHidden && !isMenuOpen && !openSection ? 'is-hidden' : '',
     isScrolled ? 'is-scrolled' : '',
+    isSwitching && openSection ? 'menu-switching' : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -106,6 +153,11 @@ export default function Header({ currentPath, hasForm }) {
   return (
     <header className={headerClass}>
       <div className="wrap header-row">
+        {/* Планшет и телефон: слева — ссылка на главную с подписью о представительстве (на ноутбуке она в верхней строке) */}
+        <a className="header-home" href="/" aria-label="На главную">
+          <span className="header-home-long">Представительство в Санкт-Петербурге · по всей России</span>
+          <span className="header-home-short">Представительство в СПб</span>
+        </a>
         <a className="header-call" href={phoneHref(phone)} aria-label={`Позвонить: ${phone}`}>
           <PhoneIcon />
           <span className="header-call-number">{phone}</span>
@@ -124,7 +176,14 @@ export default function Header({ currentPath, hasForm }) {
           </span>
           <span className="menu-label">Меню</span>
         </button>
-        <nav className="site-nav" id="site-nav" aria-label="Основное меню" onClick={handleNavClick}>
+        <nav
+          className="site-nav"
+          id="site-nav"
+          aria-label="Основное меню"
+          onClick={handleNavClick}
+          onPointerOver={handleNavPointerOver}
+          onPointerLeave={handleNavPointerLeave}
+        >
           <ul className="nav-list">
             {catalog.sections.map((section) => (
               <NavDropdown
