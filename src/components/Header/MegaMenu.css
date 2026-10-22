@@ -116,11 +116,8 @@
   .dropdown-thumb img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    transition: transform 0.3s var(--ease);
-  }
-  .dropdown-thumb img.is-placeholder {
     object-fit: cover;
+    transition: transform 0.3s var(--ease);
   }
   .dropdown-text {
     display: grid;

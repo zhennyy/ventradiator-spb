@@ -227,9 +227,6 @@
   .dropdown-thumb img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-  }
-  .dropdown-thumb img.is-placeholder {
     object-fit: cover;
   }
   .dropdown-name {
