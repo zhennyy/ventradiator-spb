@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 import { catalog, site } from '../../lib/content';
 import { phoneHref } from '../../lib/text';
 import ButtonLink from '../Button/Button';
-import Logo from '../Logo/Logo';
 import NavDropdown from './NavDropdown';
 import SectionStrip from './SectionStrip';
 import './Header.css';
@@ -107,7 +106,6 @@ export default function Header({ currentPath, hasForm }) {
   return (
     <header className={headerClass}>
       <div className="wrap header-row">
-        <Logo />
         <a className="header-call" href={phoneHref(phone)} aria-label={`Позвонить: ${phone}`}>
           <PhoneIcon />
           <span className="header-call-number">{phone}</span>

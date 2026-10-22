@@ -3,7 +3,6 @@
 import { catalog, categoryPath, sectionPath, site } from '../../lib/content';
 import { hasContent, phoneHref } from '../../lib/text';
 import ButtonLink from '../Button/Button';
-import Logo from '../Logo/Logo';
 import StubText from '../StubText/StubText';
 import './Footer.css';
 
@@ -62,7 +61,6 @@ export default function Footer({ hasForm = false }) {
       <div className="wrap">
         <div className="footer-top">
           <div className="footer-pitch">
-            <Logo />
             <p className="footer-slogan">Подберём вентиляцию, отопление и пылеудаление для вашего дома</p>
           </div>
           <div className="footer-contacts">

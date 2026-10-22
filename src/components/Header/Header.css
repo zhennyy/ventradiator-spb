@@ -129,12 +129,9 @@
       transform 0.8s var(--menu-ease) 0.2s;
   }
 }
-/* Узкий ноутбук: подпись логотипа прячется, пункты меню и кнопка чуть компактнее —
+/* Узкий ноутбук: пункты меню и кнопка чуть компактнее —
    чтобы всё меню стояло в одну строку и ничего не переносилось */
 @media (min-width: 1280px) and (max-width: 1439px) {
-  .site-header .logo-text span {
-    display: none;
-  }
   .nav-link,
   .header-phone {
     font-size: 14px;

@@ -33,15 +33,9 @@
   display: grid;
   justify-items: center;
 }
-.site-footer .logo-text {
-  text-align: left;
-}
-.site-footer .logo-text span {
-  color: var(--footer-faint);
-}
 .footer-slogan {
   max-width: 22ch;
-  margin: clamp(24px, 2vw + 12px, 40px) 0 0;
+  margin: 0;
   color: var(--ink);
   font-size: clamp(24px, 1.4vw + 16px, 38px);
   font-weight: 500;
