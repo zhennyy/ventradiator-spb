@@ -134,11 +134,73 @@
   }
 }
 
-/* Телефон: разделы каталога — каждый на всю ширину, «Компания» и «Документы» — рядом */
+/* Телефон: без длинных списков категорий — только разделы аккуратной сеткой 2 колонки,
+   ниже страницы компании и документы. Категории есть на страницах разделов и в меню. */
 @media (max-width: 600px) {
-  .site-footer li a {
+  .footer-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+    padding: 20px 0 24px;
+    text-align: left;
+  }
+  .footer-col-catalog ul {
+    display: none;
+  }
+  .footer-col-catalog .footer-title {
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: 15px;
+  }
+  .footer-col-catalog .footer-title a {
+    border-bottom: 1px solid var(--footer-line);
+    color: var(--ink);
+  }
+  /* Остальные ссылки — тем же списком в две колонки, без отдельного «облака» */
+  .footer-col-company {
+    grid-column: 1 / -1;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .footer-col-company ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+    max-width: none;
+  }
+  .footer-col-company li {
+    align-items: stretch;
+  }
+  .footer-col-company li a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 44px;
     padding: 6px 0;
+    border-bottom: 1px solid var(--footer-line);
+    font-size: 15px;
+    line-height: 1.25;
+    color: var(--ink);
     white-space: normal;
+  }
+  /* Документы — мелко и на всю ширину, в конце списка */
+  .footer-col-company li:nth-last-child(-n + 2) {
+    grid-column: 1 / -1;
+  }
+  .footer-col-company li:nth-last-child(-n + 2) a {
+    min-height: 0;
+    padding: 10px 0 0;
+    border-bottom: 0;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .footer-col-company li:nth-last-child(2) a {
+    padding-top: 18px;
+  }
+  .footer-col-catalog .footer-title a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 6px 0;
   }
   .footer-legal {
     flex-direction: column;
