@@ -101,7 +101,9 @@ export async function checkHeaderCall(page, problems, width) {
   const isCollapsed = width <= 1279;
   const state = await page.evaluate(() => {
     const box = (selector) => document.querySelector(selector).getBoundingClientRect();
-    const visible = (selector) => box(selector).width > 0;
+    // Видим = есть размер и не скрыт через visibility (мобильное меню скрывается плавно, а не display: none)
+    const visible = (selector) =>
+      box(selector).width > 0 && getComputedStyle(document.querySelector(selector)).visibility !== 'hidden';
     return {
       call: visible('.header-call'),
       menu: visible('.menu-button'),
@@ -131,7 +133,11 @@ export async function closeMobileMenu(page, problems) {
   await expectState(
     problems,
     'Esc закрывает мобильное меню',
-    async () => !(await page.locator('#site-nav').isVisible()),
+    // Панель уезжает плавно — ждём окончания анимации
+    async () => {
+      await page.locator('#site-nav').waitFor({ state: 'hidden', timeout: 2000 });
+      return true;
+    },
   );
 }
 
