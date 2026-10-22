@@ -11,7 +11,7 @@ describe('Head', () => {
   it('title, description, canonical и Open Graph страницы категории', () => {
     const page = findPage('/ventilation/l2.html');
     const html = renderToStaticMarkup(<Head meta={getHeadMeta(page, { siteUrl: 'https://test.example/' })} />);
-    expect(html).toContain('<title>Blizzard L2 — вентиляция Blizzard в Санкт-Петербурге</title>');
+    expect(html).toContain('<title>Blizzard L2 — вентиляция в Санкт-Петербурге</title>');
     expect(html).toContain('<link rel="canonical" href="https://test.example/ventilation/l2.html"/>');
     expect(html).toContain('<meta property="og:url" content="https://test.example/ventilation/l2.html"/>');
     expect(html).toMatch(/<meta name="description" content="Бытовая приточно-вытяжная/);

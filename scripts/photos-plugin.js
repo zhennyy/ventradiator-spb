@@ -19,7 +19,7 @@ export function listPhotos(imagesDir) {
 
 export default function photosPlugin({ imagesDir = path.resolve('images') } = {}) {
   return {
-    name: 'blizzard-photos',
+    name: 'catalog-photos',
     resolveId(id) {
       return id === VIRTUAL_ID ? RESOLVED_ID : null;
     },

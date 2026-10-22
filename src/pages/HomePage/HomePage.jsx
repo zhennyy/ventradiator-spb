@@ -1,4 +1,4 @@
-// Главная: первый экран, два направления, почему Blizzard, объекты и форма заявки.
+// Главная: первый экран, два направления, почему эти системы, объекты и форма заявки.
 import RequestForm from '../../components/RequestForm/RequestForm';
 import DirectionsSection from './DirectionsSection';
 import HomeHero from './HomeHero';

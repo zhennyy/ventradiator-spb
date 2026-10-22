@@ -77,7 +77,7 @@ export default function HeatRecoveryDiagram() {
             );
           })}
           <text className="label-caption" x="280" y="96" textAnchor="middle">
-            BLIZZARD L2 · ДВА КОНТУРА
+            L2 · ДВА КОНТУРА
           </text>
           <text className="label-caption" x="280" y="358" textAnchor="middle">
             РЕКУПЕРАЦИЯ ТЕПЛА

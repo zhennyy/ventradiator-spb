@@ -12,7 +12,7 @@ export default function DirectionsSection() {
           eyebrow="Каталог"
           title="Два направления"
           id="directions-title"
-          lead="Свежий воздух без потерь тепла и уборка без пыли в воздухе. Системы Blizzard для квартир и частных домов."
+          lead="Свежий воздух без потерь тепла и уборка без пыли в воздухе. Системы для квартир и частных домов."
         />
         <div className="direction-grid">
           {catalog.sections.map((section, index) => (

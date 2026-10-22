@@ -17,12 +17,6 @@
 .legal-card .eyebrow:not(:first-child) {
   margin-top: 28px;
 }
-.legal-name {
-  font-family: var(--font-text);
-  font-weight: 600;
-  font-size: 18px;
-  margin-bottom: 8px;
-}
 
 /* Планшет и телефон: текст и карточка производителя друг под другом, одной ширины с текстом */
 @media (max-width: 1024px) {

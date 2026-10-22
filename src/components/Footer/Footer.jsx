@@ -52,14 +52,13 @@ function SectionRow({ section }) {
 export default function Footer({ hasForm = false }) {
   const office = site.offices[0];
   const phone = office.phones[0];
-  const brandName = site.brand;
   return (
     <footer className="site-footer">
       <div className="wrap">
         <div className="footer-top">
           <div className="footer-pitch">
             <Logo />
-            <p className="footer-slogan">Подберём тихую вентиляцию и центральный пылесос для вашего дома</p>
+            <p className="footer-slogan">Подберём тихую вентиляцию и встроенную систему пылеудаления для вашего дома</p>
           </div>
           <div className="footer-contacts">
             <p className="footer-title">{office.title}</p>
@@ -83,10 +82,9 @@ export default function Footer({ hasForm = false }) {
         </nav>
         <div className="footer-legal">
           <p>
-            {`© ${YEAR} Представительство ${brandName} в Санкт-Петербурге. `}
+            {`© ${YEAR} ${site.brand}, Санкт-Петербург. `}
             <StubText>{site.legal.representative}</StubText>
           </p>
-          <p>{`Производитель: ${site.legal.company}, ${site.legal.city}, ${site.legal.register}`}</p>
         </div>
       </div>
     </footer>

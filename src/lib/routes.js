@@ -3,7 +3,7 @@
 import { catalog, categoryPath, sectionPath, site } from './content';
 import { withoutStubs } from './text';
 
-const SUFFIX = 'Blizzard в Санкт-Петербурге';
+const SUFFIX = 'Санкт-Петербург';
 
 function catalogPages() {
   const pages = [];
@@ -23,7 +23,7 @@ function catalogPages() {
         kind: 'category',
         sectionSlug: section.slug,
         categorySlug: category.slug,
-        title: `${category.title} — ${section.seoNoun} ${SUFFIX}`,
+        title: `${category.title} — ${section.seoNoun} в Санкт-Петербурге`,
         description: withoutStubs(category.summary),
         image: category.image,
         hasForm: true,
@@ -42,7 +42,7 @@ export const NOT_FOUND_PAGE = {
   path: '/404.html',
   kind: 'not-found',
   title: `Страница не найдена — ${SUFFIX}`,
-  description: 'Такой страницы нет. Перейдите в каталог вентиляции или пылеудаления Blizzard.',
+  description: 'Такой страницы нет. Перейдите в каталог вентиляции или пылеудаления.',
   noindex: true,
 };
 
@@ -50,9 +50,9 @@ export const pages = [
   {
     path: '/index.html',
     kind: 'home',
-    title: 'Вентиляция с рекуперацией и центральные пылесосы Blizzard — Санкт-Петербург',
+    title: 'Вентиляция с рекуперацией и центральные пылесосы — Санкт-Петербург',
     description:
-      'Тихая немецкая приточно-вытяжная вентиляция с рекуперацией тепла и центральные пылесосы Blizzard для домов и квартир в Санкт-Петербурге, Ленобласти и по всей России.',
+      'Тихая немецкая приточно-вытяжная вентиляция с рекуперацией тепла и центральные пылесосы для домов и квартир в Санкт-Петербурге, Ленобласти и по всей России.',
     hasForm: true,
     jsonLd: true,
   },
@@ -60,14 +60,14 @@ export const pages = [
   infoPage(
     '/objects.html',
     'objects',
-    `Объекты с системами Blizzard — ${SUFFIX}`,
-    `${site.objectsTotal} объектов в СНГ с системами Blizzard: БДТ им. Товстоногова, «Зарядье», Исторический музей и другие.`,
+    `Объекты с этими системами — ${SUFFIX}`,
+    `${site.objectsTotal} объектов в СНГ с этими системами: БДТ им. Товстоногова, «Зарядье», Исторический музей и другие.`,
     'Объекты',
   ),
   infoPage(
     '/about.html',
     'about',
-    `О компании BLIZZARD — ${SUFFIX}`,
+    `О представительстве — ${SUFFIX}`,
     'Немецкий производитель вентиляции с рекуперацией тепла и центральных пылесосов. Представительство в Санкт-Петербурге.',
     'О компании',
   ),
@@ -75,7 +75,7 @@ export const pages = [
     '/contacts.html',
     'contacts',
     `Контакты — ${SUFFIX}`,
-    `Телефон представительства Blizzard в Санкт-Петербурге: ${site.offices[0].phones[0]}. Почта ${site.email}.`,
+    `Телефон представительства в Санкт-Петербурге: ${site.offices[0].phones[0]}. Почта ${site.email}.`,
     'Контакты',
     { hasForm: true, jsonLd: true },
   ),
@@ -83,7 +83,7 @@ export const pages = [
     '/privacy.html',
     'privacy',
     `Политика обработки персональных данных — ${SUFFIX}`,
-    'Политика обработки персональных данных представительства Blizzard в Санкт-Петербурге.',
+    'Политика обработки персональных данных представительства в Санкт-Петербурге.',
     'Политика обработки данных',
   ),
   infoPage(
