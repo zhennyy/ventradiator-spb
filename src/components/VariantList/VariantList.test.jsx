@@ -20,7 +20,9 @@ describe('VariantList', () => {
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Производители');
     const cards = screen.getAllByRole('listitem');
     expect(cards).toHaveLength(2);
-    expect(within(cards[0]).getByAltText('Логотип Kohr')).toHaveAttribute('src', '/images/logo-kohr.png');
+    // Логотип стоит вместо текста в заголовке карточки: название бренда не дублируется
+    const heading = within(cards[0]).getByRole('heading', { level: 3, name: 'Kohr' });
+    expect(within(heading).getByRole('img')).toHaveAttribute('src', '/images/logo-kohr.png');
   });
 
   it('без вариантов ничего не выводит', () => {
