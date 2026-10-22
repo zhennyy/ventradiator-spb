@@ -97,9 +97,40 @@
   font-variant-numeric: tabular-nums;
 }
 .menu-button,
-.header-call,
-.header-home {
+.header-call {
   display: none;
+}
+/* Ссылка на главную (ноутбук): синий домик и «Главная», отделена от меню тонкой чертой */
+.header-home {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding-right: clamp(14px, 1.4vw, 24px);
+  border-right: 1px solid var(--line);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.header-home-icon {
+  flex: none;
+  color: var(--accent);
+  transition: transform 0.3s var(--ease);
+}
+.header-home-long,
+.header-home-short {
+  display: none;
+}
+@media (hover: hover) {
+  .header-home:hover {
+    color: var(--accent);
+  }
+  .header-home:hover .header-home-icon {
+    transform: translateY(-1px);
+  }
 }
 
 /* Подсветка пунктов при наведении мышью (само раскрытие мега-меню — в Header.jsx) */

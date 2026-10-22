@@ -6,17 +6,19 @@
     gap: 12px;
   }
   .header-home {
-    display: flex;
-    align-items: center;
+    flex: 0 1 auto;
     min-width: 0;
     min-height: 44px;
+    padding-right: 0;
+    border-right: 0;
     font: 500 13px/1.3 var(--font-mono);
     letter-spacing: 0.02em;
-    color: var(--ink);
-    text-decoration: none;
   }
-  .header-home-short {
+  .header-home-desk {
     display: none;
+  }
+  .header-home-long {
+    display: inline;
   }
   .header-call {
     display: inline-flex;
