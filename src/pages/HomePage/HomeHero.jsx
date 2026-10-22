@@ -20,7 +20,6 @@ export default function HomeHero() {
         />
         <div className="wrap hero-copy-wrap">
           <div className="hero-copy">
-            <p className="eyebrow">Представительство в Санкт-Петербурге · работаем по всей России</p>
             <h1>{'Тихая немецкая вентиляция и\u00a0чистый воздух в\u00a0доме'}</h1>
             <p className="hero-lead">
               Вентиляция с рекуперацией тепла, центральные пылесосы, радиаторы и конвекторы для квартир и домов в
