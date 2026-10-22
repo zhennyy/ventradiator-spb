@@ -107,8 +107,8 @@
     visibility: visible;
     transform: none;
     transition:
-      opacity 0.4s var(--menu-ease, ease) 0.1s,
-      transform 0.5s var(--menu-ease, ease) 0.1s,
+      opacity 0.4s var(--menu-ease) 0.1s,
+      transform 0.5s var(--menu-ease) 0.1s,
       visibility 0s linear 0.1s;
   }
 }

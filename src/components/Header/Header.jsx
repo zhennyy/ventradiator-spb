@@ -119,6 +119,8 @@ export default function Header({ currentPath, hasForm }) {
             </ButtonLink>
           </div>
         </nav>
+        {/* Затемнение за выдвижной панелью меню (планшет и узкий ноутбук): клик по нему закрывает меню */}
+        <div className="nav-backdrop" aria-hidden="true" onClick={() => setMenuOpen(false)} />
       </div>
     </header>
   );
