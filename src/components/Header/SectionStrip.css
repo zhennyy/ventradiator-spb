@@ -1,0 +1,90 @@
+/* Строка разделов: только до 1279px. Листается по горизонтали без полосы прокрутки,
+   края плавно затухают, текущий раздел подчёркнут. */
+.section-strip {
+  display: none;
+}
+@media (max-width: 1279px) {
+  .section-strip {
+    display: block;
+    border-top: 1px solid var(--line);
+  }
+  .section-strip-list {
+    display: flex;
+    gap: 4px;
+    height: var(--strip-height);
+    margin: 0 auto;
+    list-style: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 var(--gutter),
+      #000 calc(100% - var(--gutter)),
+      transparent
+    );
+  }
+  .section-strip-list::-webkit-scrollbar {
+    display: none;
+  }
+  .section-strip li {
+    flex: none;
+    scroll-snap-align: start;
+  }
+  .section-strip a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+    color: var(--ink-soft);
+    transition: color 0.2s var(--ease);
+  }
+  .section-strip li:first-child a {
+    padding-left: 0;
+  }
+  .section-strip a::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: -1px;
+    height: 2px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--menu-ease);
+  }
+  .section-strip li:first-child a::after {
+    left: 0;
+  }
+  .section-strip a.is-current {
+    color: var(--ink);
+  }
+  .section-strip a.is-current::after {
+    transform: none;
+  }
+  .section-strip a:active {
+    color: var(--ink);
+  }
+}
+@media (hover: hover) and (max-width: 1279px) {
+  .section-strip a:hover {
+    color: var(--ink);
+  }
+  .section-strip a:hover::after {
+    transform: none;
+  }
+}
+/* Планшет и узкий ноутбук: разделы помещаются — растягиваем по ширине без листания */
+@media (min-width: 900px) and (max-width: 1279px) {
+  .section-strip-list {
+    justify-content: space-between;
+    mask-image: none;
+  }
+}

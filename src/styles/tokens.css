@@ -86,6 +86,7 @@
   /* Внутренние отступы карточек и формы */
   --card-padding: clamp(20px, 2vw + 12px, 40px);
   --header-height: 76px;
+  --strip-height: 0px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   /* Плавное «выплывание» меню: быстрый старт и долгое мягкое торможение */
   --menu-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -94,6 +95,8 @@
 @media (max-width: 1279px) {
   :root {
     --header-height: 64px;
+    /* Строка разделов под шапкой (SectionStrip) */
+    --strip-height: 44px;
   }
 }
 @media (min-width: 1440px) {

@@ -8,6 +8,7 @@ import { phoneHref } from '../../lib/text';
 import ButtonLink from '../Button/Button';
 import Logo from '../Logo/Logo';
 import NavDropdown from './NavDropdown';
+import SectionStrip from './SectionStrip';
 import './Header.css';
 import './MobileMenu.css';
 
@@ -122,6 +123,7 @@ export default function Header({ currentPath, hasForm }) {
         {/* Затемнение за выдвижной панелью меню (планшет и узкий ноутбук): клик по нему закрывает меню */}
         <div className="nav-backdrop" aria-hidden="true" onClick={() => setMenuOpen(false)} />
       </div>
+      <SectionStrip currentPath={currentPath} />
     </header>
   );
 }
