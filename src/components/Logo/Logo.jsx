@@ -15,9 +15,9 @@ export default function Logo() {
           strokeLinecap="round"
         />
       </svg>
+      {/* Только название — без подписи города: город и так есть в шапке и в тексте */}
       <span className="logo-text">
         <b>{site.brand}</b>
-        <span>Санкт-Петербург</span>
       </span>
     </a>
   );
