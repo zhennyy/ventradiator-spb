@@ -1,6 +1,6 @@
 // Модели или бренды внутри категории: например, L2, L3 и L5 в «Вентиляционных установках Blizzard»
-// или Kohr и Velar в «Трубчатых радиаторах». У каждой карточки — фото, логотип бренда (если есть),
-// короткое описание и пара ключевых характеристик.
+// или Kohr и Velar в «Трубчатых радиаторах». Компактная горизонтальная карточка: фото слева,
+// логотип бренда (если есть), название, короткое описание и ключевые характеристики справа.
 import { resolveImage } from '../../lib/images';
 import CatalogImage from '../CatalogImage/CatalogImage';
 import Specs from '../Specs/Specs';
@@ -26,11 +26,13 @@ function VariantCard({ variant }) {
           )}
           <h3>{variant.title}</h3>
         </div>
-        {variant.text.map((paragraph) => (
-          <p key={paragraph}>
-            <StubText>{paragraph}</StubText>
-          </p>
-        ))}
+        <div className="variant-text">
+          {variant.text.map((paragraph) => (
+            <p key={paragraph}>
+              <StubText>{paragraph}</StubText>
+            </p>
+          ))}
+        </div>
         <Specs rows={variant.specs || []} />
       </div>
     </li>
