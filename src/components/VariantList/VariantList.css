@@ -1,30 +1,42 @@
-/* Модели / бренды категории: карточки в ряд (до трёх на ноутбуке), на телефоне — друг под другом */
+/* Модели / бренды категории: компактные горизонтальные карточки друг под другом —
+   небольшое фото слева, логотип, название, текст и характеристики справа.
+   Так одна карточка не растягивается на всю ширину огромным фото, а несколько — легко сравнить.
+   На телефоне фото сверху, невысокое. */
 .variants {
   padding: var(--section-space-small) 0;
   border-top: 1px solid var(--line);
 }
+.variants .section-head {
+  margin-bottom: clamp(20px, 1vw + 14px, 32px);
+}
+.variants h2 {
+  font-size: clamp(24px, 1vw + 18px, 32px);
+}
 .variant-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-  gap: clamp(12px, 1.2vw + 6px, 24px);
+  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .variant {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: clamp(180px, 22vw, 300px) minmax(0, 1fr);
   background: var(--surface);
   border: 1px solid var(--line);
+  transition: border-color 0.25s var(--ease);
 }
 .variant-media {
-  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
   background: var(--photo);
-  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
 }
 .variant-media img {
   width: 100%;
-  height: 100%;
+  max-height: 220px;
   object-fit: contain;
 }
 .variant-media img.is-placeholder {
@@ -32,26 +44,71 @@
 }
 .variant-body {
   display: grid;
-  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px clamp(20px, 2vw, 40px);
   align-content: start;
-  padding: var(--card-padding);
+  padding: clamp(18px, 1vw + 12px, 28px);
+}
+.variant-head,
+.variant-text {
+  grid-column: 1;
+}
+.variant-body .specs {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin: 0;
+  font-size: 14px;
 }
 .variant-head {
   display: flex;
   align-items: center;
-  gap: 16px;
-  min-height: 40px;
+  gap: 14px;
 }
 .variant-logo {
   width: auto;
-  max-width: 120px;
-  height: 32px;
+  max-width: 110px;
+  height: 28px;
   object-fit: contain;
 }
 .variant-head h3 {
-  font-size: clamp(20px, 0.6vw + 17px, 26px);
+  font-size: clamp(18px, 0.4vw + 16px, 22px);
 }
-.variant-body p {
+.variant-text {
+  display: grid;
+  gap: 8px;
+}
+.variant-text p {
   margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
   color: var(--ink-soft);
+}
+
+@media (hover: hover) {
+  .variant:hover {
+    border-color: var(--ink);
+  }
+}
+/* Узкий ноутбук и планшет: характеристики под текстом */
+@media (max-width: 1279px) {
+  .variant-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .variant-body .specs {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+/* Телефон: фото сверху, невысокое */
+@media (max-width: 600px) {
+  .variant {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .variant-media {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .variant-media img {
+    max-height: 160px;
+  }
 }
