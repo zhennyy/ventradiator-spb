@@ -1,7 +1,7 @@
 // Отправка заявки в Telegram-чат через Bot API (sendMessage).
 // fetchImpl подменяется в тестах, чтобы не ходить в сеть.
 export function formatMessage({ name, phone, comment, product }) {
-  const lines = ['Новая заявка с сайта Blizzard СПб', `Имя: ${name}`, `Телефон: ${phone}`];
+  const lines = ['Новая заявка с сайта (СПб)', `Имя: ${name}`, `Телефон: ${phone}`];
   if (product) lines.push(`Товар: ${product}`);
   if (comment) lines.push(`Комментарий: ${comment}`);
   return lines.join('\n');

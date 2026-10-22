@@ -1,4 +1,4 @@
-// «О компании»: производитель, представительство в Петербурге и принципы Blizzard.
+// «О компании»: представительство в Петербурге, производство в Германии и принципы систем.
 import PageHero from '../../components/PageHero/PageHero';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import Specs from '../../components/Specs/Specs';
@@ -11,19 +11,19 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        eyebrow="О компании"
-        title="BLIZZARD"
-        paragraphs={['Немецкий производитель систем вентиляции с рекуперацией тепла и центральных пылесосов.']}
+        eyebrow="Представительство в Санкт-Петербурге"
+        title="О компании"
+        paragraphs={['Подбор и поставка немецких систем вентиляции с рекуперацией тепла и встроенного пылеудаления.']}
       />
       <section className="about">
         <div className="wrap about-grid">
           <div className="prose">
             <p>
-              {`Продукция ${site.brand} производится в Германии. `}
-              Производственные площадки также есть в Швейцарии, Нидерландах и Бельгии.
+              Продукция производится в Германии. Производственные площадки также есть в Швейцарии, Нидерландах и
+              Бельгии.
             </p>
             <p>
-              Компания работает в разных странах через собственные филиалы и авторизованных партнёров. В
+              Производитель работает в разных странах через собственные филиалы и авторизованных партнёров. В
               Санкт-Петербурге работает офис представительства — здесь можно запросить цену и подобрать оборудование для
               дома или квартиры в Петербурге, Ленинградской области и по всей России.
             </p>
@@ -31,17 +31,10 @@ export default function AboutPage() {
               Два направления — <a href="/ventilation.html">вентиляция</a> и{' '}
               <a href="/dust-removal.html">пылеудаление</a>
               {`. В СНГ ${site.objectsTotal} `}
-              <a href="/objects.html">объектов с системами Blizzard</a>.
+              <a href="/objects.html">объектов с этими системами</a>.
             </p>
           </div>
-          <aside className="legal-card" aria-label="Юридическое лицо производителя">
-            <p className="eyebrow">Производитель</p>
-            <p className="legal-name">{legal.company}</p>
-            <p>
-              {`${legal.city}, Германия`}
-              <br />
-              {`Торговый реестр: ${legal.register}`}
-            </p>
+          <aside className="legal-card" aria-label="Реквизиты представительства">
             <p className="eyebrow">Представительство в СПб</p>
             <p>
               <StubText>{legal.representative}</StubText>
@@ -49,7 +42,7 @@ export default function AboutPage() {
           </aside>
         </div>
         <div className="wrap">
-          <SectionTitle eyebrow="Принципы" title="Почему Blizzard" />
+          <SectionTitle eyebrow="Принципы" title="Почему эти системы" />
           <Specs rows={site.reasons} wide />
         </div>
       </section>

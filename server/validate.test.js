@@ -33,7 +33,7 @@ it('validateRequest: отклоняет плохие имя, телефон и �
 
 it('formatMessage: товар и комментарий добавляются, только если заполнены', () => {
   expect(formatMessage({ name: 'Анна', phone: '+79215551234', comment: '', product: '' })).toBe(
-    'Новая заявка с сайта Blizzard СПб\nИмя: Анна\nТелефон: +79215551234',
+    'Новая заявка с сайта (СПб)\nИмя: Анна\nТелефон: +79215551234',
   );
   expect(formatMessage(VALID)).toMatch(/Товар: Blizzard L2\nКомментарий: Дом 150 м²/);
 });

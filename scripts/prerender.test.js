@@ -52,9 +52,7 @@ describe('пререндер', () => {
       expect(title, page.path).not.toBeNull();
       expect(decode(title[1]), page.path).toBe(page.title);
     }
-    expect(readPage('/ventilation/l2.html')).toContain(
-      '<title>Blizzard L2 — вентиляция Blizzard в Санкт-Петербурге</title>',
-    );
+    expect(readPage('/ventilation/l2.html')).toContain('<title>Blizzard L2 — вентиляция в Санкт-Петербурге</title>');
   });
 
   it('у каждой страницы есть description, canonical, Open Graph, один h1 и готовое содержимое в #root', () => {

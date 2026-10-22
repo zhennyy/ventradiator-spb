@@ -1,5 +1,5 @@
-// Объекты с системами Blizzard: сначала Санкт-Петербург, затем другие города.
-// Подпись — только «Объекты с системами Blizzard»: какие работы выполнялись, производитель не сообщает.
+// Объекты, где установлены системы: сначала Санкт-Петербург, затем другие города.
+// Подпись — только «Где установлены эти системы»: какие работы выполнялись, производитель не сообщает.
 import ObjectCard from '../../components/ObjectCard/ObjectCard';
 import PageHero from '../../components/PageHero/PageHero';
 import { site } from '../../lib/content';
@@ -23,10 +23,10 @@ export default function ObjectsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Объекты с системами Blizzard"
+        eyebrow="Где установлены эти системы"
         title="Объекты"
         paragraphs={[
-          `В СНГ ${site.objectsTotal} объектов с системами Blizzard. Среди них — театры, музеи, храмы и гостиницы.`,
+          `В СНГ ${site.objectsTotal} объектов с этими системами. Среди них — театры, музеи, храмы и гостиницы.`,
         ]}
       />
       <section className="objects-page">
@@ -35,7 +35,7 @@ export default function ObjectsPage() {
           <ObjectList objects={local} />
           <h2 className="group-title">Другие города</h2>
           <ObjectList objects={others} />
-          <p className="table-note">{`Объекты с системами Blizzard. Подборка из ${site.objectsTotal} объектов в СНГ.`}</p>
+          <p className="table-note">{`Объекты с этими системами. Подборка из ${site.objectsTotal} объектов в СНГ.`}</p>
         </div>
       </section>
     </>

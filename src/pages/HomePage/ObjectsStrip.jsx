@@ -11,7 +11,7 @@ export default function ObjectsStrip() {
       <div className="wrap">
         <div className="strip-head">
           <SectionTitle
-            eyebrow="Объекты с системами Blizzard"
+            eyebrow="Где установлены эти системы"
             title={`${site.objectsTotal} объектов в СНГ`}
             id="objects-title"
           />

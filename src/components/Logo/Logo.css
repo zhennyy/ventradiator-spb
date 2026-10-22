@@ -5,7 +5,9 @@
   gap: 12px;
   text-decoration: none;
   color: var(--ink);
-  flex: none;
+  /* Название — описанием («Вентиляция и пылеудаление»): на узком экране оно может сжаться и перенестись */
+  flex: 0 1 auto;
+  min-width: 0;
 }
 .logo-text {
   display: flex;
@@ -16,10 +18,22 @@
   font-family: var(--font-text);
   font-weight: 600;
   font-size: 16px;
-  letter-spacing: 0.06em;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 .logo-text span {
   font-size: 12px;
   color: var(--ink-soft);
   letter-spacing: 0.02em;
+}
+
+@media (max-width: 600px) {
+  .logo-text b {
+    font-size: 14px;
+    line-height: 1.2;
+    white-space: normal;
+  }
+  .logo-text span {
+    font-size: 11px;
+  }
 }

@@ -10,5 +10,5 @@ if (!process.env.BOT_TOKEN || !process.env.CHAT_ID) {
 }
 
 app.listen(port, () => {
-  console.log(`Сайт Blizzard СПб: http://localhost:${port}`);
+  console.log(`Сайт представительства (СПб): http://localhost:${port}`);
 });
