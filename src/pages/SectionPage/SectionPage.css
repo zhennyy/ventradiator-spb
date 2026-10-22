@@ -62,6 +62,25 @@
     transform: translateX(3px);
   }
 }
+/* «О разделе» под ассортиментом: описание и преимущества */
+.section-about {
+  padding: 0 0 var(--section-space);
+}
+.section-about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px clamp(32px, 4vw, 64px);
+  align-items: start;
+}
+.section-about-text {
+  color: var(--ink-soft);
+}
+.section-about-text p:last-child {
+  margin-bottom: 0;
+}
+.section-about .benefits {
+  margin-top: clamp(28px, 2vw + 16px, 44px);
+}
 /* «Как работает рекуперация» на странице вентиляции */
 .how-it-works {
   padding: 0 0 var(--section-space);
@@ -79,6 +98,9 @@
 }
 
 @media (max-width: 1024px) {
+  .section-about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .how-grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -92,6 +114,10 @@
   }
 }
 @media (max-width: 600px) {
+  /* На телефоне быстрые ссылки дублируют карточки, которые и так сразу ниже */
+  .quick-links {
+    display: none;
+  }
   .benefits {
     grid-template-columns: 1fr;
   }
