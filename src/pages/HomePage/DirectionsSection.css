@@ -100,3 +100,17 @@
     gap: 56px;
   }
 }
+
+/* Заголовок «Что мы предлагаем»: по вертикали посередине между рубрикой «Каталог» и карточками,
+   и чуть правее левого края. */
+.directions .section-head {
+  align-items: center;
+}
+.directions .section-head .eyebrow {
+  margin-bottom: clamp(32px, 2vw + 24px, 56px);
+}
+@media (min-width: 1025px) {
+  .directions .section-head h2 {
+    padding-left: clamp(24px, 3vw, 56px);
+  }
+}

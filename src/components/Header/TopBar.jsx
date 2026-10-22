@@ -9,7 +9,7 @@ export default function TopBar({ currentPath }) {
   return (
     <div className="top-bar">
       <div className="wrap top-bar-row">
-        <p className="top-bar-region">Санкт-Петербург, Ленинградская область и вся Россия</p>
+        <p className="top-bar-region">Представительство в Санкт-Петербурге · работаем по всей России</p>
         <ul className="top-bar-links">
           {SIMPLE_LINKS.map(([href, label]) => (
             <li key={href}>
