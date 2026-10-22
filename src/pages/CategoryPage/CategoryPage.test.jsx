@@ -45,10 +45,10 @@ describe('CategoryPage', () => {
       'src',
       '/images/vent-r2-round.jpg',
     );
-    // Фото плоских воздуховодов пока нет — вместо него заглушка
+    // Фото плоских воздуховодов — из папки images/
     expect(screen.getByRole('img', { name: /Плоские воздуховоды R2/ })).toHaveAttribute(
       'src',
-      '/images/placeholders/vent-r2-flat.svg',
+      '/images/vent-r2-flat.jpg',
     );
     const siblings = screen.getByRole('heading', { name: 'Ещё в разделе «Вентиляция»' }).closest('section');
     const cards = within(siblings).getAllByRole('listitem');

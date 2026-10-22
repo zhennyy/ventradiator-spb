@@ -15,16 +15,20 @@ function VariantCard({ variant }) {
       </div>
       <div className="variant-body">
         <div className="variant-head">
-          {variant.logo && (
-            <img
-              className="variant-logo"
-              src={resolveImage(variant.logo, variant.title).src}
-              alt={`Логотип ${variant.title}`}
-              loading="lazy"
-              decoding="async"
-            />
-          )}
-          <h3>{variant.title}</h3>
+          {/* С логотипом название не дублируем: логотип и есть заголовок, его alt — название бренда */}
+          <h3>
+            {variant.logo ? (
+              <img
+                className="variant-logo"
+                src={resolveImage(variant.logo, variant.title).src}
+                alt={variant.title}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              variant.title
+            )}
+          </h3>
         </div>
         <div className="variant-text">
           {variant.text.map((paragraph) => (
