@@ -1,5 +1,5 @@
-/* Модели / бренды категории: компактные горизонтальные карточки друг под другом —
-   небольшое фото слева, логотип, название, текст и характеристики справа.
+/* Модели / бренды категории: горизонтальные карточки друг под другом с воздухом между ними —
+   фото слева, справа логотип, описание и характеристики плитками «подпись над значением».
    Так одна карточка не растягивается на всю ширину огромным фото, а несколько — легко сравнить.
    На телефоне фото сверху, невысокое. */
 .variants {
@@ -14,7 +14,8 @@
 }
 .variant-list {
   display: grid;
-  gap: 12px;
+  /* Карточки брендов не «налезают» друг на друга — между ними заметный воздух */
+  gap: clamp(20px, 1.5vw + 12px, 32px);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -44,23 +45,38 @@
 }
 .variant-body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 12px clamp(20px, 2vw, 40px);
+  gap: 16px;
   align-content: start;
-  padding: clamp(18px, 1vw + 12px, 28px);
+  padding: clamp(20px, 1.5vw + 12px, 32px);
 }
-.variant-head,
 .variant-text {
-  grid-column: 1;
+  max-width: 68ch;
 }
+/* Характеристики — плитками «подпись над значением»: читаются с одного взгляда и не растягивают карточку */
 .variant-body .specs {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  margin: 0;
-  font-size: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0 24px;
+  margin: 4px 0 0;
+  border-top: 0;
 }
 .variant-body .specs > div {
-  padding: 9px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
+  gap: 4px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 0;
+}
+.variant-body .specs dt {
+  font: 400 11px/1.3 var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+.variant-body .specs dd {
+  font-size: 15px;
+  line-height: 1.35;
 }
 .variant-head {
   display: flex;
@@ -96,16 +112,6 @@
     transform: scale(1.03);
   }
 }
-/* Узкий ноутбук и планшет: характеристики под текстом */
-@media (max-width: 1279px) {
-  .variant-body {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .variant-body .specs {
-    grid-column: 1;
-    grid-row: auto;
-  }
-}
 /* Телефон: фото сверху, невысокое */
 @media (max-width: 600px) {
   .variant {
@@ -116,5 +122,9 @@
     border-bottom: 1px solid var(--line);
     min-height: 0;
     aspect-ratio: 16 / 9;
+  }
+  .variant-body .specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
   }
 }
