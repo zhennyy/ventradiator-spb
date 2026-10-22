@@ -123,6 +123,23 @@
     font-size: 14px;
   }
   .nav-actions .button {
-    padding: 0 14px;
+    padding: 0 12px;
+  }
+  .header-row {
+    gap: 16px;
+  }
+  .site-nav,
+  .nav-actions {
+    gap: 12px;
+  }
+  .nav-link {
+    padding-right: 6px;
+    padding-left: 6px;
+    background-position: left 6px bottom 6px;
+  }
+  .nav-link:hover,
+  .nav-link[aria-current='page'],
+  .nav-link.is-current {
+    background-size: calc(100% - 12px) 1px;
   }
 }

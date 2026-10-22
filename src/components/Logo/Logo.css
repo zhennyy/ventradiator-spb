@@ -5,9 +5,11 @@
   gap: 12px;
   text-decoration: none;
   color: var(--ink);
-  /* Название — описанием («Вентиляция и пылеудаление»): на узком экране оно может сжаться и перенестись */
-  flex: 0 1 auto;
-  min-width: 0;
+  /* Логотип не сжимается: иконка и название всегда целиком, место под них уступает меню */
+  flex: none;
+}
+.logo svg {
+  flex: none;
 }
 .logo-text {
   display: flex;
@@ -27,7 +29,21 @@
   letter-spacing: 0.02em;
 }
 
+/* Узкий ноутбук: название в две строки («Вентиляция и / пылеудаление»), чтобы меню поместилось рядом */
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .logo-text b {
+    max-width: 8.5em;
+    font-size: 14px;
+    line-height: 1.15;
+    white-space: normal;
+  }
+}
+/* Телефон: логотип может сжаться и перенести название, чтобы не вытолкнуть кнопки */
 @media (max-width: 600px) {
+  .logo {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
   .logo-text b {
     font-size: 14px;
     line-height: 1.2;
