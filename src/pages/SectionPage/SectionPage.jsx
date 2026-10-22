@@ -40,31 +40,62 @@ function QuickLinks({ section }) {
   );
 }
 
+// Подробное описание раздела и преимущества — под ассортиментом, чтобы товары были видны сразу
+function AboutSection({ section }) {
+  return (
+    <section className="section-about" aria-labelledby="section-about-title">
+      <div className="wrap section-about-grid">
+        <div className="section-head">
+          <p className="eyebrow">О разделе</p>
+          <h2 id="section-about-title">{section.title}</h2>
+        </div>
+        <div className="section-about-text">
+          {section.intro.map((paragraph) => (
+            <p key={paragraph}>
+              <StubText>{paragraph}</StubText>
+            </p>
+          ))}
+        </div>
+      </div>
+      <div className="wrap">
+        <Benefits benefits={section.benefits} />
+      </div>
+    </section>
+  );
+}
+
 export default function SectionPage({ section }) {
+  // Раздел без каталога (инженерные системы, услуги): полное описание наверху и сразу форма заявки
+  if (!section.categories.length) {
+    return (
+      <>
+        <PageHero eyebrow="Раздел" title={section.title} paragraphs={section.intro}>
+          <Benefits benefits={section.benefits} />
+        </PageHero>
+        <RequestForm product={section.title} heading={`Запрос: ${section.title.toLowerCase()}`} />
+      </>
+    );
+  }
+  // Раздел каталога: короткое вступление → сразу ассортимент → подробности о разделе
   return (
     <>
       <PageHero
-        eyebrow={section.categories.length ? `Каталог · ${countCategories(section.categories.length)}` : 'Раздел'}
+        eyebrow={`Каталог · ${countCategories(section.categories.length)}`}
         title={section.title}
-        paragraphs={section.intro}
+        paragraphs={[section.summary]}
       >
-        <Benefits benefits={section.benefits} />
         <QuickLinks section={section} />
       </PageHero>
-      {section.categories.length > 0 ? (
-        <section className="catalog" aria-label="Категории">
-          <div className="wrap">
-            <ul className="category-grid">
-              {section.categories.map((category) => (
-                <ProductCard key={category.slug} section={section} category={category} />
-              ))}
-            </ul>
-          </div>
-        </section>
-      ) : (
-        // Раздел без каталога (инженерные системы, услуги) — сразу форма заявки с названием раздела
-        <RequestForm product={section.title} heading={`Запрос: ${section.title.toLowerCase()}`} />
-      )}
+      <section className="catalog" aria-label="Категории">
+        <div className="wrap">
+          <ul className="category-grid">
+            {section.categories.map((category) => (
+              <ProductCard key={category.slug} section={section} category={category} />
+            ))}
+          </ul>
+        </div>
+      </section>
+      <AboutSection section={section} />
       {section.slug === 'ventilation' && <HowItWorks />}
     </>
   );

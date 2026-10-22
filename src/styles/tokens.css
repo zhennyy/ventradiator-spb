@@ -99,6 +99,12 @@
     --strip-height: 44px;
   }
 }
+@media (max-width: 600px) {
+  :root {
+    /* Разделы под шапкой на телефоне — сеткой 3 × 2 (SectionStrip.css) */
+    --strip-height: 73px;
+  }
+}
 @media (min-width: 1440px) {
   :root {
     --wrap: 1320px;
