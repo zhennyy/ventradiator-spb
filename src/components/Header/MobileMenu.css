@@ -1,5 +1,6 @@
-/* Планшет, телефон и узкий ноутбук (до 1279px): логотип, кнопка звонка и «Меню». Меню — панель на весь экран
-   под шапкой, подменю раскрываются по кнопке, все пункты не ниже 44px. */
+/* Планшет, телефон и узкий ноутбук (до 1279px): логотип, кнопка звонка и «Меню».
+   Меню на телефоне — панель на весь экран под шапкой, на планшете и ноутбуке — выдвижная панель справа
+   с затемнением. Появляется плавно, пункты проявляются лесенкой, подменю раскрываются по кнопке. */
 @media (max-width: 1279px) {
   .header-row {
     gap: 12px;
@@ -57,19 +58,60 @@
   }
   .site-nav {
     position: fixed;
+    z-index: 2;
     inset: calc(var(--header-height) + env(safe-area-inset-top)) 0 0;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 28px;
-    padding: 8px max(var(--gutter), env(safe-area-inset-right)) calc(32px + env(safe-area-inset-bottom))
+    gap: 24px;
+    padding: 8px max(var(--gutter), env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom))
       max(var(--gutter), env(safe-area-inset-left));
     background: var(--paper);
     overflow-y: auto;
     overscroll-behavior: contain;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.3s var(--menu-ease),
+      transform 0.4s var(--menu-ease),
+      visibility 0s linear 0.4s;
   }
   .menu-open .site-nav {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.3s var(--menu-ease),
+      transform 0.4s var(--menu-ease),
+      visibility 0s;
+  }
+  /* Пункты проявляются лесенкой при открытии */
+  .menu-open .nav-list > .nav-item,
+  .menu-open .nav-actions {
+    animation: nav-item-in 0.45s var(--menu-ease) both;
+  }
+  .menu-open .nav-list > .nav-item:nth-child(2) {
+    animation-delay: 30ms;
+  }
+  .menu-open .nav-list > .nav-item:nth-child(3) {
+    animation-delay: 60ms;
+  }
+  .menu-open .nav-list > .nav-item:nth-child(4) {
+    animation-delay: 90ms;
+  }
+  .menu-open .nav-list > .nav-item:nth-child(5) {
+    animation-delay: 120ms;
+  }
+  .menu-open .nav-list > .nav-item:nth-child(6) {
+    animation-delay: 150ms;
+  }
+  .menu-open .nav-list > .nav-item:nth-child(n + 7),
+  .menu-open .nav-actions {
+    animation-delay: 180ms;
+  }
+  .nav-backdrop {
+    display: none;
   }
   .menu-open {
     overflow: hidden;
@@ -92,10 +134,11 @@
     flex: 1;
     display: flex;
     align-items: center;
-    min-height: 60px;
-    padding: 8px 0;
+    min-height: 52px;
+    padding: 6px 0;
     font-family: var(--font-text);
-    font-size: clamp(18px, 1vw + 15px, 22px);
+    font-size: 17px;
+    font-weight: 500;
     color: var(--ink);
   }
   .nav-link,
@@ -137,6 +180,7 @@
   }
   .has-dropdown.is-open .dropdown {
     display: block;
+    animation: nav-item-in 0.35s var(--menu-ease) both;
   }
   .dropdown::before,
   .dropdown::after,
@@ -214,7 +258,7 @@
     display: flex;
     align-items: center;
     min-height: 44px;
-    font-size: 20px;
+    font-size: 18px;
   }
   .nav-actions .button {
     min-height: 52px;
@@ -222,15 +266,41 @@
   }
 }
 
-/* Планшет: строки подменю в две колонки */
+@keyframes nav-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* Планшет и узкий ноутбук: меню — выдвижная панель справа шириной до 440px, за ней затемнение */
 @media (min-width: 601px) and (max-width: 1279px) {
-  .dropdown-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .site-nav {
+    left: auto;
+    width: min(440px, 100%);
+    padding-top: 12px;
+    border-left: 1px solid var(--line-strong);
+    transform: translateX(24px);
+  }
+  .nav-backdrop {
+    position: fixed;
+    z-index: 1;
+    inset: calc(var(--header-height) + env(safe-area-inset-top)) 0 0;
+    display: block;
+    background: rgb(23 25 27 / 0.28);
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      opacity 0.3s var(--menu-ease),
+      visibility 0s linear 0.3s;
+  }
+  .menu-open .nav-backdrop {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s var(--menu-ease);
   }
   .nav-actions {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    margin-top: auto;
   }
 }
 
