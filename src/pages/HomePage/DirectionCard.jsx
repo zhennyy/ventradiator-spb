@@ -6,7 +6,7 @@ import { categoryPath, sectionPath } from '../../lib/content';
 import { resolveImage } from '../../lib/images';
 import { countCategories } from '../../lib/text';
 
-export default function DirectionCard({ section, index }) {
+export default function DirectionCard({ section }) {
   const href = sectionPath(section);
   return (
     <article className="direction">
@@ -15,9 +15,8 @@ export default function DirectionCard({ section, index }) {
       </a>
       <div className="direction-body">
         <p className="direction-index mono">
-          {section.categories.length
-            ? `Раздел ${index + 1} · ${countCategories(section.categories.length)}`
-            : `Раздел ${index + 1}`}
+          {/* Без нумерации разделов: только сколько внутри категорий */}
+          {section.categories.length ? countCategories(section.categories.length) : 'Под ваш объект'}
         </p>
         <h3>
           <a href={href}>{section.title}</a>
