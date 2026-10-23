@@ -1,4 +1,4 @@
-// «Услуги» → покраска радиаторов и конвекторов: текст слева, справа фото радиаторов разных цветов в интерьере
+// «Услуги» → покраска радиаторов: текст слева, справа фото радиаторов разных цветов в интерьере
 // (подпись — цвет и код RAL), ниже варианты отделки.
 import CatalogImage from '../../components/CatalogImage/CatalogImage';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
