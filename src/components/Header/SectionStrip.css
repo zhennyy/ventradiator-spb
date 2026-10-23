@@ -21,6 +21,8 @@
     overflow-x: auto;
     scrollbar-width: none;
     scroll-snap-type: x proximity;
+    /* Привязка прокрутки учитывает отступ — первый пункт не «прилипает» к краю экрана */
+    scroll-padding-inline: max(var(--gutter), env(safe-area-inset-left));
     /* Затухание только справа — намёк, что строку можно листать; первый пункт не обрезается */
     mask-image: linear-gradient(to right, #000 calc(100% - var(--gutter) * 2), transparent);
   }
