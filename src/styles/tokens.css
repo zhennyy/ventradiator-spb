@@ -101,8 +101,8 @@
 }
 @media (max-width: 600px) {
   :root {
-    /* Разделы под шапкой на телефоне — строкой «пилюль» (SectionStrip.css) */
-    --strip-height: 50px;
+    /* На телефоне строки разделов нет — они в «Меню» (SectionStrip.css) */
+    --strip-height: 0px;
   }
 }
 @media (min-width: 1440px) {

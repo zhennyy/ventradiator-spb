@@ -340,16 +340,22 @@
   .header-call-number {
     display: none;
   }
-  .menu-button {
-    padding: 0;
-    width: 44px;
+  /* Шапка телефона: слева домик и «Представительство в СПб» обычным шрифтом (солиднее моно),
+     справа тёмная кнопка «Меню» с подписью — разделы каталога внутри меню */
+  .header-home {
+    font: 600 15px/1.25 var(--font-text);
+    letter-spacing: -0.01em;
   }
-  .menu-label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+  .menu-button {
+    gap: 8px;
+    padding: 0 16px;
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--surface);
+    transition: background 0.25s var(--ease);
+  }
+  .menu-open .menu-button {
+    background: var(--surface);
+    color: var(--ink);
   }
 }
