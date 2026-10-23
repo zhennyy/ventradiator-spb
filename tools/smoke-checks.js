@@ -131,6 +131,8 @@ export async function checkMobileMenu(page, problems) {
   await page.click('.menu-button');
   await expectState(problems, 'кнопка «Меню» открывает меню', () => page.locator('#site-nav').isVisible());
   await page.locator('.nav-toggle').first().click();
+  // Подменю раскрывается плавно по высоте — ждём конец анимации
+  await page.waitForTimeout(450);
   await expectState(problems, 'подменю раздела раскрывается', () => page.locator('.dropdown').first().isVisible());
 }
 

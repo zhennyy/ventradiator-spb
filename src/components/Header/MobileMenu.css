@@ -359,3 +359,129 @@
     color: var(--ink);
   }
 }
+
+/* ——— Выдвижное меню: оформление ———
+   Разделы каталога пронумерованы (01–06) и крупнее; «О компании» и «Контакты» — отдельной
+   тихой группой в две колонки; подкатегории раскрываются плавно по высоте; внизу кнопка и подпись. */
+@media (max-width: 1279px) {
+  .nav-list {
+    counter-reset: nav-section;
+  }
+  .nav-list::before {
+    content: 'Каталог';
+    padding: 4px 0 10px;
+    border-bottom: 1px solid var(--ink);
+    font: 400 12px/1.4 var(--font-mono);
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+  }
+  .nav-list > .nav-item:not(.nav-item-secondary) > .nav-link::before {
+    counter-increment: nav-section;
+    content: counter(nav-section, decimal-leading-zero);
+    flex: none;
+    width: 36px;
+    font: 400 12px/1 var(--font-mono);
+    color: var(--ink-soft);
+    transition: color 0.25s var(--ease);
+  }
+  .nav-list > .nav-item:not(.nav-item-secondary) > .nav-link {
+    min-height: 60px;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+  }
+  .nav-list > .nav-item:not(.nav-item-secondary) > .nav-link[aria-current='page']::before,
+  .nav-list > .nav-item:not(.nav-item-secondary) > .nav-link.is-current::before,
+  .has-dropdown.is-open > .nav-link::before {
+    color: var(--accent);
+  }
+  /* «О компании» и «Контакты» — второстепенные: мельче, рядом, с отступом от каталога */
+  .nav-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .nav-list::before,
+  .nav-list > .nav-item:not(.nav-item-secondary) {
+    grid-column: 1 / -1;
+  }
+  .nav-item-secondary {
+    margin-top: 20px;
+    border-bottom: 0;
+  }
+  .nav-item-secondary + .nav-item-secondary {
+    padding-left: 16px;
+    border-left: 1px solid var(--line);
+  }
+  .nav-item-secondary .nav-link {
+    min-height: 44px;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  /* Подкатегории: плавное раскрытие по высоте вместо резкого появления */
+  .dropdown,
+  .has-dropdown:hover .dropdown {
+    display: grid;
+    grid-template-rows: 0fr;
+    margin: 0;
+    visibility: hidden;
+    transition:
+      grid-template-rows 0.4s var(--menu-ease),
+      margin 0.4s var(--menu-ease),
+      visibility 0s linear 0.4s;
+  }
+  .has-dropdown.is-open .dropdown {
+    grid-template-rows: 1fr;
+    margin: 0 0 14px;
+    visibility: visible;
+    animation: none;
+    transition:
+      grid-template-rows 0.4s var(--menu-ease),
+      margin 0.4s var(--menu-ease),
+      visibility 0s;
+  }
+  .dropdown-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+  .dropdown-grid {
+    padding-left: 36px;
+  }
+  .dropdown .dropdown-all {
+    margin-left: 36px;
+  }
+  .dropdown-grid a {
+    transition: border-color 0.2s var(--ease);
+  }
+  /* Низ меню: кнопка и подпись о регионе */
+  .nav-actions {
+    padding-top: 8px;
+  }
+  .nav-note {
+    display: block;
+    margin: 0;
+    font: 400 12px/1.5 var(--font-mono);
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+  }
+}
+@media (hover: hover) and (max-width: 1279px) {
+  .nav-list > .nav-item:not(.nav-item-secondary) > .nav-link:hover::before {
+    color: var(--accent);
+  }
+  .dropdown-grid a:hover {
+    border-color: var(--ink);
+  }
+}
+/* Планшет: панель выезжает справа целиком, фон за ней чуть размыт */
+@media (min-width: 601px) and (max-width: 1279px) {
+  .site-nav {
+    width: min(460px, 100%);
+    padding-top: 20px;
+    padding-inline: 32px;
+    box-shadow: -24px 0 48px rgb(23 25 27 / 0.08);
+    transform: translateX(40px);
+  }
+  .nav-backdrop {
+    background: rgb(23 25 27 / 0.22);
+    backdrop-filter: blur(3px);
+  }
+}
