@@ -34,6 +34,10 @@
 | `vent-diff-d2-floor.jpg` | Напольная решётка D2 (каталог) |
 | `vent-diff-d4-round.jpg` | Архитектурный диффузор D4 R (каталог) |
 | `vent-diff-d4-linear.jpg` | Линейный диффузор D4 (каталог) |
+| `paint-anthracite.jpg` | Услуги → покраска: радиатор RAL 7016 в интерьере (сгенерированная иллюстрация) |
+| `paint-burgundy.jpg` | Покраска: радиатор RAL 3004 (сгенерированная иллюстрация) |
+| `paint-green.jpg` | Покраска: радиатор RAL 6005 (сгенерированная иллюстрация) |
+| `paint-white.jpg` | Покраска: радиатор RAL 9016 (сгенерированная иллюстрация) |
 | `vent-l2-unit.jpg` | Blizzard L2 DP (из каталога Blizzard 2025) |
 | `vent-l3.jpg` | Blizzard L3 ES (из каталога Blizzard 2025) |
 | `vent-l5-450.jpg` | Blizzard L5 450 (из каталога Blizzard 2025) |

@@ -42,6 +42,8 @@ export function listImages() {
     }
   }
   for (const object of site.objects) add(object.image, object.name, 'object');
+  for (const section of catalog.sections)
+    for (const [image, name] of section.paint?.photos || []) add(image, `Радиатор, ${name}`);
   if (site.heroImage) add(site.heroImage.image, site.heroImage.alt);
   return [...images.values()];
 }
