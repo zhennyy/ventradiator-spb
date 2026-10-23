@@ -27,7 +27,6 @@ const SHOTS = [
   ['home', '/'],
   ['ventilation', '/ventilation.html'],
   ['product', '/ventilation/r2.html'],
-  ['objects', '/objects.html'],
 ];
 
 function readArgument(name, fallback) {

@@ -31,7 +31,6 @@ const PAGES = [
   ['dust', '/dust-removal.html'],
   ['product', '/ventilation/r2.html'],
   ['product-v2', '/dust-removal/v2.html'],
-  ['objects', '/objects.html'],
   ['about', '/about.html'],
   ['contacts', '/contacts.html'],
 ];

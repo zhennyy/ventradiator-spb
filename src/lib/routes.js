@@ -1,6 +1,6 @@
 // Список всех страниц сайта: адрес, тип страницы, SEO-данные и хлебные крошки.
 // Новая категория в data/catalog.json → новая страница здесь, в меню, в sitemap.xml и в пререндере.
-import { catalog, categoryPath, sectionPath, site } from './content';
+import { catalog, categoryPath, sectionPath } from './content';
 import { withoutStubs } from './text';
 
 const SUFFIX = 'Санкт-Петербург';
@@ -57,13 +57,6 @@ export const pages = [
     jsonLd: true,
   },
   ...catalogPages(),
-  infoPage(
-    '/objects.html',
-    'objects',
-    `Объекты с этими системами — ${SUFFIX}`,
-    `${site.objectsTotal} объектов в СНГ с этими системами: БДТ им. Товстоногова, «Зарядье», Исторический музей и другие.`,
-    'Объекты',
-  ),
   infoPage(
     '/about.html',
     'about',

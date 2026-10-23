@@ -14,7 +14,7 @@ describe('routes', () => {
       }
     }
     expect(pages).toHaveLength(
-      7 + catalog.sections.length + catalog.sections.flatMap((item) => item.categories).length,
+      6 + catalog.sections.length + catalog.sections.flatMap((item) => item.categories).length,
     );
   });
 

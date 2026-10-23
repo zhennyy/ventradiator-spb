@@ -10,7 +10,6 @@ import './Footer.css';
 const YEAR = typeof __BUILD_YEAR__ === 'undefined' ? new Date().getFullYear() : __BUILD_YEAR__;
 
 const COMPANY_LINKS = [
-  ['/objects.html', 'Объекты'],
   ['/about.html', 'О компании'],
   ['/contacts.html', 'Контакты'],
 ];

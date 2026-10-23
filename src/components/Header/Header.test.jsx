@@ -63,7 +63,7 @@ describe('Header: выпадающие списки', () => {
     toggle.focus();
     await user.keyboard('{ArrowDown}');
     expect(toggle).toHaveAttribute('aria-expanded', 'true');
-    act(() => screen.getByRole('link', { name: 'Объекты' }).focus());
+    act(() => screen.getByRole('link', { name: 'О компании' }).focus());
     expect(toggle).toHaveAttribute('aria-expanded', 'false');
   });
 });
