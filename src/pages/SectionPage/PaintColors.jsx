@@ -1,5 +1,5 @@
 // «Услуги» → покраска радиаторов: текст слева, справа фото радиаторов разных цветов в интерьере
-// (подпись — цвет и код RAL), ниже варианты отделки.
+// (подпись — цвет и код RAL).
 import CatalogImage from '../../components/CatalogImage/CatalogImage';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { resolveImage } from '../../lib/images';
@@ -28,16 +28,6 @@ export default function PaintColors({ paint }) {
                   <span className="paint-code">{code}</span>
                 </figcaption>
               </figure>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="wrap">
-        <ul className="benefits paint-finishes" aria-label="Варианты отделки">
-          {paint.finishes.map(([title, body]) => (
-            <li key={title}>
-              <span className="benefit-title">{title}</span>
-              <span>{body}</span>
             </li>
           ))}
         </ul>

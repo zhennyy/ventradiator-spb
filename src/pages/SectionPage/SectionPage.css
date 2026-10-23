@@ -143,9 +143,6 @@
   font-size: 13px;
   color: var(--ink-soft);
 }
-.paint-finishes {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
 @media (hover: hover) {
   .paint-photos li:hover img {
     transform: scale(1.03);
@@ -154,9 +151,6 @@
 @media (max-width: 1024px) {
   .paint-grid {
     grid-template-columns: minmax(0, 1fr);
-  }
-  .paint-finishes {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (max-width: 600px) {
