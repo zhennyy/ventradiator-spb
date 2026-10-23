@@ -207,7 +207,7 @@
   .hero-copy-wrap {
     /* Спинка дивана — примерно на 56 % высоты кадра; блок текста (~210px) опускаем так,
        чтобы кнопки заканчивались чуть выше спинки дивана */
-    padding-top: max(20px, calc(var(--hero-h) * 0.56 - 222px));
+    padding-top: max(20px, calc(var(--hero-h) * 0.56 - 252px));
   }
   .hero-stage::after {
     background: linear-gradient(
