@@ -79,14 +79,14 @@ export default function Header({ currentPath, hasForm }) {
       clearTimeout(switchTimer.current);
       setSwitching(true);
       setOpenSection(slug);
-      switchTimer.current = setTimeout(() => setSwitching(false), 700);
+      switchTimer.current = setTimeout(() => setSwitching(false), 900);
       return;
     }
-    scheduleHover(slug, slug ? 120 : 300);
+    scheduleHover(slug, slug ? 150 : 300);
   }
   function handleNavPointerLeave(event) {
     if (!isDesktopMouse(event) || !openSection) return;
-    scheduleHover(null, 350);
+    scheduleHover(null, 400);
   }
 
   // Клик мимо выпадающих списков закрывает их.
