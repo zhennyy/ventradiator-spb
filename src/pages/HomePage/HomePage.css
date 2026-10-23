@@ -214,3 +214,10 @@
     color: var(--surface);
   }
 }
+
+/* Ноутбук: разделы уже есть в меню шапки — плашки под заголовком не дублируем */
+@media (min-width: 1280px) {
+  .hero-directions {
+    display: none;
+  }
+}
