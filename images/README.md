@@ -29,6 +29,11 @@
 | Файл | Что на фото |
 | --- | --- |
 | `vent-l2.jpg` | Вентиляционные установки Blizzard — главное фото категории (L2) |
+| `vent-diff-d2-round.jpg` | Диффузор D2 R круглый (каталог Blizzard 2025) |
+| `vent-diff-d2-square.jpg` | Диффузор D2 Q квадратный (каталог) |
+| `vent-diff-d2-floor.jpg` | Напольная решётка D2 (каталог) |
+| `vent-diff-d4-round.jpg` | Архитектурный диффузор D4 R (каталог) |
+| `vent-diff-d4-linear.jpg` | Линейный диффузор D4 (каталог) |
 | `vent-l2-unit.jpg` | Blizzard L2 DP (из каталога Blizzard 2025) |
 | `vent-l3.jpg` | Blizzard L3 ES (из каталога Blizzard 2025) |
 | `vent-l5-450.jpg` | Blizzard L5 450 (из каталога Blizzard 2025) |
