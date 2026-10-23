@@ -38,6 +38,14 @@
   }
 }
 /* Миниатюры под большим фото: выбранная — в тёмной рамке */
+.gallery-figure {
+  margin: 0;
+}
+.gallery-caption {
+  margin-top: 8px;
+  font: 400 13px/1.4 var(--font-mono);
+  color: var(--ink-soft);
+}
 .gallery-thumbs {
   display: flex;
   flex-wrap: wrap;

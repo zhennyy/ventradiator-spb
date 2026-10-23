@@ -138,6 +138,29 @@
   font: 400 12px/1.3 var(--font-mono);
   color: var(--ink-soft);
 }
+.paint-steps {
+  display: grid;
+  gap: 0;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  border-top: 1px solid var(--line-strong);
+}
+.paint-steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-weight: 500;
+}
+.paint-steps li::before {
+  content: counter(step);
+  font: 500 13px/1.6 var(--font-mono);
+  color: var(--ink-soft);
+}
 .paint-note {
   margin: 16px 0 0;
   font-size: 13px;
