@@ -45,8 +45,11 @@
   .reasons-layout {
     grid-template-columns: minmax(0, 1fr);
   }
+  /* Заголовок над списком: своя линейка не нужна — у списка уже есть верхняя */
   .reasons .section-head {
     position: static;
+    padding-top: 0;
+    border-top: 0;
   }
 }
 @media (max-width: 600px) {

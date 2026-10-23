@@ -187,3 +187,13 @@
     padding-top: var(--section-space-small);
   }
 }
+
+/* Планшет и узкий ноутбук: текст выше середины — столик и диван внизу кадра остаются открытыми */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .hero-stage {
+    align-items: flex-start;
+  }
+  .hero-copy-wrap {
+    padding-block: clamp(32px, 6vh, 64px) 0;
+  }
+}

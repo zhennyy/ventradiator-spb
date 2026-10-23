@@ -229,6 +229,8 @@ export default function Header({ currentPath, hasForm }) {
             <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'} small>
               Запросить цену
             </ButtonLink>
+            {/* Подпись внизу выдвижного меню (на ноутбуке скрыта) */}
+            <p className="nav-note">Представительство в Санкт-Петербурге · работаем по всей России</p>
           </div>
         </nav>
         {/* Затемнение за выдвижной панелью меню (планшет и узкий ноутбук): клик по нему закрывает меню */}
