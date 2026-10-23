@@ -155,10 +155,6 @@
     font-size: clamp(28px, 6.6vw, 38px);
     line-height: 1.06;
   }
-  /* Разделы уже есть плитками под шапкой — над фото их не дублируем */
-  .hero .hero-directions {
-    display: none;
-  }
   .hero-lead {
     margin: 12px 0 18px;
     font-size: 15px;
@@ -189,43 +185,5 @@
 @media (max-width: 767px) {
   .hero + .directions {
     padding-top: var(--section-space-small);
-  }
-}
-
-/* Направления под заголовком: тонкие «плашки»-ссылки, чтобы сразу было видно весь ассортимент */
-.hero-directions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: clamp(16px, 1vw + 10px, 22px) 0 0;
-  padding: 0;
-  list-style: none;
-}
-.hero-directions a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 0 14px;
-  border: 1px solid var(--line-strong);
-  background: rgb(250 249 245 / 0.7);
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-  transition:
-    background 0.25s var(--ease),
-    color 0.25s var(--ease);
-}
-@media (hover: hover) {
-  .hero-directions a:hover {
-    background: var(--ink);
-    color: var(--surface);
-  }
-}
-
-/* Ноутбук: разделы уже есть в меню шапки — плашки под заголовком не дублируем */
-@media (min-width: 1280px) {
-  .hero .hero-directions {
-    display: none;
   }
 }
