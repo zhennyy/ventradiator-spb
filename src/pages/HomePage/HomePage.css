@@ -111,29 +111,50 @@
   }
 }
 
-/* Телефон: фото сверху без затемнения, текст под ним на бумаге */
+/* Телефон: фото на весь первый экран, низ фото растворяется в бумаге, текст и кнопки — поверх этой светлой части */
 @media (max-width: 600px) {
   .hero-stage {
-    display: block;
-    min-height: 0;
+    align-items: flex-end;
+    min-height: calc(100svh - var(--header-height) - var(--strip-height) - 24px);
+    max-height: 760px;
   }
   .hero-photo {
-    position: static;
-    height: auto;
-    aspect-ratio: 4 / 3;
+    object-position: 62% 30%;
+    -webkit-mask-image: linear-gradient(to bottom, #000 30%, rgb(0 0 0 / 0.35) 58%, transparent 74%);
+    mask-image: linear-gradient(to bottom, #000 30%, rgb(0 0 0 / 0.35) 58%, transparent 74%);
   }
   .hero-copy-wrap {
-    padding-block: 24px 0;
-  }
-  .hero-photo {
-    -webkit-mask-image: none;
-    mask-image: none;
+    padding-block: 0 28px;
   }
   .hero-copy {
     margin: 0;
   }
   .hero-copy::before {
     display: none;
+  }
+  .hero h1 {
+    font-size: clamp(30px, 8.6vw, 38px);
+  }
+  .hero-directions {
+    gap: 6px;
+  }
+  .hero-directions a {
+    min-height: 32px;
+    padding: 0 10px;
+    font-size: 13px;
+  }
+  .hero-lead {
+    margin: 14px 0 20px;
+    font-size: 15px;
+  }
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .hero-actions .button {
+    min-width: 0;
+    padding-inline: 10px;
   }
 }
 
