@@ -7,6 +7,7 @@ import StubText from '../../components/StubText/StubText';
 import { categoryPath } from '../../lib/content';
 import { countCategories } from '../../lib/text';
 import HowItWorks from './HowItWorks';
+import PaintColors from './PaintColors';
 import './SectionPage.css';
 
 function Benefits({ benefits }) {
@@ -72,6 +73,7 @@ export default function SectionPage({ section }) {
         <PageHero eyebrow="Раздел" title={section.title} paragraphs={section.intro}>
           <Benefits benefits={section.benefits} />
         </PageHero>
+        {section.paint && <PaintColors paint={section.paint} />}
         <RequestForm product={section.title} heading={`Запрос: ${section.title.toLowerCase()}`} />
       </>
     );
