@@ -17,11 +17,11 @@
   position: sticky;
   top: calc(var(--header-height) + var(--strip-height) + 24px);
 }
-/* Фото товаров — на всю рамку, в одной пропорции 4:3 */
+/* Главное фото товара — целиком, на белом (товар не обрезается); миниатюры — на всю рамку */
 .gallery img {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  object-fit: contain;
   border: 1px solid var(--line);
   background: var(--photo);
 }
@@ -54,6 +54,7 @@
 .gallery .gallery-thumb img {
   display: block;
   border: 0;
+  object-fit: cover;
 }
 .gallery-thumb[aria-pressed='true'] {
   border-color: var(--ink);
