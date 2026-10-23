@@ -12,7 +12,7 @@ describe('VariantList', () => {
     render(<VariantList category={findCategory('ventilation', 'units')} />);
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Модели в линейке');
     const titles = screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
-    expect(titles).toEqual(['Blizzard L2', 'Blizzard L3', 'Blizzard L5']);
+    expect(titles).toEqual(['Blizzard L2', 'Blizzard L3', 'Blizzard L5 450', 'Blizzard L5 360']);
   });
 
   it('трубчатые радиаторы: бренды Kohr и Velar с логотипами', () => {
