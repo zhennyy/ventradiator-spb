@@ -197,3 +197,26 @@
     padding-block: clamp(32px, 6vh, 64px) 0;
   }
 }
+
+/* Телефон: текст и кнопки — посередине между шапкой и диваном. Отступ считается от высоты первого экрана. */
+@media (max-width: 600px) {
+  .hero-stage {
+    --hero-h: max(500px, min(100vw + 140px, 100svh - 150px));
+    min-height: var(--hero-h);
+  }
+  .hero-copy-wrap {
+    /* Спинка дивана — примерно на 56 % высоты кадра; блок текста (~210px) ставим посередине
+       между шапкой и диваном */
+    padding-top: max(20px, calc((var(--hero-h) * 0.56 - 210px) / 2));
+  }
+  .hero-stage::after {
+    background: linear-gradient(
+      to bottom,
+      rgb(242 240 234 / 0.25) 0%,
+      rgb(242 240 234 / 0.85) 18%,
+      rgb(242 240 234 / 0.85) 46%,
+      rgb(242 240 234 / 0.35) 56%,
+      rgb(242 240 234 / 0) 66%
+    );
+  }
+}
