@@ -90,36 +90,26 @@
   }
 }
 
-/* Телефон: строка не листается и не «едет» — шесть разделов аккуратными плашками 3 × 2,
-   текущий раздел — тёмная плашка */
+/* Телефон: одна строка «пилюль» — листается пальцем, без переносов в два этажа;
+   текущий раздел — тёмная пилюля */
 @media (max-width: 600px) {
   .section-strip-list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 4px;
-    height: auto;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    overflow: visible;
-    mask-image: none;
+    align-items: center;
+    gap: 6px;
   }
   .section-strip a,
-  .section-strip li:first-child a,
-  .section-strip li:last-child a {
-    justify-content: center;
-    height: 30px;
-    padding: 0 4px;
+  .section-strip li:first-child a {
+    height: 34px;
+    padding: 0 14px;
     border: 1px solid var(--line);
+    border-radius: 999px;
     background: var(--surface);
-    font-size: 12px;
-    line-height: 1.1;
-    text-align: center;
-    white-space: normal;
+    font-size: 13px;
   }
   .section-strip a::after {
     display: none;
   }
-  .section-strip a.is-current {
+  .section-strip li a.is-current {
     border-color: var(--ink);
     background: var(--ink);
     color: var(--surface);
