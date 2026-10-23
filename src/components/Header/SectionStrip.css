@@ -8,6 +8,10 @@
     display: block;
     border-top: 1px solid var(--line);
   }
+  .section-strip .section-strip-list {
+    padding-right: max(var(--gutter), env(safe-area-inset-right));
+    padding-left: max(var(--gutter), env(safe-area-inset-left));
+  }
   .section-strip-list {
     display: flex;
     gap: 4px;
