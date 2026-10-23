@@ -231,3 +231,24 @@
     border-left: 0;
   }
 }
+
+/* Шесть пунктов (услуги) — ровно 3 × 2 на планшете и ноутбуке; на телефоне — список, как обычно */
+@media (min-width: 601px) {
+  .benefits:has(li:nth-child(6)) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 24px;
+  }
+  .benefits:has(li:nth-child(6)) li:nth-child(3n + 1) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .benefits:has(li:nth-child(6)) li:nth-child(4) {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .benefits:has(li:nth-child(6)) li:nth-child(3n + 2),
+  .benefits:has(li:nth-child(6)) li:nth-child(3n) {
+    padding-left: 20px;
+    border-left: 1px solid var(--line);
+  }
+}
