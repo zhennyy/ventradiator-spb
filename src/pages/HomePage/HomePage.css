@@ -111,22 +111,36 @@
   }
 }
 
-/* Телефон и узкий планшет: аккуратное фото сверху (видно окно и диван), под ним текст на бумаге — компактно */
+/* Телефон и узкий планшет: текст поверх фото, внизу кадра. Снизу фото мягко уходит в «бумагу» —
+   на этом светлом слое текст читается, а сверху видно окно и штору */
 @media (max-width: 767px) {
   .hero-stage {
-    display: block;
-    min-height: 0;
+    align-items: flex-end;
+    min-height: clamp(540px, 100vw + 120px, 760px);
   }
   .hero-photo {
-    position: static;
-    height: auto;
-    aspect-ratio: 16 / 10;
-    object-position: 68% 60%;
-    -webkit-mask-image: none;
-    mask-image: none;
+    object-position: 66% 0%;
+    /* Низ фото растворяется в фон страницы — без шва */
+    -webkit-mask-image: linear-gradient(to bottom, #000 45%, rgb(0 0 0 / 0.5) 75%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 45%, rgb(0 0 0 / 0.5) 75%, transparent 100%);
+  }
+  .hero-stage::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      rgb(242 240 234 / 0) 0%,
+      rgb(242 240 234 / 0.88) 14%,
+      rgb(242 240 234 / 0.9) 30%,
+      rgb(242 240 234 / 0.55) 44%,
+      rgb(242 240 234 / 0) 60%
+    );
+    pointer-events: none;
   }
   .hero-copy-wrap {
-    padding-block: 22px 8px;
+    padding-block: 0 8px;
   }
   .hero-copy {
     max-width: 560px;
@@ -137,19 +151,12 @@
   }
   .hero h1 {
     max-width: 14em;
-    font-size: clamp(26px, 6.4vw, 34px);
-    line-height: 1.08;
+    font-size: clamp(28px, 6.6vw, 38px);
+    line-height: 1.06;
   }
-  .hero-directions {
-    gap: 6px;
-    margin-top: 14px;
-  }
-  .hero-directions a {
-    min-height: 30px;
-    padding: 0 10px;
-    background: var(--surface);
-    border-color: var(--line);
-    font-size: 13px;
+  /* Разделы уже есть плитками под шапкой — над фото их не дублируем */
+  .hero .hero-directions {
+    display: none;
   }
   .hero-lead {
     margin: 12px 0 18px;
@@ -217,7 +224,7 @@
 
 /* Ноутбук: разделы уже есть в меню шапки — плашки под заголовком не дублируем */
 @media (min-width: 1280px) {
-  .hero-directions {
+  .hero .hero-directions {
     display: none;
   }
 }
