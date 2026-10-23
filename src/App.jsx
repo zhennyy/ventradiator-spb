@@ -9,7 +9,6 @@ import ContactsPage from './pages/ContactsPage/ContactsPage';
 import HomePage from './pages/HomePage/HomePage';
 import LegalPage from './pages/LegalPage/LegalPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-import ObjectsPage from './pages/ObjectsPage/ObjectsPage';
 import SectionPage from './pages/SectionPage/SectionPage';
 
 export function PageContent({ page }) {
@@ -21,8 +20,6 @@ export function PageContent({ page }) {
       return <SectionPage section={section} />;
     case 'category':
       return <CategoryPage section={section} category={findCategory(section, page.categorySlug)} />;
-    case 'objects':
-      return <ObjectsPage />;
     case 'about':
       return <AboutPage />;
     case 'contacts':

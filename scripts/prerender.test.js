@@ -29,14 +29,7 @@ afterAll(() => fs.rmSync(outDir, { recursive: true, force: true }));
 
 describe('пререндер', () => {
   it('создаёт все страницы: общие, разделы и каждую категорию — по прежним адресам', () => {
-    const expected = [
-      '/index.html',
-      '/objects.html',
-      '/about.html',
-      '/contacts.html',
-      '/privacy.html',
-      '/consent.html',
-    ];
+    const expected = ['/index.html', '/about.html', '/contacts.html', '/privacy.html', '/consent.html'];
     expected.push('/404.html');
     for (const section of catalog.sections) {
       expected.push(`/${section.slug}.html`);

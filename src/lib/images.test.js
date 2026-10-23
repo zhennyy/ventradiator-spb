@@ -25,11 +25,10 @@ describe('resolveImage', () => {
     });
   });
 
-  it('список картинок сайта без повторов, объекты помечены отдельно', () => {
+  it('список картинок сайта без повторов', () => {
     const images = listImages();
     const names = images.map((image) => image.fileName);
     expect(new Set(names).size).toBe(names.length);
-    expect(images.find((image) => image.fileName === 'object-bdt.jpg').kind).toBe('object');
     expect(names).toContain('vent-r2-round.jpg');
   });
 

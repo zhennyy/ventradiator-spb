@@ -32,9 +32,7 @@ export default function AboutPage() {
             </p>
             <p>
               Два направления — <a href="/ventilation.html">вентиляция</a> и{' '}
-              <a href="/dust-removal.html">пылеудаление</a>
-              {`. В СНГ ${site.objectsTotal} `}
-              <a href="/objects.html">объектов с этими системами</a>.
+              <a href="/dust-removal.html">пылеудаление</a>.
             </p>
           </div>
           {hasContent(legal.representative) && (
