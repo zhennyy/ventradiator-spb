@@ -15,6 +15,8 @@ export default function Head({ meta }) {
       <meta property="og:description" content={meta.description} />
       <meta property="og:url" content={meta.canonical} />
       {meta.ogImage && <meta property="og:image" content={meta.ogImage} />}
+      {/* Крупная картинка в превью ссылки (VK, X и др.) */}
+      {meta.ogImage && <meta name="twitter:card" content="summary_large_image" />}
       {jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />}
     </>
   );
