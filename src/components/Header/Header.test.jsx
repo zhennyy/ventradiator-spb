@@ -91,11 +91,10 @@ describe('Header: мобильное меню', () => {
 });
 
 describe('Header: кнопка звонка', () => {
-  it('ведёт на телефон офиса и подписана для экранных дикторов', () => {
+  it('пока номер не известен — кнопки звонка и номера в шапке нет', () => {
     renderHeader();
-    const call = screen.getByRole('link', { name: 'Позвонить: +7 (812) 000-00-00' });
-    expect(call).toHaveAttribute('href', 'tel:+78120000000');
-    expect(call).toHaveClass('header-call');
+    expect(document.querySelector('.header-call')).toBeNull();
+    expect(document.querySelector('a[href^="tel:"]')).toBeNull();
   });
 });
 

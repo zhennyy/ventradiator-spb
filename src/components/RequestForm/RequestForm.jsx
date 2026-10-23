@@ -65,9 +65,11 @@ export default function RequestForm({ product = '', heading = 'Запросит�
             Цены не публикуются: стоимость зависит от состава системы. Оставьте телефон — специалист представительства
             перезвонит, уточнит задачу и подготовит расчёт.
           </p>
-          <p className="request-phone">
-            Или позвоните: <a href={phoneHref(phone)}>{phone}</a>
-          </p>
+          {phone && (
+            <p className="request-phone">
+              Или позвоните: <a href={phoneHref(phone)}>{phone}</a>
+            </p>
+          )}
         </div>
         <form className="request-form" action={ENDPOINT} method="post" noValidate onSubmit={handleSubmit}>
           {product && (
