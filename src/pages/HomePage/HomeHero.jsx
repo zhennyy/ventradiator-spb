@@ -1,7 +1,7 @@
 // Первый экран главной: светлый интерьер на всю ширину, поверх слева — обещание и кнопки,
 // Фото неподвижно, текст поверх на мягкой светлой подложке.
 import ButtonLink from '../../components/Button/Button';
-import { catalog, sectionPath, site } from '../../lib/content';
+import { site } from '../../lib/content';
 import { resolveImage } from '../../lib/images';
 
 export default function HomeHero() {
@@ -21,16 +21,6 @@ export default function HomeHero() {
         <div className="wrap hero-copy-wrap">
           <div className="hero-copy">
             <h1>{'Вентиляция, отопление и\u00a0чистый воздух в\u00a0доме'}</h1>
-            {/* Все направления сразу на виду — ссылками на разделы */}
-            <ul className="hero-directions" aria-label="Направления">
-              {catalog.sections
-                .filter((section) => section.categories.length > 0)
-                .map((section) => (
-                  <li key={section.slug}>
-                    <a href={sectionPath(section)}>{section.navTitle}</a>
-                  </li>
-                ))}
-            </ul>
             <p className="hero-lead">
               Подбор и поставка оборудования для квартир и домов — в Санкт-Петербурге, Ленинградской области и по всей
               России.
