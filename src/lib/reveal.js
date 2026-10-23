@@ -9,7 +9,6 @@ const TARGETS = [
   '.object-grid > li',
   '.variant-list > li',
   '.benefits > li',
-  '.models-table',
   '.request-grid > *',
 ].join(',');
 

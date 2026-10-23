@@ -1,4 +1,4 @@
-// Страница категории: описание, характеристики, все модели из каталога, форма и «Ещё в разделе».
+// Страница категории: описание, характеристики, форма и «Ещё в разделе».
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { catalog } from '../../lib/content';
@@ -8,23 +8,13 @@ const section = catalog.sections[0];
 const category = section.categories.find((item) => item.slug === 'r2');
 
 describe('CategoryPage', () => {
-  it('выводит название, описание, характеристики и все модели из каталога', () => {
+  it('выводит название, описание и характеристики, без таблицы артикулов', () => {
     render(<CategoryPage section={section} category={category} />);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Воздуховоды R2');
     expect(screen.getByText(category.text[0])).toBeInTheDocument();
     for (const [label] of category.specs) expect(screen.getByText(label, { selector: 'dt' })).toBeInTheDocument();
-
-    const table = screen.getByRole('table');
-    const bodyRows = within(table).getAllByRole('row').slice(1);
-    expect(bodyRows).toHaveLength(category.models.rows.length);
-    expect(bodyRows.map((row) => within(row).getByRole('rowheader').textContent)).toEqual(
-      category.models.rows.map((row) => row[0]),
-    );
-    expect(
-      within(table)
-        .getAllByRole('columnheader')
-        .map((cell) => cell.textContent),
-    ).toEqual(category.models.columns);
+    expect(screen.queryByRole('table')).toBeNull();
+    expect(screen.queryByText(/артикул/i)).toBeNull();
   });
 
   it('«Запросить цену» ведёт к форме, а в форме указан товар', () => {

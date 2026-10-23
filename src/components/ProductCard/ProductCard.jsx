@@ -1,14 +1,13 @@
-// Карточка категории каталога: фото, строка «что внутри» (логотипы брендов, модели или число артикулов),
+// Карточка категории каталога: фото, строка «что внутри» (логотипы брендов или модели),
 // название, краткое описание и нижняя строка «Смотреть →». Вся карточка — одна ссылка.
 // Карточки выводятся списком <ul class="category-grid"> (раздел каталога и «Ещё в разделе»).
 import { categoryPath } from '../../lib/content';
 import { resolveImage } from '../../lib/images';
-import { plural } from '../../lib/text';
 import CatalogImage from '../CatalogImage/CatalogImage';
 import StubText from '../StubText/StubText';
 import './ProductCard.css';
 
-// Что показать над названием: логотипы брендов, названия моделей или сколько артикулов в таблице
+// Что показать над названием: логотипы брендов или названия моделей
 function CardMeta({ category }) {
   const variants = category.variants || [];
   const logos = variants.filter((variant) => variant.logo);
@@ -28,8 +27,6 @@ function CardMeta({ category }) {
     );
   }
   if (variants.length) return <span className="card-meta">{variants.map((variant) => variant.title).join(' · ')}</span>;
-  const rows = category.models?.rows?.length;
-  if (rows) return <span className="card-meta">{plural(rows, ['артикул', 'артикула', 'артикулов'])}</span>;
   return null;
 }
 

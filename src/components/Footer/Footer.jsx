@@ -65,7 +65,7 @@ export default function Footer({ hasForm = false }) {
         <div className="footer-top">
           <div className="footer-pitch">
             <p className="footer-slogan">Подберём вентиляцию, отопление и пылеудаление для вашего дома</p>
-            <p className="footer-lead">Пришлите план — рассчитаем систему и составим спецификацию с артикулами.</p>
+            <p className="footer-lead">Пришлите план — рассчитаем систему и подберём оборудование под ваш дом.</p>
             <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'}>Запросить цену</ButtonLink>
           </div>
           <div className="footer-contacts">
