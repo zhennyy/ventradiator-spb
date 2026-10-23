@@ -44,3 +44,17 @@
     font-size: clamp(28px, 7.4vw, 34px);
   }
 }
+
+/* Ноутбук: заголовок по вертикали посередине между надзаголовком и строкой ниже (преимущества) */
+@media (min-width: 1025px) {
+  .page-hero-grid {
+    align-items: stretch;
+  }
+  .page-hero-grid > :first-child {
+    display: flex;
+    flex-direction: column;
+  }
+  .page-hero-grid > :first-child h1 {
+    margin-block: auto;
+  }
+}
