@@ -49,7 +49,7 @@ npm run serve          # сборка в dist/ и сервер на http://local
 ```
 index.html            — шаблон страницы (сюда пререндер вставляет <head> и содержимое)
 data/
-  catalog.json        — весь каталог: разделы → категории → title, slug, image, text, specs, models
+  catalog.json        — весь каталог: разделы → категории → title, slug, image, text, specs
   site.json           — компания, контакты, офисы, «почему эти системы», объекты
 src/
   main.jsx            — вход в браузере: гидратация готового HTML
@@ -59,7 +59,7 @@ src/
     Header/           — шапка, выпадающие списки (NavDropdown), мобильное меню
     Footer/ Breadcrumbs/ Layout/ Logo/ Button/ SectionTitle/ PageHero/ Specs/ StubText/
     RequestForm/      — форма заявки и validation.js (проверка полей и тексты сообщений)
-    ProductCard/ ObjectCard/ ModelsTable/ CatalogImage/ HeatRecoveryDiagram/
+    ProductCard/ ObjectCard/ CatalogImage/ HeatRecoveryDiagram/
     Placeholder/      — SVG-заглушка вместо фото (при сборке → /images/placeholders/*.svg)
     Head/             — теги <head> для пререндера
   pages/              — страницы: HomePage/, SectionPage/, CategoryPage/, ObjectsPage/, AboutPage/,
@@ -103,15 +103,11 @@ tools/smoke.js        — проверка в браузере (Playwright); scr
      "image": "vent-recuperator-x.jpg",
      "summary": "Одна-две фразы для карточки и meta description.",
      "text": ["Абзац описания.", "Ещё абзац."],
-     "specs": [["Производство", "Германия"], ["Расход воздуха", "[ЗАГЛУШКА]"]],
-     "models": {
-       "columns": ["Модель", "Тип"],
-       "rows": [["X 100", "Приточно-вытяжная установка"]]
-     }
+     "specs": [["Производство", "Германия"], ["Расход воздуха", "[ЗАГЛУШКА]"]]
    }
    ```
 
-   Необязательно: `"gallery": [{ "image": "…jpg", "title": "…" }]` — дополнительные фото; `"variants": [{ "title", "image", "logo"?, "text": [], "specs": [] }]` — модели или бренды внутри категории (карточки «Модели в линейке» / «Производители», с логотипом — бренд); `specs` и `models` можно не указывать; `"caption"` в `models` — подпись под таблицей. Неизвестные данные пишите как `[ЗАГЛУШКА]` — на сайте они подсветятся жёлтым.
+   Необязательно: `"gallery": [{ "image": "…jpg", "title": "…" }]` — дополнительные фото; `"variants": [{ "title", "image", "logo"?, "text": [], "specs": [] }]` — модели или бренды внутри категории (карточки «Модели в линейке» / «Производители», с логотипом — бренд); `specs` можно не указывать. Неизвестные данные пишите как `[ЗАГЛУШКА]` — на сайте они подсветятся жёлтым.
 2. Добавьте имя картинки (`image`) в таблицу в `images/README.md` — тест проверяет, что все картинки описаны.
 3. `npm test && npm run build` — появятся страница `/<раздел>/<slug>.html`, пункт в меню и подвале, карточка в разделе, строка в `sitemap.xml` и SVG-заглушка вместо фото.
 
