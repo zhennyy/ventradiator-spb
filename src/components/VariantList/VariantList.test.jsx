@@ -8,11 +8,11 @@ const findCategory = (sectionSlug, slug) =>
   catalog.sections.find((section) => section.slug === sectionSlug).categories.find((item) => item.slug === slug);
 
 describe('VariantList', () => {
-  it('установки Blizzard: L2, L3 и L5 под заголовком «Модели в линейке»', () => {
+  it('установки Blizzard: L2, L3, L4 и L5 под заголовком «Модели в линейке»', () => {
     render(<VariantList category={findCategory('ventilation', 'units')} />);
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Модели в линейке');
     const titles = screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
-    expect(titles).toEqual(['Blizzard L2', 'Blizzard L3', 'Blizzard L5']);
+    expect(titles).toEqual(['Blizzard L2', 'Blizzard L3', 'Blizzard L4', 'Blizzard L5']);
   });
 
   it('трубчатые радиаторы: бренды Kohr и Velar с логотипами', () => {
