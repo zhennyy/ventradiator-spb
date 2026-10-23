@@ -361,12 +361,9 @@
 }
 
 /* ——— Выдвижное меню: оформление ———
-   Разделы каталога пронумерованы (01–06) и крупнее; «О компании» и «Контакты» — отдельной
+   Разделы каталога крупнее; «О компании» и «Контакты» — отдельной
    тихой группой в две колонки; подкатегории раскрываются плавно по высоте; внизу кнопка и подпись. */
 @media (max-width: 1279px) {
-  .nav-list {
-    counter-reset: nav-section;
-  }
   .nav-list::before {
     content: 'Каталог';
     padding: 4px 0 10px;
@@ -375,24 +372,10 @@
     letter-spacing: 0.04em;
     color: var(--ink-soft);
   }
-  .nav-list > .nav-item:not(.nav-item-secondary) > .nav-link::before {
-    counter-increment: nav-section;
-    content: counter(nav-section, decimal-leading-zero);
-    flex: none;
-    width: 36px;
-    font: 400 12px/1 var(--font-mono);
-    color: var(--ink-soft);
-    transition: color 0.25s var(--ease);
-  }
   .nav-list > .nav-item:not(.nav-item-secondary) > .nav-link {
     min-height: 60px;
     font-size: 19px;
     letter-spacing: -0.01em;
-  }
-  .nav-list > .nav-item:not(.nav-item-secondary) > .nav-link[aria-current='page']::before,
-  .nav-list > .nav-item:not(.nav-item-secondary) > .nav-link.is-current::before,
-  .has-dropdown.is-open > .nav-link::before {
-    color: var(--accent);
   }
   /* «О компании» и «Контакты» — второстепенные: мельче, рядом, с отступом от каталога */
   .nav-list {
@@ -442,12 +425,6 @@
     min-height: 0;
     overflow: hidden;
   }
-  .dropdown-grid {
-    padding-left: 36px;
-  }
-  .dropdown .dropdown-all {
-    margin-left: 36px;
-  }
   .dropdown-grid a {
     transition: border-color 0.2s var(--ease);
   }
@@ -464,9 +441,6 @@
   }
 }
 @media (hover: hover) and (max-width: 1279px) {
-  .nav-list > .nav-item:not(.nav-item-secondary) > .nav-link:hover::before {
-    color: var(--accent);
-  }
   .dropdown-grid a:hover {
     border-color: var(--ink);
   }
@@ -481,7 +455,7 @@
     transform: translateX(40px);
   }
   .nav-backdrop {
-    background: rgb(23 25 27 / 0.22);
-    backdrop-filter: blur(3px);
+    background: rgb(23 25 27 / 0.18);
+    backdrop-filter: blur(1px);
   }
 }

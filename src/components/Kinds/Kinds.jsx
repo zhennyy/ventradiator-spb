@@ -12,11 +12,8 @@ export default function Kinds({ category }) {
           <h2 id="kinds-title">Какие бывают</h2>
         </div>
         <ul className="kind-list">
-          {category.kinds.map((kind, index) => (
+          {category.kinds.map((kind) => (
             <li className="kind" key={kind.title}>
-              <span className="kind-number" aria-hidden="true">
-                {String(index + 1).padStart(2, '0')}
-              </span>
               <h3>{kind.title}</h3>
               <p>{kind.text}</p>
               {kind.series && <p className="kind-series">{kind.series}</p>}
