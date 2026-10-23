@@ -90,28 +90,9 @@
   }
 }
 
-/* Телефон: одна строка «пилюль» — листается пальцем, без переносов в два этажа;
-   текущий раздел — тёмная пилюля */
+/* Телефон: строки разделов нет — шапка короче и спокойнее, разделы открываются из «Меню» */
 @media (max-width: 600px) {
-  .section-strip-list {
-    align-items: center;
-    gap: 6px;
-  }
-  .section-strip a,
-  .section-strip li:first-child a {
-    height: 34px;
-    padding: 0 14px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--surface);
-    font-size: 13px;
-  }
-  .section-strip a::after {
+  .section-strip {
     display: none;
-  }
-  .section-strip li a.is-current {
-    border-color: var(--ink);
-    background: var(--ink);
-    color: var(--surface);
   }
 }
