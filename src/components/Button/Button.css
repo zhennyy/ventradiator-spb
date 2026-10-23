@@ -59,9 +59,10 @@
 }
 
 @media (hover: hover) {
+  /* Наведение — не синий, а графитово-серый: спокойно и в тон тёмной кнопке */
   .button-primary:hover {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: #4a4e52;
+    border-color: #4a4e52;
     color: var(--surface);
   }
   .button-ghost:hover {

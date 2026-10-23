@@ -212,7 +212,7 @@
     transform: scale(1.08);
   }
   .dropdown-all:hover {
-    background: var(--accent);
+    background: #4a4e52;
     color: var(--paper);
   }
 }
