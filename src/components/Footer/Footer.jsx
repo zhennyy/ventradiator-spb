@@ -68,24 +68,27 @@ export default function Footer({ hasForm = false }) {
             <p className="footer-lead">Пришлите план — рассчитаем систему и подберём оборудование под ваш дом.</p>
             <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'}>Запросить цену</ButtonLink>
           </div>
-          <div className="footer-contacts">
-            <p className="footer-title">{office.title}</p>
-            {phone && (
-              <a className="footer-phone" href={phoneHref(phone)}>
-                {phone}
-              </a>
-            )}
-            {site.email && (
-              <a className="footer-email" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-            )}
-            {hasContent(office.address) && (
-              <p className="footer-address">
-                <StubText>{office.address}</StubText>
-              </p>
-            )}
-          </div>
+          {/* Пока нет ни телефона, ни почты, ни адреса — блок контактов не показываем */}
+          {(phone || site.email || hasContent(office.address)) && (
+            <div className="footer-contacts">
+              <p className="footer-title">{office.title}</p>
+              {phone && (
+                <a className="footer-phone" href={phoneHref(phone)}>
+                  {phone}
+                </a>
+              )}
+              {site.email && (
+                <a className="footer-email" href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+              )}
+              {hasContent(office.address) && (
+                <p className="footer-address">
+                  <StubText>{office.address}</StubText>
+                </p>
+              )}
+            </div>
+          )}
         </div>
         <nav className="footer-nav" aria-label="Карта сайта">
           {catalog.sections
@@ -97,7 +100,7 @@ export default function Footer({ hasForm = false }) {
         </nav>
         <div className="footer-legal">
           <p>
-            {`© ${YEAR} ${site.brand}, Санкт-Петербург. `}
+            {`© ${YEAR}, Санкт-Петербург. `}
             {hasContent(site.legal.representative) && <StubText>{site.legal.representative}</StubText>}
           </p>
           <ul className="footer-docs">
