@@ -15,7 +15,14 @@ export default function PaintColors({ paint }) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <p className="paint-note">Это примеры — доступна вся шкала RAL, более 200 оттенков.</p>
+          {paint.steps && (
+            <ol className="paint-steps" aria-label="Как красим">
+              {paint.steps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
+          )}
+          <p className="paint-note">На фото — примеры. Доступна вся палитра RAL Classic.</p>
         </div>
         <ul className="paint-photos" aria-label="Примеры цветов">
           {paint.photos.map(([image, name, code, hex, alt]) => (

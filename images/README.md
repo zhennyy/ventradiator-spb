@@ -38,7 +38,6 @@
 | `paint-burgundy.jpg` | Покраска: радиатор RAL 3004 (сгенерированная иллюстрация) |
 | `paint-green.jpg` | Покраска: радиатор RAL 6005 (сгенерированная иллюстрация) |
 | `paint-white.jpg` | Покраска: радиатор RAL 9016 (сгенерированная иллюстрация) |
-| `vent-l4.jpg` | Blizzard L4 (каталог Blizzard 2025) |
 | `vent-l2-unit.jpg` | Blizzard L2 DP (из каталога Blizzard 2025) |
 | `vent-l3.jpg` | Blizzard L3 ES (из каталога Blizzard 2025) |
 | `vent-l5-450.jpg` | Blizzard L5 450 (из каталога Blizzard 2025) |

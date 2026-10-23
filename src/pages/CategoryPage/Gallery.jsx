@@ -6,7 +6,7 @@ import { resolveImage } from '../../lib/images';
 
 export default function Gallery({ category }) {
   const photos = [
-    { image: category.image, title: category.title },
+    { image: category.image, title: category.imageTitle || category.title },
     ...(category.gallery || []).map((item) => ({ image: item.image, title: item.title || category.title })),
   ].map((photo) => ({ ...photo, resolved: resolveImage(photo.image, photo.title) }));
   const [current, setCurrent] = useState(0);
@@ -14,7 +14,11 @@ export default function Gallery({ category }) {
 
   return (
     <div className="gallery">
-      <CatalogImage key={main.image} image={main.resolved} alt={main.title} className="gallery-main" eager />
+      <figure className="gallery-figure">
+        <CatalogImage key={main.image} image={main.resolved} alt={main.title} className="gallery-main" eager />
+        {/* Подпись — что на фото (меняется вместе с выбранной миниатюрой) */}
+        <figcaption className="gallery-caption">{main.title}</figcaption>
+      </figure>
       {photos.length > 1 && (
         <div className="gallery-thumbs" role="group" aria-label="Другие фото">
           {photos.map((photo, index) => (
