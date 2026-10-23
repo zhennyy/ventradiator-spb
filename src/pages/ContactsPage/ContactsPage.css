@@ -42,3 +42,10 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Пока у офиса нет телефона и адреса — короткая подпись вместо пустой карточки */
+.office-note {
+  margin: 12px 0 0;
+  max-width: 34em;
+  color: var(--ink-soft);
+}

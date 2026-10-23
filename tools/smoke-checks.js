@@ -99,6 +99,12 @@ export async function checkDesktopMenu(page, problems) {
 // (на планшете с номером, на телефоне — иконка), все не меньше 44px.
 export async function checkHeaderCall(page, problems, width) {
   const isCollapsed = width <= 1279;
+  // Номер ещё не известен — кнопки звонка нет; проверяем только «Меню»
+  if (!(await page.$('.header-call'))) {
+    const menu = await page.evaluate(() => document.querySelector('.menu-button').getBoundingClientRect().height);
+    if (isCollapsed && menu < 44) problems.push(`шапка ${width}px: кнопка «Меню» ниже 44px`);
+    return;
+  }
   const state = await page.evaluate(() => {
     const box = (selector) => document.querySelector(selector).getBoundingClientRect();
     // Видим = есть размер и не скрыт через visibility (мобильное меню скрывается плавно, а не display: none)

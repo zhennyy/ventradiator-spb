@@ -38,7 +38,12 @@
     flex: none;
     color: var(--accent);
   }
+  .header-call + .menu-button {
+    margin-left: 0;
+  }
   .menu-button {
+    /* Прижата вправо и без кнопки звонка (пока номер не известен) */
+    margin-left: auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;

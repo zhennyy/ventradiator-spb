@@ -18,8 +18,8 @@ export function organizationJsonLd(siteUrl) {
     '@type': 'Organization',
     name: `${site.brand} — Санкт-Петербург`,
     url: normalizeSiteUrl(siteUrl),
-    email: site.email,
-    telephone: site.offices[0].phones[0],
+    ...(site.email && { email: site.email }),
+    ...(site.offices[0].phones[0] && { telephone: site.offices[0].phones[0] }),
     areaServed: ['Санкт-Петербург', 'Ленинградская область', 'Россия'],
   };
 }

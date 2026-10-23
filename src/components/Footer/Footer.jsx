@@ -70,12 +70,16 @@ export default function Footer({ hasForm = false }) {
           </div>
           <div className="footer-contacts">
             <p className="footer-title">{office.title}</p>
-            <a className="footer-phone" href={phoneHref(phone)}>
-              {phone}
-            </a>
-            <a className="footer-email" href={`mailto:${site.email}`}>
-              {site.email}
-            </a>
+            {phone && (
+              <a className="footer-phone" href={phoneHref(phone)}>
+                {phone}
+              </a>
+            )}
+            {site.email && (
+              <a className="footer-email" href={`mailto:${site.email}`}>
+                {site.email}
+              </a>
+            )}
             {hasContent(office.address) && (
               <p className="footer-address">
                 <StubText>{office.address}</StubText>

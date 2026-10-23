@@ -11,22 +11,34 @@ function Office({ office }) {
     <article className="office">
       <p className="eyebrow">{office.region}</p>
       <h2>{office.title}</h2>
-      <div className="office-phones">
-        {office.phones.map((phone) => (
-          <a className="office-phone" href={phoneHref(phone)} key={phone}>
-            {phone}
-          </a>
-        ))}
-      </div>
+      {office.phones.length === 0 && !hasContent(office.address) && (
+        <p className="office-note">
+          Телефон и адрес офиса появятся здесь в ближайшее время. А пока оставьте <a href="#request">заявку</a> — мы
+          свяжемся с вами.
+        </p>
+      )}
+      {office.phones.length > 0 && (
+        <div className="office-phones">
+          {office.phones.map((phone) => (
+            <a className="office-phone" href={phoneHref(phone)} key={phone}>
+              {phone}
+            </a>
+          ))}
+        </div>
+      )}
       <Specs
         rows={[
           ...(hasContent(office.address) ? [['Адрес', office.address]] : []),
-          [
-            'Почта',
-            <a key="email" href={`mailto:${site.email}`}>
-              {site.email}
-            </a>,
-          ],
+          ...(site.email
+            ? [
+                [
+                  'Почта',
+                  <a key="email" href={`mailto:${site.email}`}>
+                    {site.email}
+                  </a>,
+                ],
+              ]
+            : []),
         ]}
       />
     </article>

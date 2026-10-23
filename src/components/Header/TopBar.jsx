@@ -19,9 +19,11 @@ export default function TopBar({ currentPath }) {
             </li>
           ))}
         </ul>
-        <a className="top-bar-phone" href={phoneHref(phone)}>
-          {phone}
-        </a>
+        {phone && (
+          <a className="top-bar-phone" href={phoneHref(phone)}>
+            {phone}
+          </a>
+        )}
       </div>
     </div>
   );

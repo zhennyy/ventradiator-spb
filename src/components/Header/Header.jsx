@@ -174,10 +174,13 @@ export default function Header({ currentPath, hasForm }) {
           <span className="header-home-long">Представительство в Санкт-Петербурге · по всей России</span>
           <span className="header-home-short">Представительство в СПб</span>
         </a>
-        <a className="header-call" href={phoneHref(phone)} aria-label={`Позвонить: ${phone}`}>
-          <PhoneIcon />
-          <span className="header-call-number">{phone}</span>
-        </a>
+        {/* Номер ещё не известен — кнопку звонка не показываем */}
+        {phone && (
+          <a className="header-call" href={phoneHref(phone)} aria-label={`Позвонить: ${phone}`}>
+            <PhoneIcon />
+            <span className="header-call-number">{phone}</span>
+          </a>
+        )}
         <button
           ref={menuButtonRef}
           className="menu-button"
@@ -219,9 +222,11 @@ export default function Header({ currentPath, hasForm }) {
             ))}
           </ul>
           <div className="nav-actions">
-            <a className="header-phone" href={phoneHref(phone)}>
-              {phone}
-            </a>
+            {phone && (
+              <a className="header-phone" href={phoneHref(phone)}>
+                {phone}
+              </a>
+            )}
             <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'} small>
               Запросить цену
             </ButtonLink>

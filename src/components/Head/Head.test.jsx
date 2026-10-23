@@ -28,8 +28,10 @@ describe('Head', () => {
     expect(jsonLd).toMatchObject({
       '@type': 'Organization',
       url: 'https://test.example',
-      telephone: '+7 (812) 777-18-25',
     });
+    // Телефон и почта ещё не известны — в разметку не попадают
+    expect(jsonLd).not.toHaveProperty('telephone');
+    expect(jsonLd).not.toHaveProperty('email');
 
     const notFound = renderToStaticMarkup(<Head meta={getHeadMeta(findPage('/404.html'))} />);
     expect(notFound).toContain('<meta name="robots" content="noindex"/>');
