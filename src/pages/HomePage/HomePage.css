@@ -19,10 +19,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 60% 50%;
+  /* Кадр опущен вниз — диван виден целиком, потолка меньше */
+  object-position: 60% 78%;
   /* Низ фото растворяется в прозрачность — под ним тот же фон страницы, поэтому шва не видно */
-  -webkit-mask-image: linear-gradient(to bottom, #000 62%, rgb(0 0 0 / 0.6) 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 62%, rgb(0 0 0 / 0.6) 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, rgb(0 0 0 / 0.6) 92%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 80%, rgb(0 0 0 / 0.6) 92%, transparent 100%);
 }
 .hero-copy-wrap {
   width: 100%;
@@ -111,18 +112,19 @@
   }
 }
 
-/* Телефон и узкий планшет: текст поверх фото, внизу кадра. Снизу фото мягко уходит в «бумагу» —
-   на этом светлом слое текст читается, а сверху видно окно и штору */
+/* Телефон и узкий планшет: текст поверх фото сверху — на светлой стене и потолке он читается,
+   а внизу кадра виден диван и окно. Верх фото мягко «высветлен» под текст */
 @media (max-width: 767px) {
   .hero-stage {
-    align-items: flex-end;
-    min-height: clamp(540px, 100vw + 120px, 760px);
+    align-items: flex-start;
+    /* Высота по экрану: всё помещается в первый экран */
+    min-height: max(500px, min(100vw + 140px, 100svh - 150px));
   }
   .hero-photo {
-    object-position: 66% 0%;
+    object-position: 66% 100%;
     /* Низ фото растворяется в фон страницы — без шва */
-    -webkit-mask-image: linear-gradient(to bottom, #000 45%, rgb(0 0 0 / 0.5) 75%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 45%, rgb(0 0 0 / 0.5) 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 85%, transparent 100%);
   }
   .hero-stage::after {
     content: '';
@@ -130,17 +132,16 @@
     inset: 0;
     z-index: -1;
     background: linear-gradient(
-      to top,
-      rgb(242 240 234 / 0) 0%,
-      rgb(242 240 234 / 0.88) 14%,
-      rgb(242 240 234 / 0.9) 30%,
-      rgb(242 240 234 / 0.55) 44%,
-      rgb(242 240 234 / 0) 60%
+      to bottom,
+      rgb(242 240 234 / 0.9) 0%,
+      rgb(242 240 234 / 0.82) 34%,
+      rgb(242 240 234 / 0.4) 50%,
+      rgb(242 240 234 / 0) 62%
     );
     pointer-events: none;
   }
   .hero-copy-wrap {
-    padding-block: 0 8px;
+    padding-block: 28px 24px;
   }
   .hero-copy {
     max-width: 560px;
