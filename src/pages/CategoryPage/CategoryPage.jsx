@@ -5,6 +5,7 @@ import RequestForm from '../../components/RequestForm/RequestForm';
 import Specs from '../../components/Specs/Specs';
 import StubText from '../../components/StubText/StubText';
 import VariantList from '../../components/VariantList/VariantList';
+import Kinds from '../../components/Kinds/Kinds';
 import Gallery from './Gallery';
 import Siblings from './Siblings';
 import './CategoryPage.css';
@@ -38,6 +39,7 @@ export default function CategoryPage({ section, category }) {
           </div>
         </div>
       </section>
+      <Kinds category={category} />
       <VariantList category={category} />
       <RequestForm product={category.title} heading={`Запросить цену: ${category.title}`} />
       <Siblings section={section} category={category} />
