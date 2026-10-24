@@ -161,17 +161,14 @@
     font-size: 13px;
     line-height: 1.45;
   }
-  /* Низ карточки: «Смотреть» и стрелка в квадрате — как у карточек каталога */
+  /* Низ карточки: синяя ссылка «Перейти в раздел →» */
   .direction-body::after {
-    content: 'Смотреть  →';
-    align-self: stretch;
+    content: 'Перейти в раздел →';
     margin-top: auto;
-    padding: 12px 0 14px;
-    border-top: 1px solid var(--line);
+    padding: 4px 0 16px;
     font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
-    white-space: pre;
+    font-weight: 500;
+    color: var(--accent);
   }
   .direction-body > .direction-tagline {
     margin-bottom: 12px;
