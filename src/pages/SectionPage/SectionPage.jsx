@@ -8,6 +8,7 @@ import { categoryPath } from '../../lib/content';
 import { countCategories } from '../../lib/text';
 import HowItWorks from './HowItWorks';
 import PaintColors from './PaintColors';
+import ServiceWorks from './ServiceWorks';
 import './SectionPage.css';
 
 function Benefits({ benefits }) {
@@ -73,6 +74,7 @@ export default function SectionPage({ section }) {
         <PageHero eyebrow="Раздел" title={section.title} paragraphs={section.intro}>
           <Benefits benefits={section.benefits} />
         </PageHero>
+        {section.works && <ServiceWorks works={section.works} />}
         {section.paint && <PaintColors paint={section.paint} />}
         <RequestForm product={section.title} heading={`Запрос: ${section.title.toLowerCase()}`} />
       </>
