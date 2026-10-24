@@ -144,22 +144,24 @@
   margin: 24px 0 0;
   padding: 0;
   list-style: none;
-  counter-reset: step;
   border-top: 1px solid var(--line-strong);
 }
+/* Этапы — такими же строками с синим квадратиком, как списки работ выше */
 .paint-steps li {
-  counter-increment: step;
-  display: grid;
-  grid-template-columns: 32px minmax(0, 1fr);
+  display: flex;
+  align-items: baseline;
   gap: 12px;
-  padding: 14px 0;
+  padding: 11px 0;
   border-bottom: 1px solid var(--line);
   font-weight: 500;
 }
 .paint-steps li::before {
-  content: counter(step);
-  font: 500 13px/1.6 var(--font-mono);
-  color: var(--ink-soft);
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  transform: translateY(-2px);
 }
 .paint-note {
   margin: 16px 0 0;
@@ -312,11 +314,51 @@
   height: 6px;
   background: var(--accent);
 }
-@media (max-width: 900px) {
+/* Планшет: фото и текст остаются рядом, колонки поровну, фото выравнено по верху текста */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .work-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+  .work-media {
+    aspect-ratio: 1 / 1;
+  }
+  .work-body .section-head h2 {
+    font-size: clamp(24px, 2vw + 12px, 30px);
+  }
+  .work-text {
+    font-size: 15px;
+  }
+  .work-points li {
+    min-height: 40px;
+    font-size: 15px;
+  }
+}
+/* Телефон: фото сверху — невысокая полоса 16:10, под ней текст; блоки разделены линией */
+@media (max-width: 600px) {
   .work-grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
   }
   .work-reverse .work-media {
     order: 0;
+  }
+  .work-media {
+    aspect-ratio: 16 / 10;
+  }
+  .work-body .section-head h2 {
+    font-size: 24px;
+  }
+  .work-text {
+    margin-top: 12px;
+    font-size: 15px;
+  }
+  .work-points {
+    margin-top: 16px;
+  }
+  .work-points li {
+    min-height: 40px;
+    font-size: 15px;
   }
 }
