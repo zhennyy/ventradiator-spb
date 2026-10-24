@@ -21,9 +21,11 @@ export default function DirectionCard({ section }) {
         <h3>
           <a href={href}>{section.title}</a>
         </h3>
-        <p>
+        <p className="direction-summary">
           <StubText>{section.summary}</StubText>
         </p>
+        {/* Короткая подпись — только на телефоне, вместо длинного описания */}
+        {section.tagline && <p className="direction-tagline">{section.tagline}</p>}
         {section.categories.length > 0 && (
           <ul className="direction-links">
             {section.categories.slice(0, 4).map((category) => (
