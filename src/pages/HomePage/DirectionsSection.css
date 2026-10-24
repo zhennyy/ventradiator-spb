@@ -45,6 +45,9 @@
   max-width: 52ch;
   color: var(--ink-soft);
 }
+.direction-tagline {
+  display: none;
+}
 .direction-index {
   margin: 0;
   font-size: 13px;
@@ -88,16 +91,75 @@
   margin-top: auto;
 }
 
-/* Шесть разделов: 3 в ряд на ноутбуке, 2 на планшете, 1 на телефоне */
+/* Шесть разделов: 3 в ряд на ноутбуке, 2 на планшете и телефоне */
 @media (max-width: 1024px) {
   .direction-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+/* Телефон: два столбика карточек — фото, название, короткая подпись и «Смотреть» внизу.
+   Вся карточка кликабельна (ссылка заголовка растянута на карточку). */
 @media (max-width: 600px) {
   .direction-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 56px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .direction {
+    position: relative;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    transition: border-color 0.25s var(--ease);
+  }
+  .direction:active {
+    border-color: var(--ink);
+  }
+  .direction-media {
+    aspect-ratio: 1 / 1;
+    border-bottom: 1px solid var(--line);
+  }
+  .direction-body {
+    gap: 6px;
+    padding: 14px 14px 0;
+  }
+  .direction-index {
+    font-size: 11px;
+  }
+  .direction-body h3 {
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .direction-body h3 a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .direction-body > .direction-summary,
+  .direction-body .button,
+  .direction-links {
+    display: none;
+  }
+  .direction-body > .direction-tagline {
+    display: block;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  /* Низ карточки: «Смотреть» и стрелка в квадрате — как у карточек каталога */
+  .direction-body::after {
+    content: 'Смотреть  →';
+    align-self: stretch;
+    margin-top: auto;
+    padding: 12px 0 14px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    white-space: pre;
+  }
+  .direction-body > .direction-tagline {
+    margin-bottom: 12px;
   }
 }
 
