@@ -139,7 +139,8 @@
 /* ——— Плитки моделей/брендов: фото и название; по нажатию раскрывается карточка ——— */
 .variant-tiles {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  /* Ровно 4 / 3 / 2 в ряд — раскрытая карточка встаёт сразу под рядом нажатой плитки */
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   margin: 0;
   padding: 0;
@@ -218,7 +219,7 @@
 }
 /* Раскрытая карточка — под плитками, мягко проявляется */
 .variant-panel {
-  margin-top: 16px;
+  grid-column: 1 / -1;
   scroll-margin: calc(var(--header-height) + var(--strip-height) + 16px);
   animation: variant-panel-in 0.4s var(--menu-ease) both;
 }
@@ -231,7 +232,36 @@
 @keyframes variant-panel-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+  }
+}
+/* Стрелка-«хвостик» у выбранной плитки, указывает на раскрытую карточку */
+.variant-tile.is-open {
+  position: relative;
+}
+.variant-tile.is-open::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -17px;
+  width: 14px;
+  height: 14px;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background: var(--surface);
+  transform: translateX(-50%) rotate(225deg);
+  z-index: 1;
+}
+/* Планшет: три плитки в ряд, карточка — фото слева поуже */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .variant-tiles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .variant-panel .variant {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  }
+  .variant-panel .variant-body .specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 .variant-close {
@@ -275,8 +305,10 @@
     height: 18px;
     max-width: 100px;
   }
-  .variant-panel {
-    margin-top: 12px;
+  .variant-tile.is-open::after {
+    bottom: -14px;
+    width: 12px;
+    height: 12px;
   }
   /* Фото уже есть на плитке — в раскрытой карточке на телефоне только текст */
   .variant-panel .variant-media {
