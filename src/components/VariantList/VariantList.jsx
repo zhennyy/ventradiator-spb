@@ -50,7 +50,7 @@ function VariantTile({ variant, panelId, isOpen, onToggle }) {
           <h3>
             <VariantName variant={variant} />
           </h3>
-          {/* Мини-описание: первое предложение описания модели */}
+          {/* Мини-описание: короткая подпись (short) или первое предложение описания */}
           <span className="variant-tile-text">{shortText(variant)}</span>
           <span className="variant-tile-more" aria-hidden="true">
             {isOpen ? 'Свернуть' : 'Подробнее'}

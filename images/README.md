@@ -85,7 +85,7 @@
 | `rad-royal-bimetal.jpg` | Биметаллические радиаторы Royal Thermo INFINITY |
 | `rad-royal-panel.jpg` | Панельные радиаторы Royal Thermo COMPACT |
 | `rad-gekon-panel.jpg` | Панельный радиатор Gekon |
-| `service-projects-video-poster.jpg` | Кадр из ролика «Как работает вентиляция» (Blizzard) — обложка видео в «Услугах»; само видео — `public/video/how-work.mp4` |
+| `service-projects-video-poster.jpg` | Первый кадр ролика «Как работает вентиляция» (Blizzard), дом целиком — обложка видео в «Услугах»; само видео — `public/video/how-work.mp4` |
 | `rad-rt-biliner.jpg` | Royal Thermo BiLiner (сайт royal-thermo.ru) |
 | `rad-rt-revolution.jpg` | Royal Thermo Revolution Bimetall (royal-thermo.ru) |
 | `rad-rt-pianoforte.jpg` | Royal Thermo PianoForte (royal-thermo.ru) |
