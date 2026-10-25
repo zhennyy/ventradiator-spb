@@ -9,6 +9,13 @@ import Specs from '../Specs/Specs';
 import StubText from '../StubText/StubText';
 import './VariantList.css';
 
+function shortText(variant) {
+  if (variant.short) return variant.short;
+  const first = (variant.text?.[0] || '').replace(/\[[^\]]*\]/g, '').trim();
+  const match = first.match(/^.+?[.!?](?=\s|$)/);
+  return match ? match[0] : first;
+}
+
 function VariantName({ variant }) {
   // С логотипом название не дублируем: логотип и есть заголовок, его alt — название бренда
   return variant.logo ? (
@@ -35,6 +42,8 @@ function VariantTile({ variant, panelId, isOpen, onToggle }) {
           <h3>
             <VariantName variant={variant} />
           </h3>
+          {/* Мини-описание: первое предложение описания модели */}
+          <span className="variant-tile-text">{shortText(variant)}</span>
           <span className="variant-tile-more" aria-hidden="true">
             {isOpen ? 'Свернуть' : 'Подробнее'}
           </span>
@@ -93,10 +102,10 @@ export default function VariantList({ category }) {
   return (
     <section className="variants" aria-labelledby="variants-title">
       <div className="wrap">
-        <div className="section-head">
-          <p className="eyebrow">{hasBrands ? 'Бренды' : 'Серии'}</p>
-          <h2 id="variants-title">{hasBrands ? 'Производители' : 'Модели в линейке'}</h2>
-        </div>
+        <h2 className="variants-title" id="variants-title">
+          {hasBrands ? 'Производители' : 'Модели в линейке'}
+          <span className="variants-count">{category.variants.length}</span>
+        </h2>
         <ul className="variant-tiles">
           {category.variants.map((variant, index) => (
             <VariantTile

@@ -3,8 +3,7 @@
    Так одна карточка не растягивается на всю ширину огромным фото, а несколько — легко сравнить.
    На телефоне фото сверху, невысокое. */
 .variants {
-  padding: var(--section-space-small) 0;
-  border-top: 1px solid var(--line);
+  padding: 8px 0 var(--section-space-small);
 }
 .variants .section-head {
   margin-bottom: clamp(20px, 1vw + 14px, 32px);
@@ -282,5 +281,34 @@
   /* Фото уже есть на плитке — в раскрытой карточке на телефоне только текст */
   .variant-panel .variant-media {
     display: none;
+  }
+}
+
+/* Заголовок над плитками — компактный, с числом моделей */
+.variants-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: clamp(20px, 0.6vw + 16px, 24px);
+}
+.variants-count {
+  font: 400 13px/1 var(--font-mono);
+  color: var(--ink-soft);
+}
+/* Мини-описание на плитке: до трёх строк */
+.variant-tile-text {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+@media (max-width: 600px) {
+  .variant-tile-text {
+    font-size: 12.5px;
+    -webkit-line-clamp: 4;
   }
 }

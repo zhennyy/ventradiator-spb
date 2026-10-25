@@ -11,14 +11,27 @@ import Siblings from './Siblings';
 import './CategoryPage.css';
 
 export default function CategoryPage({ section, category }) {
+  // Есть модели или бренды — сначала название и они (плитки с фото и коротким описанием),
+  // подробное описание категории с галереей и характеристиками — ниже, блоком «Подробнее».
+  const hasVariants = category.variants?.length > 0;
   return (
     <>
-      <section className="product">
+      {hasVariants && (
+        <section className="category-top">
+          <div className="wrap">
+            <p className="eyebrow">{section.title}</p>
+            <h1>{category.title}</h1>
+            {category.summary && <p className="category-top-lead">{category.summary}</p>}
+          </div>
+        </section>
+      )}
+      {hasVariants && <VariantList category={category} />}
+      <section className={`product${hasVariants ? ' product-about' : ''}`}>
         <div className="wrap product-grid">
           <Gallery category={category} />
           <div className="product-info">
-            <p className="eyebrow">{section.title}</p>
-            <h1>{category.title}</h1>
+            <p className="eyebrow">{hasVariants ? 'Подробнее' : section.title}</p>
+            {hasVariants ? <h2>{category.title}</h2> : <h1>{category.title}</h1>}
             <div className="product-text">
               {category.text.map((paragraph) => (
                 <p key={paragraph}>
@@ -28,19 +41,12 @@ export default function CategoryPage({ section, category }) {
             </div>
             <Specs rows={category.specs} />
             <div className="product-actions">
-              {category.variants?.length > 0 && (
-                <ButtonLink href="#variants-title" variant="ghost">
-                  {category.variants.some((variant) => variant.logo) ? 'Производители' : 'Модели в линейке'}
-                </ButtonLink>
-              )}
-              {/* Сначала посмотреть, что внутри, затем — главная тёмная кнопка */}
               <ButtonLink href="#request">Запросить цену</ButtonLink>
             </div>
           </div>
         </div>
       </section>
       <Kinds category={category} />
-      <VariantList category={category} />
       <RequestForm product={category.title} heading={`Запросить цену: ${category.title}`} />
       <Siblings section={section} category={category} />
     </>
