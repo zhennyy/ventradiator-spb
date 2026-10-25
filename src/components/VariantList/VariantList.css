@@ -312,3 +312,15 @@
     -webkit-line-clamp: 4;
   }
 }
+
+/* Серия бренда: бренд мелкой моно-строкой над названием серии */
+.variant-brand {
+  display: block;
+  margin-bottom: 4px;
+  font: 400 11px/1.3 var(--font-mono);
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+.variant-series {
+  display: block;
+}

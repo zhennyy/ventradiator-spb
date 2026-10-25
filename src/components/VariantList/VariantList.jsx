@@ -17,7 +17,15 @@ function shortText(variant) {
 }
 
 function VariantName({ variant }) {
-  // С логотипом название не дублируем: логотип и есть заголовок, его alt — название бренда
+  // Серия бренда: название бренда мелкой строкой над названием серии
+  if (variant.brand) {
+    return (
+      <>
+        <span className="variant-brand">{variant.brand}</span>
+        <span className="variant-series">{variant.title}</span>
+      </>
+    );
+  }
   return variant.logo ? (
     <img
       className="variant-logo"
@@ -88,6 +96,7 @@ export default function VariantList({ category }) {
   const panelRef = useRef(null);
   if (!category.variants?.length) return null;
   const hasBrands = category.variants.some((variant) => variant.logo);
+  const hasSeries = category.variants.some((variant) => variant.brand);
   const panelId = (index) => `variant-${category.slug || 'item'}-${index}`;
 
   const toggle = (index) => {
@@ -103,7 +112,7 @@ export default function VariantList({ category }) {
     <section className="variants" aria-labelledby="variants-title">
       <div className="wrap">
         <h2 className="variants-title" id="variants-title">
-          {hasBrands ? 'Производители' : 'Модели в линейке'}
+          {hasSeries ? 'Серии' : hasBrands ? 'Производители' : 'Модели в линейке'}
           <span className="variants-count">{category.variants.length}</span>
         </h2>
         <ul className="variant-tiles">
