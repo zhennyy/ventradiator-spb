@@ -85,6 +85,7 @@
 | `rad-royal-bimetal.jpg` | Биметаллические радиаторы Royal Thermo INFINITY |
 | `rad-royal-panel.jpg` | Панельные радиаторы Royal Thermo COMPACT |
 | `rad-gekon-panel.jpg` | Панельный радиатор Gekon |
+| `service-projects-house.jpg` | Дом в разрезе с системой вентиляции (сайт blizzard-klima.ru) |
 | `rad-rt-biliner.jpg` | Royal Thermo BiLiner (сайт royal-thermo.ru) |
 | `rad-rt-revolution.jpg` | Royal Thermo Revolution Bimetall (royal-thermo.ru) |
 | `rad-rt-pianoforte.jpg` | Royal Thermo PianoForte (royal-thermo.ru) |
