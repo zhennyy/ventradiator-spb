@@ -277,9 +277,17 @@
   border: 1px solid var(--line);
   background: var(--surface);
 }
+.work-media {
+  background: #fff;
+}
+/* Картинка целиком, без обрезки краёв — при любой форме рамки (4:3, квадрат на планшете) */
 .work-media img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
+}
+/* Фото монтажа — живое фото, его заполняем рамку целиком */
+#montage .work-media img {
   object-fit: cover;
 }
 .work-body .section-head {
@@ -319,10 +327,10 @@
   .work-grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 28px;
-    align-items: start;
+    align-items: center;
   }
   .work-media {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
   }
   .work-body .section-head h2 {
     font-size: clamp(24px, 2vw + 12px, 30px);
