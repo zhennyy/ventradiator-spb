@@ -85,6 +85,18 @@
 | `rad-royal-bimetal.jpg` | Биметаллические радиаторы Royal Thermo INFINITY |
 | `rad-royal-panel.jpg` | Панельные радиаторы Royal Thermo COMPACT |
 | `rad-gekon-panel.jpg` | Панельный радиатор Gekon |
+| `rad-rt-biliner.jpg` | Royal Thermo BiLiner (сайт royal-thermo.ru) |
+| `rad-rt-revolution.jpg` | Royal Thermo Revolution Bimetall (royal-thermo.ru) |
+| `rad-rt-pianoforte.jpg` | Royal Thermo PianoForte (royal-thermo.ru) |
+| `rad-rt-indigo.jpg` | Royal Thermo Indigo Super+ (royal-thermo.ru) |
+| `rad-rt-compact.jpg` | Royal Thermo Compact (royal-thermo.ru) |
+| `rad-rt-ventil-compact.jpg` | Royal Thermo Ventil Compact (royal-thermo.ru) |
+| `rad-rt-hygiene.jpg` | Royal Thermo Hygiene (royal-thermo.ru) |
+| `rad-rt-flat.jpg` | Royal Thermo Flat (royal-thermo.ru) |
+| `rad-rifar-base-series.jpg` | Rifar Base, три высоты (сайт rifar.ru) |
+| `rad-rifar-alp.jpg` | Rifar Alp (rifar.ru) |
+| `rad-rifar-monolit.jpg` | Rifar Monolit (rifar.ru) |
+| `rad-rifar-supremo.jpg` | Rifar SUPReMO (rifar.ru) |
 | `logo-kohr.png` | Логотип Kohr |
 | `logo-velar.png` | Логотип Velar |
 | `logo-rifar.png` | Логотип Rifar |

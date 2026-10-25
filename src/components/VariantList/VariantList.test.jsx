@@ -16,14 +16,14 @@ describe('VariantList', () => {
     expect(titles).toEqual(['Blizzard L2', 'Blizzard L3', 'Blizzard L5 450', 'Blizzard L5 360']);
   });
 
-  it('трубчатые радиаторы: бренды Kohr и Velar с логотипами', () => {
+  it('трубчатые радиаторы: серии с названием бренда над названием серии', () => {
     render(<VariantList category={findCategory('radiators', 'tubular')} />);
-    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Производители');
+    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Серии');
     const cards = screen.getAllByRole('listitem');
-    expect(cards).toHaveLength(2);
-    // Логотип стоит вместо текста в заголовке карточки: название бренда не дублируется
-    const heading = within(cards[0]).getByRole('heading', { level: 3, name: 'Kohr' });
-    expect(within(heading).getByRole('img')).toHaveAttribute('src', '/images/logo-kohr.png');
+    expect(cards).toHaveLength(4);
+    const heading = within(cards[0]).getByRole('heading', { level: 3 });
+    expect(heading).toHaveTextContent('Kohr Heim');
+    expect(heading).toHaveTextContent('Kohr');
   });
 
   it('по нажатию на плитку раскрывается карточка модели, повторное нажатие — сворачивает', async () => {
