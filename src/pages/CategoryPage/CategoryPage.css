@@ -120,3 +120,24 @@
     flex: 1 1 100%;
   }
 }
+
+/* Категория с моделями/брендами: наверху — название и короткое описание, сразу под ними плитки */
+.category-top {
+  padding: clamp(20px, 1.5vw + 12px, 32px) 0 clamp(20px, 1vw + 14px, 28px);
+}
+.category-top h1 {
+  font-size: clamp(30px, 1.6vw + 20px, 48px);
+}
+.category-top-lead {
+  max-width: 64ch;
+  margin: 12px 0 0;
+  color: var(--ink-soft);
+}
+/* Подробности о категории — ниже, отдельным блоком под линейкой */
+.product-about {
+  padding-top: var(--section-space-small);
+  border-top: 1px solid var(--line);
+}
+.product-info h2 {
+  font-size: clamp(24px, 1vw + 18px, 34px);
+}
