@@ -281,7 +281,9 @@
   background: #fff;
 }
 /* Картинка целиком, без обрезки краёв — при любой форме рамки (4:3, квадрат на планшете) */
-.work-media img {
+.work-media img,
+.work-media video {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
