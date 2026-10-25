@@ -1,5 +1,6 @@
 // Модели и бренды категории: карточка на каждый вариант, логотип у брендов, заголовок по типу списка.
 import { render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { catalog } from '../../lib/content';
 import VariantList from './VariantList';
@@ -23,6 +24,22 @@ describe('VariantList', () => {
     // Логотип стоит вместо текста в заголовке карточки: название бренда не дублируется
     const heading = within(cards[0]).getByRole('heading', { level: 3, name: 'Kohr' });
     expect(within(heading).getByRole('img')).toHaveAttribute('src', '/images/logo-kohr.png');
+  });
+
+  it('по нажатию на плитку раскрывается карточка модели, повторное нажатие — сворачивает', async () => {
+    const user = userEvent.setup();
+    render(<VariantList category={findCategory('ventilation', 'units')} />);
+    const tile = screen.getByRole('button', { name: /Blizzard L3/ });
+    const panel = document.getElementById(tile.getAttribute('aria-controls'));
+    expect(tile).toHaveAttribute('aria-expanded', 'false');
+    expect(panel).not.toBeVisible();
+    await user.click(tile);
+    expect(tile).toHaveAttribute('aria-expanded', 'true');
+    expect(panel).toBeVisible();
+    expect(within(panel).getByText('Производительность')).toBeInTheDocument();
+    await user.click(within(panel).getByRole('button', { name: /Свернуть/ }));
+    expect(tile).toHaveAttribute('aria-expanded', 'false');
+    expect(panel).not.toBeVisible();
   });
 
   it('без вариантов ничего не выводит', () => {

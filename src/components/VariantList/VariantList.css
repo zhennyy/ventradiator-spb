@@ -92,8 +92,14 @@
   object-fit: contain;
   object-position: left center;
 }
-.variant-head h3 {
+.variant-head {
+  justify-content: space-between;
+}
+.variant-name {
+  margin: 0;
   font-size: clamp(18px, 0.4vw + 16px, 22px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 .variant-text {
   display: grid;
@@ -128,5 +134,153 @@
   .variant-body .specs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0 16px;
+  }
+}
+
+/* ——— Плитки моделей/брендов: фото и название; по нажатию раскрывается карточка ——— */
+.variant-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.variant-tile button {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font: inherit;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease);
+}
+.variant-tile-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--photo);
+  border-bottom: 1px solid var(--line);
+}
+.variant-tile-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.variant-tile-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+}
+.variant-tile h3 {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+.variant-tile .variant-logo {
+  height: 24px;
+  max-width: 130px;
+}
+.variant-tile-more {
+  margin-top: auto;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+}
+.variant-tile-more::after {
+  content: ' +';
+}
+.variant-tile.is-open button {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+.variant-tile.is-open .variant-tile-more::after {
+  content: ' −';
+}
+@media (hover: hover) {
+  .variant-tile button:hover {
+    border-color: var(--ink);
+  }
+  .variant-tile button:hover .variant-tile-media img {
+    transform: scale(1.03);
+  }
+}
+/* Раскрытая карточка — под плитками, мягко проявляется */
+.variant-panel {
+  margin-top: 16px;
+  scroll-margin: calc(var(--header-height) + var(--strip-height) + 16px);
+  animation: variant-panel-in 0.4s var(--menu-ease) both;
+}
+.variant-panel[hidden] {
+  display: none;
+}
+.variant-panel .variant {
+  border-color: var(--ink);
+}
+@keyframes variant-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+.variant-close {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+}
+.variant-close span {
+  font-size: 18px;
+  line-height: 1;
+}
+@media (hover: hover) {
+  .variant-close:hover {
+    border-color: var(--ink);
+  }
+}
+/* Телефон: плитки в два столбика */
+@media (max-width: 600px) {
+  .variant-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .variant-tile-body {
+    padding: 10px 12px 12px;
+    gap: 8px;
+  }
+  .variant-tile h3 {
+    font-size: 15px;
+  }
+  .variant-tile .variant-logo {
+    height: 18px;
+    max-width: 100px;
+  }
+  .variant-panel {
+    margin-top: 12px;
+  }
+  /* Фото уже есть на плитке — в раскрытой карточке на телефоне только текст */
+  .variant-panel .variant-media {
+    display: none;
   }
 }
