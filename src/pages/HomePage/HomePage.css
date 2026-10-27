@@ -263,7 +263,7 @@
     pointer-events: none;
   }
   .hero-copy-wrap {
-    padding-block: clamp(100px, 15vh, 160px) 0;
+    padding-block: clamp(48px, 9vh, 120px) 0;
   }
   .hero-copy {
     margin: 0;
