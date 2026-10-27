@@ -44,13 +44,14 @@
 .hero-copy::before {
   content: '';
   position: absolute;
-  inset: -18% -22% -18% -30%;
+  /* Подложка только под текстом: слева почти не выходит за край, чтобы штора не была засвеченной */
+  inset: -14% -16% -14% -6%;
   z-index: -1;
   background: radial-gradient(
     closest-side,
-    rgb(250 249 245 / 0.95),
-    rgb(250 249 245 / 0.85) 50%,
-    rgb(250 249 245 / 0.4) 80%,
+    rgb(250 249 245 / 0.72),
+    rgb(250 249 245 / 0.55) 50%,
+    rgb(250 249 245 / 0.2) 80%,
     rgb(250 249 245 / 0)
   );
   pointer-events: none;
@@ -64,7 +65,7 @@
 }
 .hero h1 {
   /* Спокойнее, чем раньше (было до 76px): заголовок не давит на схему */
-  font-size: clamp(32px, 2.2vw + 18px, 54px);
+  font-size: clamp(30px, 1.6vw + 18px, 44px);
   line-height: 1.02;
 }
 .hero-lead {
@@ -181,7 +182,8 @@
 
 /* Сразу за первым экраном — блок «Что мы предлагаем»: его линейка начинается там, где растворяется фото */
 .hero + .directions {
-  padding-top: clamp(8px, 1vw, 16px);
+  /* Линейка «Каталог» — с воздухом под растворяющимся фото */
+  padding-top: clamp(32px, 3vw, 56px);
 }
 @media (max-width: 767px) {
   .hero + .directions {

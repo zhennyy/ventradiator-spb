@@ -13,8 +13,8 @@ export default function HomeHero() {
           className="hero-photo"
           src={photo.src}
           alt={site.heroImage.alt}
-          width="1600"
-          height="1042"
+          width="2800"
+          height="1826"
           loading="eager"
           decoding="async"
         />
