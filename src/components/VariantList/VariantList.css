@@ -310,10 +310,6 @@
     width: 12px;
     height: 12px;
   }
-  /* Фото уже есть на плитке — в раскрытой карточке на телефоне только текст */
-  .variant-panel .variant-media {
-    display: none;
-  }
 }
 
 /* Заголовок над плитками — компактный, с числом моделей */
@@ -355,4 +351,43 @@
 }
 .variant-series {
   display: block;
+}
+
+/* Раскрытая карточка: фото и миниатюры дополнительных фото под ним */
+.variant-media-wrap {
+  align-self: start;
+  border-right: 1px solid var(--line);
+}
+.variant-media-wrap .variant-media {
+  border-right: 0;
+}
+.variant-thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  padding: 8px;
+  border-top: 1px solid var(--line);
+}
+.variant-thumbs button {
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--photo);
+  cursor: pointer;
+}
+.variant-thumbs button[aria-pressed='true'] {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+.variant-thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 600px) {
+  .variant-media-wrap {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
 }

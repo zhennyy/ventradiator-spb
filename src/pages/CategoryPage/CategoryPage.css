@@ -141,3 +141,27 @@
 .product-info h2 {
   font-size: clamp(24px, 1vw + 18px, 34px);
 }
+
+/* «Подробнее» без галереи: слева текст, справа характеристики */
+.product-about .product-grid {
+  display: block;
+}
+.product-about .product-info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+.product-about .product-info > * {
+  grid-column: 1;
+}
+.product-about .product-info > .specs {
+  grid-column: 2;
+  grid-row: 1 / span 4;
+  margin-top: 0;
+}
+@media (max-width: 900px) {
+  .product-about .product-info {
+    display: block;
+  }
+}

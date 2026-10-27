@@ -28,7 +28,8 @@ export default function CategoryPage({ section, category }) {
       {hasVariants && <VariantList category={category} />}
       <section className={`product${hasVariants ? ' product-about' : ''}`}>
         <div className="wrap product-grid">
-          <Gallery category={category} />
+          {/* С моделями фото уже на плитках и в карточках — общую галерею не повторяем */}
+          {!hasVariants && <Gallery category={category} />}
           <div className="product-info">
             <p className="eyebrow">{hasVariants ? 'Подробнее' : section.title}</p>
             {hasVariants ? <h2>{category.title}</h2> : <h1>{category.title}</h1>}

@@ -37,6 +37,7 @@ export function listImages() {
       for (const item of category.gallery || []) add(item.image, item.title);
       for (const variant of category.variants || []) {
         add(variant.image, variant.title);
+        for (const item of variant.gallery || []) add(item.image, item.title || variant.title);
         if (variant.logo) add(variant.logo, `Логотип ${variant.title}`);
       }
     }
