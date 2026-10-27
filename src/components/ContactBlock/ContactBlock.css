@@ -50,6 +50,13 @@
   color: var(--ink-faint);
   white-space: normal;
 }
+.contact-address {
+  display: grid;
+  gap: 8px;
+  margin: 24px 0 0;
+  font-size: 16px;
+  font-weight: 500;
+}
 .contact-hours {
   margin: 0;
   font-size: 15px;
