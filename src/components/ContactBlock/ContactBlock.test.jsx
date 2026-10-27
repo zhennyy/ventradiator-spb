@@ -43,7 +43,7 @@ describe('ContactBlock', () => {
     const button = screen.getByRole('button', { name: 'Скопировать почту: a@b.ru' });
     await userEvent.click(button);
     expect(writeText).toHaveBeenCalledWith('a@b.ru');
-    expect(await screen.findByText('Скопировано в буфер')).toBeInTheDocument();
+    expect(await within(button).findByText('Скопировано', { selector: 'small' })).toBeInTheDocument();
     expect(within(button).getByRole('status')).toHaveTextContent('Скопировано');
   });
 

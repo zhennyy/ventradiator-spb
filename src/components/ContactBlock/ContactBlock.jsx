@@ -87,7 +87,7 @@ function CopyChannel({ label, copy, what }) {
       <b>
         {label} <i className="contact-copy">{copied ? CHECK_ICON : COPY_ICON}</i>
       </b>
-      <small className={copied ? 'is-copied' : undefined}>{copied ? 'Скопировано в буфер' : copy}</small>
+      <small className={copied ? 'is-copied' : undefined}>{copied ? 'Скопировано' : copy}</small>
       <span className="visually-hidden" role="status">
         {copied ? 'Скопировано' : ''}
       </span>
