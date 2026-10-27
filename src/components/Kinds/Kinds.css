@@ -1,6 +1,7 @@
 /* Виды внутри категории: ровная сетка карточек — название, суть и серии брендов */
 .kinds {
-  padding-block: var(--section-space-small, 48px) 0;
+  /* Снизу — такой же воздух, как сверху: карточки не прилипают к следующему блоку */
+  padding-block: var(--section-space-small, 48px);
 }
 .kind-list {
   display: grid;
