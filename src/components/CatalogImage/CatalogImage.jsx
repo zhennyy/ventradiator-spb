@@ -11,11 +11,11 @@ export default function CatalogImage({
   const classes = [className, image.isPlaceholder ? 'is-placeholder' : ''].filter(Boolean).join(' ');
   return (
     <img
-      className={classes}
+      className={classes || undefined}
       src={image.src}
       srcSet={image.srcSet || undefined}
       sizes={image.srcSet ? sizes : undefined}
-      alt={alt || image.title}
+      alt={alt ?? image.title}
       width="1200"
       height="900"
       loading={eager ? 'eager' : 'lazy'}

@@ -29,12 +29,12 @@ function Office({ office }) {
       <Specs
         rows={[
           ...(hasContent(office.address) ? [['Адрес', office.address]] : []),
-          ...(site.email
+          ...(office.email
             ? [
                 [
                   'Почта',
-                  <a key="email" href={`mailto:${site.email}`}>
-                    {site.email}
+                  <a key="email" href={`mailto:${office.email}`}>
+                    {office.email}
                   </a>,
                 ],
               ]

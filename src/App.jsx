@@ -46,7 +46,7 @@ export default function App() {
   return (
     <Routes>
       {routablePages.flatMap((page) =>
-        pageUrls(page).map((url) => <Route key={url} path={url} element={<PageRoute page={page} />} />),
+        pageUrls(page).map((url) => <Route key={url} path={url} caseSensitive element={<PageRoute page={page} />} />),
       )}
       <Route path="*" element={<PageRoute page={NOT_FOUND_PAGE} />} />
     </Routes>

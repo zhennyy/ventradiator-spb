@@ -44,9 +44,6 @@
   padding: 0 18px;
   font-size: 14px;
 }
-.button-wide {
-  width: 100%;
-}
 .button:disabled {
   opacity: 0.6;
   cursor: progress;

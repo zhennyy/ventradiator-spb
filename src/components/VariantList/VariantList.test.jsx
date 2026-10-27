@@ -12,7 +12,7 @@ describe('VariantList', () => {
   it('установки Blizzard: L2, L3 и L5 под заголовком «Модели в линейке»', () => {
     render(<VariantList category={findCategory('ventilation', 'units')} />);
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Модели в линейке');
-    const titles = screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
+    const titles = [...document.querySelectorAll('.variant-tile-title')].map((title) => title.textContent);
     expect(titles).toEqual(['Blizzard L2', 'Blizzard L3', 'Blizzard L5 450', 'Blizzard L5 360']);
   });
 
@@ -24,7 +24,7 @@ describe('VariantList', () => {
     // Плитки-«папки» Velar и Kohr ведут на страницы со всеми моделями бренда
     expect(within(cards[0]).getByRole('link')).toHaveAttribute('href', '/radiators/velar.html');
     expect(within(cards[1]).getByRole('link')).toHaveAttribute('href', '/radiators/kohr.html');
-    const heading = within(cards[3]).getByRole('heading', { level: 3 });
+    const heading = cards[3].querySelector('.variant-tile-title');
     expect(heading).toHaveTextContent('Zehnder');
     expect(heading).toHaveTextContent('Charleston');
   });
@@ -43,6 +43,22 @@ describe('VariantList', () => {
     await user.click(within(panel).getByRole('button', { name: /Свернуть/ }));
     expect(tile).toHaveAttribute('aria-expanded', 'false');
     expect(panel).not.toBeVisible();
+    // Фокус вернулся на плитку, а не улетел в начало страницы
+    expect(tile).toHaveFocus();
+  });
+
+  it('модели без группы не пропадают, если у других моделей группа есть', () => {
+    const category = {
+      slug: 'mix',
+      title: 'Смешанная',
+      variants: [
+        { title: 'Первая', image: 'x.jpg', group: 'Группа', text: ['А'] },
+        { title: 'Без группы', image: 'y.jpg', text: ['Б'] },
+      ],
+    };
+    render(<VariantList category={category} />);
+    const titles = [...document.querySelectorAll('.variant-tile-title')].map((title) => title.textContent);
+    expect(titles).toEqual(['Первая', 'Без группы']);
   });
 
   it('без вариантов ничего не выводит', () => {

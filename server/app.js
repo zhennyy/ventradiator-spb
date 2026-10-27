@@ -1,4 +1,5 @@
 // Express-приложение: POST /api/request (заявка → Telegram) и раздача собранного сайта из dist/.
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
@@ -62,7 +63,22 @@ export function createApp({
 
   // Скрипты и стили сборки — с хешем в имени, их можно кешировать надолго; страницы — на час.
   app.use('/assets', express.static(path.join(distDir, 'assets'), { immutable: true, maxAge: '1y' }));
-  app.use(express.static(distDir, { extensions: ['html'], maxAge: '1h' }));
+  // Адрес без .html: сначала ищем <адрес>.html. Иначе /ventilation сначала увидел бы папку dist/ventilation/
+  // (там страницы категорий), перенаправил на /ventilation/ и отдал 404.
+  app.use((req, res, next) => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+    let clean;
+    try {
+      clean = path.posix.normalize(decodeURIComponent(req.path)).replace(/\/+$/, '');
+    } catch {
+      return next(); // битый %-код в адресе — пусть дальше отвечает 404
+    }
+    if (!clean || path.posix.extname(clean)) return next();
+    const file = path.join(distDir, `${clean}.html`);
+    if (!file.startsWith(distDir + path.sep)) return next();
+    return fs.existsSync(file) ? res.set('Cache-Control', 'public, max-age=3600').sendFile(file) : next();
+  });
+  app.use(express.static(distDir, { extensions: ['html'], maxAge: '1h', redirect: false }));
   app.use((req, res) => res.status(404).sendFile(path.join(distDir, '404.html')));
 
   app.locals.stopRateLimiter = limiter.stop;

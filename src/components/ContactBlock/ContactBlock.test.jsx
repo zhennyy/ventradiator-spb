@@ -44,7 +44,7 @@ describe('ContactBlock', () => {
     await userEvent.click(button);
     expect(writeText).toHaveBeenCalledWith('a@b.ru');
     expect(await within(button).findByText('Скопировано', { selector: 'small' })).toBeInTheDocument();
-    expect(within(button).getByRole('status')).toHaveTextContent('Скопировано');
+    expect(screen.getByRole('status')).toHaveTextContent('Скопировано: a@b.ru');
   });
 
   it('номер MAX тоже копируется по нажатию', async () => {

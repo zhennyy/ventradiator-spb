@@ -86,11 +86,16 @@ describe('пререндер', () => {
     expect(broken).toEqual([]);
   });
 
-  it('у всех картинок есть alt, заглушки созданы и описаны в images/README.md', () => {
+  it('у всех картинок есть alt (пустой — только у декоративных рядом с подписью), заглушки описаны в images/README.md', () => {
     for (const publicPath of result.pages) {
-      for (const tag of readPage(publicPath).match(/<img [^>]*>/g) || []) {
-        expect(tag, `${publicPath}: ${tag}`).toMatch(/alt="[^"]+"/);
+      const html = readPage(publicPath);
+      for (const tag of html.match(/<img [^>]*>/g) || []) {
+        expect(tag, `${publicPath}: ${tag}`).toMatch(/alt="[^"]*"/);
       }
+      // Фото, у которых alt пустой, стоят в плитках и меню рядом с текстом — их не должно быть больше, чем таких мест
+      const decorative = (html.match(/<img [^>]*alt=""[^>]*>/g) || []).length;
+      const captioned = (html.match(/class="(?:variant-tile-media|dropdown-thumb)/g) || []).length;
+      expect(decorative, publicPath).toBeLessThanOrEqual(captioned);
     }
     const readme = fs.readFileSync(path.join(ROOT, 'images', 'README.md'), 'utf8');
     expect(result.images.length).toBeGreaterThan(0);
@@ -111,7 +116,7 @@ describe('пререндер', () => {
     const productPage = `/${catalog.sections[0].slug}/${catalog.sections[0].categories[0].slug}.html`;
     for (const publicPath of ['/index.html', productPage, '/contacts.html']) {
       const html = readPage(publicPath);
-      expect(html, publicPath).toMatch(/<section class="request" id="request"/);
+      expect(html, publicPath).toMatch(/<section class="contact-section" id="request"/);
       expect(html, publicPath).toContain('class="contact-channels"');
       expect(html, publicPath).not.toContain('<form');
     }

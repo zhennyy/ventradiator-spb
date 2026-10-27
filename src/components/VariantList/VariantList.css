@@ -1,23 +1,11 @@
-/* Модели / бренды категории: горизонтальные карточки друг под другом с воздухом между ними —
-   фото слева, справа логотип, описание и характеристики плитками «подпись над значением».
-   Так одна карточка не растягивается на всю ширину огромным фото, а несколько — легко сравнить.
-   На телефоне фото сверху, невысокое. */
+/* Модели / бренды категории: сетка плиток (фото, название, короткое описание).
+   Нажатие раскрывает под рядом карточку с фото, описанием и характеристиками;
+   плитка-«папка» (href) ведёт на отдельную страницу коллекции. */
 .variants {
   padding: 8px 0 var(--section-space-small);
 }
-.variants .section-head {
-  margin-bottom: clamp(20px, 1vw + 14px, 32px);
-}
 .variants h2 {
   font-size: clamp(24px, 1vw + 18px, 32px);
-}
-.variant-list {
-  display: grid;
-  /* Карточки брендов не «налезают» друг на друга — между ними заметный воздух */
-  gap: clamp(20px, 1.5vw + 12px, 32px);
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }
 .variant {
   display: grid;
@@ -183,7 +171,12 @@
   gap: 10px;
   padding: 14px 16px 16px;
 }
-.variant-tile h3 {
+.variant-tile-title {
+  display: block;
+  color: var(--ink);
+  overflow-wrap: break-word;
+  hyphens: auto;
+  text-wrap: balance;
   font-size: 17px;
   font-weight: 600;
   line-height: 1.25;
@@ -298,7 +291,7 @@
     padding: 10px 12px 12px;
     gap: 8px;
   }
-  .variant-tile h3 {
+  .variant-tile-title {
     font-size: 15px;
   }
   .variant-tile .variant-logo {

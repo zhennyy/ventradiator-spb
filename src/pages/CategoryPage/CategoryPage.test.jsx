@@ -1,4 +1,4 @@
-// Страница категории: описание, характеристики, форма и «Ещё в разделе».
+// Страница категории: описание, характеристики, контакты и «Ещё в разделе».
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { catalog } from '../../lib/content';

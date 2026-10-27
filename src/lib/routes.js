@@ -15,7 +15,7 @@ function catalogPages() {
       sectionSlug: section.slug,
       title: section.seoTitle,
       description: section.description,
-      hasForm: true,
+      hasContacts: true,
       breadcrumbs: [sectionCrumb],
     });
     for (const category of [...section.categories, ...(section.nestedCategories || [])]) {
@@ -30,7 +30,7 @@ function catalogPages() {
         title: `${category.title} — ${section.seoNoun} в Санкт-Петербурге`,
         description: withoutStubs(category.summary),
         image: category.image,
-        hasForm: true,
+        hasContacts: true,
         breadcrumbs: [sectionCrumb, ...parentCrumbs, { href: categoryPath(section, category), label: category.title }],
       });
     }
@@ -57,7 +57,7 @@ export const pages = [
     title: 'Вентиляция, отопление и чистый воздух в доме — Санкт-Петербург',
     description:
       'Вентиляция с рекуперацией тепла, радиаторы и конвекторы для квартир и домов. Подбор, расчёт и поставка по Петербургу и всей России.',
-    hasForm: true,
+    hasContacts: true,
     jsonLd: true,
   },
   ...catalogPages(),
@@ -72,9 +72,9 @@ export const pages = [
     '/contacts.html',
     'contacts',
     `Контакты — ${SUFFIX}`,
-    'Контакты представительства в Санкт-Петербурге и офиса для России, СНГ и Прибалтики. Форма заявки на подбор и расчёт.',
+    'Контакты представительства в Санкт-Петербурге и офиса для России, СНГ и Прибалтики. Телефон, почта, Telegram и MAX для подбора и расчёта.',
     'Контакты',
-    { hasForm: true, jsonLd: true },
+    { hasContacts: true, jsonLd: true },
   ),
   infoPage(
     '/privacy.html',

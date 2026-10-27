@@ -57,6 +57,8 @@ function SectionDropdown({ section, currentPath, isOpen, onOpenChange }) {
 
   function handleKeyDown(event) {
     if (event.key === 'Escape' && isOpen) {
+      // Закрываем только подменю: без stopPropagation Esc дошёл бы до шапки и закрыл всё мобильное меню
+      event.stopPropagation();
       onOpenChange(false);
       toggleRef.current.focus();
       return;
