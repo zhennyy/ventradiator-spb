@@ -112,8 +112,8 @@
 | `rad-velar-q40-interior.jpg` | Дизайн-радиатор Velar Q40 (сайт velarwh.ru) |
 | `rad-velar-q60.jpg` | Дизайн-радиатор Velar Q60 (сайт velarwh.ru) |
 | `rad-velar-q80.jpg` | Дизайн-радиатор Velar Q80 (сайт velarwh.ru) |
-| `rad-velar-r32.jpg` | Velar R32 (материалы Velar для партнёров, Яндекс Диск клиента), фон — студийная подложка |
-| `rad-velar-r32-interior.jpg` | Дизайн-радиатор Velar R32 (сайт velarwh.ru) |
+| `rad-velar-r32.jpg` | Velar R32, белый, горизонтальный (фото от клиента) |
+| `rad-velar-r32-interior.jpg` | Velar R32 зелёный в детской (фото от клиента) |
 | `rad-velar-r42.jpg` | Velar R42 в интерьере (материалы Velar для партнёров, Яндекс Диск клиента) |
 | `rad-velar-r89.jpg` | Velar R89 (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
 | `rad-velar-s.jpg` | Velar S (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
