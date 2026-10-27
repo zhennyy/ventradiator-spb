@@ -1,4 +1,4 @@
-/* Базовая типографика и общие текстовые классы (.eyebrow, .mono, .section-lead, .prose, .table-note) */
+/* Базовая типографика и общие текстовые классы (.eyebrow, .mono, .section-lead, .prose) */
 *,
 *::before,
 *::after {
@@ -103,11 +103,6 @@ main:focus {
 .prose {
   font-size: clamp(16px, 0.3vw + 15px, 18px);
   max-width: 68ch;
-}
-.table-note {
-  margin-top: 16px;
-  font-size: 13px;
-  color: var(--ink-soft);
 }
 
 /* Появление блоков при прокрутке (src/lib/reveal.js): класс .reveal ставит скрипт только тем блокам,

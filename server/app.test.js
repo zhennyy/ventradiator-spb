@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { createApp } from './app.js';
+import { SECURITY_HEADERS, createApp } from './app.js';
 
 const VALID = {
   name: 'Анна',
@@ -187,6 +187,22 @@ describe('раздача собранного сайта', () => {
       expect(asset.headers.get('cache-control')).toBe('public, max-age=31536000, immutable');
       const page = await fetch(`${server.base}/ventilation/l2.html`);
       expect(page.headers.get('cache-control')).toBe('public, max-age=3600');
+    } finally {
+      await server.close();
+      fs.rmSync(distDir, { recursive: true, force: true });
+    }
+  });
+
+  it('добавляет заголовки безопасности к страницам и к API', async () => {
+    const distDir = createDist();
+    const server = await startServer({ env: ENV, distDir, logger: createLogger() });
+    try {
+      for (const url of ['/', '/api/unknown']) {
+        const response = await fetch(server.base + url);
+        for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+          expect(response.headers.get(name), `${url} ${name}`).toBe(value);
+        }
+      }
     } finally {
       await server.close();
       fs.rmSync(distDir, { recursive: true, force: true });

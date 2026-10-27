@@ -1,9 +1,11 @@
-/* Главная: первый экран — интерьер на всю ширину с текстом поверх, затем строка фактов между двумя линейками */
+/* Главная, первый экран: фото гостиной на всю ширину, текст и кнопки поверх.
+   Ноутбук (от 1280px) — текст слева от дивана на мягкой светлой подложке.
+   Планшет и телефон (до 1279px) — текст на светлой стене посередине, слева тонкая линия. */
+
 .hero {
   position: relative;
   overflow: hidden;
 }
-/* Фото интерьера на всю ширину; слева мягкое «бумажное» затемнение, чтобы текст читался */
 .hero-stage {
   position: relative;
   display: flex;
@@ -21,30 +23,25 @@
   object-fit: cover;
   /* Кадр опущен вниз — диван виден целиком, потолка меньше */
   object-position: 60% 78%;
-  /* Низ фото растворяется в прозрачность — под ним тот же фон страницы, поэтому шва не видно */
+  /* Низ фото растворяется в фон страницы — шва не видно */
   -webkit-mask-image: linear-gradient(to bottom, #000 80%, rgb(0 0 0 / 0.6) 92%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 80%, rgb(0 0 0 / 0.6) 92%, transparent 100%);
 }
 .hero-copy-wrap {
+  display: flex;
   width: 100%;
   padding-block: clamp(48px, 5vw + 24px, 96px);
 }
-.hero-copy-wrap {
-  display: flex;
-}
-/* Текст ближе к центру; фото вокруг видно целиком */
 .hero-copy {
+  position: relative;
   max-width: 760px;
-  /* Ближе к центру: на широком экране текст отступает от края заметнее */
   /* Левее дивана и столика: правый край текста не заходит на мебель на фото */
   margin-left: clamp(0px, 48vw - 640px - max(0px, (100vw - 1440px) / 2), 360px);
-  position: relative;
 }
-/* Без рамки: за текстом — мягкое светлое «облако» без краёв, чтобы текст читался, а фото было видно */
+/* Мягкая светлая подложка только под текстом — без рамки; слева почти не выходит, чтобы штора не засвечивалась */
 .hero-copy::before {
   content: '';
   position: absolute;
-  /* Подложка только под текстом: слева почти не выходит за край, чтобы штора не была засвеченной */
   inset: -14% -16% -14% -6%;
   z-index: -1;
   background: radial-gradient(
@@ -56,47 +53,26 @@
   );
   pointer-events: none;
 }
-/* Заголовок без переносов по слогам */
+/* Заголовок в две строки, без переносов по слогам */
 .hero h1 {
-  /* Две строки: «Вентиляция, отопление / и чистый воздух в доме» — фраза растянута вправо */
   max-width: 12.5em;
-  hyphens: manual;
-  text-wrap: wrap;
-}
-.hero h1 {
-  /* Спокойнее, чем раньше (было до 76px): заголовок не давит на схему */
   font-size: clamp(30px, 1.6vw + 18px, 44px);
   line-height: 1.02;
+  hyphens: manual;
+  text-wrap: wrap;
 }
 .hero-lead {
   max-width: 520px;
   margin: clamp(18px, 1vw + 12px, 24px) 0 clamp(24px, 1vw + 18px, 32px);
   font-size: clamp(16px, 0.2vw + 15px, 18px);
-  line-height: 1.55;
-  /* Темнее обычного серого — на светлой шторе и фото читается уверенно */
-  color: #33373b;
   font-weight: 450;
+  line-height: 1.55;
+  /* Темнее обычного серого — на светлой шторе читается уверенно */
+  color: #33373b;
 }
 
-/* Планшет */
-@media (max-width: 1024px) {
-  .hero-lead {
-    max-width: 600px;
-  }
-}
-@media (min-width: 601px) and (max-width: 1024px) {
-  .hero-actions .button {
-    min-width: 200px;
-  }
-}
-@media (max-width: 600px) {
-  .hero h1 {
-    max-width: none;
-  }
-}
-
-/* Первый экран при загрузке: строки текста и кнопки проявляются лесенкой,
-   фото стоит неподвижно — без рывков при загрузке. Только CSS — работает и до гидратации. */
+/* Появление при загрузке: строки и кнопки проявляются лесенкой, фото неподвижно.
+   Только CSS — работает и до гидратации. */
 .hero-copy > * {
   animation: hero-rise 0.9s var(--menu-ease) both;
 }
@@ -109,137 +85,25 @@
 .hero-copy > :nth-child(4) {
   animation-delay: 240ms;
 }
-/* Только мягкое проявление, без сдвигов — ничего не «прыгает» при загрузке */
 @keyframes hero-rise {
   from {
     opacity: 0;
   }
 }
 
-/* Телефон и узкий планшет: текст поверх фото сверху — на светлой стене и потолке он читается,
-   а внизу кадра виден диван и окно. Верх фото мягко «высветлен» под текст */
-@media (max-width: 767px) {
-  .hero-stage {
-    align-items: flex-start;
-    /* Высота по экрану: всё помещается в первый экран */
-    min-height: max(500px, min(100vw + 140px, 100svh - 150px));
-  }
-  .hero-photo {
-    object-position: 66% 100%;
-    /* Низ фото растворяется в фон страницы — без шва */
-    -webkit-mask-image: linear-gradient(to bottom, #000 85%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 85%, transparent 100%);
-  }
-  .hero-stage::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(
-      to bottom,
-      rgb(242 240 234 / 0.9) 0%,
-      rgb(242 240 234 / 0.82) 34%,
-      rgb(242 240 234 / 0.4) 50%,
-      rgb(242 240 234 / 0) 62%
-    );
-    pointer-events: none;
-  }
-  .hero-copy-wrap {
-    padding-block: 28px 24px;
-  }
-  .hero-copy {
-    max-width: 560px;
-    margin: 0;
-  }
-  .hero-copy::before {
-    display: none;
-  }
-  .hero h1 {
-    max-width: 14em;
-    font-size: clamp(28px, 6.6vw, 38px);
-    line-height: 1.06;
-  }
-  .hero-lead {
-    margin: 12px 0 18px;
-    font-size: 15px;
-    line-height: 1.5;
-  }
-  .hero-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  .hero-actions .button {
-    min-width: 0;
-    min-height: 48px;
-    padding-inline: 10px;
-    font-size: 14px;
-  }
-}
-
-/* Мелкая подпись над заголовком поверх фото — темнее, чтобы не терялась на окне */
-.hero .eyebrow {
-  color: var(--ink);
-}
-
-/* Сразу за первым экраном — блок «Что мы предлагаем»: его линейка начинается там, где растворяется фото */
+/* Сразу за первым экраном — блок «Что мы предлагаем»: линейка «Каталог» с воздухом под фото */
 .hero + .directions {
-  /* Линейка «Каталог» — с воздухом под растворяющимся фото */
   padding-top: clamp(32px, 3vw, 56px);
 }
-@media (max-width: 767px) {
-  .hero + .directions {
-    padding-top: var(--section-space-small);
-  }
-}
 
-/* Планшет и узкий ноутбук: текст выше середины — столик и диван внизу кадра остаются открытыми */
-@media (min-width: 768px) and (max-width: 1279px) {
-  .hero-stage {
-    align-items: flex-start;
-  }
-  .hero-copy-wrap {
-    padding-block: clamp(32px, 6vh, 64px) 0;
-  }
-}
-
-/* Телефон: текст и кнопки опущены к дивану — кнопки чуть выше его спинки. Отступ считается от высоты первого экрана. */
-@media (max-width: 600px) {
-  .hero-stage {
-    --hero-h: max(500px, min(100vw + 140px, 100svh - 150px));
-    min-height: var(--hero-h);
-  }
-  .hero-copy-wrap {
-    /* Спинка дивана — примерно на 56 % высоты кадра; блок текста (~210px) опускаем так,
-       чтобы кнопки заканчивались чуть выше спинки дивана */
-    padding-top: max(20px, calc(var(--hero-h) * 0.56 - 252px));
-  }
-  .hero-stage::after {
-    background: linear-gradient(
-      to bottom,
-      rgb(242 240 234 / 0.25) 0%,
-      rgb(242 240 234 / 0.85) 18%,
-      rgb(242 240 234 / 0.85) 46%,
-      rgb(242 240 234 / 0.35) 56%,
-      rgb(242 240 234 / 0) 66%
-    );
-  }
-}
-
-/* ——— Планшет и телефон (до 1279px): фото на весь первый экран, текст на светлой стене посередине,
-   слева тонкая линия; диван и столик внизу открыты. Перекрывает правила выше. ——— */
+/* ——— Планшет и телефон ——— */
 @media (max-width: 1279px) {
   .hero-stage {
-    display: flex;
     align-items: flex-start;
+    /* Высота по экрану: текст, кнопки и диван помещаются в первый экран */
     min-height: max(560px, min(100vw + 260px, 100svh - 110px));
   }
   .hero-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    aspect-ratio: auto;
     object-position: 72% 100%;
     -webkit-mask-image: none;
     mask-image: none;
@@ -266,8 +130,8 @@
     padding-block: clamp(48px, 9vh, 120px) 0;
   }
   .hero-copy {
-    margin: 0;
     max-width: 640px;
+    margin: 0;
     padding-left: 18px;
     border-left: 2px solid var(--ink);
   }
@@ -292,10 +156,24 @@
     padding-inline: 24px;
   }
 }
+@media (max-width: 767px) {
+  .hero-lead {
+    line-height: 1.5;
+  }
+  .hero-actions .button {
+    min-height: 48px;
+    font-size: 14px;
+  }
+  .hero + .directions {
+    padding-top: var(--section-space-small);
+  }
+}
+/* Телефон: две кнопки поровну в одну строку */
 @media (max-width: 600px) {
   .hero-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
   .hero-actions .button {
     padding-inline: 8px;

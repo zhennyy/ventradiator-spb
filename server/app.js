@@ -8,6 +8,14 @@ import { validateRequest } from './validate.js';
 
 const DEFAULT_DIST = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 
+// Базовые заголовки безопасности для всех ответов (те же — в public/_headers для Netlify)
+export const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'SAMEORIGIN',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+};
+
 export function createApp({
   env = process.env,
   distDir = DEFAULT_DIST,
@@ -19,6 +27,10 @@ export function createApp({
   const limiter = createRateLimiter(rateLimit);
   app.disable('x-powered-by');
   if (env.TRUST_PROXY) app.set('trust proxy', 1);
+  app.use((req, res, next) => {
+    res.set(SECURITY_HEADERS);
+    next();
+  });
 
   app.post('/api/request', limiter.middleware, express.json({ limit: '10kb' }), async (req, res) => {
     const result = validateRequest(req.body);
