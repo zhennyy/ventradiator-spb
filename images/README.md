@@ -86,6 +86,23 @@
 | `rad-royal-panel.jpg` | Панельные радиаторы Royal Thermo COMPACT |
 | `rad-gekon-panel.jpg` | Панельный радиатор Gekon |
 | `service-projects-video-poster.jpg` | Первый кадр ролика «Как работает вентиляция» (Blizzard), дом целиком — обложка видео в «Услугах»; само видео — `public/video/how-work.mp4` |
+| `rad-velar-p30.jpg` | Дизайн-радиатор Velar P30 (сайт velarwh.ru) |
+| `rad-velar-p60.jpg` | Дизайн-радиатор Velar P60 (сайт velarwh.ru) |
+| `rad-velar-q40.jpg` | Дизайн-радиатор Velar Q40 (сайт velarwh.ru) |
+| `rad-velar-q60.jpg` | Дизайн-радиатор Velar Q60 (сайт velarwh.ru) |
+| `rad-velar-q80.jpg` | Дизайн-радиатор Velar Q80 (сайт velarwh.ru) |
+| `rad-velar-r32.jpg` | Дизайн-радиатор Velar R32 (сайт velarwh.ru) |
+| `rad-velar-r42.jpg` | Дизайн-радиатор Velar R42 (сайт velarwh.ru) |
+| `rad-velar-r89.jpg` | Дизайн-радиатор Velar R89 (сайт velarwh.ru) |
+| `rad-velar-s.jpg` | Дизайн-радиатор Velar S (сайт velarwh.ru) |
+| `rad-velar-sp.jpg` | Дизайн-радиатор Velar SP (сайт velarwh.ru) |
+| `rad-velar-rt.jpg` | Дизайн-радиатор Velar R T1/T2 (сайт velarwh.ru) |
+| `rad-velar-qt.jpg` | Дизайн-радиатор Velar Q T1/T2 (сайт velarwh.ru) |
+| `rad-velar-q500.jpg` | Дизайн-радиатор Velar Q 500 (сайт velarwh.ru) |
+| `rad-velar-p200.jpg` | Дизайн-радиатор Velar P 200 (сайт velarwh.ru) |
+| `rad-velar-p300.jpg` | Дизайн-радиатор Velar P 300 (сайт velarwh.ru) |
+| `rad-zehnder-charleston.jpg` | Трубчатый радиатор Zehnder Charleston (фото от клиента) |
+| `rad-rifar-tubog.jpg` | Rifar Tubog (фото от клиента) |
 | `rad-rt-biliner.jpg` | Royal Thermo BiLiner (сайт royal-thermo.ru) |
 | `rad-rt-revolution.jpg` | Royal Thermo Revolution Bimetall (royal-thermo.ru) |
 | `rad-rt-pianoforte.jpg` | Royal Thermo PianoForte (royal-thermo.ru) |

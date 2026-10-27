@@ -26,6 +26,9 @@ function CardMeta({ category }) {
       </span>
     );
   }
+  // Серии брендов — показываем бренды, а не все серии подряд
+  const brands = [...new Set(variants.map((variant) => variant.brand).filter(Boolean))];
+  if (brands.length) return <span className="card-meta">{brands.join(' · ')}</span>;
   if (variants.length) return <span className="card-meta">{variants.map((variant) => variant.title).join(' · ')}</span>;
   return null;
 }

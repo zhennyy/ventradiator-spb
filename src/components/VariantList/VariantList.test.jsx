@@ -20,7 +20,7 @@ describe('VariantList', () => {
     render(<VariantList category={findCategory('radiators', 'tubular')} />);
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Серии');
     const cards = screen.getAllByRole('listitem');
-    expect(cards).toHaveLength(4);
+    expect(cards).toHaveLength(6);
     const heading = within(cards[0]).getByRole('heading', { level: 3 });
     expect(heading).toHaveTextContent('Kohr Heim');
     expect(heading).toHaveTextContent('Kohr');
