@@ -1,7 +1,7 @@
 // Страница категории: фото, описание, характеристики, модели или бренды (если есть), форма заявки
 // и другие категории раздела. Цены не публикуются — «Запросить цену» ведёт к форме.
 import ButtonLink from '../../components/Button/Button';
-import RequestForm from '../../components/RequestForm/RequestForm';
+import ContactBlock from '../../components/ContactBlock/ContactBlock';
 import Specs from '../../components/Specs/Specs';
 import StubText from '../../components/StubText/StubText';
 import VariantList from '../../components/VariantList/VariantList';
@@ -48,7 +48,7 @@ export default function CategoryPage({ section, category }) {
         </div>
       </section>
       <Kinds category={category} />
-      <RequestForm product={category.title} heading={`Запросить цену: ${category.title}`} />
+      <ContactBlock product={category.title} heading={`Запросить цену: ${category.title}`} />
       <Siblings section={section} category={category} />
     </>
   );

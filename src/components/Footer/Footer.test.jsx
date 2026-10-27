@@ -21,10 +21,10 @@ describe('Footer', () => {
     expect(screen.getByRole('link', { name: 'Согласие на обработку данных' })).toHaveAttribute('href', '/consent.html');
   });
 
-  it('без телефона и почты (ещё не известны) и подсвечивает заглушку реквизитов', () => {
+  it('телефон и почта — ссылками, заглушка реквизитов подсвечена', () => {
     const { container } = render(<Footer />);
-    expect(container.querySelector('a[href^="tel:"]')).toBeNull();
-    expect(container.querySelector('a[href^="mailto:"]')).toBeNull();
+    expect(container.querySelector('a[href^="tel:"]')).toHaveAttribute('href', 'tel:+78120000000');
+    expect(container.querySelector('a[href^="mailto:"]')).toHaveAttribute('href', 'mailto:info@example.ru');
     expect([...container.querySelectorAll('.stub')].map((stub) => stub.textContent)).toContain(
       '[РЕКВИЗИТЫ ПРЕДСТАВИТЕЛЬСТВА]',
     );

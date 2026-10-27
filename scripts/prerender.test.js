@@ -107,14 +107,13 @@ describe('пререндер', () => {
     }
   });
 
-  it('форма заявки: согласие не отмечено, ведёт на /api/request, есть на главной, товарах и в контактах', () => {
+  it('блок контактов (#request) есть на главной, товарах и в контактах', () => {
     const productPage = `/${catalog.sections[0].slug}/${catalog.sections[0].categories[0].slug}.html`;
     for (const publicPath of ['/index.html', productPage, '/contacts.html']) {
       const html = readPage(publicPath);
-      expect(html, publicPath).toMatch(
-        /<form class="request-form" action="\/api\/request" method="post" novalidate=""/,
-      );
-      expect(html.match(/<input id="request-consent"[^>]*>/)[0], publicPath).not.toMatch(/checked/);
+      expect(html, publicPath).toMatch(/<section class="request" id="request"/);
+      expect(html, publicPath).toContain('class="contact-channels"');
+      expect(html, publicPath).not.toContain('<form');
     }
     expect(readPage(productPage)).toMatch(/href="#request">Запросить цену</);
   });

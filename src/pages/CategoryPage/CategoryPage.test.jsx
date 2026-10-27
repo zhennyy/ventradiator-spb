@@ -17,15 +17,12 @@ describe('CategoryPage', () => {
     expect(screen.queryByText(/артикул/i)).toBeNull();
   });
 
-  it('«Запросить цену» ведёт к форме, а в форме указан товар', () => {
+  it('«Запросить цену» ведёт к контактам с названием товара', () => {
     render(<CategoryPage section={section} category={category} />);
     const product = screen.getByRole('link', { name: 'Запросить цену' });
     expect(product).toHaveAttribute('href', '#request');
-    expect(document.getElementById('request')).toContainElement(
-      screen.getByRole('button', { name: 'Отправить заявку' }),
-    );
+    expect(document.getElementById('request')).toContainElement(screen.getByText('Звоните, мы на связи'));
     expect(screen.getByRole('heading', { name: 'Запросить цену: Воздуховоды R2' })).toBeInTheDocument();
-    expect(document.querySelector('input[name="product"]')).toHaveValue('Воздуховоды R2');
   });
 
   it('категория без моделей: большое фото и миниатюры, нажатие меняет фото', () => {

@@ -2,7 +2,7 @@
 // У «Вентиляции» под каталогом — схема «Как работает рекуперация».
 import PageHero from '../../components/PageHero/PageHero';
 import ProductCard from '../../components/ProductCard/ProductCard';
-import RequestForm from '../../components/RequestForm/RequestForm';
+import ContactBlock from '../../components/ContactBlock/ContactBlock';
 import StubText from '../../components/StubText/StubText';
 import { categoryPath } from '../../lib/content';
 import { countCategories } from '../../lib/text';
@@ -76,7 +76,7 @@ export default function SectionPage({ section }) {
         </PageHero>
         {section.works && <ServiceWorks works={section.works} />}
         {section.paint && <PaintColors paint={section.paint} />}
-        <RequestForm product={section.title} heading={`Запрос: ${section.title.toLowerCase()}`} />
+        <ContactBlock product={section.title} heading={`Запрос: ${section.title.toLowerCase()}`} />
       </>
     );
   }
