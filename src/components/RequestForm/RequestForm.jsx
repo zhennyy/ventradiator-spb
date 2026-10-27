@@ -116,7 +116,7 @@ export default function RequestForm({ product = '', heading = 'Запросит�
               name="comment"
               rows={3}
               maxLength={1000}
-              placeholder="Например: дом 180 м², нужна вентиляция и центральный пылесос"
+              placeholder="Например: дом 180 м², нужны вентиляция и радиаторы"
             ></textarea>
           </div>
           <div className="consent">
