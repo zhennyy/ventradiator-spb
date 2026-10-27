@@ -1,6 +1,7 @@
 // Мягкое появление блоков при прокрутке. Работает только с JS и без «уменьшения движения»:
 // в готовом HTML всё видно сразу, класс .reveal-ready ставится на <html> уже в браузере.
 // Блоки, которые уже на экране, показываются сразу; остальные — когда доезжают до экрана, лесенкой.
+// На телефонах и планшетах выключено: при прокрутке пальцем «выезжающие» блоки выглядят как рывки.
 const TARGETS = [
   'main > section .section-head',
   '.category-grid > li',
@@ -14,7 +15,9 @@ const TARGETS = [
 
 export function startReveal(root = document) {
   if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return () => {};
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return () => {};
+  if (window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 1024px), (pointer: coarse)').matches) {
+    return () => {};
+  }
 
   const elements = [...root.querySelectorAll(TARGETS)];
   const fold = window.innerHeight;

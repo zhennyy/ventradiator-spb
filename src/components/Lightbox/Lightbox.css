@@ -1,0 +1,111 @@
+/* Просмотр фото крупно: тёмный фон на весь экран, фото целиком по центру, подпись под ним */
+.lightbox {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #f4f2ec;
+}
+.lightbox::backdrop {
+  background: rgb(14 15 16 / 0.92);
+}
+.lightbox[open] {
+  display: grid;
+  place-items: center;
+  animation: lightbox-in 0.25s var(--ease) both;
+}
+.lightbox-figure {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  width: 100%;
+  margin: 0;
+  padding: 64px clamp(16px, 6vw, 96px) 24px;
+}
+.lightbox-figure img {
+  max-width: 100%;
+  max-height: calc(100dvh - 160px);
+  object-fit: contain;
+  background: var(--photo);
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+}
+.lightbox-figure figcaption {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  max-width: 60ch;
+  font-size: 14px;
+  text-align: center;
+  color: rgb(244 242 236 / 0.85);
+}
+.lightbox-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: rgb(244 242 236 / 0.6);
+  white-space: nowrap;
+}
+.lightbox-close,
+.lightbox-arrow {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  font-size: 30px;
+  line-height: 1;
+  color: #f4f2ec;
+  background: rgb(255 255 255 / 0.08);
+  border: 1px solid rgb(255 255 255 / 0.2);
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+.lightbox-close:hover,
+.lightbox-arrow:hover {
+  background: rgb(255 255 255 / 0.18);
+}
+.lightbox-close {
+  top: max(12px, env(safe-area-inset-top));
+  right: 12px;
+}
+.lightbox-arrow {
+  top: 50%;
+  translate: 0 -50%;
+}
+.lightbox-arrow.is-prev {
+  left: 12px;
+}
+.lightbox-arrow.is-next {
+  right: 12px;
+}
+/* Телефон: стрелки внизу, чтобы не закрывали фото; листать удобнее свайпом */
+@media (max-width: 600px) {
+  .lightbox-figure {
+    padding-inline: 0;
+    padding-bottom: 88px;
+  }
+  .lightbox-arrow {
+    top: auto;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    translate: none;
+  }
+  .lightbox-arrow.is-prev {
+    left: calc(50% - 60px);
+  }
+  .lightbox-arrow.is-next {
+    right: calc(50% - 60px);
+  }
+  .lightbox-figure figcaption {
+    padding-inline: 16px;
+  }
+}
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+  }
+}

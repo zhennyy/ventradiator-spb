@@ -11,6 +11,9 @@ import SectionStrip from './SectionStrip';
 import './Header.css';
 import './MobileMenu.css';
 
+// На сколько пикселей надо прокрутить, чтобы шапка спряталась или вернулась: мелкие рывки пальцем не считаем
+const SCROLL_STEP = 24;
+
 export const SIMPLE_LINKS = [
   ['/about.html', 'О компании'],
   ['/contacts.html', 'Контакты'],
@@ -125,13 +128,15 @@ export default function Header({ currentPath, hasForm }) {
     let frame = 0;
     const update = () => {
       frame = 0;
-      const currentY = window.scrollY;
+      // На iPhone страница «пружинит» у краёв — эти рывки не считаем прокруткой
+      const maxY = document.documentElement.scrollHeight - window.innerHeight;
+      const currentY = Math.min(Math.max(window.scrollY, 0), maxY);
       const delta = currentY - lastY;
       setScrolled(currentY > 8);
       if (currentY < 160) setHidden(false);
-      else if (delta > 6) setHidden(true);
-      else if (delta < -6) setHidden(false);
-      if (Math.abs(delta) > 6 || currentY < 160) lastY = currentY;
+      else if (delta > SCROLL_STEP) setHidden(true);
+      else if (delta < -SCROLL_STEP) setHidden(false);
+      if (Math.abs(delta) > SCROLL_STEP || currentY < 160) lastY = currentY;
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);

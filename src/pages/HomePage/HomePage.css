@@ -1,6 +1,6 @@
 /* Главная, первый экран: фото гостиной на всю ширину, текст и кнопки поверх.
    Ноутбук (от 1280px) — текст слева от дивана на мягкой светлой подложке.
-   Планшет и телефон (до 1279px) — текст на светлой стене посередине, слева тонкая линия. */
+   Планшет и телефон (до 1279px) — текст на светлой стене посередине. */
 
 .hero {
   position: relative;
@@ -105,8 +105,9 @@
   }
   .hero-photo {
     object-position: 72% 100%;
-    -webkit-mask-image: none;
-    mask-image: none;
+    /* Низ фото плавно растворяется в фон страницы — без резкого края перед каталогом */
+    -webkit-mask-image: linear-gradient(to bottom, #000 72%, rgb(0 0 0 / 0.55) 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 72%, rgb(0 0 0 / 0.55) 88%, transparent 100%);
   }
   .hero-copy::before {
     display: none;
@@ -132,8 +133,6 @@
   .hero-copy {
     max-width: 640px;
     margin: 0;
-    padding-left: 18px;
-    border-left: 2px solid var(--ink);
   }
   .hero h1 {
     max-width: 12em;
@@ -165,7 +164,14 @@
     font-size: 14px;
   }
   .hero + .directions {
-    padding-top: var(--section-space-small);
+    padding-top: 8px;
+  }
+}
+/* Планшет и телефон: каталог начинается сразу под растворившимся фото — без чёрной линейки */
+@media (max-width: 1279px) {
+  .hero + .directions .section-head {
+    padding-top: 0;
+    border-top: 0;
   }
 }
 /* Телефон: две кнопки поровну в одну строку */
