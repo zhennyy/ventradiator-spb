@@ -28,6 +28,11 @@ function writeImages({ entry, outDir, imagesDir }) {
     if (image.isPlaceholder) writeFile(outDir, image.src, entry.renderPlaceholder(image));
     else writeFile(outDir, image.src, fs.readFileSync(path.join(imagesDir, image.fileName)));
   }
+  // Лёгкие WebP-копии (images/opt) — все, что есть
+  const optDir = path.join(imagesDir, 'opt');
+  if (fs.existsSync(optDir))
+    for (const name of fs.readdirSync(optDir))
+      if (name.endsWith('.webp')) writeFile(outDir, `/images/opt/${name}`, fs.readFileSync(path.join(optDir, name)));
   const ogCover = entry.ogCoverSrc();
   if (ogCover) writeFile(outDir, ogCover, fs.readFileSync(path.join(imagesDir, path.basename(ogCover))));
   return images;

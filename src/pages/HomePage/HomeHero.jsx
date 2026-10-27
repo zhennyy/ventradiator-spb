@@ -12,6 +12,8 @@ export default function HomeHero() {
         <img
           className="hero-photo"
           src={photo.src}
+          srcSet={photo.srcSet || undefined}
+          sizes="100vw"
           alt={site.heroImage.alt}
           width="2800"
           height="1826"

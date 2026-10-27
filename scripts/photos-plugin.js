@@ -25,7 +25,10 @@ export default function photosPlugin({ imagesDir = path.resolve('images') } = {}
     },
     load(id) {
       if (id !== RESOLVED_ID) return null;
-      return `export default ${JSON.stringify(listPhotos(imagesDir))};`;
+      // optimized — лёгкие WebP-копии из images/opt (tools/optimize-images.py) для srcset
+      const optDir = path.join(imagesDir, 'opt');
+      const optimized = fs.existsSync(optDir) ? fs.readdirSync(optDir).filter((name) => name.endsWith('.webp')) : [];
+      return `export default ${JSON.stringify(listPhotos(imagesDir))};\nexport const optimized = ${JSON.stringify(optimized.sort())};`;
     },
     configureServer(server) {
       // Положили или удалили фото — список пересобирается, страница перезагружается.
