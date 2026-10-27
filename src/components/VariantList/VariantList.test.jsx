@@ -21,12 +21,13 @@ describe('VariantList', () => {
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Серии');
     const cards = screen.getAllByRole('listitem');
     expect(cards).toHaveLength(4);
-    // Первая плитка — «папка» Velar: ведёт на страницу со всеми моделями Velar
+    // Плитки-«папки» Velar, Kohr и Rifar ведут на страницы со всеми моделями бренда
     expect(within(cards[0]).getByRole('link')).toHaveAttribute('href', '/radiators/velar.html');
+    expect(within(cards[1]).getByRole('link')).toHaveAttribute('href', '/radiators/kohr.html');
     expect(within(cards[2]).getByRole('link')).toHaveAttribute('href', '/radiators/rifar.html');
-    const heading = within(cards[1]).getByRole('heading', { level: 3 });
-    expect(heading).toHaveTextContent('Kohr Heim');
-    expect(heading).toHaveTextContent('Kohr');
+    const heading = within(cards[3]).getByRole('heading', { level: 3 });
+    expect(heading).toHaveTextContent('Zehnder');
+    expect(heading).toHaveTextContent('Charleston');
   });
 
   it('по нажатию на плитку раскрывается карточка модели, повторное нажатие — сворачивает', async () => {
