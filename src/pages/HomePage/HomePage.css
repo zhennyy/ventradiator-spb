@@ -206,3 +206,58 @@
     padding-inline: 8px;
   }
 }
+
+/* ——— Телефон, повёрнутый горизонтально (экран низкий) ———
+   Первый экран невысокий, как на ноутбуке: фото гостиной во всю ширину, диван справа,
+   текст и кнопки слева на мягкой светлой подложке. Высота — от ширины, а не от высоты окна. */
+@media (orientation: landscape) and (max-height: 520px) {
+  .hero-stage {
+    align-items: center;
+    min-height: clamp(320px, 44vw, 440px);
+  }
+  .hero-photo {
+    object-position: 60% 80%;
+  }
+  .hero-stage::after {
+    background: linear-gradient(
+      to right,
+      rgb(250 249 245 / 0.85) 0%,
+      rgb(250 249 245 / 0.6) 40%,
+      rgb(250 249 245 / 0) 64%
+    );
+  }
+  .hero-copy-wrap {
+    padding-block: 24px 40px;
+    text-align: left;
+  }
+  .hero-copy,
+  .hero h1,
+  .hero-lead {
+    margin-inline: 0;
+  }
+  .hero-copy {
+    max-width: max(48%, 340px);
+  }
+  .hero h1 {
+    max-width: none;
+    font-size: clamp(24px, 1.6vw + 14px, 32px);
+  }
+  .hero-lead {
+    max-width: none;
+    margin-block: 10px 16px;
+    font-size: 14px;
+  }
+  /* Обе кнопки в одну строку даже на маленьком телефоне */
+  .hero-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+  .hero-actions .button {
+    min-height: 44px;
+    padding-inline: 16px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
