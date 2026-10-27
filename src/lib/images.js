@@ -13,6 +13,16 @@ export function hasPhoto(fileName) {
   return availablePhotos.has(fileName);
 }
 
+// Логотипы брендов для серий (variant.brand) — в карточках категорий показываются логотипами
+export const BRAND_LOGOS = {
+  Vitron: 'logo-vitron.png',
+  Velar: 'logo-velar.png',
+  Kohr: 'logo-kohr.png',
+  Rifar: 'logo-rifar.png',
+  'Royal Thermo': 'logo-royal-thermo.png',
+  Gekon: 'logo-gekon.png',
+};
+
 export function resolveImage(fileName, title, kind = 'product') {
   const isPlaceholder = !hasPhoto(fileName);
   return {
@@ -38,6 +48,7 @@ export function listImages() {
       for (const variant of category.variants || []) {
         add(variant.image, variant.title);
         for (const item of variant.gallery || []) add(item.image, item.title || variant.title);
+        if (BRAND_LOGOS[variant.brand]) add(BRAND_LOGOS[variant.brand], `Логотип ${variant.brand}`);
         if (variant.logo) add(variant.logo, `Логотип ${variant.title}`);
       }
     }
