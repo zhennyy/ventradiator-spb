@@ -28,25 +28,22 @@ describe('CategoryPage', () => {
     expect(document.querySelector('input[name="product"]')).toHaveValue('Воздуховоды R2');
   });
 
-  it('фото и галерея с alt, «Ещё в разделе» — четыре другие категории', () => {
-    render(<CategoryPage section={section} category={category} />);
-    expect(screen.getByRole('img', { name: 'Воздуховоды R2' })).toHaveAttribute('loading', 'eager');
-    // Остальные фото — миниатюрами; нажатие на миниатюру меняет большое фото
+  it('категория без моделей: большое фото и миниатюры, нажатие меняет фото', () => {
+    const dust = catalog.sections.find((item) => item.slug === 'dust-removal');
+    const hoses = dust.categories.find((item) => item.slug === 'hoses');
+    render(<CategoryPage section={dust} category={hoses} />);
     const thumbs = within(screen.getByRole('group', { name: 'Другие фото' })).getAllByRole('button');
-    expect(thumbs).toHaveLength(category.gallery.length + 1);
+    expect(thumbs).toHaveLength(hoses.gallery.length + 1);
     expect(thumbs[0]).toHaveAttribute('aria-pressed', 'true');
-    expect(screen.getByRole('img', { name: 'Миниатюра: Круглые воздуховоды R2 Ø75 и Ø90' })).toHaveAttribute(
-      'src',
-      '/images/vent-r2-round.jpg',
-    );
-    // Фото плоских воздуховодов — из папки images/
-    expect(screen.getByRole('img', { name: /Миниатюра: Плоские воздуховоды R2/ })).toHaveAttribute(
-      'src',
-      '/images/vent-r2-flat.jpg',
-    );
     fireEvent.click(thumbs[1]);
     expect(thumbs[1]).toHaveAttribute('aria-pressed', 'true');
-    expect(document.querySelector('.gallery-main')).toHaveAttribute('src', '/images/vent-r2-round.jpg');
+    expect(document.querySelector('.gallery-main')).toHaveAttribute('src', `/images/${hoses.gallery[0].image}`);
+  });
+
+  it('категория с моделями: общей галереи нет (фото — на плитках), «Ещё в разделе» — четыре другие категории', () => {
+    render(<CategoryPage section={section} category={category} />);
+    expect(screen.queryByRole('group', { name: 'Другие фото' })).toBeNull();
+    expect(screen.getByRole('button', { name: /Круглые воздуховоды R2/ })).toBeInTheDocument();
     const siblings = screen.getByRole('heading', { name: 'Ещё в разделе «Вентиляция»' }).closest('section');
     const cards = within(siblings).getAllByRole('listitem');
     expect(cards).toHaveLength(4);

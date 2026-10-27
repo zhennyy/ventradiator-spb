@@ -61,13 +61,49 @@ function VariantTile({ variant, panelId, isOpen, onToggle }) {
   );
 }
 
+// Фото в раскрытой карточке: основное и, если есть, дополнительные (например, в интерьере) —
+// миниатюры под ним меняют большое фото
+function VariantMedia({ variant }) {
+  const photos = [
+    { image: variant.image, title: variant.title },
+    ...(variant.gallery || []).map((item) => ({ image: item.image, title: item.title || variant.title })),
+  ];
+  const [current, setCurrent] = useState(0);
+  const main = photos[current];
+  return (
+    <div className="variant-media-wrap">
+      <div className="variant-media">
+        <CatalogImage key={main.image} image={resolveImage(main.image, main.title)} alt={main.title} />
+      </div>
+      {photos.length > 1 && (
+        <div className="variant-thumbs" role="group" aria-label={`Фото: ${variant.title}`}>
+          {photos.map((photo, index) => (
+            <button
+              key={photo.image}
+              type="button"
+              aria-label={`Фото ${index + 1}: ${photo.title}`}
+              aria-pressed={index === current}
+              onClick={() => setCurrent(index)}
+            >
+              <img
+                src={resolveImage(photo.image, photo.title).src}
+                alt={`Миниатюра: ${photo.title}`}
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function VariantPanel({ variant, id, isOpen, onClose, panelRef }) {
   return (
     <li className="variant-panel" id={id} hidden={!isOpen} ref={isOpen ? panelRef : undefined}>
       <article className="variant">
-        <div className="variant-media">
-          <CatalogImage image={resolveImage(variant.image, variant.title)} alt={variant.title} />
-        </div>
+        <VariantMedia variant={variant} />
         <div className="variant-body">
           <div className="variant-head">
             <p className="variant-name">
