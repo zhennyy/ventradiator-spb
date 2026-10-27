@@ -91,10 +91,9 @@ describe('Header: мобильное меню', () => {
 });
 
 describe('Header: кнопка звонка', () => {
-  it('пока номер не известен — кнопки звонка и номера в шапке нет', () => {
+  it('кнопка звонка в шапке ведёт на номер представительства', () => {
     renderHeader();
-    expect(document.querySelector('.header-call')).toBeNull();
-    expect(document.querySelector('a[href^="tel:"]')).toBeNull();
+    expect(document.querySelector('.header-call')).toHaveAttribute('href', 'tel:+78120000000');
   });
 });
 

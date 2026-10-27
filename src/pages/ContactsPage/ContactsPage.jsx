@@ -1,6 +1,6 @@
-// Контакты: офис в Петербурге (адрес пока заглушка), офис для России/СНГ/Прибалтики и форма заявки.
+// Контакты: офис в Петербурге (адрес пока заглушка), офис для России/СНГ/Прибалтики и блок контактов.
 import PageHero from '../../components/PageHero/PageHero';
-import RequestForm from '../../components/RequestForm/RequestForm';
+import ContactBlock from '../../components/ContactBlock/ContactBlock';
 import Specs from '../../components/Specs/Specs';
 import { site } from '../../lib/content';
 import { hasContent, phoneHref } from '../../lib/text';
@@ -13,8 +13,8 @@ function Office({ office }) {
       <h2>{office.title}</h2>
       {office.phones.length === 0 && !hasContent(office.address) && (
         <p className="office-note">
-          Телефон и адрес офиса появятся здесь в ближайшее время. А пока оставьте <a href="#request">заявку</a> — мы
-          свяжемся с вами.
+          Телефон и адрес офиса появятся здесь в ближайшее время. А пока <a href="#request">позвоните или напишите</a> —
+          ответим и подготовим расчёт.
         </p>
       )}
       {office.phones.length > 0 && (
@@ -62,7 +62,7 @@ export default function ContactsPage() {
           ))}
         </div>
       </section>
-      <RequestForm heading="Написать в представительство" />
+      <ContactBlock heading="Написать в представительство" />
     </>
   );
 }

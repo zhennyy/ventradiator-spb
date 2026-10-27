@@ -5,14 +5,21 @@
   "legal": {
     "representative": "[РЕКВИЗИТЫ ПРЕДСТАВИТЕЛЬСТВА]"
   },
-  "email": "",
+  "email": "info@example.ru",
+  "contacts": {
+    "phone": "+7 (812) 000-00-00",
+    "hours": "",
+    "email": "info@example.ru",
+    "telegram": "example_spb",
+    "max": "по тому же номеру"
+  },
   "offices": [
     {
       "id": "spb",
       "title": "Офис в Санкт-Петербурге",
       "region": "Представительство в Санкт-Петербурге · работаем по всей России",
       "address": "[ЗАГЛУШКА: адрес офиса]",
-      "phones": []
+      "phones": ["+7 (812) 000-00-00"]
     },
     {
       "id": "moscow",

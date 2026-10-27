@@ -1,0 +1,132 @@
+/* Контакты внизу страниц: слева заголовок и пояснение, справа крупный телефон и ряд каналов связи */
+.request {
+  padding: var(--section-space) 0;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+.request-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+/* Заголовок скромнее заголовков секций: на странице товара он длинный («Запросить цену: …») */
+.request h2 {
+  font-size: clamp(24px, 1.2vw + 18px, 38px);
+}
+.request-intro p:not(.eyebrow) {
+  max-width: 440px;
+  text-wrap: pretty;
+  margin-top: 20px;
+  color: var(--ink-soft);
+}
+
+.contact-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.contact-phone {
+  display: block;
+  width: fit-content;
+  margin: 16px 0 10px;
+  font-size: clamp(34px, 3.6vw + 6px, 60px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.contact-phone span {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+.contact-phone:hover span {
+  color: var(--accent-deep);
+}
+.contact-phone.is-empty {
+  font-size: clamp(22px, 1.4vw + 14px, 32px);
+  color: var(--ink-faint);
+  white-space: normal;
+}
+.contact-hours {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.contact-channels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 36px;
+  border-top: 1px solid var(--line-strong);
+}
+.contact-channel {
+  display: grid;
+  gap: 6px;
+  padding: 16px 16px 4px;
+  border-right: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+.contact-channel:first-child {
+  padding-left: 0;
+}
+.contact-channel:last-child {
+  border-right: 0;
+}
+.contact-channel b {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.contact-channel i {
+  font-style: normal;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+.contact-channel:hover i {
+  transform: translate(2px, -2px);
+}
+.contact-channel small {
+  font-size: 14px;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+.contact-channel.is-empty small {
+  color: var(--ink-faint);
+}
+
+/* Планшет и телефон: вступление над контактами */
+@media (max-width: 1024px) {
+  .request-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .request-intro p:not(.eyebrow) {
+    max-width: 600px;
+  }
+}
+/* Телефон: каналы столбиком, каждый отдельной строкой */
+@media (max-width: 600px) {
+  .contact-channels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .contact-channel,
+  .contact-channel:first-child {
+    padding: 14px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-phone span,
+  .contact-channel i {
+    transition: none;
+  }
+}

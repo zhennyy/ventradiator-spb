@@ -1,5 +1,5 @@
 // Главная: первый экран, два направления, почему эти системы и форма заявки.
-import RequestForm from '../../components/RequestForm/RequestForm';
+import ContactBlock from '../../components/ContactBlock/ContactBlock';
 import DirectionsSection from './DirectionsSection';
 import HomeHero from './HomeHero';
 import ReasonsSection from './ReasonsSection';
@@ -11,7 +11,7 @@ export default function HomePage() {
       <HomeHero />
       <DirectionsSection />
       <ReasonsSection />
-      <RequestForm />
+      <ContactBlock />
     </>
   );
 }
