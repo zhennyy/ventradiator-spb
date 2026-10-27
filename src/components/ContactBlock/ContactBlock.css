@@ -80,18 +80,34 @@ button.contact-channel {
   text-align: left;
   cursor: pointer;
 }
-.contact-channel i.is-copied,
-button.contact-channel i {
-  font-size: 13px;
-  font-weight: 500;
-  white-space: nowrap;
+.contact-email {
+  cursor: copy;
 }
-.contact-channel i.is-copied {
+.contact-copy {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin: -6px -6px -6px 0;
+  border-radius: 50%;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.contact-email:hover .contact-copy {
+  background: var(--ice, rgba(35, 87, 138, 0.08));
+}
+.contact-email[data-copied] .contact-copy {
+  color: #fff;
+  background: #2f7d4b;
+}
+.contact-channel small.is-copied {
   color: #2f7d4b;
+  font-weight: 600;
 }
 .contact-channel:focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 4px;
+  outline-offset: 6px;
 }
 .visually-hidden {
   position: absolute;
@@ -155,7 +171,8 @@ a.contact-channel:hover i {
 }
 @media (prefers-reduced-motion: reduce) {
   .contact-phone,
-  .contact-channel i {
+  .contact-channel i,
+  .contact-copy {
     transition: none;
   }
 }

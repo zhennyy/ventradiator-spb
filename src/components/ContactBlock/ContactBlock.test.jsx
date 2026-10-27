@@ -41,7 +41,7 @@ describe('ContactBlock', () => {
     render(<ContactBlock />);
     await userEvent.click(screen.getByRole('button', { name: 'Скопировать почту a@b.ru' }));
     expect(writeText).toHaveBeenCalledWith('a@b.ru');
-    expect(await screen.findByText('Скопировано ✓')).toBeInTheDocument();
+    expect(await screen.findByText('Скопировано в буфер')).toBeInTheDocument();
     expect(screen.getByRole('status')).toHaveTextContent('Почта скопирована');
   });
 

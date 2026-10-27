@@ -157,6 +157,6 @@ export async function checkContacts(page, problems) {
   await page.locator('#request button.contact-channel').click();
   await expectState(problems, 'почта скопирована', async () => {
     const copied = await page.evaluate(() => navigator.clipboard.readText());
-    return copied.includes('@') && (await page.locator('#request .is-copied').count()) === 1;
+    return copied.includes('@') && (await page.locator('#request .contact-email[data-copied]').count()) === 1;
   });
 }

@@ -39,7 +39,28 @@ export function channelLinks(contacts) {
   ];
 }
 
-// Почта: нажали — адрес в буфере, вместо стрелки на 2 секунды «Скопировано ✓»
+// Значок «копировать» (два листа) и галочка после копирования — в том же месте, где у соседей стрелка ↗
+const COPY_ICON = (
+  <svg
+    viewBox="0 0 24 24"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    aria-hidden="true"
+  >
+    <rect x="8.5" y="8.5" width="11" height="11" rx="1.5" />
+    <path d="M15.5 8.5V5.5a1 1 0 0 0-1-1h-9a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3" />
+  </svg>
+);
+const CHECK_ICON = (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+    <path d="m5 12.5 4.5 4.5L19 7.5" />
+  </svg>
+);
+
+// Почта: нажали — адрес в буфере; значок становится галочкой, вместо адреса на 2 секунды «Скопировано»
 function EmailChannel({ email }) {
   const [copied, setCopied] = useState(false);
   const timer = useRef();
@@ -55,11 +76,17 @@ function EmailChannel({ email }) {
   }
 
   return (
-    <button type="button" className="contact-channel" onClick={handleClick} aria-label={`Скопировать почту ${email}`}>
+    <button
+      type="button"
+      className="contact-channel contact-email"
+      data-copied={copied || undefined}
+      onClick={handleClick}
+      aria-label={`Скопировать почту ${email}`}
+    >
       <b>
-        Почта <i className={copied ? 'is-copied' : undefined}>{copied ? 'Скопировано ✓' : 'Копировать'}</i>
+        Почта <i className="contact-copy">{copied ? CHECK_ICON : COPY_ICON}</i>
       </b>
-      <small>{email}</small>
+      <small className={copied ? 'is-copied' : undefined}>{copied ? 'Скопировано в буфер' : email}</small>
       <span className="visually-hidden" role="status">
         {copied ? 'Почта скопирована' : ''}
       </span>
