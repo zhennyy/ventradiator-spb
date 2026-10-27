@@ -1,6 +1,7 @@
 // Блок контактов: крупный телефон, ссылки на почту/Telegram/MAX и «скоро появится» для пустых полей.
 import { render, screen } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import userEvent from '@testing-library/user-event';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { site } from '../../lib/content';
 import ContactBlock, { channelLinks } from './ContactBlock';
 
@@ -10,12 +11,11 @@ afterEach(() => {
 });
 
 describe('ContactBlock', () => {
-  it('собирает ссылки: mailto с темой, t.me без @, MAX как есть', () => {
-    const links = channelLinks({ email: 'a@b.ru', telegram: '@shop', max: 'https://max.ru/x' }, 'Радиаторы');
-    expect(links[0].href).toBe(`mailto:a@b.ru?subject=${encodeURIComponent('Запрос: Радиаторы')}`);
-    expect(links[1]).toMatchObject({ href: 'https://t.me/shop', text: '@shop' });
-    expect(links[2]).toMatchObject({ href: 'https://max.ru/x', text: 'Написать в чат' });
-    expect(channelLinks({ max: 'по номеру 123' })[2]).toEqual({ label: 'MAX', href: null, text: 'по номеру 123' });
+  it('собирает ссылки: t.me без @, MAX ссылкой или подписью', () => {
+    const links = channelLinks({ telegram: '@shop', max: 'https://max.ru/x' });
+    expect(links[0]).toMatchObject({ href: 'https://t.me/shop', text: '@shop' });
+    expect(links[1]).toMatchObject({ href: 'https://max.ru/x', text: 'Написать в чат' });
+    expect(channelLinks({ max: 'по номеру 123' })[1]).toEqual({ label: 'MAX', href: null, text: 'по номеру 123' });
   });
 
   it('заполненные контакты — ссылки, якорь #request и заголовок на месте', () => {
@@ -26,12 +26,23 @@ describe('ContactBlock', () => {
       max: 'https://max.ru/x',
       hours: 'Пн–Пт',
     };
-    const { container } = render(<ContactBlock heading="Запросить цену: Радиаторы" product="Радиаторы" />);
+    const { container } = render(<ContactBlock heading="Запросить цену: Радиаторы" />);
     expect(container.querySelector('section#request')).not.toBeNull();
     expect(screen.getByRole('heading', { name: 'Запросить цену: Радиаторы' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: '+7 (812) 123-45-67' })).toHaveAttribute('href', 'tel:+78121234567');
     expect(screen.getByRole('link', { name: /Telegram/ })).toHaveAttribute('rel', 'noopener noreferrer');
     expect(screen.getByText('Пн–Пт')).toBeInTheDocument();
+  });
+
+  it('по нажатию на почту копирует адрес и пишет «Скопировано»', async () => {
+    const writeText = vi.fn(async () => {});
+    Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
+    site.contacts = { ...saved, email: 'a@b.ru' };
+    render(<ContactBlock />);
+    await userEvent.click(screen.getByRole('button', { name: 'Скопировать почту a@b.ru' }));
+    expect(writeText).toHaveBeenCalledWith('a@b.ru');
+    expect(await screen.findByText('Скопировано ✓')).toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent('Почта скопирована');
   });
 
   it('пустые поля — не ссылки, а «скоро появится»', () => {

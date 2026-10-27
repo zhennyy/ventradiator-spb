@@ -67,7 +67,7 @@ function AboutSection({ section }) {
 }
 
 export default function SectionPage({ section }) {
-  // Раздел без каталога (инженерные системы, услуги): полное описание наверху и сразу форма заявки
+  // Раздел без каталога (инженерные системы, услуги): полное описание наверху и сразу контакты
   if (!section.categories.length) {
     return (
       <>
@@ -76,11 +76,11 @@ export default function SectionPage({ section }) {
         </PageHero>
         {section.works && <ServiceWorks works={section.works} />}
         {section.paint && <PaintColors paint={section.paint} />}
-        <ContactBlock product={section.title} heading={`Запрос: ${section.title.toLowerCase()}`} />
+        <ContactBlock heading={`Запрос: ${section.title.toLowerCase()}`} />
       </>
     );
   }
-  // Раздел каталога: короткое вступление → сразу ассортимент → подробности о разделе
+  // Раздел каталога: короткое вступление → сразу ассортимент → подробности о разделе → контакты
   return (
     <>
       <PageHero
@@ -101,6 +101,7 @@ export default function SectionPage({ section }) {
       </section>
       <AboutSection section={section} />
       {section.slug === 'ventilation' && <HowItWorks />}
+      <ContactBlock heading={`Запрос: ${section.title.toLowerCase()}`} />
     </>
   );
 }
