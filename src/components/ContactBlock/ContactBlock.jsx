@@ -1,4 +1,4 @@
-// Блок «Контакты» внизу страниц вместо формы заявки: крупный телефон и ряд «Почта · Telegram · MAX».
+// Блок «Контакты» внизу страниц вместо формы заявки: телефон крупнее текста и ряд «Почта · Telegram · MAX».
 // Данные — site.contacts (data/site.json). Пустое поле не становится ссылкой: вместо него подпись «скоро появится».
 // MAX: ссылка https://… — кнопкой, любой другой текст («по номеру …») — просто подписью.
 // id="request" остаётся прежним, чтобы кнопки «Запросить цену» (#request) вели сюда.
@@ -7,13 +7,6 @@ import { phoneHref } from '../../lib/text';
 import './ContactBlock.css';
 
 const SOON = 'скоро появится';
-
-// «+7 (812) 000-00-00» → ['+7 (812) ', '000-00-00']: последнюю группу цифр красим акцентом
-export function splitPhone(phone) {
-  const match = /^(.*?)(\d[\d\s-]*\d)$/.exec(phone.replace(/\s+$/, ''));
-  if (!match || !match[1].trim()) return ['', phone];
-  return [match[1], match[2].replace(/-/g, '‑')];
-}
 
 // Почта, Telegram и MAX: подпись, ссылка (или null, пока нет данных) и что показать под подписью
 export function channelLinks(contacts, product) {
@@ -48,7 +41,6 @@ function Channel({ label, href, text }) {
 
 export default function ContactBlock({ product = '', heading = 'Запросить цену и подбор' }) {
   const contacts = site.contacts;
-  const [phoneStart, phoneEnd] = contacts.phone ? splitPhone(contacts.phone) : [];
 
   return (
     <section className="request" id="request" aria-labelledby="request-title">
@@ -65,8 +57,7 @@ export default function ContactBlock({ product = '', heading = 'Запросит
           <p className="contact-label">Звоните, мы на связи</p>
           {contacts.phone ? (
             <a className="contact-phone" href={phoneHref(contacts.phone)}>
-              {phoneStart}
-              <span>{phoneEnd}</span>
+              {contacts.phone}
             </a>
           ) : (
             <p className="contact-phone is-empty">Телефон {SOON}</p>
