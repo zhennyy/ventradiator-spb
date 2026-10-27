@@ -1,5 +1,5 @@
 // Блок контактов: крупный телефон, ссылки на почту/Telegram/MAX и «скоро появится» для пустых полей.
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { site } from '../../lib/content';
@@ -12,10 +12,11 @@ afterEach(() => {
 
 describe('ContactBlock', () => {
   it('собирает ссылки: t.me без @, MAX ссылкой или подписью', () => {
-    const links = channelLinks({ telegram: '@shop', max: 'https://max.ru/x' });
-    expect(links[0]).toMatchObject({ href: 'https://t.me/shop', text: '@shop' });
-    expect(links[1]).toMatchObject({ href: 'https://max.ru/x', text: 'Написать в чат' });
-    expect(channelLinks({ max: 'по номеру 123' })[1]).toEqual({ label: 'MAX', href: null, text: 'по номеру 123' });
+    const links = channelLinks({ email: 'a@b.ru', telegram: '@shop', max: 'https://max.ru/x' });
+    expect(links[0]).toMatchObject({ label: 'Почта', copy: 'a@b.ru' });
+    expect(links[1]).toMatchObject({ href: 'https://t.me/shop', text: '@shop' });
+    expect(links[2]).toMatchObject({ href: 'https://max.ru/x', text: 'Написать в чат' });
+    expect(channelLinks({ max: '+7 123' })[2]).toMatchObject({ label: 'MAX', copy: '+7 123' });
   });
 
   it('заполненные контакты — ссылки, якорь #request и заголовок на месте', () => {
@@ -39,10 +40,20 @@ describe('ContactBlock', () => {
     Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
     site.contacts = { ...saved, email: 'a@b.ru' };
     render(<ContactBlock />);
-    await userEvent.click(screen.getByRole('button', { name: 'Скопировать почту a@b.ru' }));
+    const button = screen.getByRole('button', { name: 'Скопировать почту: a@b.ru' });
+    await userEvent.click(button);
     expect(writeText).toHaveBeenCalledWith('a@b.ru');
     expect(await screen.findByText('Скопировано в буфер')).toBeInTheDocument();
-    expect(screen.getByRole('status')).toHaveTextContent('Почта скопирована');
+    expect(within(button).getByRole('status')).toHaveTextContent('Скопировано');
+  });
+
+  it('номер MAX тоже копируется по нажатию', async () => {
+    const writeText = vi.fn(async () => {});
+    Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
+    site.contacts = { ...saved, max: '+7 (812) 000-00-00' };
+    render(<ContactBlock />);
+    await userEvent.click(screen.getByRole('button', { name: 'Скопировать номер MAX: +7 (812) 000-00-00' }));
+    expect(writeText).toHaveBeenCalledWith('+7 (812) 000-00-00');
   });
 
   it('пустые поля — не ссылки, а «скоро появится»', () => {
