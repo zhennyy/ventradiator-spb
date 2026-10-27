@@ -25,7 +25,6 @@ export function PageContent({ page }) {
     case 'contacts':
       return <ContactsPage />;
     case 'privacy':
-    case 'consent':
       return <LegalPage documentId={page.kind} />;
     default:
       return <NotFoundPage />;

@@ -29,7 +29,7 @@ afterAll(() => fs.rmSync(outDir, { recursive: true, force: true }));
 
 describe('пререндер', () => {
   it('создаёт все страницы: общие, разделы и каждую категорию — по прежним адресам', () => {
-    const expected = ['/index.html', '/about.html', '/contacts.html', '/privacy.html', '/consent.html'];
+    const expected = ['/index.html', '/about.html', '/contacts.html', '/privacy.html'];
     expected.push('/404.html');
     for (const section of catalog.sections) {
       expected.push(`/${section.slug}.html`);
@@ -134,7 +134,7 @@ describe('пререндер', () => {
   });
 
   it('документы — шаблоны с плашкой и полями для реквизитов', () => {
-    for (const publicPath of ['/privacy.html', '/consent.html']) {
+    for (const publicPath of ['/privacy.html']) {
       const html = readPage(publicPath);
       expect(html, publicPath).toMatch(/class="template-banner"/);
       expect(html, publicPath).toMatch(/\[РЕКВИЗИТЫ ПРЕДСТАВИТЕЛЬСТВА\]/);

@@ -39,7 +39,7 @@ export default function DirectionCard({ section }) {
           </ul>
         )}
         <ButtonLink href={href} variant="ghost">
-          {section.categories.length ? `Весь раздел «${section.title}»` : 'Подробнее'}
+          {`Весь раздел «${section.title}»`}
         </ButtonLink>
       </div>
     </article>

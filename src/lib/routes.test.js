@@ -19,8 +19,9 @@ describe('routes', () => {
         expect(page.breadcrumbs.map((crumb) => crumb.label)).toEqual([section.title, parent.title, nested.title]);
       }
     }
+    // 5 служебных страниц: главная, о компании, контакты, политика, 404
     expect(pages).toHaveLength(
-      6 +
+      5 +
         catalog.sections.length +
         catalog.sections.flatMap((item) => [...item.categories, ...(item.nestedCategories || [])]).length,
     );

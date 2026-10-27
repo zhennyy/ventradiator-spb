@@ -17,8 +17,8 @@ function shortText(variant) {
 }
 
 function VariantName({ variant }) {
-  // Серия бренда: название бренда мелкой строкой над названием серии
-  if (variant.brand) {
+  // Серия бренда: название бренда мелкой строкой над названием серии (если не совпадает с названием)
+  if (variant.brand && variant.brand !== variant.title) {
     return (
       <>
         <span className="variant-brand">{variant.brand}</span>

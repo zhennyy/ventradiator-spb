@@ -17,13 +17,54 @@
 .legal-card .eyebrow:not(:first-child) {
   margin-top: 28px;
 }
+/* Реквизиты (когда появятся) — под направлениями, в правой колонке */
+.about-grid .legal-card {
+  grid-column: -2;
+}
+/* Направления: все разделы каталога строками между линейками, как оглавление */
+.about-directions ul {
+  margin: 12px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+  list-style: none;
+}
+.about-directions li {
+  border-bottom: 1px solid var(--line);
+}
+.about-directions a {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.about-directions a::after {
+  content: '→';
+  color: var(--accent);
+  transition: transform 0.2s var(--ease);
+}
+@media (hover: hover) {
+  .about-directions a:hover {
+    color: var(--accent);
+  }
+  .about-directions a:hover::after {
+    transform: translateX(4px);
+  }
+}
 
 /* Планшет и телефон: текст и карточка производителя друг под другом, одной ширины с текстом */
 @media (max-width: 1024px) {
   .about-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .legal-card {
+  .legal-card,
+  .about-directions {
     max-width: 68ch;
+  }
+  .about-grid .legal-card {
+    grid-column: auto;
   }
 }

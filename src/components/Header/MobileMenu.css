@@ -176,10 +176,11 @@
   .dropdown-grid a:active {
     background: var(--ice);
   }
+  /* Подсветка кнопки-стрелки не выходит за линию списка справа */
   .nav-toggle {
     width: 48px;
     height: 48px;
-    margin: 0 -8px 0 0;
+    margin: 0;
   }
   .dropdown {
     position: static;

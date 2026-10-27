@@ -18,7 +18,8 @@ describe('Footer', () => {
       'href',
       '/privacy.html',
     );
-    expect(screen.getByRole('link', { name: 'Согласие на обработку данных' })).toHaveAttribute('href', '/consent.html');
+    // Формы на сайте нет — отдельной страницы согласия тоже нет
+    expect(screen.queryByRole('link', { name: 'Согласие на обработку данных' })).toBeNull();
   });
 
   it('телефон и почта — ссылками, заглушка реквизитов подсвечена', () => {
