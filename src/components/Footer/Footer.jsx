@@ -1,4 +1,5 @@
-// Подвал — «задняя обложка» каталога. Сверху: слева призыв и кнопка, справа контакты крупно.
+// Подвал — «задняя обложка» каталога. Сверху: слева призыв и кнопка, справа контакты крупно —
+// только на страницах без блока «Контакты» (hasForm = на странице есть #request), чтобы номер и почта не повторялись.
 // Ниже: карта сайта колонками (разделы с категориями + «Компания»), внизу строка © и документы.
 import { catalog, categoryPath, sectionPath, site } from '../../lib/content';
 import { hasContent, phoneHref } from '../../lib/text';
@@ -61,34 +62,36 @@ export default function Footer({ hasForm = false }) {
   return (
     <footer className="site-footer">
       <div className="wrap">
-        <div className="footer-top">
-          <div className="footer-pitch">
-            <p className="footer-slogan">Подберём вентиляцию, отопление и пылеудаление для вашего дома</p>
-            <p className="footer-lead">Пришлите план — рассчитаем систему и подберём оборудование под ваш дом.</p>
-            <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'}>Запросить цену</ButtonLink>
-          </div>
-          {/* Пока нет ни телефона, ни почты, ни адреса — блок контактов не показываем */}
-          {(phone || site.email || hasContent(office.address)) && (
-            <div className="footer-contacts">
-              <p className="footer-title">{office.title}</p>
-              {phone && (
-                <a className="footer-phone" href={phoneHref(phone)}>
-                  {phone}
-                </a>
-              )}
-              {site.email && (
-                <a className="footer-email" href={`mailto:${site.email}`}>
-                  {site.email}
-                </a>
-              )}
-              {hasContent(office.address) && (
-                <p className="footer-address">
-                  <StubText>{office.address}</StubText>
-                </p>
-              )}
+        {!hasForm && (
+          <div className="footer-top">
+            <div className="footer-pitch">
+              <p className="footer-slogan">Подберём вентиляцию, отопление и пылеудаление для вашего дома</p>
+              <p className="footer-lead">Пришлите план — рассчитаем систему и подберём оборудование под ваш дом.</p>
+              <ButtonLink href="/contacts.html#request">Запросить цену</ButtonLink>
             </div>
-          )}
-        </div>
+            {/* Пока нет ни телефона, ни почты, ни адреса — блок контактов не показываем */}
+            {(phone || site.email || hasContent(office.address)) && (
+              <div className="footer-contacts">
+                <p className="footer-title">{office.title}</p>
+                {phone && (
+                  <a className="footer-phone" href={phoneHref(phone)}>
+                    {phone}
+                  </a>
+                )}
+                {site.email && (
+                  <a className="footer-email" href={`mailto:${site.email}`}>
+                    {site.email}
+                  </a>
+                )}
+                {hasContent(office.address) && (
+                  <p className="footer-address">
+                    <StubText>{office.address}</StubText>
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+        )}
         <nav className="footer-nav" aria-label="Карта сайта">
           {catalog.sections
             .filter((section) => section.categories.length > 0)

@@ -70,6 +70,37 @@
   color: var(--ink);
   text-decoration: none;
 }
+/* Почта — кнопка «скопировать»: сбрасываем вид кнопки, чтобы она выглядела как соседние колонки */
+button.contact-channel {
+  margin: 0;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.contact-channel i.is-copied,
+button.contact-channel i {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.contact-channel i.is-copied {
+  color: #2f7d4b;
+}
+.contact-channel:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 .contact-channel:first-child {
   padding-left: 0;
 }
@@ -88,7 +119,7 @@
   color: var(--accent);
   transition: transform 0.2s ease;
 }
-.contact-channel:hover i {
+a.contact-channel:hover i {
   transform: translate(2px, -2px);
 }
 .contact-channel small {
@@ -115,7 +146,8 @@
     grid-template-columns: minmax(0, 1fr);
   }
   .contact-channel,
-  .contact-channel:first-child {
+  .contact-channel:first-child,
+  button.contact-channel {
     padding: 14px 0;
     border-right: 0;
     border-bottom: 1px solid var(--line);

@@ -1,5 +1,5 @@
 // Проверки для tools/smoke.js: страница целиком (консоль, гидратация, прокрутка, ссылки),
-// меню с клавиатуры и мобильное меню, форма заявки — всё уже после гидратации.
+// меню с клавиатуры и мобильное меню, блок контактов — всё уже после гидратации.
 
 // React вешает на контейнер служебное свойство __reactContainer… — значит, гидратация прошла.
 export async function waitForHydration(page) {
@@ -149,30 +149,14 @@ export async function closeMobileMenu(page, problems) {
   );
 }
 
-// Форма: пустая → ошибка, без согласия → просьба отметить, с согласием → «Спасибо».
-export async function checkForm(page, problems, telegramCalls) {
-  const status = page.locator('.form-status');
-  const submit = page.locator('.request-form button[type="submit"]');
-  await submit.click();
-  await expectState(problems, 'пустая форма — ошибка', async () => (await status.textContent()).includes('Проверьте'));
-  await page.fill('#request-name', 'Анна');
-  await page.fill('#request-phone', '+7 (921) 555-12-34');
-  await submit.click();
-  await expectState(problems, 'без согласия — просьба отметить', async () =>
-    (await status.textContent()).includes('согласие'),
+// Контакты: телефон — ссылка tel:, по нажатию на почту адрес копируется и появляется «Скопировано».
+export async function checkContacts(page, problems) {
+  await expectState(problems, 'телефон в контактах — ссылка tel:', async () =>
+    (await page.locator('#request .contact-phone').getAttribute('href'))?.startsWith('tel:'),
   );
-  await page.check('#request-consent');
-  const callsBefore = telegramCalls.length;
-  await submit.click();
-  await page
-    .waitForFunction(() => document.querySelector('.form-status').dataset.state === 'success', null, {
-      timeout: 5000,
-    })
-    .catch(() => {});
-  await expectState(problems, 'заявка отправлена', async () => (await status.textContent()).startsWith('Спасибо'));
-  await expectState(
-    problems,
-    'заявка дошла до (подменённого) Telegram с товаром',
-    async () => telegramCalls.length === callsBefore + 1 && /Товар: /.test(telegramCalls.at(-1)),
-  );
+  await page.locator('#request button.contact-channel').click();
+  await expectState(problems, 'почта скопирована', async () => {
+    const copied = await page.evaluate(() => navigator.clipboard.readText());
+    return copied.includes('@') && (await page.locator('#request .is-copied').count()) === 1;
+  });
 }

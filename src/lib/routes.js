@@ -15,6 +15,7 @@ function catalogPages() {
       sectionSlug: section.slug,
       title: section.seoTitle,
       description: section.description,
+      hasForm: true,
       breadcrumbs: [sectionCrumb],
     });
     for (const category of [...section.categories, ...(section.nestedCategories || [])]) {

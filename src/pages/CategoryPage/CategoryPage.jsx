@@ -48,7 +48,7 @@ export default function CategoryPage({ section, category }) {
         </div>
       </section>
       <Kinds category={category} />
-      <ContactBlock product={category.title} heading={`Запросить цену: ${category.title}`} />
+      <ContactBlock heading={`Запросить цену: ${category.title}`} />
       <Siblings section={section} category={category} />
     </>
   );

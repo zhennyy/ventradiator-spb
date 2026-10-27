@@ -25,8 +25,16 @@ describe('Footer', () => {
     const { container } = render(<Footer />);
     expect(container.querySelector('a[href^="tel:"]')).toHaveAttribute('href', 'tel:+78120000000');
     expect(container.querySelector('a[href^="mailto:"]')).toHaveAttribute('href', 'mailto:info@example.ru');
+    expect(screen.getByRole('link', { name: 'Запросить цену' })).toHaveAttribute('href', '/contacts.html#request');
     expect([...container.querySelectorAll('.stub')].map((stub) => stub.textContent)).toContain(
       '[РЕКВИЗИТЫ ПРЕДСТАВИТЕЛЬСТВА]',
     );
+  });
+
+  it('на странице с блоком «Контакты» не повторяет телефон, почту и кнопку', () => {
+    const { container } = render(<Footer hasForm />);
+    expect(container.querySelector('.footer-top')).toBeNull();
+    expect(container.querySelector('a[href^="tel:"]')).toBeNull();
+    expect(screen.getByRole('link', { name: 'Политика обработки персональных данных' })).toBeInTheDocument();
   });
 });

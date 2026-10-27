@@ -12,7 +12,7 @@ import { chromium } from 'playwright';
 import {
   checkDesktopMenu,
   checkHeaderCall,
-  checkForm,
+  checkContacts,
   checkMobileMenu,
   checkPage,
   closeMobileMenu,
@@ -51,8 +51,9 @@ async function openPage(browser, width, height) {
   return browser.newPage({ viewport: { width, height: height || (width > 500 ? 860 : 844) } });
 }
 
-async function checkInteractions(browser, base, outDir, problems, telegramCalls) {
-  const desktop = await openPage(browser, 1366, 700);
+async function checkInteractions(browser, base, outDir, problems) {
+  const desktop = await browser.newPage({ viewport: { width: 1366, height: 700 } });
+  await desktop.context().grantPermissions(['clipboard-read', 'clipboard-write']);
   await desktop.goto(base + '/ventilation/units.html', { waitUntil: 'networkidle' });
   await waitForHydration(desktop);
   await checkDesktopMenu(desktop, problems);
@@ -63,7 +64,7 @@ async function checkInteractions(browser, base, outDir, problems, telegramCalls)
   await desktop.screenshot({ path: path.join(outDir, 'menu-dropdown-1366.png') });
   await desktop.goto(base + '/ventilation/r2.html#request', { waitUntil: 'networkidle' });
   await waitForHydration(desktop);
-  await checkForm(desktop, problems, telegramCalls);
+  await checkContacts(desktop, problems);
   await desktop.close();
 
   // Планшет и телефон: меню свёрнуто в кнопку, рядом — кнопка звонка
@@ -101,7 +102,7 @@ async function main() {
       }
       await page.close();
     }
-    await checkInteractions(browser, server.base, outDir, problems, telegramCalls);
+    await checkInteractions(browser, server.base, outDir, problems);
   } finally {
     await browser.close();
     server.stop();

@@ -1,24 +1,70 @@
 // Блок «Контакты» внизу страниц вместо формы заявки: телефон крупнее текста и ряд «Почта · Telegram · MAX».
 // Данные — site.contacts (data/site.json). Пустое поле не становится ссылкой: вместо него подпись «скоро появится».
 // MAX: ссылка https://… — кнопкой, любой другой текст («по номеру …») — просто подписью.
+// Почта по нажатию копируется в буфер (у многих нет почтовой программы, и mailto: ничего не открывает).
 // id="request" остаётся прежним, чтобы кнопки «Запросить цену» (#request) вели сюда.
+import { useEffect, useRef, useState } from 'react';
 import { site } from '../../lib/content';
 import { phoneHref } from '../../lib/text';
 import './ContactBlock.css';
 
 const SOON = 'скоро появится';
 
-// Почта, Telegram и MAX: подпись, ссылка (или null, пока нет данных) и что показать под подписью
-export function channelLinks(contacts, product) {
-  const subject = product ? `?subject=${encodeURIComponent(`Запрос: ${product}`)}` : '';
+// Копирует текст в буфер; для старых браузеров и http — запасной путь через скрытое поле
+export async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    const field = document.createElement('textarea');
+    field.value = text;
+    field.setAttribute('readonly', '');
+    field.style.cssText = 'position:fixed;opacity:0';
+    document.body.append(field);
+    field.select();
+    const copied = document.execCommand('copy');
+    field.remove();
+    return copied;
+  }
+}
+
+// Telegram и MAX: подпись, ссылка (или null, пока нет данных) и что показать под подписью
+export function channelLinks(contacts) {
   const telegram = contacts.telegram?.replace(/^@/, '');
   return [
-    { label: 'Почта', href: contacts.email ? `mailto:${contacts.email}${subject}` : null, text: contacts.email },
     { label: 'Telegram', href: telegram ? `https://t.me/${telegram}` : null, text: telegram && `@${telegram}` },
     /^https?:\/\//.test(contacts.max ?? '')
       ? { label: 'MAX', href: contacts.max, text: 'Написать в чат' }
       : { label: 'MAX', href: null, text: contacts.max },
   ];
+}
+
+// Почта: нажали — адрес в буфере, вместо стрелки на 2 секунды «Скопировано ✓»
+function EmailChannel({ email }) {
+  const [copied, setCopied] = useState(false);
+  const timer = useRef();
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  if (!email) return <Channel label="Почта" href={null} text="" />;
+
+  async function handleClick() {
+    if (!(await copyText(email))) return;
+    setCopied(true);
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setCopied(false), 2000);
+  }
+
+  return (
+    <button type="button" className="contact-channel" onClick={handleClick} aria-label={`Скопировать почту ${email}`}>
+      <b>
+        Почта <i className={copied ? 'is-copied' : undefined}>{copied ? 'Скопировано ✓' : 'Копировать'}</i>
+      </b>
+      <small>{email}</small>
+      <span className="visually-hidden" role="status">
+        {copied ? 'Почта скопирована' : ''}
+      </span>
+    </button>
+  );
 }
 
 function Channel({ label, href, text }) {
@@ -39,7 +85,7 @@ function Channel({ label, href, text }) {
   );
 }
 
-export default function ContactBlock({ product = '', heading = 'Запросить цену и подбор' }) {
+export default function ContactBlock({ heading = 'Запросить цену и подбор' }) {
   const contacts = site.contacts;
 
   return (
@@ -64,7 +110,8 @@ export default function ContactBlock({ product = '', heading = 'Запросит
           )}
           {contacts.hours && <p className="contact-hours">{contacts.hours}</p>}
           <div className="contact-channels">
-            {channelLinks(contacts, product).map((channel) => (
+            <EmailChannel email={contacts.email} />
+            {channelLinks(contacts).map((channel) => (
               <Channel key={channel.label} {...channel} />
             ))}
           </div>
