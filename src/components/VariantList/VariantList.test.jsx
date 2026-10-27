@@ -21,11 +21,11 @@ describe('VariantList', () => {
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Серии');
     const cards = screen.getAllByRole('listitem');
     expect(cards).toHaveLength(4);
-    const heading = within(cards[0]).getByRole('heading', { level: 3 });
+    // Первая плитка — «папка» Velar: ведёт на страницу со всеми моделями Velar
+    expect(within(cards[0]).getByRole('link')).toHaveAttribute('href', '/radiators/velar.html');
+    const heading = within(cards[1]).getByRole('heading', { level: 3 });
     expect(heading).toHaveTextContent('Kohr Heim');
     expect(heading).toHaveTextContent('Kohr');
-    // Velar — плитка-«папка»: ведёт на страницу со всеми моделями Velar
-    expect(within(cards[3]).getByRole('link')).toHaveAttribute('href', '/radiators/velar.html');
   });
 
   it('по нажатию на плитку раскрывается карточка модели, повторное нажатие — сворачивает', async () => {

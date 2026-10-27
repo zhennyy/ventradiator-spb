@@ -163,15 +163,32 @@ function useColumns() {
   return columns;
 }
 
+// Если у моделей есть группы (например, у Velar — «Трубчатые» и «Дизайн-радиаторы»),
+// каждая группа выводится своим блоком с заголовком
 export default function VariantList({ category }) {
+  const groups = [...new Set((category.variants || []).map((variant) => variant.group).filter(Boolean))];
+  if (!groups.length) return <VariantGroup category={category} />;
+  return groups.map((group, index) => (
+    <VariantGroup
+      key={group}
+      category={category}
+      variants={category.variants.filter((variant) => variant.group === group)}
+      heading={group}
+      idSuffix={`g${index}`}
+    />
+  ));
+}
+
+function VariantGroup({ category, variants: groupVariants, heading, idSuffix = '' }) {
   const [openIndex, setOpenIndex] = useState(null);
   const panelRef = useRef(null);
   const columns = useColumns();
-  if (!category.variants?.length) return null;
-  const variants = category.variants;
+  const variants = groupVariants || category.variants || [];
+  if (!variants.length) return null;
   const hasBrands = variants.some((variant) => variant.logo);
   const hasSeries = variants.some((variant) => variant.brand);
-  const panelId = (index) => `variant-${category.slug || 'item'}-${index}`;
+  const panelId = (index) => `variant-${category.slug || 'item'}${idSuffix}-${index}`;
+  const titleId = `variants-title${idSuffix ? '-' + idSuffix : ''}`;
 
   const toggle = (index) => {
     const next = openIndex === index ? null : index;
@@ -194,10 +211,10 @@ export default function VariantList({ category }) {
   const rowEnd = (index) => Math.min(variants.length, Math.ceil((index + 1) / columns) * columns) - 1;
 
   return (
-    <section className="variants" aria-labelledby="variants-title">
+    <section className="variants" aria-labelledby={titleId}>
       <div className="wrap">
-        <h2 className="variants-title" id="variants-title">
-          {hasSeries ? 'Серии' : hasBrands ? 'Производители' : 'Модели в линейке'}
+        <h2 className="variants-title" id={titleId}>
+          {heading || (hasSeries ? 'Серии' : hasBrands ? 'Производители' : 'Модели в линейке')}
           <span className="variants-count">{variants.length}</span>
         </h2>
         <ul className="variant-tiles">
