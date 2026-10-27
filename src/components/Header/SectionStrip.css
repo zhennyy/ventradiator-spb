@@ -96,3 +96,9 @@
     display: none;
   }
 }
+/* Телефон горизонтально: строка разделов съедала бы треть низкого экрана — разделы остаются в «Меню» */
+@media (orientation: landscape) and (max-height: 520px) {
+  .section-strip {
+    display: none;
+  }
+}

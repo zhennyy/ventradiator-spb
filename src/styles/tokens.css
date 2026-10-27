@@ -110,3 +110,10 @@
     --wrap: 1320px;
   }
 }
+/* Телефон, повёрнутый горизонтально: экран низкий — шапка ниже, строки разделов нет (они в «Меню») */
+@media (orientation: landscape) and (max-height: 520px) {
+  :root {
+    --header-height: 56px;
+    --strip-height: 0px;
+  }
+}
