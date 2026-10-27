@@ -391,3 +391,26 @@
     border-bottom: 1px solid var(--line);
   }
 }
+
+/* Плитка-«папка» (ссылка на страницу бренда) — как обычная плитка, с тёмной рамкой при наведении */
+.variant-tile-link a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.25s var(--ease);
+}
+.variant-tile-link .variant-tile-more::after {
+  content: none;
+}
+@media (hover: hover) {
+  .variant-tile-link a:hover {
+    border-color: var(--ink);
+  }
+  .variant-tile-link a:hover .variant-tile-media img {
+    transform: scale(1.03);
+  }
+}

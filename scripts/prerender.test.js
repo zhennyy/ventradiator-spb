@@ -33,7 +33,8 @@ describe('пререндер', () => {
     expected.push('/404.html');
     for (const section of catalog.sections) {
       expected.push(`/${section.slug}.html`);
-      for (const category of section.categories) expected.push(`/${section.slug}/${category.slug}.html`);
+      for (const category of [...section.categories, ...(section.nestedCategories || [])])
+        expected.push(`/${section.slug}/${category.slug}.html`);
     }
     expect([...result.pages].sort()).toEqual(expected.sort());
     for (const publicPath of expected) expect(fs.existsSync(path.join(outDir, publicPath)), publicPath).toBe(true);

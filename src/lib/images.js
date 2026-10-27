@@ -32,7 +32,7 @@ export function listImages() {
   };
   for (const section of catalog.sections) {
     add(section.image, section.title);
-    for (const category of section.categories) {
+    for (const category of [...section.categories, ...(section.nestedCategories || [])]) {
       add(category.image, category.title);
       for (const item of category.gallery || []) add(item.image, item.title);
       for (const variant of category.variants || []) {
