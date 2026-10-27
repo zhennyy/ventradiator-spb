@@ -105,19 +105,23 @@
 | `rad-royal-panel.jpg` | Панельные радиаторы Royal Thermo COMPACT |
 | `rad-gekon-panel.jpg` | Панельный радиатор Gekon |
 | `service-projects-video-poster.jpg` | Первый кадр ролика «Как работает вентиляция» (Blizzard), дом целиком — обложка видео в «Услугах»; само видео — `public/video/how-work.mp4` |
-| `rad-velar-p30.jpg` | Дизайн-радиатор Velar P30 (сайт velarwh.ru) |
+| `rad-velar-p30.jpg` | Velar P30 (материалы Velar для партнёров, Яндекс Диск клиента), фон — студийная подложка |
+| `rad-velar-p30-interior.jpg` | Дизайн-радиатор Velar P30 (сайт velarwh.ru) |
 | `rad-velar-p60.jpg` | Velar P60 (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
-| `rad-velar-q40.jpg` | Дизайн-радиатор Velar Q40 (сайт velarwh.ru) |
+| `rad-velar-q40.jpg` | Velar Q40 (материалы Velar для партнёров, Яндекс Диск клиента), фон — студийная подложка |
+| `rad-velar-q40-interior.jpg` | Дизайн-радиатор Velar Q40 (сайт velarwh.ru) |
 | `rad-velar-q60.jpg` | Дизайн-радиатор Velar Q60 (сайт velarwh.ru) |
 | `rad-velar-q80.jpg` | Дизайн-радиатор Velar Q80 (сайт velarwh.ru) |
-| `rad-velar-r32.jpg` | Дизайн-радиатор Velar R32 (сайт velarwh.ru) |
+| `rad-velar-r32.jpg` | Velar R32 (материалы Velar для партнёров, Яндекс Диск клиента), фон — студийная подложка |
+| `rad-velar-r32-interior.jpg` | Дизайн-радиатор Velar R32 (сайт velarwh.ru) |
 | `rad-velar-r42.jpg` | Velar R42 в интерьере (материалы Velar для партнёров, Яндекс Диск клиента) |
 | `rad-velar-r89.jpg` | Velar R89 (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
 | `rad-velar-s.jpg` | Velar S (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
 | `rad-velar-s-detail.jpg` | Velar S крупным планом (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
 | `rad-velar-p60-detail.jpg` | Velar P60 с полотенцедержателем (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
 | `rad-velar-r89-vertical.jpg` | Velar R89 вертикальный (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
-| `rad-velar-sp.jpg` | Дизайн-радиатор Velar SP (сайт velarwh.ru) |
+| `rad-velar-sp.jpg` | Velar SP (материалы Velar для партнёров, Яндекс Диск клиента), фон — студийная подложка |
+| `rad-velar-sp-interior.jpg` | Дизайн-радиатор Velar SP (сайт velarwh.ru) |
 | `rad-zehnder-charleston.jpg` | Трубчатый радиатор Zehnder Charleston (фото от клиента) |
 | `rad-rifar-tubog.jpg` | Rifar Tubog (фото от клиента) |
 | `rad-rifar-tubog-studio.jpg` | Rifar Tubog на светлом сером фоне |
