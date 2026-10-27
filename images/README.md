@@ -102,7 +102,6 @@
 | `rad-velar-3col-burgundy.jpg` | Velar 3-колончатый, перекрашен в бордовый (обработка фото Velar) — плитка «Коллекция Velar» |
 | `rad-velar-4col.jpg` | Трубчатый радиатор Velar, 4-колончатый |
 | `rad-rifar-base.jpg` | Биметаллические радиаторы Rifar Base |
-| `rad-royal-bimetal.jpg` | Биметаллические радиаторы Royal Thermo INFINITY |
 | `rad-royal-panel.jpg` | Панельные радиаторы Royal Thermo COMPACT |
 | `rad-gekon-panel.jpg` | Панельный радиатор Gekon |
 | `service-projects-video-poster.jpg` | Первый кадр ролика «Как работает вентиляция» (Blizzard), дом целиком — обложка видео в «Услугах»; само видео — `public/video/how-work.mp4` |
@@ -128,17 +127,15 @@
 | `rad-rt-pianoforte.jpg` | Royal Thermo PianoForte (royal-thermo.ru), фон — студийная подложка |
 | `rad-rt-indigo.jpg` | Royal Thermo Indigo Super+ (royal-thermo.ru), фон — студийная подложка |
 | `rad-rt-eclipse.jpg` | Royal Thermo Eclipse (сайт royal-thermo.ru, фон расширен до 4:3) |
-| `rad-rt-infinity.jpg` | Royal Thermo Infinity (сайт royal-thermo.ru, фон расширен до 4:3) |
-| `rad-rt-infinity-side.jpg` | Royal Thermo Infinity, другой ракурс (сайт royal-thermo.ru, фон расширен до 4:3) |
 | `rad-rt-vittoria.jpg` | Royal Thermo Vittoria Super (сайт royal-thermo.ru, фон расширен до 4:3) |
 | `rad-rt-monoblock.jpg` | Royal Thermo Monoblock B (сайт royal-thermo.ru, фон расширен до 4:3) |
 | `rad-rt-compact.jpg` | Royal Thermo Compact (royal-thermo.ru) |
 | `rad-rt-ventil-compact.jpg` | Royal Thermo Ventil Compact (royal-thermo.ru) |
 | `rad-rt-hygiene.jpg` | Royal Thermo Hygiene (royal-thermo.ru) |
 | `rad-rt-flat.jpg` | Royal Thermo Flat (royal-thermo.ru) |
-| `rad-rifar-base-series.jpg` | Rifar Base, три высоты (сайт rifar.ru) |
-| `rad-rifar-monolit.jpg` | Rifar Monolit (rifar.ru) |
-| `rad-rifar-supremo.jpg` | Rifar SUPReMO (rifar.ru) |
+| `rad-rifar-base-series.jpg` | Rifar Base, три высоты (сайт rifar.ru), фон — студийная подложка |
+| `rad-rifar-monolit.jpg` | Rifar Monolit (rifar.ru), фон — студийная подложка |
+| `rad-rifar-supremo.jpg` | Rifar SUPReMO (rifar.ru), фон — студийная подложка |
 | `logo-kohr.png` | Логотип Kohr |
 | `logo-velar.png` | Логотип Velar |
 | `logo-rifar.png` | Логотип Rifar |
