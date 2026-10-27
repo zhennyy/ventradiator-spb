@@ -56,6 +56,13 @@ describe('ContactBlock', () => {
     expect(writeText).toHaveBeenCalledWith('+7 (812) 000-00-00');
   });
 
+  it('адрес офиса выводится, только если его передали', () => {
+    const { rerender } = render(<ContactBlock />);
+    expect(screen.queryByText('Офис')).toBeNull();
+    rerender(<ContactBlock address="Санкт-Петербург, Невский пр., 1" />);
+    expect(screen.getByText('Санкт-Петербург, Невский пр., 1')).toBeInTheDocument();
+  });
+
   it('пустые поля — не ссылки, а «скоро появится»', () => {
     site.contacts = { phone: '', email: '', telegram: '', max: '', hours: '' };
     render(<ContactBlock />);

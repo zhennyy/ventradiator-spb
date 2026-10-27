@@ -5,7 +5,8 @@
 // id="request" остаётся прежним, чтобы кнопки «Запросить цену» (#request) вели сюда.
 import { useEffect, useRef, useState } from 'react';
 import { site } from '../../lib/content';
-import { phoneHref } from '../../lib/text';
+import { hasContent, phoneHref } from '../../lib/text';
+import StubText from '../StubText/StubText';
 import './ContactBlock.css';
 
 const SOON = 'скоро появится';
@@ -115,7 +116,8 @@ function Channel({ label, href, text }) {
   );
 }
 
-export default function ContactBlock({ heading = 'Запросить цену и подбор' }) {
+// address — адрес офиса (только на странице «Контакты»); пустой или заглушка на готовом сайте не выводится
+export default function ContactBlock({ heading = 'Запросить цену и подбор', address = '' }) {
   const contacts = site.contacts;
   const [announcement, setAnnouncement] = useState('');
 
@@ -140,6 +142,12 @@ export default function ContactBlock({ heading = 'Запросить цену и
             <p className="contact-phone is-empty">Телефон {SOON}</p>
           )}
           {contacts.hours && <p className="contact-hours">{contacts.hours}</p>}
+          {hasContent(address) && (
+            <p className="contact-address">
+              <span className="contact-label">Офис</span>
+              <StubText>{address}</StubText>
+            </p>
+          )}
           <div className="contact-channels">
             {channelLinks(contacts).map((channel) =>
               channel.copy ? (
