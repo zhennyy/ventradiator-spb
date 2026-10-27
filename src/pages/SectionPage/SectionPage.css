@@ -372,3 +372,14 @@
     font-size: 15px;
   }
 }
+
+/* Ноутбук: в покраске фото слева, текст справа — блоки «Услуг» чередуются (проекты — фото слева,
+   монтаж — справа, покраска — снова слева) */
+@media (min-width: 1025px) {
+  .paint-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+  .paint-photos {
+    order: -1;
+  }
+}
