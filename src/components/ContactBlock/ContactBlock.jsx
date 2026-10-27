@@ -1,7 +1,7 @@
 // Блок «Контакты» внизу страниц вместо формы заявки: телефон крупнее текста и ряд «Почта · Telegram · MAX».
 // Данные — site.contacts (data/site.json). Пустое поле не становится ссылкой: вместо него подпись «скоро появится».
-// MAX: ссылка https://… — кнопкой, любой другой текст («по номеру …») — просто подписью.
-// Почта по нажатию копируется в буфер (у многих нет почтовой программы, и mailto: ничего не открывает).
+// Почта и номер MAX по нажатию копируются в буфер (у многих нет почтовой программы, и mailto: ничего не открывает).
+// Если в MAX указать ссылку https://…, вместо копирования будет обычная ссылка, как у Telegram.
 // id="request" остаётся прежним, чтобы кнопки «Запросить цену» (#request) вели сюда.
 import { useEffect, useRef, useState } from 'react';
 import { site } from '../../lib/content';
@@ -28,14 +28,17 @@ export async function copyText(text) {
   }
 }
 
-// Telegram и MAX: подпись, ссылка (или null, пока нет данных) и что показать под подписью
+// Каналы по порядку: почта (копировать), Telegram (ссылка), MAX (ссылка или копировать номер).
+// copy — что положить в буфер; href — куда ведёт ссылка; пустые поля — «скоро появится».
 export function channelLinks(contacts) {
   const telegram = contacts.telegram?.replace(/^@/, '');
+  const maxIsLink = /^https?:\/\//.test(contacts.max ?? '');
   return [
+    { label: 'Почта', copy: contacts.email, what: 'почту' },
     { label: 'Telegram', href: telegram ? `https://t.me/${telegram}` : null, text: telegram && `@${telegram}` },
-    /^https?:\/\//.test(contacts.max ?? '')
+    maxIsLink
       ? { label: 'MAX', href: contacts.max, text: 'Написать в чат' }
-      : { label: 'MAX', href: null, text: contacts.max },
+      : { label: 'MAX', copy: contacts.max, what: 'номер MAX' },
   ];
 }
 
@@ -60,16 +63,14 @@ const CHECK_ICON = (
   </svg>
 );
 
-// Почта: нажали — адрес в буфере; значок становится галочкой, вместо адреса на 2 секунды «Скопировано»
-function EmailChannel({ email }) {
+// Нажали — значение в буфере; значок становится галочкой, вместо значения на 2 секунды «Скопировано»
+function CopyChannel({ label, copy, what }) {
   const [copied, setCopied] = useState(false);
   const timer = useRef();
   useEffect(() => () => clearTimeout(timer.current), []);
 
-  if (!email) return <Channel label="Почта" href={null} text="" />;
-
   async function handleClick() {
-    if (!(await copyText(email))) return;
+    if (!(await copyText(copy))) return;
     setCopied(true);
     clearTimeout(timer.current);
     timer.current = setTimeout(() => setCopied(false), 2000);
@@ -78,17 +79,17 @@ function EmailChannel({ email }) {
   return (
     <button
       type="button"
-      className="contact-channel contact-email"
+      className="contact-channel contact-copyable"
       data-copied={copied || undefined}
       onClick={handleClick}
-      aria-label={`Скопировать почту ${email}`}
+      aria-label={`Скопировать ${what}: ${copy}`}
     >
       <b>
-        Почта <i className="contact-copy">{copied ? CHECK_ICON : COPY_ICON}</i>
+        {label} <i className="contact-copy">{copied ? CHECK_ICON : COPY_ICON}</i>
       </b>
-      <small className={copied ? 'is-copied' : undefined}>{copied ? 'Скопировано в буфер' : email}</small>
+      <small className={copied ? 'is-copied' : undefined}>{copied ? 'Скопировано в буфер' : copy}</small>
       <span className="visually-hidden" role="status">
-        {copied ? 'Почта скопирована' : ''}
+        {copied ? 'Скопировано' : ''}
       </span>
     </button>
   );
@@ -137,10 +138,13 @@ export default function ContactBlock({ heading = 'Запросить цену и
           )}
           {contacts.hours && <p className="contact-hours">{contacts.hours}</p>}
           <div className="contact-channels">
-            <EmailChannel email={contacts.email} />
-            {channelLinks(contacts).map((channel) => (
-              <Channel key={channel.label} {...channel} />
-            ))}
+            {channelLinks(contacts).map((channel) =>
+              channel.copy ? (
+                <CopyChannel key={channel.label} {...channel} />
+              ) : (
+                <Channel key={channel.label} {...channel} />
+              ),
+            )}
           </div>
         </div>
       </div>

@@ -154,9 +154,9 @@ export async function checkContacts(page, problems) {
   await expectState(problems, 'телефон в контактах — ссылка tel:', async () =>
     (await page.locator('#request .contact-phone').getAttribute('href'))?.startsWith('tel:'),
   );
-  await page.locator('#request button.contact-channel').click();
+  await page.locator('#request button.contact-channel').first().click();
   await expectState(problems, 'почта скопирована', async () => {
     const copied = await page.evaluate(() => navigator.clipboard.readText());
-    return copied.includes('@') && (await page.locator('#request .contact-email[data-copied]').count()) === 1;
+    return copied.includes('@') && (await page.locator('#request .contact-copyable[data-copied]').count()) === 1;
   });
 }

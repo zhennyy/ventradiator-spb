@@ -80,7 +80,7 @@ button.contact-channel {
   text-align: left;
   cursor: pointer;
 }
-.contact-email {
+.contact-copyable {
   cursor: copy;
 }
 .contact-copy {
@@ -88,16 +88,16 @@ button.contact-channel {
   place-items: center;
   width: 30px;
   height: 30px;
-  margin: -6px -6px -6px 0;
+  margin: -6px 0;
   border-radius: 50%;
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
 }
-.contact-email:hover .contact-copy {
+.contact-copyable:hover .contact-copy {
   background: var(--ice, rgba(35, 87, 138, 0.08));
 }
-.contact-email[data-copied] .contact-copy {
+.contact-copyable[data-copied] .contact-copy {
   color: #fff;
   background: #2f7d4b;
 }
