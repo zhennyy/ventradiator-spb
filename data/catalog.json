@@ -538,15 +538,6 @@
               "specs": []
             },
             {
-              "title": "Коллекция Rifar Tubog",
-              "short": "Tubog и Tubog Quarte — сталь CORREX, 16 атм",
-              "brand": "Rifar",
-              "image": "rad-rifar-tubog-studio.jpg",
-              "href": "/radiators/rifar.html",
-              "text": [],
-              "specs": []
-            },
-            {
               "title": "Kohr Heim",
               "short": "Классический стальной трубчатый",
               "brand": "Kohr",
@@ -560,6 +551,15 @@
                 ["Подключение", "Боковое и нижнее"],
                 ["Высота", "от 185 мм, подбирается под проект"]
               ]
+            },
+            {
+              "title": "Коллекция Rifar Tubog",
+              "short": "Tubog и Tubog Quarte — сталь CORREX, 16 атм",
+              "brand": "Rifar",
+              "image": "rad-rifar-tubog-studio.jpg",
+              "href": "/radiators/rifar.html",
+              "text": [],
+              "specs": []
             },
             {
               "title": "Zehnder Charleston",
