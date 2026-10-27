@@ -3,10 +3,11 @@
   /* Снизу — такой же воздух, как сверху: карточки не прилипают к следующему блоку */
   padding-block: var(--section-space-small, 48px);
 }
+/* Ровные ряды по три карточки (3 или 6 видов — без одинокой карточки в последнем ряду) */
 .kind-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 1.4vw, 24px);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -37,7 +38,15 @@
   font-size: 13px;
   color: var(--ink);
 }
+@media (max-width: 1024px) {
+  .kind-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 @media (max-width: 600px) {
+  .kind-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .kind {
     padding: 20px;
   }
