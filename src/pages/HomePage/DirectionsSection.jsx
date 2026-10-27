@@ -12,7 +12,7 @@ export default function DirectionsSection() {
           eyebrow="Каталог"
           title="Что мы предлагаем"
           id="directions-title"
-          lead="Вентиляция, пылеудаление, радиаторы и конвекторы для квартир и частных домов — и инженерные системы с услугами под ключ."
+          lead="Вентиляция, отопление, водоснабжение для домов и квартир — подберём и доставим на объект."
         />
         <div className="direction-grid">
           {catalog.sections.map((section) => (
