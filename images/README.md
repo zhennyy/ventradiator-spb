@@ -34,6 +34,14 @@
 | `vent-diff-d2-floor.jpg` | Напольная решётка D2 (каталог) |
 | `vent-diff-d4-round.jpg` | Архитектурный диффузор D4 R (каталог) |
 | `vent-diff-d4-linear.jpg` | Линейный диффузор D4 (каталог) |
+| `vent-diff-d5-cross.jpg` | Решётка D5 Cross, стекло сатин белое (брошюра Blizzard D5 «Домашние драгоценности» от клиента) |
+| `vent-diff-d5-cross-round.jpg` | D5 Cross мини круг (брошюра Blizzard D5 «Домашние драгоценности» от клиента) |
+| `vent-diff-d5-bronze.jpg` | D5 Cross, стекло сатин бронзового цвета (скриншот брошюры D5 от клиента) |
+| `vent-diff-d5-twist.jpg` | D5 Twist мини круг, коричневое стекло (брошюра Blizzard D5 «Домашние драгоценности» от клиента) |
+| `vent-diff-d5-shape.jpg` | D5 Shape, белое стекло (брошюра Blizzard D5 «Домашние драгоценности» от клиента) |
+| `vent-diff-d5-pyramid.jpg` | D5 Pyramid, металл (брошюра Blizzard D5 «Домашние драгоценности» от клиента) |
+| `vent-diff-d5-avantgarde.jpg` | D5 Avantgarde, нержавеющая сталь (брошюра Blizzard D5 «Домашние драгоценности» от клиента) |
+| `vent-diff-d5-interior.jpg` | Решётка D5 Shape в интерьере (брошюра Blizzard D5 «Домашние драгоценности» от клиента) |
 | `paint-anthracite.jpg` | Услуги → покраска: радиатор RAL 7016 в интерьере (сгенерированная иллюстрация) |
 | `paint-burgundy.jpg` | Покраска: радиатор RAL 3004 (сгенерированная иллюстрация) |
 | `paint-green.jpg` | Покраска: радиатор RAL 6005 (сгенерированная иллюстрация) |
@@ -115,16 +123,20 @@
 | `rad-rifar-tubog.jpg` | Rifar Tubog (фото от клиента) |
 | `rad-rifar-tubog-studio.jpg` | Rifar Tubog на светлом сером фоне |
 | `rad-zehnder-charleston-studio.jpg` | Zehnder Charleston на светлом сером фоне |
-| `rad-rt-biliner.jpg` | Royal Thermo BiLiner (сайт royal-thermo.ru) |
-| `rad-rt-revolution.jpg` | Royal Thermo Revolution Bimetall (royal-thermo.ru) |
-| `rad-rt-pianoforte.jpg` | Royal Thermo PianoForte (royal-thermo.ru) |
-| `rad-rt-indigo.jpg` | Royal Thermo Indigo Super+ (royal-thermo.ru) |
+| `rad-rt-biliner.jpg` | Royal Thermo BiLiner (сайт royal-thermo.ru), фон — студийная подложка |
+| `rad-rt-revolution.jpg` | Royal Thermo Revolution Bimetall (royal-thermo.ru), фон — студийная подложка |
+| `rad-rt-pianoforte.jpg` | Royal Thermo PianoForte (royal-thermo.ru), фон — студийная подложка |
+| `rad-rt-indigo.jpg` | Royal Thermo Indigo Super+ (royal-thermo.ru), фон — студийная подложка |
+| `rad-rt-eclipse.jpg` | Royal Thermo Eclipse (сайт royal-thermo.ru, фон расширен до 4:3) |
+| `rad-rt-infinity.jpg` | Royal Thermo Infinity (сайт royal-thermo.ru, фон расширен до 4:3) |
+| `rad-rt-infinity-side.jpg` | Royal Thermo Infinity, другой ракурс (сайт royal-thermo.ru, фон расширен до 4:3) |
+| `rad-rt-vittoria.jpg` | Royal Thermo Vittoria Super (сайт royal-thermo.ru, фон расширен до 4:3) |
+| `rad-rt-monoblock.jpg` | Royal Thermo Monoblock B (сайт royal-thermo.ru, фон расширен до 4:3) |
 | `rad-rt-compact.jpg` | Royal Thermo Compact (royal-thermo.ru) |
 | `rad-rt-ventil-compact.jpg` | Royal Thermo Ventil Compact (royal-thermo.ru) |
 | `rad-rt-hygiene.jpg` | Royal Thermo Hygiene (royal-thermo.ru) |
 | `rad-rt-flat.jpg` | Royal Thermo Flat (royal-thermo.ru) |
 | `rad-rifar-base-series.jpg` | Rifar Base, три высоты (сайт rifar.ru) |
-| `rad-rifar-alp.jpg` | Rifar Alp (rifar.ru) |
 | `rad-rifar-monolit.jpg` | Rifar Monolit (rifar.ru) |
 | `rad-rifar-supremo.jpg` | Rifar SUPReMO (rifar.ru) |
 | `logo-kohr.png` | Логотип Kohr |
