@@ -39,22 +39,32 @@ function VariantName({ variant }) {
   );
 }
 
+// Содержимое плитки: фото, название, мини-описание и подпись внизу
+function TileContent({ variant, more }) {
+  return (
+    <>
+      <span className="variant-tile-media">
+        <CatalogImage image={resolveImage(variant.image, variant.title)} alt="" />
+      </span>
+      <span className="variant-tile-body">
+        <h3>
+          <VariantName variant={variant} />
+        </h3>
+        {/* Мини-описание: короткая подпись (short) или первое предложение описания */}
+        <span className="variant-tile-text">{shortText(variant)}</span>
+        {more}
+      </span>
+    </>
+  );
+}
+
 function VariantTile({ variant, panelId, isOpen, onToggle }) {
   // Плитка-«папка»: ведёт на отдельную страницу с моделями бренда (например, все Velar)
   if (variant.href) {
     return (
       <li className="variant-tile variant-tile-link">
         <a href={variant.href}>
-          <span className="variant-tile-media">
-            <CatalogImage image={resolveImage(variant.image, variant.title)} alt="" />
-          </span>
-          <span className="variant-tile-body">
-            <h3>
-              <VariantName variant={variant} />
-            </h3>
-            <span className="variant-tile-text">{shortText(variant)}</span>
-            <span className="variant-tile-more">Открыть коллекцию →</span>
-          </span>
+          <TileContent variant={variant} more={<span className="variant-tile-more">Открыть коллекцию →</span>} />
         </a>
       </li>
     );
@@ -62,19 +72,14 @@ function VariantTile({ variant, panelId, isOpen, onToggle }) {
   return (
     <li className={`variant-tile${isOpen ? ' is-open' : ''}`}>
       <button type="button" aria-expanded={isOpen} aria-controls={panelId} onClick={onToggle}>
-        <span className="variant-tile-media">
-          <CatalogImage image={resolveImage(variant.image, variant.title)} alt="" />
-        </span>
-        <span className="variant-tile-body">
-          <h3>
-            <VariantName variant={variant} />
-          </h3>
-          {/* Мини-описание: короткая подпись (short) или первое предложение описания */}
-          <span className="variant-tile-text">{shortText(variant)}</span>
-          <span className="variant-tile-more" aria-hidden="true">
-            {isOpen ? 'Свернуть' : 'Подробнее'}
-          </span>
-        </span>
+        <TileContent
+          variant={variant}
+          more={
+            <span className="variant-tile-more" aria-hidden="true">
+              {isOpen ? 'Свернуть' : 'Подробнее'}
+            </span>
+          }
+        />
       </button>
     </li>
   );

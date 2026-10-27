@@ -1,3 +1,10 @@
+# Netlify: заголовки безопасности для всех страниц (как в server/app.js)
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
 # Netlify: долгий кэш для файлов, которые не меняются без смены имени или редко меняются
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
