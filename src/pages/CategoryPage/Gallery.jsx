@@ -1,8 +1,7 @@
 // Фото категории: одно большое фото и, если фото несколько, ряд миниатюр под ним.
-// Нажатие на миниатюру меняет большое фото, на большое фото — открывает его крупно (Lightbox).
+// Нажатие на миниатюру меняет большое фото — без пустых мест и «половинок» сетки.
 import { useState } from 'react';
 import CatalogImage from '../../components/CatalogImage/CatalogImage';
-import Lightbox from '../../components/Lightbox/Lightbox';
 import { resolveImage } from '../../lib/images';
 
 export default function Gallery({ category }) {
@@ -11,20 +10,12 @@ export default function Gallery({ category }) {
     ...(category.gallery || []).map((item) => ({ image: item.image, title: item.title || category.title })),
   ].map((photo) => ({ ...photo, resolved: resolveImage(photo.image, photo.title) }));
   const [current, setCurrent] = useState(0);
-  const [zoomed, setZoomed] = useState(null);
   const main = photos[current];
 
   return (
     <div className="gallery">
       <figure className="gallery-figure">
-        <button
-          className="photo-zoom"
-          type="button"
-          onClick={() => setZoomed(current)}
-          aria-label="Открыть фото крупно"
-        >
-          <CatalogImage key={main.image} image={main.resolved} alt={main.title} className="gallery-main" eager />
-        </button>
+        <CatalogImage key={main.image} image={main.resolved} alt={main.title} className="gallery-main" eager />
         {/* Подпись — что на фото (меняется вместе с выбранной миниатюрой) */}
         <figcaption className="gallery-caption">{main.title}</figcaption>
       </figure>
@@ -43,15 +34,6 @@ export default function Gallery({ category }) {
             </button>
           ))}
         </div>
-      )}
-      {/* Окно с фото крупно — только пока оно открыто */}
-      {zoomed !== null && (
-        <Lightbox
-          photos={photos.map((photo) => ({ src: photo.resolved.src, title: photo.title }))}
-          index={zoomed}
-          onChange={setZoomed}
-          onClose={() => setZoomed(null)}
-        />
       )}
     </div>
   );
