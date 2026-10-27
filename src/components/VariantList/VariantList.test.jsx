@@ -50,20 +50,4 @@ describe('VariantList', () => {
     const { container } = render(<VariantList category={{ title: 'Пусто' }} />);
     expect(container).toBeEmptyDOMElement();
   });
-
-  it('большое фото открывается крупно и листается стрелками', async () => {
-    const user = userEvent.setup();
-    const category = catalog.sections
-      .find((section) => section.slug === 'radiators')
-      .nestedCategories.find((item) => item.slug === 'velar');
-    render(<VariantList category={category} />);
-    await user.click(screen.getByText('S', { selector: '.variant-tile .variant-series' }).closest('button'));
-    await user.click(screen.getByRole('button', { name: /Открыть фото крупно/ }));
-    const dialog = screen.getByLabelText('Просмотр фото', { selector: 'dialog' });
-    expect(within(dialog).getByText('1 / 2')).toBeInTheDocument();
-    await user.click(within(dialog).getByRole('button', { name: 'Следующее фото', hidden: true }));
-    expect(within(dialog).getByText('2 / 2')).toBeInTheDocument();
-    await user.click(within(dialog).getByRole('button', { name: 'Закрыть', hidden: true }));
-    expect(within(dialog).queryByText('2 / 2')).not.toBeInTheDocument();
-  });
 });

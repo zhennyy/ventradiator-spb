@@ -5,7 +5,6 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { resolveImage } from '../../lib/images';
 import CatalogImage from '../CatalogImage/CatalogImage';
-import Lightbox from '../Lightbox/Lightbox';
 import Specs from '../Specs/Specs';
 import StubText from '../StubText/StubText';
 import './VariantList.css';
@@ -87,25 +86,19 @@ function VariantTile({ variant, panelId, isOpen, onToggle }) {
 }
 
 // Фото в раскрытой карточке: основное и, если есть, дополнительные (например, в интерьере) —
-// миниатюры под ним меняют большое фото; нажатие на большое фото открывает его крупно
+// миниатюры под ним меняют большое фото
 function VariantMedia({ variant }) {
   const photos = [
     { image: variant.image, title: variant.title },
     ...(variant.gallery || []).map((item) => ({ image: item.image, title: item.title || variant.title })),
   ];
   const [current, setCurrent] = useState(0);
-  const [zoomed, setZoomed] = useState(null);
   const main = photos[current];
   return (
     <div className="variant-media-wrap">
-      <button
-        className="variant-media photo-zoom"
-        type="button"
-        onClick={() => setZoomed(current)}
-        aria-label={`Открыть фото крупно: ${main.title}`}
-      >
+      <div className="variant-media">
         <CatalogImage key={main.image} image={resolveImage(main.image, main.title)} alt={main.title} />
-      </button>
+      </div>
       {photos.length > 1 && (
         <div className="variant-thumbs" role="group" aria-label={`Фото: ${variant.title}`}>
           {photos.map((photo, index) => (
@@ -125,15 +118,6 @@ function VariantMedia({ variant }) {
             </button>
           ))}
         </div>
-      )}
-      {/* Окно с фото крупно — только пока оно открыто */}
-      {zoomed !== null && (
-        <Lightbox
-          photos={photos.map((photo) => ({ src: resolveImage(photo.image, photo.title).src, title: photo.title }))}
-          index={zoomed}
-          onChange={setZoomed}
-          onClose={() => setZoomed(null)}
-        />
       )}
     </div>
   );
