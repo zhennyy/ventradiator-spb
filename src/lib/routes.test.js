@@ -12,9 +12,17 @@ describe('routes', () => {
         expect(page.hasForm).toBe(true);
         expect(page.breadcrumbs.map((crumb) => crumb.label)).toEqual([section.title, category.title]);
       }
+      // Вложенная категория (Velar внутри «Трубчатых») — своя страница, в крошках и родитель
+      for (const nested of section.nestedCategories || []) {
+        const page = pages.find((item) => item.path === `/${section.slug}/${nested.slug}.html`);
+        const parent = section.categories.find((item) => item.slug === nested.parent);
+        expect(page.breadcrumbs.map((crumb) => crumb.label)).toEqual([section.title, parent.title, nested.title]);
+      }
     }
     expect(pages).toHaveLength(
-      6 + catalog.sections.length + catalog.sections.flatMap((item) => item.categories).length,
+      6 +
+        catalog.sections.length +
+        catalog.sections.flatMap((item) => [...item.categories, ...(item.nestedCategories || [])]).length,
     );
   });
 

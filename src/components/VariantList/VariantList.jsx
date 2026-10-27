@@ -40,6 +40,25 @@ function VariantName({ variant }) {
 }
 
 function VariantTile({ variant, panelId, isOpen, onToggle }) {
+  // Плитка-«папка»: ведёт на отдельную страницу с моделями бренда (например, все Velar)
+  if (variant.href) {
+    return (
+      <li className="variant-tile variant-tile-link">
+        <a href={variant.href}>
+          <span className="variant-tile-media">
+            <CatalogImage image={resolveImage(variant.image, variant.title)} alt="" />
+          </span>
+          <span className="variant-tile-body">
+            <h3>
+              <VariantName variant={variant} />
+            </h3>
+            <span className="variant-tile-text">{shortText(variant)}</span>
+            <span className="variant-tile-more">Все модели →</span>
+          </span>
+        </a>
+      </li>
+    );
+  }
   return (
     <li className={`variant-tile${isOpen ? ' is-open' : ''}`}>
       <button type="button" aria-expanded={isOpen} aria-controls={panelId} onClick={onToggle}>
@@ -192,7 +211,7 @@ export default function VariantList({ category }) {
               />
               {rowEnd(index) === index &&
                 variants.map((rowVariant, rowIndex) =>
-                  rowEnd(rowIndex) === index ? (
+                  rowEnd(rowIndex) === index && !rowVariant.href ? (
                     <VariantPanel
                       key={rowVariant.title}
                       variant={rowVariant}

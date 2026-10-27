@@ -17,7 +17,10 @@ function catalogPages() {
       description: section.description,
       breadcrumbs: [sectionCrumb],
     });
-    for (const category of section.categories) {
+    for (const category of [...section.categories, ...(section.nestedCategories || [])]) {
+      // Вложенная категория (например, Velar внутри «Трубчатых») — в крошках есть и родитель
+      const parent = category.parent && section.categories.find((item) => item.slug === category.parent);
+      const parentCrumbs = parent ? [{ href: categoryPath(section, parent), label: parent.title }] : [];
       pages.push({
         path: categoryPath(section, category),
         kind: 'category',
@@ -27,7 +30,7 @@ function catalogPages() {
         description: withoutStubs(category.summary),
         image: category.image,
         hasForm: true,
-        breadcrumbs: [sectionCrumb, { href: categoryPath(section, category), label: category.title }],
+        breadcrumbs: [sectionCrumb, ...parentCrumbs, { href: categoryPath(section, category), label: category.title }],
       });
     }
   }
@@ -105,7 +108,7 @@ export function findSection(slug) {
 }
 
 export function findCategory(section, slug) {
-  return section.categories.find((category) => category.slug === slug);
+  return [...section.categories, ...(section.nestedCategories || [])].find((category) => category.slug === slug);
 }
 
 // Поведение React Router v7 включено заранее (и без предупреждений в консоли).
