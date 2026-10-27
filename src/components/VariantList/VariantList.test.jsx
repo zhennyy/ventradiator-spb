@@ -20,7 +20,7 @@ describe('VariantList', () => {
     render(<VariantList category={findCategory('radiators', 'tubular')} />);
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Серии');
     const cards = screen.getAllByRole('listitem');
-    expect(cards).toHaveLength(4);
+    expect(cards).toHaveLength(5);
     // Первая плитка — «папка» Velar: ведёт на страницу со всеми моделями Velar
     expect(within(cards[0]).getByRole('link')).toHaveAttribute('href', '/radiators/velar.html');
     const heading = within(cards[1]).getByRole('heading', { level: 3 });

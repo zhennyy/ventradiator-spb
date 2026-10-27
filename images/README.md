@@ -105,6 +105,7 @@
 | `rad-velar-p300.jpg` | Дизайн-радиатор Velar P 300 (сайт velarwh.ru) |
 | `rad-zehnder-charleston.jpg` | Трубчатый радиатор Zehnder Charleston (фото от клиента) |
 | `rad-rifar-tubog.jpg` | Rifar Tubog (фото от клиента) |
+| `rad-rifar-tubog-quarte.jpg` | Rifar Tubog Quarte (сайт rifar.ru), фон заменён |
 | `rad-rifar-tubog-studio.jpg` | Rifar Tubog на светлом сером фоне |
 | `rad-zehnder-charleston-studio.jpg` | Zehnder Charleston на светлом сером фоне |
 | `rad-rt-biliner.jpg` | Royal Thermo BiLiner (сайт royal-thermo.ru) |
