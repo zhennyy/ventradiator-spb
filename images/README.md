@@ -134,6 +134,16 @@
 | `conv-vitron-floor.jpg` | Внутрипольный конвектор Vitron ВК (и фото раздела) |
 | `conv-vitron-standing.jpg` | Напольный конвектор Vitron ВКН |
 | `conv-vitron-wall.jpg` | Настенный конвектор Vitron ВКС |
+| `conv-vitron-vk.jpg` | Vitron ВК (сайт vitron.ru) |
+| `conv-vitron-vkv.jpg` | Vitron ВКВ.24 (сайт vitron.ru) |
+| `conv-vitron-vke.jpg` | Vitron ВКЭ (сайт vitron.ru) |
+| `conv-vitron-vkve.jpg` | Vitron ВКВЭ (сайт vitron.ru) |
+| `conv-vitron-vkn.jpg` | Vitron ВКН (сайт vitron.ru) |
+| `conv-vitron-vkn-eko.jpg` | Vitron ВКН ЭКО (сайт vitron.ru) |
+| `conv-vitron-vken.jpg` | Vitron ВКЭН (сайт vitron.ru) |
+| `conv-vitron-vks.jpg` | Vitron ВКС (сайт vitron.ru) |
+| `conv-vitron-vks-int.jpg` | Vitron ВКС в интерьере (сайт vitron.ru) |
+| `conv-vitron-vks-eko.jpg` | Vitron ВКС ЭКО (сайт vitron.ru) |
 | `conv-velar-natural.jpg` | Внутрипольный конвектор Velar с естественной конвекцией |
 | `conv-velar-fan.jpg` | Внутрипольный конвектор Velar с вентилятором |
 | `logo-vitron.png` | Логотип Vitron |

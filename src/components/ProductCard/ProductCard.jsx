@@ -2,7 +2,7 @@
 // название, краткое описание и нижняя строка «Смотреть →». Вся карточка — одна ссылка.
 // Карточки выводятся списком <ul class="category-grid"> (раздел каталога и «Ещё в разделе»).
 import { categoryPath } from '../../lib/content';
-import { resolveImage } from '../../lib/images';
+import { BRAND_LOGOS, resolveImage } from '../../lib/images';
 import CatalogImage from '../CatalogImage/CatalogImage';
 import StubText from '../StubText/StubText';
 import './ProductCard.css';
@@ -10,18 +10,21 @@ import './ProductCard.css';
 // Что показать над названием: логотипы брендов или названия моделей
 function CardMeta({ category }) {
   const variants = category.variants || [];
-  const logos = variants.filter((variant) => variant.logo);
-  if (logos.length) {
+  // Бренды по порядку: из карточек-брендов (logo) и из серий (brand), без повторов
+  const logos = [];
+  for (const variant of variants) {
+    const name = variant.logo ? variant.title : variant.brand;
+    const file = variant.logo || BRAND_LOGOS[variant.brand];
+    if (name && file && !logos.some((item) => item.name === name)) logos.push({ name, file });
+  }
+  if (
+    logos.length &&
+    logos.length === new Set(variants.map((variant) => (variant.logo ? variant.title : variant.brand))).size
+  ) {
     return (
       <span className="card-logos" aria-hidden="true">
-        {logos.map((variant) => (
-          <img
-            key={variant.title}
-            src={resolveImage(variant.logo, variant.title).src}
-            alt={`Логотип ${variant.title}`}
-            loading="lazy"
-            decoding="async"
-          />
+        {logos.map(({ name, file }) => (
+          <img key={name} src={resolveImage(file, name).src} alt={`Логотип ${name}`} loading="lazy" decoding="async" />
         ))}
       </span>
     );
