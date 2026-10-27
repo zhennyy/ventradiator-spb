@@ -80,6 +80,7 @@
 | `rad-kohr.jpg` | Трубчатый радиатор Kohr |
 | `rad-velar-2col.jpg` | Трубчатый радиатор Velar, 2-колончатый |
 | `rad-velar-3col.jpg` | Трубчатый радиатор Velar, 3-колончатый (и фото раздела) |
+| `rad-velar-3col-burgundy.jpg` | Velar 3-колончатый, перекрашен в бордовый (обработка фото Velar) — плитка «Коллекция Velar» |
 | `rad-velar-4col.jpg` | Трубчатый радиатор Velar, 4-колончатый |
 | `rad-rifar-base.jpg` | Биметаллические радиаторы Rifar Base |
 | `rad-royal-bimetal.jpg` | Биметаллические радиаторы Royal Thermo INFINITY |
