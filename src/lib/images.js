@@ -1,9 +1,17 @@
 // Картинки: если в images/ лежит настоящее фото — берём его (/images/<файл>),
 // иначе ставим SVG-заглушку /images/placeholders/<файл>.svg с названием товара (рисует компонент Placeholder).
-import photos from 'virtual:photos';
+import photos, { optimized } from 'virtual:photos';
 import { catalog, site } from './content';
 
 const availablePhotos = new Set(photos);
+const optimizedFiles = new Set(optimized || []);
+
+// srcset из лёгких WebP-копий (images/opt): «/images/opt/x-640.webp 640w, …» — или пусто, если копий нет
+export function srcSetFor(fileName) {
+  const stem = fileName.replace(/\.\w+$/, '');
+  const widths = [640, 1200, 1600, 2800].filter((width) => optimizedFiles.has(`${stem}-${width}.webp`));
+  return widths.map((width) => `/images/opt/${stem}-${width}.webp ${width}w`).join(', ');
+}
 
 export function placeholderSrc(fileName) {
   return `/images/placeholders/${fileName.replace(/\.\w+$/, '')}.svg`;
@@ -27,6 +35,7 @@ export function resolveImage(fileName, title, kind = 'product') {
   const isPlaceholder = !hasPhoto(fileName);
   return {
     src: isPlaceholder ? placeholderSrc(fileName) : `/images/${fileName}`,
+    srcSet: isPlaceholder ? '' : srcSetFor(fileName),
     isPlaceholder,
     fileName,
     title,

@@ -10,3 +10,4 @@ dist-server/
 
 npm-debug.log*
 *.log
+*.tmp.mjs

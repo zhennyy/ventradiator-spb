@@ -2,7 +2,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
 // Подменяем список фото из images/: как будто клиент прислал фото L2 и обложку.
-vi.mock('virtual:photos', () => ({ default: ['vent-l2.jpg', 'og-cover.jpg'] }));
+vi.mock('virtual:photos', () => ({ default: ['vent-l2.jpg', 'og-cover.jpg'], optimized: [] }));
 
 const { listImages, ogCoverSrc, resolveImage } = await import('./images');
 const { getHeadMeta } = await import('./seo');
