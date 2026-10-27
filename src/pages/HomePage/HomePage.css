@@ -38,17 +38,19 @@
   /* Левее дивана и столика: правый край текста не заходит на мебель на фото */
   margin-left: clamp(0px, 48vw - 640px - max(0px, (100vw - 1440px) / 2), 360px);
 }
-/* Мягкая светлая подложка только под текстом — без рамки: шторы за текстом светлее, текст читается */
+/* Мягкое светлое пятно за текстом — как рассеянный свет из окна: края плавно сходят на нет,
+   границы не видно, шторы за текстом чуть светлее и текст читается */
 .hero-copy::before {
   content: '';
   position: absolute;
-  inset: -16% -16% -16% -10%;
+  inset: -34% -22% -34% -18%;
   z-index: -1;
   background: radial-gradient(
     closest-side,
-    rgb(250 249 245 / 0.88),
-    rgb(250 249 245 / 0.74) 50%,
-    rgb(250 249 245 / 0.32) 80%,
+    rgb(250 249 245 / 0.7),
+    rgb(250 249 245 / 0.56) 40%,
+    rgb(250 249 245 / 0.3) 68%,
+    rgb(250 249 245 / 0.1) 86%,
     rgb(250 249 245 / 0)
   );
   pointer-events: none;
@@ -186,6 +188,30 @@
   }
   .hero + .directions {
     padding-top: 8px;
+  }
+}
+/* Ноутбук с небольшим экраном и планшет горизонтально (768–1279px): как на большом ноутбуке —
+   невысокий первый экран, диван справа, текст слева на мягком светлом пятне */
+@media (min-width: 768px) and (max-width: 1279px) and (orientation: landscape) {
+  .hero-stage {
+    align-items: center;
+    min-height: clamp(460px, 54vw, 680px);
+  }
+  .hero-photo {
+    object-position: 60% 78%;
+  }
+  .hero-stage::after {
+    display: none;
+  }
+  .hero-copy::before {
+    display: block;
+  }
+  .hero-copy-wrap {
+    padding-block: 48px 64px;
+  }
+  .hero h1 {
+    max-width: 14em;
+    font-size: clamp(30px, 1.6vw + 16px, 38px);
   }
 }
 /* Планшет и телефон: каталог начинается сразу под растворившимся фото — без чёрной линейки */
