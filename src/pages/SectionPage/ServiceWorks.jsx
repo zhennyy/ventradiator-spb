@@ -1,14 +1,17 @@
 // «Услуги»: чем занимаемся — проекты вентиляции и кондиционирования, монтаж.
 // Каждый блок — фото и текст рядом (фото чередуется слева/справа), под текстом короткий список работ.
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CatalogImage from '../../components/CatalogImage/CatalogImage';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { resolveImage } from '../../lib/images';
 
 // Видео без звука по кругу. React не выводит атрибут muted при пререндере, поэтому звук
 // выключаем и запускаем ролик уже в браузере (иначе мобильные браузеры не дают автозапуск).
+// В углу — маленькая кнопка «пауза/воспроизвести»: движущуюся картинку дольше 5 секунд
+// по правилам доступности (WCAG 2.2.2) должно быть можно остановить.
 function AutoVideo({ src, poster, label }) {
   const ref = useRef(null);
+  const [isPlaying, setPlaying] = useState(false);
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
@@ -18,7 +21,38 @@ function AutoVideo({ src, poster, label }) {
     if (/jsdom/.test(navigator.userAgent)) return;
     video.play?.()?.catch?.(() => {});
   }, []);
-  return <video ref={ref} src={src} poster={poster} aria-label={label} loop playsInline preload="metadata" />;
+
+  function toggle() {
+    const video = ref.current;
+    if (video.paused) video.play().catch(() => {});
+    else video.pause();
+  }
+
+  return (
+    <>
+      <video
+        ref={ref}
+        src={src}
+        poster={poster}
+        aria-label={label}
+        loop
+        playsInline
+        preload="metadata"
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+      />
+      <button
+        type="button"
+        className="video-toggle"
+        onClick={toggle}
+        aria-label={isPlaying ? 'Поставить видео на паузу' : 'Воспроизвести видео'}
+      >
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+          {isPlaying ? <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /> : <path d="M8 5.5v13l11-6.5z" />}
+        </svg>
+      </button>
+    </>
+  );
 }
 
 export default function ServiceWorks({ works }) {

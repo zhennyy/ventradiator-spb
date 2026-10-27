@@ -68,6 +68,10 @@
   color: var(--ink-soft);
 }
 .card-title {
+  /* Длинные слова («Теплоизолированные») на узком телефоне переносятся с дефисом (hyphens),
+     а где браузер не умеет переносить по-русски — хотя бы не обрезаются краем карточки */
+  overflow-wrap: anywhere;
+  hyphens: auto;
   font-family: var(--font-text);
   font-weight: 600;
   font-size: clamp(18px, 0.3vw + 16px, 19px);

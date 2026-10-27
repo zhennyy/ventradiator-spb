@@ -13,6 +13,12 @@
 /* Листаем вниз — шапка уезжает, вверх — возвращается с лёгкой тенью */
 .site-header.is-hidden {
   transform: translateY(-100%);
+  box-shadow: none;
+}
+/* У спрятанной шапки есть transform — для fixed-меню внутри неё она становится «рамкой», и меню
+   (сдвинутое для анимации вправо) расширяло страницу на планшете. Спрятанной шапке меню не нужно. */
+.site-header.is-hidden .site-nav {
+  display: none;
 }
 .site-header.is-scrolled {
   box-shadow: 0 10px 30px -18px rgb(23 25 27 / 0.35);

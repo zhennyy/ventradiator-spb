@@ -181,7 +181,7 @@ export default function Header({ currentPath, hasContacts }) {
           </svg>
           <span className="header-home-desk">Главная</span>
           <span className="header-home-long">Представительство в Санкт-Петербурге · по всей России</span>
-          <span className="header-home-short">Представительство в СПб</span>
+          <span className="header-home-short">{'Представительство в\u00a0СПб'}</span>
         </a>
         {/* Номер ещё не известен — кнопку звонка не показываем */}
         {phone && (

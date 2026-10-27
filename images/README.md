@@ -57,8 +57,6 @@
 | `vent-collectors.jpg` | Коллекторы: пластиковые (808–216 V) и металлические RS |
 | `vent-heat-protection.jpg` | Воздуховоды теплозащитной серии Ø125/160/180 |
 | `vent-acoustic.jpg` | Воздуховоды акустической серии Ø125/160/180 |
-| `vent-diffusers.jpg` | Диффузоры (эффект Коанда) |
-| `vent-accessories.jpg` | Аксессуары для вентиляции |
 | `vent-consumables.jpg` | Расходные материалы для вентиляции |
 | `vent-valves.jpg` | Приточно-вытяжные клапаны |
 
@@ -124,8 +122,6 @@
 | `rad-velar-r89-vertical.jpg` | Velar R89 вертикальный (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
 | `rad-velar-sp.jpg` | Velar SP (материалы Velar для партнёров, Яндекс Диск клиента), фон — студийная подложка |
 | `rad-velar-sp-interior.jpg` | Дизайн-радиатор Velar SP (сайт velarwh.ru) |
-| `rad-zehnder-charleston.jpg` | Трубчатый радиатор Zehnder Charleston (фото от клиента) |
-| `rad-rifar-tubog.jpg` | Rifar Tubog (фото от клиента) |
 | `rad-rifar-tubog-studio.jpg` | Rifar Tubog на светлом сером фоне |
 | `rad-zehnder-charleston-studio.jpg` | Zehnder Charleston на светлом сером фоне |
 | `rad-rt-biliner.jpg` | Royal Thermo BiLiner (сайт royal-thermo.ru), фон — студийная подложка |

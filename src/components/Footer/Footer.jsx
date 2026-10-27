@@ -14,10 +14,7 @@ const COMPANY_LINKS = [
   ['/about.html', 'О компании'],
   ['/contacts.html', 'Контакты'],
 ];
-const DOCUMENT_LINKS = [
-  ['/privacy.html', 'Политика обработки персональных данных'],
-  ['/consent.html', 'Согласие на обработку данных'],
-];
+const DOCUMENT_LINKS = [['/privacy.html', 'Политика обработки персональных данных']];
 
 // Разделы без категорий (инженерные системы, услуги) — обычные ссылки в нижней строке, без пустого заголовка.
 const PLAIN_SECTION_LINKS = catalog.sections
