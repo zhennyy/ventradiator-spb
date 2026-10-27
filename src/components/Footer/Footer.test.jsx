@@ -32,7 +32,7 @@ describe('Footer', () => {
   });
 
   it('на странице с блоком «Контакты» не повторяет телефон, почту и кнопку', () => {
-    const { container } = render(<Footer hasForm />);
+    const { container } = render(<Footer hasContacts />);
     expect(container.querySelector('.footer-top')).toBeNull();
     expect(container.querySelector('a[href^="tel:"]')).toBeNull();
     expect(screen.getByRole('link', { name: 'Политика обработки персональных данных' })).toBeInTheDocument();

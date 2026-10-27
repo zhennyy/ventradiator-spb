@@ -17,12 +17,12 @@ export default function Layout({ page, children }) {
         Перейти к содержанию
       </a>
       <TopBar currentPath={page.path} />
-      <Header currentPath={page.path} hasForm={Boolean(page.hasForm)} />
+      <Header currentPath={page.path} hasContacts={Boolean(page.hasContacts)} />
       <main id="main" tabIndex={-1}>
         <Breadcrumbs crumbs={page.breadcrumbs} />
         {children}
       </main>
-      <Footer hasForm={Boolean(page.hasForm)} />
+      <Footer hasContacts={Boolean(page.hasContacts)} />
     </>
   );
 }

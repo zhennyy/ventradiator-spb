@@ -1,4 +1,4 @@
-// Главная: первый экран, два направления, почему эти системы и форма заявки.
+// Главная: первый экран, два направления, почему эти системы и контакты.
 import ContactBlock from '../../components/ContactBlock/ContactBlock';
 import DirectionsSection from './DirectionsSection';
 import HomeHero from './HomeHero';

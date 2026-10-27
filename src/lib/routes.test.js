@@ -4,12 +4,12 @@ import { catalog } from './content';
 import { findPage, NOT_FOUND_PAGE, pages, pageUrls } from './routes';
 
 describe('routes', () => {
-  it('у каждой категории каталога есть страница с крошками «раздел → категория» и формой', () => {
+  it('у каждой категории каталога есть страница с крошками «раздел → категория» и блоком контактов', () => {
     for (const section of catalog.sections) {
       for (const category of section.categories) {
         const page = pages.find((item) => item.path === `/${section.slug}/${category.slug}.html`);
         expect(page, category.slug).toBeDefined();
-        expect(page.hasForm).toBe(true);
+        expect(page.hasContacts).toBe(true);
         expect(page.breadcrumbs.map((crumb) => crumb.label)).toEqual([section.title, category.title]);
       }
       // Вложенная категория (Velar внутри «Трубчатых») — своя страница, в крошках и родитель

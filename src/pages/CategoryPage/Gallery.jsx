@@ -15,7 +15,14 @@ export default function Gallery({ category }) {
   return (
     <div className="gallery">
       <figure className="gallery-figure">
-        <CatalogImage key={main.image} image={main.resolved} alt={main.title} className="gallery-main" eager />
+        <CatalogImage
+          key={main.image}
+          image={main.resolved}
+          alt={main.title}
+          className="gallery-main"
+          sizes="(max-width: 1024px) 100vw, 640px"
+          eager
+        />
         {/* Подпись — что на фото (меняется вместе с выбранной миниатюрой) */}
         <figcaption className="gallery-caption">{main.title}</figcaption>
       </figure>

@@ -5,12 +5,11 @@
 const TARGETS = [
   'main > section .section-head',
   '.category-grid > li',
-  '.direction-grid > li',
-  '.reason-list > li',
-  '.object-grid > li',
-  '.variant-list > li',
+  '.direction-grid > *',
+  '.reason-list > .reason',
+  '.variant-tiles > .variant-tile',
   '.benefits > li',
-  '.request-grid > *',
+  '.contact-grid > *',
 ].join(',');
 
 export function startReveal(root = document) {

@@ -6,7 +6,7 @@ import Header from './Header';
 
 function renderHeader(props = {}) {
   const user = userEvent.setup();
-  render(<Header currentPath="/ventilation/units.html" hasForm {...props} />);
+  render(<Header currentPath="/ventilation/units.html" hasContacts {...props} />);
   const toggle = screen.getByRole('button', { name: 'Подменю: Вентиляция' });
   const item = toggle.closest('li');
   return { user, toggle, item };
@@ -98,11 +98,11 @@ describe('Header: кнопка звонка', () => {
 });
 
 describe('Header: «Запросить цену»', () => {
-  it('ведёт к форме на этой странице, а если формы нет — к форме на странице контактов', () => {
-    const { unmount } = render(<Header currentPath="/ventilation/units.html" hasForm />);
+  it('ведёт к контактам на этой странице, а если их нет — на страницу контактов', () => {
+    const { unmount } = render(<Header currentPath="/ventilation/units.html" hasContacts />);
     expect(screen.getByRole('link', { name: 'Запросить цену' })).toHaveAttribute('href', '#request');
     unmount();
-    render(<Header currentPath="/about.html" hasForm={false} />);
+    render(<Header currentPath="/about.html" hasContacts={false} />);
     expect(screen.getByRole('link', { name: 'Запросить цену' })).toHaveAttribute('href', '/contacts.html#request');
     expect(screen.getByRole('link', { name: 'О компании' })).toHaveAttribute('aria-current', 'page');
   });

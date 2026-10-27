@@ -60,9 +60,9 @@ export async function checkPage(page, base, pagePath, cache, problems) {
 
 async function expectState(problems, label, check) {
   try {
-    if (!(await check())) problems.push(`меню/форма: ${label}`);
+    if (!(await check())) problems.push(`меню/контакты: ${label}`);
   } catch (error) {
-    problems.push(`меню/форма: ${label} (${error.message.split('\n')[0]})`);
+    problems.push(`меню/контакты: ${label} (${error.message.split('\n')[0]})`);
   }
 }
 
@@ -137,6 +137,16 @@ export async function checkMobileMenu(page, problems) {
 }
 
 export async function closeMobileMenu(page, problems) {
+  // Открыто подменю: первый Esc закрывает только его, меню остаётся
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(450);
+  await expectState(problems, 'первый Esc закрывает подменю, а не всё меню', async () => {
+    const [nav, dropdown] = await Promise.all([
+      page.locator('#site-nav').isVisible(),
+      page.locator('.dropdown').first().isVisible(),
+    ]);
+    return nav && !dropdown;
+  });
   await page.keyboard.press('Escape');
   await expectState(
     problems,

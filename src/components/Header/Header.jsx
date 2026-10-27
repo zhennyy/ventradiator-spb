@@ -33,7 +33,7 @@ function PhoneIcon() {
   );
 }
 
-export default function Header({ currentPath, hasForm }) {
+export default function Header({ currentPath, hasContacts }) {
   const [openSection, setOpenSection] = useState(null);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef(null);
@@ -101,8 +101,13 @@ export default function Header({ currentPath, hasForm }) {
   }, []);
 
   // Открытое мобильное меню: класс на body (блокирует прокрутку), Esc закрывает, на десктопе меню сбрасывается.
+  // Страница под меню становится inert: Tab и скринридер не уходят из открытого меню в содержимое под ним.
   useEffect(() => {
     document.body.classList.toggle('menu-open', isMenuOpen);
+    const behindMenu = document.querySelectorAll('main, .site-footer');
+    behindMenu.forEach((element) => {
+      element.inert = isMenuOpen;
+    });
     if (!isMenuOpen) return undefined;
     const closeOnEscape = (event) => {
       if (event.key !== 'Escape') return;
@@ -231,7 +236,7 @@ export default function Header({ currentPath, hasForm }) {
                 {phone}
               </a>
             )}
-            <ButtonLink href={hasForm ? '#request' : '/contacts.html#request'} small>
+            <ButtonLink href={hasContacts ? '#request' : '/contacts.html#request'} small>
               Запросить цену
             </ButtonLink>
             {/* Подпись внизу выдвижного меню (на ноутбуке скрыта) */}

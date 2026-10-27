@@ -1,5 +1,5 @@
 // Подвал — «задняя обложка» каталога. Сверху: слева призыв и кнопка, справа контакты крупно —
-// только на страницах без блока «Контакты» (hasForm = на странице есть #request), чтобы номер и почта не повторялись.
+// только на страницах без блока «Контакты» (hasContacts = на странице есть #request), чтобы номер и почта не повторялись.
 // Ниже: карта сайта колонками (разделы с категориями + «Компания»), внизу строка © и документы.
 import { catalog, categoryPath, sectionPath, site } from '../../lib/content';
 import { hasContent, phoneHref } from '../../lib/text';
@@ -56,13 +56,13 @@ function SectionRow({ section }) {
   );
 }
 
-export default function Footer({ hasForm = false }) {
+export default function Footer({ hasContacts = false }) {
   const office = site.offices[0];
   const phone = office.phones[0];
   return (
     <footer className="site-footer">
       <div className="wrap">
-        {!hasForm && (
+        {!hasContacts && (
           <div className="footer-top">
             <div className="footer-pitch">
               <p className="footer-slogan">Подберём вентиляцию, отопление и пылеудаление для вашего дома</p>
@@ -70,7 +70,7 @@ export default function Footer({ hasForm = false }) {
               <ButtonLink href="/contacts.html#request">Запросить цену</ButtonLink>
             </div>
             {/* Пока нет ни телефона, ни почты, ни адреса — блок контактов не показываем */}
-            {(phone || site.email || hasContent(office.address)) && (
+            {(phone || office.email || hasContent(office.address)) && (
               <div className="footer-contacts">
                 <p className="footer-title">{office.title}</p>
                 {phone && (
@@ -78,9 +78,9 @@ export default function Footer({ hasForm = false }) {
                     {phone}
                   </a>
                 )}
-                {site.email && (
-                  <a className="footer-email" href={`mailto:${site.email}`}>
-                    {site.email}
+                {office.email && (
+                  <a className="footer-email" href={`mailto:${office.email}`}>
+                    {office.email}
                   </a>
                 )}
                 {hasContent(office.address) && (

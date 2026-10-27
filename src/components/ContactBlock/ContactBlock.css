@@ -1,20 +1,20 @@
 /* Контакты внизу страниц: слева заголовок и пояснение, справа крупный телефон и ряд каналов связи */
-.request {
+.contact-section {
   padding: var(--section-space) 0;
   background: var(--surface);
   border-top: 1px solid var(--line);
 }
-.request-grid {
+.contact-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: clamp(28px, 4vw, 64px);
   align-items: start;
 }
 /* Заголовок скромнее заголовков секций: на странице товара он длинный («Запросить цену: …») */
-.request h2 {
+.contact-section h2 {
   font-size: clamp(24px, 1.2vw + 18px, 38px);
 }
-.request-intro p:not(.eyebrow) {
+.contact-intro p:not(.eyebrow) {
   max-width: 440px;
   text-wrap: pretty;
   margin-top: 20px;
@@ -149,10 +149,10 @@ a.contact-channel:hover i {
 
 /* Планшет и телефон: вступление над контактами */
 @media (max-width: 1024px) {
-  .request-grid {
+  .contact-grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .request-intro p:not(.eyebrow) {
+  .contact-intro p:not(.eyebrow) {
     max-width: 600px;
   }
 }

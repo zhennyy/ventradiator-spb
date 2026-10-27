@@ -64,13 +64,18 @@ const CHECK_ICON = (
 );
 
 // Нажали — значение в буфере; значок становится галочкой, вместо значения на 2 секунды «Скопировано»
-function CopyChannel({ label, copy, what }) {
+// onAnnounce — текст для скринридера: одна общая строка статуса вне кнопок (внутри кнопки её читают ненадёжно)
+function CopyChannel({ label, copy, what, onAnnounce }) {
   const [copied, setCopied] = useState(false);
   const timer = useRef();
   useEffect(() => () => clearTimeout(timer.current), []);
 
   async function handleClick() {
-    if (!(await copyText(copy))) return;
+    if (!(await copyText(copy))) {
+      onAnnounce(`Не получилось скопировать ${what}: ${copy}`);
+      return;
+    }
+    onAnnounce(`Скопировано: ${copy}`);
     setCopied(true);
     clearTimeout(timer.current);
     timer.current = setTimeout(() => setCopied(false), 2000);
@@ -88,9 +93,6 @@ function CopyChannel({ label, copy, what }) {
         {label} <i className="contact-copy">{copied ? CHECK_ICON : COPY_ICON}</i>
       </b>
       <small className={copied ? 'is-copied' : undefined}>{copied ? 'Скопировано' : copy}</small>
-      <span className="visually-hidden" role="status">
-        {copied ? 'Скопировано' : ''}
-      </span>
     </button>
   );
 }
@@ -115,13 +117,14 @@ function Channel({ label, href, text }) {
 
 export default function ContactBlock({ heading = 'Запросить цену и подбор' }) {
   const contacts = site.contacts;
+  const [announcement, setAnnouncement] = useState('');
 
   return (
-    <section className="request" id="request" aria-labelledby="request-title">
-      <div className="wrap request-grid">
-        <div className="request-intro">
+    <section className="contact-section" id="request" aria-labelledby="contacts-title">
+      <div className="wrap contact-grid">
+        <div className="contact-intro">
           <p className="eyebrow">Контакты</p>
-          <h2 id="request-title">{heading}</h2>
+          <h2 id="contacts-title">{heading}</h2>
           <p>
             Цены не публикуются: стоимость зависит от состава системы. Позвоните или напишите, как вам удобнее, —
             специалист уточнит задачу и подготовит расчёт.
@@ -140,12 +143,15 @@ export default function ContactBlock({ heading = 'Запросить цену и
           <div className="contact-channels">
             {channelLinks(contacts).map((channel) =>
               channel.copy ? (
-                <CopyChannel key={channel.label} {...channel} />
+                <CopyChannel key={channel.label} {...channel} onAnnounce={setAnnouncement} />
               ) : (
                 <Channel key={channel.label} {...channel} />
               ),
             )}
           </div>
+          <p className="visually-hidden" role="status">
+            {announcement}
+          </p>
         </div>
       </div>
     </section>

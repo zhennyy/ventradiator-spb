@@ -64,19 +64,16 @@
   /* Фон под фото товаров: они сняты на чисто белом, поэтому и рамка белая */
   --photo: #ffffff;
   --ice: #e6e9e8;
-  --ice-deep: #d9dcda;
   --ink: #17191b;
   --ink-soft: #55595d;
   --ink-faint: #85898c;
   --line: #d6d2c8;
   --line-strong: #17191b;
   --accent: #23578a;
-  --accent-deep: #1a426a;
   --warm: #c8541f;
   --stub-bg: #fff1b8;
   --stub-ink: #5e4700;
   --radius: 0;
-  --radius-field: 2px;
   --wrap: 1240px;
   /* Поля по бокам: 16px на телефоне → 40px на широком экране */
   --gutter: clamp(16px, 2.4vw + 6px, 40px);

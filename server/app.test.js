@@ -152,6 +152,7 @@ function createDist() {
   write('index.html', '<h1>Главная</h1>');
   write('404.html', '<h1>Не найдено</h1>');
   write('ventilation/l2.html', '<h1>Blizzard L2</h1>');
+  write('ventilation.html', '<h1>Раздел Вентиляция</h1>');
   write('assets/index-abc123.js', 'console.log(1);');
   return distDir;
 }
@@ -169,6 +170,13 @@ describe('раздача собранного сайта', () => {
         expect(page.status, url).toBe(200);
         expect(await page.text()).toMatch(/Blizzard L2/);
       }
+      // Раздел: рядом лежит папка dist/ventilation/ — всё равно отдаётся ventilation.html, без редиректа на /ventilation/
+      for (const url of ['/ventilation', '/ventilation.html']) {
+        const section = await fetch(server.base + url, { redirect: 'manual' });
+        expect(section.status, url).toBe(200);
+        expect(await section.text()).toMatch(/Раздел Вентиляция/);
+      }
+      expect((await fetch(`${server.base}/%E0%A4%A`)).status).toBe(404);
       const missing = await fetch(`${server.base}/nope.html`);
       expect(missing.status).toBe(404);
       expect(await missing.text()).toMatch(/Не найдено/);

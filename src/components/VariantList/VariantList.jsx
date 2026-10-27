@@ -47,9 +47,10 @@ function TileContent({ variant, more }) {
         <CatalogImage image={resolveImage(variant.image, variant.title)} alt="" />
       </span>
       <span className="variant-tile-body">
-        <h3>
+        {/* Не <h3>: внутри <button> заголовки не допускаются (кнопка — только строчный текст) */}
+        <span className="variant-tile-title">
           <VariantName variant={variant} />
-        </h3>
+        </span>
         {/* Мини-описание: короткая подпись (short) или первое предложение описания */}
         <span className="variant-tile-text">{shortText(variant)}</span>
         {more}
@@ -97,7 +98,12 @@ function VariantMedia({ variant }) {
   return (
     <div className="variant-media-wrap">
       <div className="variant-media">
-        <CatalogImage key={main.image} image={resolveImage(main.image, main.title)} alt={main.title} />
+        <CatalogImage
+          key={main.image}
+          image={resolveImage(main.image, main.title)}
+          alt={main.title}
+          sizes="(max-width: 1024px) 100vw, 600px"
+        />
       </div>
       {photos.length > 1 && (
         <div className="variant-thumbs" role="group" aria-label={`Фото: ${variant.title}`}>
@@ -133,7 +139,7 @@ function VariantPanel({ variant, id, isOpen, onClose, panelRef }) {
             <p className="variant-name">
               <VariantName variant={variant} />
             </p>
-            <button className="variant-close" type="button" onClick={onClose}>
+            <button className="variant-close" type="button" onClick={() => onClose(id)}>
               Свернуть <span aria-hidden="true">×</span>
             </button>
           </div>
@@ -171,17 +177,25 @@ function useColumns() {
 // Если у моделей есть группы (например, у Velar — «Трубчатые» и «Дизайн-радиаторы»),
 // каждая группа выводится своим блоком с заголовком
 export default function VariantList({ category }) {
-  const groups = [...new Set((category.variants || []).map((variant) => variant.group).filter(Boolean))];
+  const variants = category.variants || [];
+  const groups = [...new Set(variants.map((variant) => variant.group).filter(Boolean))];
   if (!groups.length) return <VariantGroup category={category} />;
-  return groups.map((group, index) => (
-    <VariantGroup
-      key={group}
-      category={category}
-      variants={category.variants.filter((variant) => variant.group === group)}
-      heading={group}
-      idSuffix={`g${index}`}
-    />
-  ));
+  // Модели без группы не теряются: выводятся последним блоком с обычным заголовком
+  const ungrouped = variants.filter((variant) => !variant.group);
+  return (
+    <>
+      {groups.map((group, index) => (
+        <VariantGroup
+          key={group}
+          category={category}
+          variants={variants.filter((variant) => variant.group === group)}
+          heading={group}
+          idSuffix={`g${index}`}
+        />
+      ))}
+      {ungrouped.length > 0 && <VariantGroup category={category} variants={ungrouped} idSuffix="rest" />}
+    </>
+  );
 }
 
 function VariantGroup({ category, variants: groupVariants, heading, idSuffix = '' }) {
@@ -212,6 +226,12 @@ function VariantGroup({ category, variants: groupVariants, heading, idSuffix = '
     }
   };
 
+  // «Свернуть» внутри карточки: карточка прячется, фокус возвращается на её плитку (иначе он улетает в начало страницы)
+  const closePanel = (id) => {
+    setOpenIndex(null);
+    document.querySelector(`[aria-controls="${id}"]`)?.focus();
+  };
+
   // Карточки (скрытые, пока плитка не выбрана) стоят в сетке после каждого ряда плиток
   const rowEnd = (index) => Math.min(variants.length, Math.ceil((index + 1) / columns) * columns) - 1;
 
@@ -239,7 +259,7 @@ function VariantGroup({ category, variants: groupVariants, heading, idSuffix = '
                       variant={rowVariant}
                       id={panelId(rowIndex)}
                       isOpen={openIndex === rowIndex}
-                      onClose={() => setOpenIndex(null)}
+                      onClose={closePanel}
                       panelRef={panelRef}
                     />
                   ) : null,
