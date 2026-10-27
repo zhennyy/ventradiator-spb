@@ -2,7 +2,7 @@
 import { render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 import { site } from '../../lib/content';
-import ContactBlock, { channelLinks, splitPhone } from './ContactBlock';
+import ContactBlock, { channelLinks } from './ContactBlock';
 
 const saved = { ...site.contacts };
 afterEach(() => {
@@ -10,10 +10,6 @@ afterEach(() => {
 });
 
 describe('ContactBlock', () => {
-  it('делит телефон: последняя группа цифр отдельно', () => {
-    expect(splitPhone('+7 (812) 123-45-67')).toEqual(['+7 (812) ', '123‑45‑67']);
-  });
-
   it('собирает ссылки: mailto с темой, t.me без @, MAX как есть', () => {
     const links = channelLinks({ email: 'a@b.ru', telegram: '@shop', max: 'https://max.ru/x' }, 'Радиаторы');
     expect(links[0].href).toBe(`mailto:a@b.ru?subject=${encodeURIComponent('Запрос: Радиаторы')}`);
@@ -33,7 +29,7 @@ describe('ContactBlock', () => {
     const { container } = render(<ContactBlock heading="Запросить цену: Радиаторы" product="Радиаторы" />);
     expect(container.querySelector('section#request')).not.toBeNull();
     expect(screen.getByRole('heading', { name: 'Запросить цену: Радиаторы' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /123/ })).toHaveAttribute('href', 'tel:+78121234567');
+    expect(screen.getByRole('link', { name: '+7 (812) 123-45-67' })).toHaveAttribute('href', 'tel:+78121234567');
     expect(screen.getByRole('link', { name: /Telegram/ })).toHaveAttribute('rel', 'noopener noreferrer');
     expect(screen.getByText('Пн–Пт')).toBeInTheDocument();
   });
