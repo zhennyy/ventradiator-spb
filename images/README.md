@@ -96,6 +96,7 @@
 | `kohr-bracket.jpg` | Кронштейн Kohr (сайт kohr.ru, фон — студийная подложка) |
 | `kohr-floor-bracket.jpg` | Напольный кронштейн Kohr (сайт kohr.ru, фон — студийная подложка) |
 | `eng-balanstar.jpg` | Пресс-тройник Balanstar Press Inox (сайт balanstar.ru) |
+| `eng-neptun.jpg` | Комплект Neptun с логотипом на студийной подложке (фото и логотип — сайт neptunsale.ru) |
 | `eng-dab.jpg` | Насосы DAB с логотипом на студийной подложке (фото и логотип — сайт db-shop.ru) |
 | `rad-velar-2col.jpg` | Трубчатый радиатор Velar, 2-колончатый |
 | `rad-velar-3col.jpg` | Трубчатый радиатор Velar, 3-колончатый (и фото раздела) |
