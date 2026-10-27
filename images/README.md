@@ -78,6 +78,17 @@
 | Файл | Что на фото |
 | --- | --- |
 | `rad-kohr.jpg` | Трубчатый радиатор Kohr |
+| `rad-kohr-2tube.jpg` | Kohr Heim 2-трубный, крупный план (сайт kohr.ru, фон — студийная подложка) |
+| `rad-kohr-2tube-full.jpg` | Kohr Heim 2-трубный (сайт kohr.ru, фон — студийная подложка) |
+| `rad-kohr-3tube.jpg` | Kohr Heim 3-трубный графит, крупный план (сайт kohr.ru, фон — студийная подложка) |
+| `rad-kohr-3tube-full.jpg` | Kohr Heim 3-трубный графит (сайт kohr.ru, фон — студийная подложка) |
+| `kohr-thermohead.jpg` | Термоголовка Kohr (сайт kohr.ru, фон — студийная подложка) |
+| `kohr-bottom-connection.jpg` | Узел нижнего подключения Kohr (сайт kohr.ru, фон — студийная подложка) |
+| `kohr-valve.jpg` | Вентиль Kohr (сайт kohr.ru, фон — студийная подложка) |
+| `kohr-bracket.jpg` | Кронштейн Kohr (сайт kohr.ru, фон — студийная подложка) |
+| `kohr-floor-bracket.jpg` | Напольный кронштейн Kohr (сайт kohr.ru, фон — студийная подложка) |
+| `eng-balanstar.jpg` | Пресс-тройник Balanstar Press Inox (сайт balanstar.ru) |
+| `eng-dab.jpg` | Насосы DAB с логотипом на студийной подложке (фото и логотип — сайт db-shop.ru) |
 | `rad-velar-2col.jpg` | Трубчатый радиатор Velar, 2-колончатый |
 | `rad-velar-3col.jpg` | Трубчатый радиатор Velar, 3-колончатый (и фото раздела) |
 | `rad-velar-3col-burgundy.jpg` | Velar 3-колончатый, перекрашен в бордовый (обработка фото Velar) — плитка «Коллекция Velar» |
@@ -88,20 +99,18 @@
 | `rad-gekon-panel.jpg` | Панельный радиатор Gekon |
 | `service-projects-video-poster.jpg` | Первый кадр ролика «Как работает вентиляция» (Blizzard), дом целиком — обложка видео в «Услугах»; само видео — `public/video/how-work.mp4` |
 | `rad-velar-p30.jpg` | Дизайн-радиатор Velar P30 (сайт velarwh.ru) |
-| `rad-velar-p60.jpg` | Дизайн-радиатор Velar P60 (сайт velarwh.ru) |
+| `rad-velar-p60.jpg` | Velar P60 (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
 | `rad-velar-q40.jpg` | Дизайн-радиатор Velar Q40 (сайт velarwh.ru) |
 | `rad-velar-q60.jpg` | Дизайн-радиатор Velar Q60 (сайт velarwh.ru) |
 | `rad-velar-q80.jpg` | Дизайн-радиатор Velar Q80 (сайт velarwh.ru) |
 | `rad-velar-r32.jpg` | Дизайн-радиатор Velar R32 (сайт velarwh.ru) |
-| `rad-velar-r42.jpg` | Дизайн-радиатор Velar R42 (сайт velarwh.ru) |
-| `rad-velar-r89.jpg` | Дизайн-радиатор Velar R89 (сайт velarwh.ru) |
-| `rad-velar-s.jpg` | Дизайн-радиатор Velar S (сайт velarwh.ru) |
+| `rad-velar-r42.jpg` | Velar R42 в интерьере (материалы Velar для партнёров, Яндекс Диск клиента) |
+| `rad-velar-r89.jpg` | Velar R89 (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
+| `rad-velar-s.jpg` | Velar S (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
+| `rad-velar-s-detail.jpg` | Velar S крупным планом (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
+| `rad-velar-p60-detail.jpg` | Velar P60 с полотенцедержателем (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
+| `rad-velar-r89-vertical.jpg` | Velar R89 вертикальный (материалы Velar для партнёров (Яндекс Диск клиента), фон — студийная подложка) |
 | `rad-velar-sp.jpg` | Дизайн-радиатор Velar SP (сайт velarwh.ru) |
-| `rad-velar-rt.jpg` | Дизайн-радиатор Velar R T1/T2 (сайт velarwh.ru) |
-| `rad-velar-qt.jpg` | Дизайн-радиатор Velar Q T1/T2 (сайт velarwh.ru) |
-| `rad-velar-q500.jpg` | Дизайн-радиатор Velar Q 500 (сайт velarwh.ru) |
-| `rad-velar-p200.jpg` | Дизайн-радиатор Velar P 200 (сайт velarwh.ru) |
-| `rad-velar-p300.jpg` | Дизайн-радиатор Velar P 300 (сайт velarwh.ru) |
 | `rad-zehnder-charleston.jpg` | Трубчатый радиатор Zehnder Charleston (фото от клиента) |
 | `rad-rifar-tubog.jpg` | Rifar Tubog (фото от клиента) |
 | `rad-rifar-tubog-quarte.jpg` | Rifar Tubog Quarte (сайт rifar.ru), фон заменён |
