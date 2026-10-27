@@ -1,4 +1,4 @@
-// Контакты: офис в Петербурге (адрес пока заглушка), офис для России/СНГ/Прибалтики и блок контактов.
+// Контакты: карточка офиса в Санкт-Петербурге (адрес пока заглушка) и блок контактов.
 import PageHero from '../../components/PageHero/PageHero';
 import ContactBlock from '../../components/ContactBlock/ContactBlock';
 import Specs from '../../components/Specs/Specs';
