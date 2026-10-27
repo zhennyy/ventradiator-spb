@@ -815,6 +815,10 @@
               "group": "Профильные радиаторы",
               "gallery": [
                 {
+                  "image": "rad-velar-p30-navy.jpg",
+                  "title": "Velar P30, синий"
+                },
+                {
                   "image": "rad-velar-p30-interior.jpg",
                   "title": "Velar P30 в интерьере"
                 }
@@ -960,8 +964,8 @@
               "group": "Профильные радиаторы",
               "gallery": [
                 {
-                  "image": "rad-velar-s-detail.jpg",
-                  "title": "Velar S, овальный профиль крупным планом"
+                  "image": "rad-velar-s-side.jpg",
+                  "title": "Velar S сбоку — овальный профиль"
                 }
               ]
             },
