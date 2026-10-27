@@ -53,7 +53,7 @@ function VariantTile({ variant, panelId, isOpen, onToggle }) {
               <VariantName variant={variant} />
             </h3>
             <span className="variant-tile-text">{shortText(variant)}</span>
-            <span className="variant-tile-more">Все модели →</span>
+            <span className="variant-tile-more">Открыть коллекцию →</span>
           </span>
         </a>
       </li>
