@@ -9,8 +9,26 @@ import { validateRequest } from './validate.js';
 
 const DEFAULT_DIST = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist');
 
+// Content-Security-Policy: скрипты, стили, шрифты, картинки и видео — только свои; чужие скрипты не выполняются.
+// 'unsafe-inline' у стилей нужен для style="…", которые React пишет в готовый HTML (ползунки, шкалы);
+// JSON-LD в <script type="application/ld+json"> не исполняется, и CSP его не трогает.
+export const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data:",
+  "font-src 'self'",
+  "media-src 'self'",
+  "connect-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+].join('; ');
+
 // Базовые заголовки безопасности для всех ответов (те же — в public/_headers для Netlify)
 export const SECURITY_HEADERS = {
+  'Content-Security-Policy': CONTENT_SECURITY_POLICY,
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'SAMEORIGIN',
   'Referrer-Policy': 'strict-origin-when-cross-origin',

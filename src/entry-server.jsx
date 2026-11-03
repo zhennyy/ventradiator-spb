@@ -1,12 +1,12 @@
 // Серверный рендер для сборки (npm run build:server → dist-server/entry-server.js).
 // scripts/prerender.js берёт отсюда список страниц, HTML каждой страницы, теги <head>, заглушки картинок и sitemap.
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom/server';
+import { StaticRouter } from 'react-router';
 import App from './App';
 import Head from './components/Head/Head';
 import PlaceholderSvg from './components/Placeholder/PlaceholderSvg';
 import { listImages, ogCoverSrc } from './lib/images';
-import { pages, pageUrls, ROUTER_FUTURE } from './lib/routes';
+import { pages, pageUrls } from './lib/routes';
 import { getHeadMeta } from './lib/seo';
 import { renderRobots, renderSitemap } from './lib/seo-files';
 
@@ -15,7 +15,7 @@ export { listImages, ogCoverSrc, pages, renderRobots, renderSitemap };
 // HTML содержимого страницы (внутри #root) — тот же, что потом гидратирует src/main.jsx.
 export function renderPage(page) {
   return renderToString(
-    <StaticRouter location={pageUrls(page)[0]} future={ROUTER_FUTURE}>
+    <StaticRouter location={pageUrls(page)[0]}>
       <App />
     </StaticRouter>,
   );

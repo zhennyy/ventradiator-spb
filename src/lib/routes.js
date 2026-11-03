@@ -104,6 +104,3 @@ export function findSection(slug) {
 export function findCategory(section, slug) {
   return [...section.categories, ...(section.nestedCategories || [])].find((category) => category.slug === slug);
 }
-
-// Поведение React Router v7 включено заранее (и без предупреждений в консоли).
-export const ROUTER_FUTURE = { v7_startTransition: true, v7_relativeSplatPath: true };

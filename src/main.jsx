@@ -5,14 +5,14 @@ import './styles/base.css';
 import './styles/layout.css';
 import { StrictMode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 import App from './App';
-import { findPage, ROUTER_FUTURE } from './lib/routes';
+import { findPage } from './lib/routes';
 
 const container = document.getElementById('root');
 const app = (
   <StrictMode>
-    <BrowserRouter future={ROUTER_FUTURE}>
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>

@@ -4,8 +4,11 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { SECURITY_HEADERS, createApp } from './app.js';
+import { CONTENT_SECURITY_POLICY, SECURITY_HEADERS, createApp } from './app.js';
+
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const VALID = {
   name: 'Анна',
@@ -199,6 +202,12 @@ describe('раздача собранного сайта', () => {
       await server.close();
       fs.rmSync(distDir, { recursive: true, force: true });
     }
+  });
+
+  it('CSP в public/_headers (Netlify) совпадает с серверной', () => {
+    const headersFile = fs.readFileSync(path.join(ROOT, 'public', '_headers'), 'utf8');
+    expect(headersFile).toContain(`Content-Security-Policy: ${CONTENT_SECURITY_POLICY}`);
+    for (const [name, value] of Object.entries(SECURITY_HEADERS)) expect(headersFile).toContain(`${name}: ${value}`);
   });
 
   it('добавляет заголовки безопасности к страницам и к API', async () => {

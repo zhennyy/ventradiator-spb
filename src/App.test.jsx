@@ -1,13 +1,12 @@
 // Маршруты: каждая страница открывается по своему адресу (с .html и без), неизвестный адрес — 404.
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router';
 import { describe, expect, it } from 'vitest';
 import App from './App';
-import { ROUTER_FUTURE } from './lib/routes';
 
 function renderAt(url) {
   return render(
-    <MemoryRouter initialEntries={[url]} future={ROUTER_FUTURE}>
+    <MemoryRouter initialEntries={[url]}>
       <App />
     </MemoryRouter>,
   );

@@ -2,11 +2,11 @@
 // предупреждения React о расхождении разметки — иначе страница перерисуется и «мигнёт».
 import { act } from '@testing-library/react';
 import { hydrateRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 import App from './App';
 import { renderPage } from './entry-server';
-import { pages, pageUrls, ROUTER_FUTURE } from './lib/routes';
+import { pages, pageUrls } from './lib/routes';
 
 async function hydrateAt(url, page) {
   const container = document.createElement('div');
@@ -19,7 +19,7 @@ async function hydrateAt(url, page) {
   await act(async () => {
     root = hydrateRoot(
       container,
-      <BrowserRouter future={ROUTER_FUTURE}>
+      <BrowserRouter>
         <App />
       </BrowserRouter>,
       { onRecoverableError: (error) => recoverable.push(error) },

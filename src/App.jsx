@@ -1,6 +1,6 @@
 // Маршруты сайта. Каждая страница из src/lib/routes.js открывается по адресу /<путь>.html и без .html;
 // неизвестный адрес — страница 404. При сборке те же маршруты пререндерятся в готовый HTML.
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router';
 import Layout from './components/Layout/Layout';
 import { findCategory, findSection, NOT_FOUND_PAGE, pages, pageUrls } from './lib/routes';
 import AboutPage from './pages/AboutPage/AboutPage';
