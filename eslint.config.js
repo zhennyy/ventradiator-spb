@@ -1,5 +1,5 @@
 // Правила кода: рекомендованный набор ESLint + React и хуки + запрет коротких непонятных имён.
-// Сайт (src/) — браузерный код; сервер, сборка и проверки (server/, scripts/, tools/) — Node.
+// Сайт (src/) — браузерный код; сборка и проверки (scripts/, tools/) — Node.
 import js from '@eslint/js';
 import globals from 'globals';
 import react from 'eslint-plugin-react';
@@ -30,7 +30,7 @@ export default [
     },
   },
   {
-    files: ['server/**/*.js', 'scripts/**/*.js', '*.config.js'],
+    files: ['scripts/**/*.js', '*.config.js'],
     languageOptions: { globals: { ...globals.node } },
   },
   {

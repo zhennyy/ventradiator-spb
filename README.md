@@ -4,23 +4,23 @@
 
 Многостраничный каталог: вентиляция с рекуперацией тепла, центральные пылесосы, радиаторы, конвекторы и инженерные системы для домов и квартир в Петербурге, Ленобласти и по всей России. Сайт написан на React, но каждая страница при сборке превращается в готовый HTML (хорошо для SEO: поисковик видит текст, заголовки и мета-теги без JavaScript), а в браузере React только «оживляет» её — меню, галереи и копирование контактов.
 
-Формы заявки на сайте нет: внизу страниц блок «Контакты» (телефон, почта, Telegram, MAX) из `data/site.json` → `contacts`. Сервер с `POST /api/request` (заявка → Telegram) остался в `server/` на случай, если форма понадобится снова; тестовый сайт на Netlify — чистая статика из `dist/`.
+Формы заявки на сайте нет: внизу страниц блок «Контакты» (телефон, почта, Telegram, MAX) из `data/site.json` → `contacts`. Сайт — чистая статика из `dist/`: подходит любой хостинг без Node.js (Netlify, обычный хостинг nic.ru).
 
 ## Быстрый старт
 
 ```bash
 npm install
-cp .env.example .env   # вписать BOT_TOKEN и CHAT_ID
-npm run serve          # сборка в dist/ и сервер на http://localhost:3000
+cp .env.example .env   # вписать SITE_URL — адрес сайта
+npm run serve          # сборка в dist/ и просмотр на http://localhost:3000
 ```
 
 | Команда | Что делает |
 | --- | --- |
-| `npm run dev` | Режим разработки (Vite) с мгновенным обновлением — без готового HTML и без сервера заявок |
+| `npm run dev` | Режим разработки (Vite) с мгновенным обновлением — без готового HTML |
 | `npm run build` | Сборка: клиент (Vite) → серверный рендер → пререндер всех страниц в `dist/` + `sitemap.xml`, `robots.txt` |
-| `npm start` | Сервер: раздаёт `dist/` (и `POST /api/request`, если форма вернётся; читает `.env`, если он есть) |
+| `npm start` | Локальный просмотр `dist/` как на хостинге: адреса без `.html`, 404, заголовки из `public/_headers` |
 | `npm run serve` | `build` + `start` |
-| `npm test` | Все тесты (Vitest): компоненты, гидратация, пререндер, сервер |
+| `npm test` | Все тесты (Vitest): компоненты, гидратация, пререндер, локальный сервер |
 | `npm run lint` / `npm run format:check` | ESLint и Prettier |
 | `npm run smoke` | Проверка в браузере (Playwright) после `npm run build`: все страницы на 1366, 834 и 390 px, скриншоты в `/tmp/blizzard-shots` |
 | `npm run screens` | Скриншоты ключевых страниц на 11 ширинах (360–1920 px) и открытое меню на планшете и телефоне — в `/tmp/blizzard-screens` |
@@ -31,13 +31,10 @@ npm run serve          # сборка в dist/ и сервер на http://local
 
 | Переменная | Зачем |
 | --- | --- |
-| `BOT_TOKEN` | Токен Telegram-бота от @BotFather |
-| `CHAT_ID` | Чат или группа, куда приходят заявки |
-| `PORT` | Порт сервера, по умолчанию 3000 |
 | `SITE_URL` | Адрес сайта для canonical, Open Graph и `sitemap.xml` (при сборке) |
-| `TRUST_PROXY` | `1`, если сайт стоит за nginx — чтобы лимит заявок считал реальные IP |
+| `PORT` | Порт локального просмотра (`npm start`), по умолчанию 3000 |
 
-Если `BOT_TOKEN` или `CHAT_ID` не заданы, сайт работает, а `POST /api/request` отвечает 503 (и это пишется в лог). Сейчас формы на сайте нет, так что для статики эти переменные не нужны.
+Обе переменные читаются из `.env`, если он есть.
 
 ## Как устроена сборка
 
@@ -46,7 +43,7 @@ npm run serve          # сборка в dist/ и сервер на http://local
 3. `scripts/prerender.js` для каждой страницы из `src/lib/routes.js` рендерит HTML (`react-dom/server`) и теги `<head>` (компонент `Head`: title, description, canonical, Open Graph, JSON-LD), вставляет их в шаблон `index.html` и пишет в `dist/<адрес>.html`. Там же — SVG-заглушки картинок, настоящие фото, `sitemap.xml` и `robots.txt`.
 4. В браузере `src/main.jsx` вызывает `hydrateRoot`: разметка уже на месте, React только подключает обработчики. Расхождение HTML и клиента — ошибка (её ловят тест гидратации и `npm run smoke`).
 
-Адреса страниц прежние: `/`, `/ventilation.html`, `/ventilation/l2.html`, `/dust-removal/v2.html`… Сервер отдаёт их и без `.html`. Ссылки между страницами — обычные `<a>`: каждая страница — отдельный готовый HTML, React Router только выбирает, какую страницу гидратировать.
+Адреса страниц прежние: `/`, `/ventilation.html`, `/ventilation/l2.html`, `/dust-removal/v2.html`… Netlify и локальный просмотр отдают их и без `.html`. Ссылки между страницами — обычные `<a>`: каждая страница — отдельный готовый HTML, React Router только выбирает, какую страницу гидратировать.
 
 ## Структура
 
@@ -79,13 +76,8 @@ scripts/
   photos-plugin.js    — Vite-плагин: список фото из images/ и заглушки в режиме разработки
 public/               — копируется как есть: шрифты Unbounded и Onest, favicon
 images/               — сюда кладутся фото; список нужных файлов — images/README.md
-server/
-  index.js            — запуск сервера
-  app.js              — Express: POST /api/request + раздача dist/ (/assets кешируется надолго)
-  validate.js         — проверка заявки (согласие обязательно: consent === true)
-  telegram.js         — отправка в Telegram Bot API
-  rate-limit.js       — не больше 5 заявок за 10 минут с одного IP
 tools/smoke.js        — проверка в браузере (Playwright); screens.js — скриншоты на всех ширинах
+tools/static-server.js — локальный просмотр dist/ (npm start) и сервер для этих проверок
 tools/optimize-images.py — WebP-копии фото в images/opt (запускать после добавления фото)
 ```
 

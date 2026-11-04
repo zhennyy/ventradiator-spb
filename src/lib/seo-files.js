@@ -16,7 +16,6 @@ ${urls}
 export function renderRobots(siteUrl) {
   return `User-agent: *
 Allow: /
-Disallow: /api/
 
 Sitemap: ${normalizeSiteUrl(siteUrl)}/sitemap.xml
 `;

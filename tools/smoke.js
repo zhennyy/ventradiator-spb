@@ -18,7 +18,7 @@ import {
   closeMobileMenu,
   waitForHydration,
 } from './smoke-checks.js';
-import { startServer } from './smoke-server.js';
+import { startServer } from './static-server.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
@@ -85,8 +85,7 @@ async function main() {
   if (!fs.existsSync(path.join(DIST, 'index.html'))) throw new Error('Сначала соберите сайт: npm run build');
   const outDir = readArgument('--out', '/tmp/blizzard-shots');
   fs.mkdirSync(outDir, { recursive: true });
-  const telegramCalls = [];
-  const server = await startServer(telegramCalls);
+  const server = await startServer();
   const browser = await chromium.launch();
   const problems = [];
   const pages = listPages(DIST);

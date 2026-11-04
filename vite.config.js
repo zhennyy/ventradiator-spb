@@ -8,10 +8,10 @@ export default defineConfig({
   plugins: [react(), photosPlugin()],
   // Год фиксируется при сборке: одинаковый в готовом HTML и при гидратации.
   define: { __BUILD_YEAR__: JSON.stringify(new Date().getFullYear()) },
-  // Тесты (Vitest): компоненты рендерятся в jsdom; тесты сервера и пререндера сами выбирают окружение node.
+  // Тесты (Vitest): компоненты рендерятся в jsdom; тесты пререндера и локального сервера сами выбирают окружение node.
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.js'],
-    include: ['src/**/*.test.{js,jsx}', 'server/**/*.test.js', 'scripts/**/*.test.js'],
+    include: ['src/**/*.test.{js,jsx}', 'scripts/**/*.test.js', 'tools/**/*.test.js'],
   },
 });

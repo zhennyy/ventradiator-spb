@@ -9,8 +9,8 @@
     "build": "npm run build:client && npm run build:server && npm run prerender",
     "build:client": "vite build",
     "build:server": "vite build --ssr src/entry-server.jsx --outDir dist-server",
-    "prerender": "node scripts/prerender.js",
-    "start": "node --env-file-if-exists=.env server/index.js",
+    "prerender": "node --env-file-if-exists=.env scripts/prerender.js",
+    "start": "node --env-file-if-exists=.env tools/static-server.js",
     "serve": "npm run build && npm start",
     "test": "vitest run",
     "smoke": "node tools/smoke.js --out /tmp/blizzard-shots",
@@ -23,7 +23,6 @@
     "node": ">=22.12"
   },
   "dependencies": {
-    "express": "^4.22.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^7.18.5"

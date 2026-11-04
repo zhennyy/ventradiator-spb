@@ -9,7 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { chromium } from 'playwright';
 import { waitForHydration } from './smoke-checks.js';
-import { startServer } from './smoke-server.js';
+import { startServer } from './static-server.js';
 
 // [имя, ширина, высота окна]
 const VIEWPORTS = [
