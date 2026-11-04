@@ -1,8 +1,8 @@
 {
-  "name": "blizzard-spb-catalog",
+  "name": "s-berry",
   "version": "2.0.0",
   "private": true,
-  "description": "Сайт-каталог представительства Blizzard Lufttechnik в Санкт-Петербурге",
+  "description": "Сайт-каталог: вентиляция, пылеудаление, радиаторы и конвекторы в Санкт-Петербурге",
   "type": "module",
   "scripts": {
     "dev": "vite",
